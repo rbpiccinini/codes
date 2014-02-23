@@ -1,0 +1,5 @@
+rockFluidModel/rockFluidModel.C
+rockFluidModel/rockFluidModelNew.C
+coreyModel/coreyModel.C
+
+LIB = $(FOAM_USER_LIBBIN)/librockFluidModels

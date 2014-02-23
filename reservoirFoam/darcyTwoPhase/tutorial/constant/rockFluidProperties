@@ -1,0 +1,32 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  2.2.1                                 |
+|   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    location    "constant";
+    object      rockFluidProperties;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+
+rockFluidModel		coreyModel;
+
+coreyModelCoeffs
+{
+Swi     Swi [0 0 0 0 0 0 0] 0.;
+Snr     Snr [0 0 0 0 0 0 0] 0.;
+krww	krww [0 0 0 0 0 0 0] 1.0;
+nw	nw [0 0 0 0 0 0 0] 1;
+krnn	krnn [0 0 0 0 0 0 0] 1.0;
+nn	nn [0 0 0 0 0 0 0] 1;
+}
+
+
+// ************************************************************************* //
