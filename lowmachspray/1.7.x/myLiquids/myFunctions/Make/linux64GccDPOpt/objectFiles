@@ -1,0 +1,7 @@
+OBJECTS = \
+$(OBJECTS_DIR)/cpFunc.o\
+$(OBJECTS_DIR)/pvFunc.o\
+$(OBJECTS_DIR)/rhoFunc.o\
+$(OBJECTS_DIR)/DFunc.o\
+$(OBJECTS_DIR)/muFunc.o\
+$(OBJECTS_DIR)/KFunc.o

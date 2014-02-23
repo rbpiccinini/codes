@@ -1,0 +1,15 @@
+# Number of parcels per second [parcels/s]
+- In Diesel spray applications, 1e7 parcels/s is a reasonable number.
+
+
+No. 	Property 	SI unit 	USCS unit
+			
+1 	Mass 	kilogram (kg) 	pound-mass (lbm)
+2 	Length 	metre (m) 	foot (ft)
+3 	Time 	— — — — second (s) — — — —
+4 	Temperature 	Kelvin (K) 	degree Rankine (∘ \relax \special {t4ht=R)
+5 	Quantity 	kilogram-mole (kgmol) 	pound-mole (lbmol)
+6 	Current 	
+— — — — ampere (A) — — — —
+7 	Luminous intensity 	
+— — — — candela (cd) — — — —

@@ -1,0 +1,25 @@
+
+[Anjuta]
+Maximized=1
+Geometry=1600x843+0+0
+
+[File Loader]
+Files=file:///home/piccinini/master/icodieselspray/branches/1.7.x/mypdfs/Make/files#1%%%file:///home/piccinini/master/icodieselspray/branches/1.7.x/lowMachDieselFoam/lowMachDieselFoam.C#109%%%file:///home/piccinini/master/icodieselspray/branches/1.7.x/myLiquids/myFunctions/DFunc/DFunc.H#107%%%file:///home/piccinini/master/icodieselspray/branches/1.7.x/lowMachSimpleDiesel/createFields.H#65%%%file:///home/piccinini/master/icodieselspray/branches/1.7.x/lowMachSimpleDiesel/createSpray.H#14%%%file:///home/piccinini/master/icodieselspray/branches/1.7.x/lowMachDieselFoam/pEqn.H#18%%%file:///home/piccinini/master/icodieselspray/branches/1.7.x/lowMachDieselFoam/UEqn.H#15%%%file:///home/piccinini/master/icodieselspray/branches/1.7.x/lowMachDieselFoam/YEqn.H#28%%%file:///home/piccinini/master/icodieselspray/branches/1.7.x/lowMachDieselFoam/hsEqn.H#9%%%file:///home/piccinini/master/icodieselspray/branches/1.7.x/lowMachDieselFoam/rhoEqn.H#12
+
+[Document Manager]
+bookmarks=<?xml version="1.0" encoding="UTF-8"?>\n<bookmarks/>\n
+
+[Execution]
+Run in terminal=2
+Working directories=file:///home/piccinini/master/icodieselspray/branches/1.7.x
+
+[Build]
+Configuration list=1:Default:%%%1:Debug:Debug%%%1:Profiling:Profiling%%%1:Optimized:Optimized
+Selected Configuration=Default
+BuildArgs/Default=--enable-maintainer-mode
+BuildArgs/Debug=--enable-maintainer-mode 'CFLAGS=-g -O0' 'CXXFLAGS=-g -O0' 'JFLAGS=-g -O0' 'FFLAGS=-g -O0'
+BuildArgs/Profiling=--enable-maintainer-mode 'CFLAGS=-g -pg' 'CXXFLAGS=-g -pg' 'JFLAGS=-g -pg' 'FFLAGS=-g -pg'
+BuildArgs/Optimized=--enable-maintainer-mode 'CFLAGS=-O2' 'CXXFLAGS=-O2' 'JFLAGS=-O2' 'FFLAGS=-O2'
+
+[Debugger]
+Stop at beginning=2

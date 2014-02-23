@@ -1,0 +1,7 @@
+DEPENDENCIES = \
+cpFunc/cpFunc.dep\
+pvFunc/pvFunc.dep\
+rhoFunc/rhoFunc.dep\
+DFunc/DFunc.dep\
+muFunc/muFunc.dep\
+KFunc/KFunc.dep
