@@ -170,13 +170,7 @@ where $\phi_\alpha$ is the volumetric fraction of a fluid phase $\alpha$ and $\p
 S_o + S_g +S_w = 1 \, .
 \end{equation}
 
-A common simplification in black-oil formulations is to restrict mass transport to macroscopic advection. No diffusive or dispersive term is included in the mass balance equations. This simplification must be looked with care when gradients of species concentration are important and the following assumption does not hold:
-
-\begin{equation}
-\nabla Y_o = \nabla Y_g = 0 \, .
-\end{equation}
-
-For instance, when gas is being dissolved in oil phase in a reservoir under repressurization, this condition is not generally true.
+A common simplification in black-oil formulations is to restrict mass transport to macroscopic advection. No diffusive or dispersive term is included in the mass balance equations. This simplification must be looked with care when gradients of species concentration are important and $\nabla Y_i \approx 0$ does not hold for some species $i$. For instance, when gas is being dissolved in oil phase in a reservoir under repressurization, this condition is not generally true.
 
 %Mass balance equations for each fluid phase are \citep{ertekin2001basic}:
 %% Oleo
@@ -236,7 +230,14 @@ and
 \nabla T \equiv 0 \, .
 \end{equation}
 
-Temperature is thus a constant prescribed value and no energy balance equation is needed. Also, it follows from Gibbs' phase rule that the equilibrium of oil and gas phases has only two degrees of freedom. As temperature is assumed constant, oil phase density in saturated states is a function of pressure or composition only.
+Temperature is thus a constant prescribed value and no energy balance equation is needed. Also, it follows from Gibbs' phase rule that the equilibrium of oil and gas phases has only two degrees of freedom. As temperature is assumed constant, oil phase density in saturated states is a function of pressure or composition only. The same is valid for mass concentrations of gas and oil components in oil phase.
+
+\begin{equation}
+Y_g = Y_g (p) \, ,
+\end{equation}
+\begin{equation}
+Y_o = Y_o (p) \, .
+\end{equation}
 
 Porosity ($\phi$) is assumed a function of pore pressure ($p_P$). Since three phases are present in general, such quantity is defined by some relation of type \citep{kim2011rigorous}:
 \begin{equation}
@@ -352,11 +353,11 @@ Eqs. \eqref{eq: Sw2}, \eqref{eq: So2} and \eqref{eq: Sg2} rewritten in terms of 
 
 \item gas component:
 \begin{equation}\label{eq: Sg3}
-\frac{\partial}{\partial t} \left[\left( \bar{\rho_o}\bar{Y_g} \bar{S_o} + \bar{\rho_g} \bar{S_g}  \right) \bar{\phi} \Omega\right] = \rho_g^{ST}Q_g^{ST} \, .
+\frac{\partial}{\partial t} \left[\left( \bar{\rho_o}\bar{Y_g} \bar{S_o} + \bar{\rho_g} \bar{S_g} \right) \bar{\phi} \Omega\right] = \rho_g^{ST}Q_g^{ST} \, .
 \end{equation}
 \end{itemize}
 
-We shall now introduce very common definitions coming from petroleum engineering for the description of volumetric and solubility changes in fluid phases. In concerning volumetric changes, $B_w$, $B_o$ and $B_g$, also called formation volume factors of water, oil and gas phases, respectively; express the ratio of a phase volume in some given pressure and temperature conditions to the volume of this same phase in standard pressure and temperature conditions, i.e.:
+We shall now introduce very common definitions from petroleum engineering for the description of volumetric and solubility changes in fluid phases. In what concerns volumetric changes, $B_w$, $B_o$ and $B_g$, also known as formation volume factors of water, oil and gas phases, respectively; express the ratio of a phase volume in some given pressure and temperature conditions to the volume of this same phase in standard pressure and temperature condition, i.e.:
 
 \begin{equation}
 B_w = \frac{\rho_w^{ST}}{\bar{\rho_w}} \, ,
@@ -370,15 +371,18 @@ B_o = \frac{\rho_o^{ST}}{\bar{Y_o} \bar{\rho_o}} \, ,
 B_g = \frac{\rho_g^{ST}}{\bar{\rho_g}} \, .
 \end{equation}
 
-In concerning changes in gas solubility in oil phase, the solubility ratio ($R_s$) gives the ratio between dissolved gas component volume and oil component volume both measured in standard conditions:
+In what concerns changes in gas solubility in oil phase, the solubility ratio ($R_s$) gives the ratio between dissolved gas component volume and oil component volume both measured in standard condition:
 
 \begin{equation}
-R_s = \frac{\rho_o^{ST} / \bar{Y_o}}{\rho_g^{ST} / \bar{Y_g}} \, .
+R_s = \frac{\rho_o^{ST} / \bar{Y_o}}{\rho_g^{ST} / \bar{Y_g}} \, ,
 \end{equation}
 
+or using $\bar{Y}_o + \bar{Y}_g = 1$:
+\begin{equation}
+R_s = \frac{\rho_o^{ST}}{\rho_g^{ST}}\frac{\bar{Y}_g}{1-\bar{Y}_g} \, .
+\end{equation}
 
-
-Equations can now be rewritten using the previous definitions and porous volume given by $V_p = \bar{\phi}\Omega$.
+Equations can now be rewritten using the above definitions and denoting porous volume by $V_p = \bar{\phi}\Omega$.
 
 \begin{equation}\label{eq: Sw4}
 \frac{\partial}{\partial t} \left(\frac{\bar{S_w} V_p}{B_w} \right) = Q_w^{ST} \, ,
@@ -398,7 +402,43 @@ Equations can now be rewritten using the previous definitions and porous volume 
 
 Equations from \eqref{eq: Sw4} to \eqref{eq: S14} constitute the most general form of material balance equations. So far, the only simplification made to black-oil equations was the absence of fluid motion, allowing pressure to be computed from Eqs.\eqref{eq: capillary_ow}, \eqref{eq: capillary_og} and \eqref{eq: p=rhogh}, and equations to be integrated in the entire reservoir volume.
 
-We now look to solve Eqs. \eqref{eq: Sw3}, \eqref{eq: So3} and \eqref{eq: Sg3} for the averaged quantities instead of solving them for the original space dependent quantities. 
+We now look to solve Eqs. \eqref{eq: Sw3}, \eqref{eq: So3} and \eqref{eq: Sg3} for the averaged quantities. 
+
+Furthermore, we look for the implications of neglecting gravity and capillarity and assuming a constant pressure throughout the reservoir. This additional simplification provides a direct relation between produced volumes and reservoir pressure.
+
+Assuming a constant isothermal compressibility to oil phase
+\begin{equation}
+\left( \frac{1}{\rho_o}\frac{\partial \rho_o}{\partial p_o} \right)_{T,Y_o} = c_o
+\end{equation}
+and using hydrostatic equilibrium $dp_o = \rho_o g dz$, we obtain the expression for oil density variation with depth:
+\begin{equation}
+\left( \frac{1}{\rho_o}\frac{\partial \rho_o}{\partial z} \right)_{T,Y_o} = c_o \rho_o g \, .
+\end{equation}
+
+For the gas phase, we obtain its isothermal compressibility from gas state equation
+\begin{equation}
+\left(\frac{1}{\rho_g}\frac{\partial \rho_g}{\partial p_g}\right)_{T,Z} = \frac{\rho_g}{p_g} = \frac{\mathcal{M}}{ZRT}
+\end{equation}
+
+And again we use hydrostatic equilibrium to obtain gas density variation with depth:
+\begin{equation}
+\left(\frac{1}{\rho_g}\frac{\partial \rho_g}{\partial z}\right)_{T,Z} = \left(\frac{\mathcal{M}}{ Z R T}\right) g
+\end{equation}
+
+%In oil zone:
+%\begin{equation}
+%\left(\frac{1}{\rho_g}\frac{\partial \rho_g}{\partial z}\right)_{T,Z} = \frac{\rho_o}{\rho_g}\left(\frac{\mathcal{M}}{Z R T}\right)g
+%\end{equation}
+
+\begin{equation}
+\left(\frac{1}{\rho_o}\frac{\partial \rho_o}{\partial z}\right)_{T,Y_o} \approx 10^{-6}\ m^{-1}
+\end{equation}
+
+\begin{equation}
+\left(\frac{1}{\rho_g}\frac{\partial \rho_g}{\partial z}\right)_{T,Z} \approx 10^{-5}\ m^{-1}
+\end{equation}
+If fluid densities do not vary appreciately with depth.
+
 
 Eq.~\eqref{eq: p=rhogh} gives an expression of how pressure, and hence PVT properties, depends on position. If gravity and capillarity are also neglected, fluid pressure becomes independent of position and phase:
 \begin{subequations}\label{eq: fullsimp}
@@ -568,11 +608,11 @@ It must be observed that the result of gas reentering oil phase completely negle
 
 Figure~\ref{fig: matbal_s} shows the formation of a free gas phase with growing $S_g$ and then its disappearance. Depending on the ratio of vertical and horizontal permeabilities or reservoir dip angle, it may also suggest the formation of a secondary gas cap.
 
-Figure \ref{fig: epsilon} shows the shape of residual function ($\epsilon$) with respect to pressure, i.e, holding all produced or injected volumes constant and allowing only pressure to change. Each different solid line corresponds to a different volume of fluid production and injection. The function root is the solution of material balance equation, Eq.~\eqref{eq: MBE_short}, and the non-differentiable point is the bubble-point pressure. Also, it is seen that function $\epsilon$ monotonically decreases with pressure, as theoretically shown before.
+Figure~\ref{fig: epsilon} shows the shape of residual function ($\epsilon$) with respect to pressure, i.e, holding all produced or injected volumes constant and allowing only pressure to change. Each different solid line corresponds to a different volume of fluid production and injection. The function root is the solution of material balance equation, Eq.~\eqref{eq: MBE_short}, and the non-differentiable point is the bubble-point pressure. Also, it is seen that function $\epsilon$ monotonically decreases with pressure, as theoretically shown before.
 
-Figure \ref{fig: iter} shows the count of newtonian iterations required to compute pressure with an accuracy within $0.001$ of initial bubble-point pressure. Typically, $12$ iterations are required.
+Figure~\ref{fig: iter} shows the count of newtonian iterations required to compute pressure with an accuracy within $0.001$ of initial bubble-point pressure. Typically, $12$ iterations are required.
 
-Figure \ref{fig: residual} shows the residual of numerical solution as defined in Eq.~\eqref{eq: residual}. Material balance error is bellow $10^{-7}$ units of porous volume for all time steps.
+Figure~\ref{fig: residual} shows the residual of numerical solution as defined in Eq.~\eqref{eq: residual}. Material balance error is bellow $10^{-7}$ units of porous volume for all time steps.
 
 
 
