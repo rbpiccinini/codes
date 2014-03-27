@@ -24,7 +24,7 @@ print 'eta = ', eta
 
 
 # Define reservoir limit
-R2=5000.
+R2=2000.
 R1=0.
 
 # Define points
@@ -33,12 +33,13 @@ r=linspace(R1,R2,np)
 dr=r[2]-r[1]
 
 # Define time
-dt=3600.*24.*30 # 1 month
+dt=3600.
 nt=12
 
 # Define Initial conditions
-p=zeros(np)
-p0=1e6
+p=400e5*r/R2
+p0=0.
+
 p[0]=p0
 
 # Build linear system
@@ -56,9 +57,14 @@ a[0,0]=-1. ##C-1. ##C/2-1.
 a[0,1]=0. ##-2*C ##-C
 a[0,2]=0. ## C    ##C/2
 
+# External BC of fixed value
+a[np-1,np-1]=-1. ##C-1. ##C/2-1.
+a[np-1,np-2]=0. ##-2*C ##-C
+a[np-2,np-3]=0. ## C    ##C/2
+
 # External BC of zero gradient
-a[np-1,np-2]=2.*C
-a[np-1,np-1]=-(1.+2.*C)
+# a[np-1,np-2]=2.*C
+# a[np-1,np-1]=-(1.+2.*C)
 
 for tt in range(nt):
 	p=dot(inv(a),-1.*p)

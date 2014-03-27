@@ -397,3 +397,69 @@ class classEBM:
 		mug=1.
 		RGO=krg*muo/mug*Bo/Bg
 		return RGO
+
+	def We_residual(self,We,p,Np,Gp,Gi,Wi,Wp):
+		res=self.res
+		pvt=self.pvt
+		# computing residual:
+		# rhs=self.N*(self.Eo(p)+res.m*self.Eg(p)+self.Efw(p))+(Wi+We)*pvt.Bw(p)
+		# lhs=Np*(pvt.Bo(p,pvt.Pb)+(Gp/Np-pvt.Rs(p,pvt.Pb))*pvt.Bg(p))+Wp*pvt.Bw(p)
+		E=self.N*(self.Eo(p)+res.m*self.Eg(p)+self.Efw(p))
+		Fi=(Wi+We)*pvt.Bw(p)+Gi*pvt.Bg(p)
+		Fp=Np*(pvt.Bo(p,pvt.Pb)+(Gp/Np-pvt.Rs(p,pvt.Pb))*pvt.Bg(p))+Wp*pvt.Bw(p)
+		#return (E-Fp+Fi)/(abs(Fp)+abs(Fi)+abs(E))
+		return (E-Fp+Fi)/res.Vp0
+
+	def calcWe(self):
+		out=self.out
+		out.reset()
+		Np=self.Np
+		Gp=self.Gp
+		Gi=self.Gi
+		Wi=self.Wi
+		Wp=self.Wp
+		We=self.We
+		res=self.res
+		pvt=self.pvt
+		dt=self.dt
+		p=self.p
+		Wecalc=0.
+
+		RGO=gradient(Gp)/gradient(Np)
+
+##		if 'out' in locals():
+##			del out
+##			out=[]
+		for i in range(len(Np)):
+			pvt.Pb=self.updatePb(Np[i],Gp[i],Gi[i])
+
+#			We[i],brentq_r=sp.bisect(self.We_residual, 0. ,10.*(Wp[i]+Np[i]), args=(p[i],Np[i],Gp[i],Gi[i],Wi[i],Wp[i]),xtol=1e-8, rtol=1e-8, maxiter=2000, full_output=True, disp=True)
+			We[i],brentq_r=sp.brentq(self.We_residual, 0. ,10.*(Wp[i]+Np[i]), args=(p[i],Np[i],Gp[i],Gi[i],Wi[i],Wp[i]),xtol=1e-8, rtol=1e-8, maxiter=2000, full_output=True, disp=True)
+#			pnewton=sp.newton(self.residual, pbisect, args=(Np[i],Gp[i],Wi[i],Wp[i],dt[i]),tol=1e-5, maxiter=1000)
+			fval = self.We_residual(We[i],p[i],Np[i],Gp[i],Gi[i],Wi[i],Wp[i])
+
+			# Save output data
+			out.p.append(p[i])
+			out.Vp.append(res.Vp(p[i]))
+			out.Sw.append(self.Sw(p[i],Wi[i],Wp[i],We[i]))
+			out.So.append(self.So(p[i],Np[i]))
+			out.Sg.append(self.Sg(p[i],self.N,Np[i],Gp[i],Gi[i]))
+			out.residual.append(fval)
+			out.Eo.append(self.Eo(p[i]))
+			out.Eg.append(self.Eg(p[i]))
+			out.Efw.append(self.Efw(p[i]))
+			out.We.append(self.We[i])
+			out.fw.append(gradient(Wp)[i]/(gradient(Np)[i]+gradient(Wp)[i]))
+
+			# Compute new bubble pressure
+			out.Pb.append(pvt.Pb)
+			print '[iter = ',i,']'
+			print 'brentq iter, fcalls = ',brentq_r.iterations,brentq_r.function_calls
+			print 'p [kgf/cm2], residual = ',p[i],fval
+			print 'MBE oil = ',out.So[-1]*out.Vp[-1]/pvt.Bo(p[i],pvt.Pb)/(self.N-Np[i])
+			print 'Pb [kgf/cm2] = ',out.Pb[-1]
+			print 'RGO = ', RGO[i]
+			print 'FR Oil, FR Gas = ',Np[i]/self.N, Gp[i]/(self.N*pvt.Rs(res.p0,res.Pb0))
+			print 'So, Sg, Sw = ',out.So[-1],out.Sg[-1],out.Sw[-1]
+			print '--------------------------------------------'
+		r
