@@ -135,9 +135,9 @@ This section starts presenting the more general black-oil equations. It then pro
 
 As previously mentioned, black-oil is a designation to a simplified treatment of hydrocarbon composition and phase equilibrium. Hydrocarbon species are grouped into two pseudo-components called oil and gas, being a pseudo-component one that consists of more than one chemical molecule.
 
-Oil component is composed by hydrocarbon species that remain in liquid phase for standard surface pressure and temperature (stock tank oil). In contrast, gas component is composed by hydrocarbon species in gaseous phase for the same surface conditions.
+Oil component, also called stock tank oil, is defined as the hydrocarbon composition in liquid phase for standard surface pressure and temperature. Similarly, gas component is the hydrocarbon composition in gaseous phase for the same surface conditions. All species are generally present in both phases although the equilibrium composition is shifted to liquid phase (or gaseous phase) for components of greater (lower) molecular mass.
 
-Reservoir fluids are then composed of the two pseudo-components (oil and gas) plus the water component. There can exist three fluid phases: oil, gas and (liquid) water. Oil phase may be composed of oil and gas components, gas phase may be composed uniquely by the gas component and, water phase, uniquely by water component. The only allowed mass transfer is of gas component between oil and gas phases.
+Reservoir fluids are then composed of the two pseudo-components (oil and gas) plus the water component. There can exist three fluid phases: oil, gas and liquid water. Oil phase may be composed of oil and gas components, gas phase may be composed uniquely by the gas component and, water phase, uniquely by water component. The only allowed mass transfer is of gas component between oil and gas phases.
 
 In addition to the three fluid components and phases, there is the solid phase composed by the rock.
 
@@ -357,7 +357,7 @@ Eqs. \eqref{eq: Sw2}, \eqref{eq: So2} and \eqref{eq: Sg2} rewritten in terms of 
 \end{equation}
 \end{itemize}
 
-We shall now introduce very common definitions from petroleum engineering for the description of volumetric and solubility changes in fluid phases. In what concerns volumetric changes, $B_w$, $B_o$ and $B_g$, also known as formation volume factors of water, oil and gas phases, respectively; express the ratio of a phase volume in some given pressure and temperature conditions to the volume of this same phase in standard pressure and temperature condition, i.e.:
+We shall now introduce very common definitions from petroleum engineering for the description of volumetric and solubility changes in fluid phases. In what concerns volumetric changes, $B_w$, $B_o$ and $B_g$, also known as formation volume factors of water, oil and gas phases, respectively; express the ratio of a phase volume in some given pressure and temperature condition to the volume of this same phase in standard pressure and temperature, i.e.:
 
 \begin{equation}
 B_w = \frac{\rho_w^{ST}}{\bar{\rho_w}} \, ,
@@ -400,7 +400,22 @@ Equations can now be rewritten using the above definitions and denoting porous v
 \bar{S_w}+\bar{S_o}+\bar{S_g}=1 \, .
 \end{equation}
 
-Equations from \eqref{eq: Sw4} to \eqref{eq: S14} constitute the most general form of material balance equations. So far, the only simplification made to black-oil equations was the absence of fluid motion, allowing pressure to be computed from Eqs.\eqref{eq: capillary_ow}, \eqref{eq: capillary_og} and \eqref{eq: p=rhogh}, and equations to be integrated in the entire reservoir volume.
+Performing time integration, balance equations for water and oil are:
+\begin{equation}\label{eq: So5}
+\frac{\bar{S}_{w1} V_{p1}}{B_{w1}} - \frac{\bar{S}_{w2} V_{p2}}{B_{w2}} = W_p \, ,
+\end{equation}
+\begin{equation}\label{eq: So5}
+\frac{\bar{S}_{o2} V_{p2}}{B_{o2}} = \left(N-N_p\right) \, ,
+\end{equation}
+where $N=\bar{S_{o1}} V_{p1} / B_{o1}$ is the initial volume of oil measured in standard conditions.
+
+Balance of gas component is:
+\begin{equation}\label{eq: Sg5}
+V_{p2}\left(\frac{S_{g2}}{B_{g2}} +\frac{S_{o2} R_{s2}}{B_{o2}}\right) - N\left(m\frac{B_{o1}}{B_{g1}} + R_{s1}\right)=G_i-G_p \, ,
+\end{equation}
+where $m=V_{p1} S_{g1}/ B_{o1} N$ is the ratio of initial volumes of gas and oil phases in reservoir conditions.
+
+%Equations from \eqref{eq: Sw4} to \eqref{eq: S14} constitute the most general form of material balance equations. So far, the only simplification made to black-oil equations was the absence of fluid motion, allowing pressure to be computed from Eqs.\eqref{eq: capillary_ow}, \eqref{eq: capillary_og} and \eqref{eq: p=rhogh}, and equations to be integrated in the entire reservoir volume.
 
 We now look to solve Eqs. \eqref{eq: Sw3}, \eqref{eq: So3} and \eqref{eq: Sg3} for the averaged quantities. 
 
@@ -437,7 +452,7 @@ And again we use hydrostatic equilibrium to obtain gas density variation with de
 \begin{equation}
 \left(\frac{1}{\rho_g}\frac{\partial \rho_g}{\partial z}\right)_{T,Z} \approx 10^{-5}\ m^{-1}
 \end{equation}
-If fluid densities do not vary appreciately with depth.
+If fluid densities do not vary appreciably with depth.
 
 
 Eq.~\eqref{eq: p=rhogh} gives an expression of how pressure, and hence PVT properties, depends on position. If gravity and capillarity are also neglected, fluid pressure becomes independent of position and phase:
@@ -502,7 +517,7 @@ R_{s2}\left(p=P_b\right) = &\Big[N\left(m B_{1}/B_{g1} +R_{s1}\right)\\
 \end{split}
 \end{equation}
 
-A single equation for pressure (without fluid saturations) can be obtained by substituting Eqs.~\eqref{eq: So2}, \eqref{eq: Sg2} and \eqref{eq: Sw2} into \eqref{eq: S12}. The resulting equation allows pressure to be calculated from given production ($F_p$) and injection ($F_i$) volumes:
+A single equation for pressure may be obtained by substituting Eqs.~\eqref{eq: So2}, \eqref{eq: Sg2} and \eqref{eq: Sw2} into \eqref{eq: S12}. The resulting equation allows pressure to be calculated from given production ($F_p$) and injection ($F_i$) volumes:
 \begin{equation}\label{eq: MBE}
 F_p - F_i= \underbrace{N E_o + mN E_g + W E_w}_{\text{fluid volume expansion } (E)} +\underbrace{V_{p1}-V_{p2}}_{\text{porous volume contraction } (C)}
 \end{equation}
