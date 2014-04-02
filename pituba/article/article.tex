@@ -133,7 +133,7 @@ This section starts presenting the more general black-oil equations. It then pro
 
 \subsection{Black-Oil Equations}
 
-As previously mentioned, black-oil is a designation to a simplified treatment of hydrocarbon composition and phase equilibrium. Hydrocarbon species are grouped into two pseudo-components called oil and gas, being a pseudo-component one that consists of more than one chemical molecule.
+As already mentioned, black-oil is a designation to a simplified treatment of hydrocarbon composition and phase equilibrium. Hydrocarbon species are grouped into two pseudo-components called oil and gas, being a pseudo-component one that consists of more than one chemical molecule.
 
 Oil component, also called stock tank oil, is defined as the hydrocarbon composition in liquid phase for standard surface pressure and temperature. Similarly, gas component is the hydrocarbon composition in gaseous phase for the same surface conditions. All species are generally present in both phases although the equilibrium composition is shifted to liquid phase (or gaseous phase) for components of greater (lower) molecular mass.
 
@@ -230,7 +230,7 @@ and
 \nabla T \equiv 0 \, .
 \end{equation}
 
-Temperature is thus a constant prescribed value and no energy balance equation is needed. Also, it follows from Gibbs' phase rule that the equilibrium of oil and gas phases has only two degrees of freedom. As temperature is assumed constant, oil phase density in saturated states is a function of pressure or composition only. The same is valid for mass concentrations of gas and oil components in oil phase.
+Temperature is thus a constant prescribed value and no energy balance equation is needed. Also, it follows from Gibbs' phase rule that the equilibrium of oil and gas phases has only two degrees of freedom (restricting component number to the two pseudo-components). As temperature is assumed constant, oil phase density in saturated states is a function of pressure or composition only. The same is valid for mass concentrations of gas and oil components in oil phase.
 
 \begin{equation}
 Y_g = Y_g (p) \, ,
@@ -316,6 +316,7 @@ Black-oil equations then become:
 \end{equation}
 \end{itemize}
 %
+\subsubsection{Averaging Quantities}
 
 We now define space averaged quantities for porosity ($\phi$), saturation ($S_\alpha$) and density ($\rho_\alpha$) of a phase $\alpha$ and mass concentration of a component $k$ in phase $\alpha$ ($Y_{\alpha,k}$).
 
@@ -371,7 +372,7 @@ B_o = \frac{\rho_o^{ST}}{\bar{Y_o} \bar{\rho_o}} \, ,
 B_g = \frac{\rho_g^{ST}}{\bar{\rho_g}} \, .
 \end{equation}
 
-The above averaged fluid densities, $\bar{\rho}_w$, $\bar{\rho}_o$ and $\bar{\rho}_g$, may be approximated to a constant value measured at a reference depth, if effects of temperature and compositional gradients are neglected. If we put together the expressions for fluid compressibility and hydrostatic equilibrium, we conclude that density variation with depth is negligible.
+The above averaged fluid densities, $\bar{\rho}_w$, $\bar{\rho}_o$ and $\bar{\rho}_g$, may be approximated to a constant value measured at a reference depth. If we put together the expressions for fluid compressibility and hydrostatic equilibrium, we conclude that density variation with depth is negligible.
 
 For showing this, we assume a constant isothermal compressibility to oil phase
 \begin{equation}\label{eq: grado}
