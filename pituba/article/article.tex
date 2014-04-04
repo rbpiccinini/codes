@@ -53,7 +53,7 @@ material balance \sep black-oil equations \sep reservoir engineering.
 \end{frontmatter}
 
 \section{Introduction}
-The so called material balance equations are widely employed in reservoir engineering and have become a classical tool in oil reservoir management. The equations were originally presented in \cite{schilthuis1936active} and conceived as a zero dimensional model for estimating reservoir pressure from phase equilibrium and balance of fluid production and volumetric expansion. \cite{schilthuis1936active} introduced the hypothesis of thermodynamic equilibrium occurring not in the entire reservoir volume, but in the regions of high permeability where most of the produced volume would come from and where pressure would present a more equal behavior. Such regions were said to contain an \textit{active oil}.
+The so called material balance equations are widely employed in reservoir engineering and have become a classical tool in oil reservoir management. The equations were originally presented in \cite{schilthuis1936active} and conceived as a zero dimensional model for estimating reservoir pressure from a balance of fluid production and injection. \cite{schilthuis1936active} introduced the hypothesis of thermodynamic equilibrium occurring not in the entire reservoir volume, but in the regions of high permeability where most of the produced volume would come from and where pressure would present a similar behavior. Such regions were said to contain an \textit{active oil}.
 
 The equations developed by \cite{schilthuis1936active} did not account for the non-existence of mechanical, phase or thermal equilibrium. Also, the zero-dimensional approach excluded the possibility of mechanical equilibrium under gravity and capillary forces, which produces a variable fluid distribution in space. An attempt to introduce non-equilibrium effects of hydrodynamic origin came with \textit{black-oil} equations \citep{aziz1979petroleum,blackoil}. The novelty on hydrodynamics was the introduction of a macroscopic equation of motion employing Darcy's law.
 
@@ -61,9 +61,13 @@ The equations developed by \cite{schilthuis1936active} did not account for the n
 
 %Although many applications of material balance equations have been reported, few explore their connection.
 
-The term \textit{black-oil} refers to specific hydrocarbon compositions whose volume and phase equilibria can be well described by a two pseudo-component system for isothermal changes in pressure. A general restriction is that reservoir temperature must be sufficiently below the mixture critical temperature so that different fluid phases have clearly distinguishable properties \citep{danesh1998pvt,firoozabadi1999thermodynamics}.
+The term \textit{black-oil} refers to specific hydrocarbon compositions whose phase equilibrium for isothermal changes in pressure may be well described by a two pseudo-component system. For such reservoir fluids, gas and oil compositions remain essentially constant in the entire range of pressure the reservoir observes during production life. 
 
-Since black-oil and material balance equations differ only in the number of spatial dimensions and the existence of local pressure gradients, there must exist conditions under which material balance equations can be recovered from the black-oil approach. This existing link was briefly addressed in \cite{ertekin2001basic}, where both approaches were argued to be equivalent if capillarity and gradients of flow potential $\Phi$ could be neglected, i.e.:
+A general restriction of this approach is that reservoir temperature must be sufficiently below the mixture critical temperature so that different fluid phases have clearly distinguishable properties \citep{danesh1998pvt,firoozabadi1999thermodynamics}.
+
+Since black-oil and material balance equations differ only on spatial scale and the existence of local pressure gradients, there must exist conditions under which material balance equations might be recovered from the black-oil approach. This work examines such conditions. 
+
+This existing link was briefly addressed in \cite{ertekin2001basic}, where both approaches were argued to be equivalent if capillarity and gradients of flow potential $\Phi$ could be neglected, i.e.:
 \begin{subequations}
 \begin{equation}
 p_\alpha = p \, ,
@@ -79,7 +83,7 @@ It is shown in this work that a stronger assumption is actually needed: mechanic
 %\nabla p \equiv 0 \, .
 %\end{equation}
 
-The restriction of a spatially constant pressure throughout the reservoir does not require PVT properties to be averaged during the integration procedure. Such averaging process is not straightforward, if not impractical, as it is shown later. For the same reason, bubble-point pressure must also be constant and it is shown that this latter assumption is equivalent to having constant fluid saturations in space.
+%The restriction of a spatially constant pressure throughout the reservoir does not require PVT properties to be averaged during the integration procedure. Such averaging process is not straightforward, if not impractical, as it is shown later. For the same reason, bubble-point pressure must also be constant and it is shown that this latter assumption is equivalent to having constant fluid saturations in space.
 
 %The requirement of a spatially constant pressure makes the material balance equations more suitable for shallow reservoirs, where gravity field is less important in phase equilibrium.
 
@@ -87,7 +91,7 @@ The present derivation of material balance equations allows bubble-point pressur
 
 %It has already been shown the importance of not having strong flow near interface that prevents mixing and causes pressure to drop locally \citep{steffensen1973reservoir,utseth1981numerical}.
 
-After presenting material balance equations, sufficient conditions for solution uniqueness are imposed on PVT properties. The conditions simply require fluids to be compressible and that gas dissolution occurs with reduction of system volume.
+After presenting material balance equations, sufficient conditions for solution uniqueness are imposed on PVT properties. These conditions require fluids to be compressible and that gas dissolution occurs with reduction of the overall system volume.
 
 A simple scheme for numerical solution is also proposed based on classical root-finding algorithms for non-linear equations.
 
@@ -320,7 +324,7 @@ Black-oil equations then become:
 
 We now define space averaged quantities for porosity ($\phi$), saturation ($S_\alpha$) and density ($\rho_\alpha$) of a phase $\alpha$ and mass concentration of a component $k$ in phase $\alpha$ ($Y_{\alpha,k}$).
 
-All quantities are locally functions of space and time, but, after averaged in space, they become function of time only:
+All quantities are locally functions of space and time, but, after averaged in space, they become functions of time only:
 
 \begin{equation}
 \bar{\phi} (t) = \frac{1}{\Omega}\int_{\Omega}\phi \left(\mathbf{x},t\right) dV \, .
@@ -372,7 +376,7 @@ B_o = \frac{\rho_o^{ST}}{\bar{Y_o} \bar{\rho_o}} \, ,
 B_g = \frac{\rho_g^{ST}}{\bar{\rho_g}} \, .
 \end{equation}
 
-The above averaged fluid densities, $\bar{\rho}_w$, $\bar{\rho}_o$ and $\bar{\rho}_g$, may be approximated to a constant value measured at a reference depth. If we put together the expressions for fluid compressibility and hydrostatic equilibrium, we conclude that density variation with depth is negligible.
+The above averaged fluid densities, $\bar{\rho}_w$, $\bar{\rho}_o$ and $\bar{\rho}_g$, may be approximated to a constant value measured at a reference depth (also called \textit{datum}). If we put together the expressions for fluid compressibility and hydrostatic equilibrium, we conclude that density variation with depth is negligible.
 
 For showing this, we assume a constant isothermal compressibility to oil phase
 \begin{equation}\label{eq: grado}
