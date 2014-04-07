@@ -61,7 +61,7 @@ Black-oil equations arise from the generalization of the zero dimensional concep
 
 %Although many applications of material balance equations have been reported, few explore their connection.
 
-The term \textit{black-oil} refers to specific hydrocarbon compositions whose phase equilibrium for isothermal changes in pressure may be well described by a two pseudo-component system. For such reservoir fluids, gas and oil compositions remain essentially constant in the entire range of pressure observed during reservoir production life. 
+The term black-oil refers to specific hydrocarbon compositions whose phase equilibrium for isothermal changes in pressure may be well described by a two pseudo-component system. For such reservoir fluids, gas and oil compositions remain essentially constant in the entire range of pressure observed during reservoir productive life. 
 
 %A general restriction of this approach is that reservoir temperature must be sufficiently below the mixture critical temperature so that different fluid phases have clearly distinguishable properties \citep{danesh1998pvt,firoozabadi1999thermodynamics}.
 
@@ -131,11 +131,11 @@ A simple scheme for numerical solution is also proposed based on classical root-
 %
 %\cite{hilfer1} has proposed the inclusion of an energy equation.
 
-\section{Derivation of Equations}
+\section{Derivation of equations}
 
 This section starts presenting black-oil equations and it proceeds averaging quantities in space and examining simplifying assumptions for wich material balance equations are obtained.
 
-\subsection{Black-Oil Equations}
+\subsection{Black-Oil equations}
 
 As already mentioned, black-oil is a designation to a simplified treatment of hydrocarbon composition and phase equilibrium. Hydrocarbon species are grouped into two pseudo-components called oil and gas, being a pseudo-component one that consists of more than one chemical molecule.
 
@@ -277,7 +277,7 @@ p_{c,go}\left(\mathbf{k},\phi,S_g\right)=p_g-p_o \, .
 %Cite Bear and Herrera.
 
 
-\subsection{Material Balance Equations}
+\subsection{Material balance equations}
 
 Derivation of the classical material balance equations consists in assuming no fluid motion and in integrating black-oil equations in the entire reservoir volume. The integration process, however, requires all quantities to be either averaged or assumed constant in space.
 
@@ -320,7 +320,7 @@ Black-oil equations then become:
 \end{equation}
 \end{itemize}
 %
-\subsubsection{Averaging Quantities}
+\subsubsection{Averaging quantities}
 
 We now define space averaged quantities for porosity ($\phi$), saturation ($S_\alpha$) and density ($\rho_\alpha$) of a phase $\alpha$ and mass concentration of a component $k$ in phase $\alpha$ ($Y_{\alpha,k}$).
 
@@ -376,13 +376,29 @@ B_o = \frac{\rho_o^{ST}}{\bar{Y_o} \bar{\rho_o}} \, ,
 B_g = \frac{\rho_g^{ST}}{\bar{\rho_g}} \, .
 \end{equation}
 
-\subsubsection{Definition of a Reference Depth for Pressure}
+In what concerns changes in gas solubility in oil phase, the solubility ratio ($R_s$) gives the ratio between dissolved gas component volume and oil component volume both measured in standard condition:
 
-Phase pressure increases with depth according to the hydrostatic gradient. This pressure increase, however, is not significant to produce appreciable variation in phase density and it may be approximated to a constant density measured at some reference depth.
+\begin{equation}
+R_s = \frac{\rho_o^{ST} / \bar{Y_o}}{\rho_g^{ST} / \bar{Y_g}} \, ,
+\end{equation}
 
-We may quantify this approximation by putting together the expressions for fluid compressibility and hydrostatic equilibrium, we conclude that density variation with depth is negligible.
+or using $\bar{Y}_o + \bar{Y}_g = 1$:
+\begin{equation}
+R_s = \frac{\rho_o^{ST}}{\rho_g^{ST}}\frac{\bar{Y}_g}{1-\bar{Y}_g} \, .
+\end{equation}
 
-For showing this, we assume a constant isothermal compressibility to oil phase
+\subsubsection{Definition of a reference depth for pressure}
+
+Applications of material balance equations are widely employed to stablish a relation between production (and injection) and reservoir pressure. It turns out, as we know, that pressure is different for different locations, mostly for different values of depth, and also for different phases.
+
+What is then the significance of a single value of pressure for the entire reservoir, i.e., the reservoir pressure? 
+
+We shall see that for the purpose of computing phase densities in the material balance, if we define a reference depth and use the corresponding local pressure, no important error is introduced in computing density. Phase pressure increases with depth according to the hydrostatic gradient. The pressure increase, however, is not significant to produce appreciable variation in phase density.
+
+%and it may be approximated to a constant density measured at some reference depth.
+
+We may quantify this approximation by putting together the expressions for fluid compressibility and hydrostatic equilibrium.
+For this, we assume a constant isothermal compressibility to oil phase
 \begin{equation}\label{eq: grado}
 \left( \frac{1}{\rho_o}\frac{\partial \rho_o}{\partial p_o} \right)_{T,Y_o} = c_o 
 \end{equation}
@@ -410,25 +426,19 @@ Substituting typical values in Eqs.~\eqref{eq: grado} and \eqref{eq: gradg}, we 
 \left(\frac{1}{\rho_g}\frac{\partial \rho_g}{\partial z}\right)_{T,Z} \approx 10^{-5}\ m^{-1} \, .
 \end{equation}
 
-The reference depth for computing fluid density (or formation volume factors) may be defined at gas-oil contact for a reservoir with a gas cap. At the fluid contact, both gas and oil densities may be computed using the corresponding local pressure. 
-If the reference depth for oil phase is otherwise defined below gas-oil contact, gas density must be computed at some different depth still inside gas zone. This is to avoid the effect of oil pressure gradient in the computation of gas density, i.e.,
+The reference depth for computing fluid density (or formation volume factors) is then any arbitrary depth inside phase volume. 
+
+For the case of an oil reservoir covered by a gas cap, the reference depth may be defined with advantage at the gas-oil contact. The point is that at the contact, both gas and oil densities may be computed using the same pressure, i.e., the corresponding local value. 
+
+If the reference depth for oil phase is otherwise defined below gas-oil contact, gas density must be computed at some different depth still inside gas phase. This is to avoid the effect of oil hydrostatic gradient in the computation of gas density,
 \begin{equation}
-\left(\frac{1}{\rho_g}\frac{\partial \rho_g}{\partial z}\right)_{T,Z} = \frac{\rho_o}{\rho_g}\left(\frac{\mathcal{M}}{Z R T}\right)g
+\left(\frac{1}{\rho_g}\frac{\partial \rho_g}{\partial z}\right)_{T,Z} = \frac{\rho_o}{\rho_g}\left(\frac{\mathcal{M}}{Z R T}\right)g  \, ,
 \end{equation}
 what is $\rho_o / \rho_g$ times greater than the pure effect of gas hydrostatic pressure on its density.
 
-In what concerns changes in gas solubility in oil phase, the solubility ratio ($R_s$) gives the ratio between dissolved gas component volume and oil component volume both measured in standard condition:
+\subsubsection{Material balance as a pressure equation}
 
-\begin{equation}
-R_s = \frac{\rho_o^{ST} / \bar{Y_o}}{\rho_g^{ST} / \bar{Y_g}} \, ,
-\end{equation}
-
-or using $\bar{Y}_o + \bar{Y}_g = 1$:
-\begin{equation}
-R_s = \frac{\rho_o^{ST}}{\rho_g^{ST}}\frac{\bar{Y}_g}{1-\bar{Y}_g} \, .
-\end{equation}
-
-Equations can now be rewritten using the above definitions and denoting porous volume by $V_p = \bar{\phi}\Omega$.
+Equations may now be rewritten using the above definitions and denoting porous volume by $V_p = \bar{\phi}\Omega$.
 
 \begin{equation}\label{eq: Sw4}
 \frac{\partial}{\partial t} \left(\frac{\bar{S_w} V_p}{B_w} \right) = Q_w^{ST} \, ,
@@ -446,88 +456,40 @@ Equations can now be rewritten using the above definitions and denoting porous v
 \bar{S_w}+\bar{S_o}+\bar{S_g}=1 \, .
 \end{equation}
 
-Performing time integration, equations for water and oil are:
+Integrating above equations between times $t_1$ and $t_2$ gives:
+% Water
+\begin{equation}\label{eq: Sw5}
+\frac{V_{p2} \bar{S}_{w2}}{B_{w2}}=W+\left(W_i+W_e-W_p\right) \, ,
+\end{equation}
+
+% Oil
 \begin{equation}\label{eq: So5}
-\frac{\bar{S}_{w1} V_{p1}}{B_{w1}} - \frac{\bar{S}_{w2} V_{p2}}{B_{w2}} = W_p - W_i - W_e\, ,
-\end{equation}
-\begin{equation}\label{eq: So5}
-\frac{\bar{S}_{o2} V_{p2}}{B_{o2}} = \left(N-N_p\right) \, ,
-\end{equation}
-where $N=\bar{S_{o1}} V_{p1} / B_{o1}$ is the initial volume of oil measured in standard conditions.
-
-Balance of gas component is:
-\begin{equation}\label{eq: Sg5}
-V_{p2}\left(\frac{S_{g2}}{B_{g2}} +\frac{S_{o2} R_{s2}}{B_{o2}}\right) - N\left(m\frac{B_{o1}}{B_{g1}} + R_{s1}\right)=G_i-G_p \, ,
-\end{equation}
-where $m=V_{p1} S_{g1}/ B_{o1} N$ is the ratio of initial volumes of gas and oil phases in reservoir conditions.
-
-%Equations from \eqref{eq: Sw4} to \eqref{eq: S14} constitute the most general form of material balance equations. So far, the only simplification made to black-oil equations was the absence of fluid motion, allowing pressure to be computed from Eqs.\eqref{eq: capillary_ow}, \eqref{eq: capillary_og} and \eqref{eq: p=rhogh}, and equations to be integrated in the entire reservoir volume.
-
-We now look to solve Eqs. \eqref{eq: Sw3}, \eqref{eq: So3} and \eqref{eq: Sg3} for the averaged quantities. 
-
-Furthermore, we look for the implications of neglecting gravity and capillarity and assuming a constant pressure throughout the reservoir. This additional simplification provides a direct relation between produced volumes and reservoir pressure.
-
-Eq.~\eqref{eq: p=rhogh} gives an expression of how pressure, and hence PVT properties, depends on position. If gravity and capillarity are also neglected, fluid pressure becomes independent of position and phase:
-\begin{subequations}\label{eq: fullsimp}
-\begin{equation}
-p_o=p_w=p_g=p_P=p \, ,
-\end{equation}
-\begin{equation}
-\nabla p \equiv 0 \, .
-\end{equation}
-\end{subequations}
-
-%In order to apply the volume balance, a control volume ($\Omega$) is defined containing all the hydrocarbon zone. It consists of the region where hydrocarbon saturation is greater than zero for some arbitrarily small volume. This reservoir definition excludes the pure water zone, which is referred to as the aquifer.
-Bubble-point pressure is also a function of position as it depends on local values of oil and gas saturations. Assuming a spatially constant bubble-point pressure is equivalent to assuming constant saturations, as the quantities are related by Eqs.~\eqref{eq: S11} and \eqref{eq: Pb}.
-
-%Saturations are thus assumed constant in space so that bubble-point pressure becomes constant and an average saturation can be uniquely defined by Eq.~\eqref{eq: avS}.
-
-For spatially constant fluid and bubble-point pressures, Eqs.~\eqref{eq: matbal1a}, \eqref{eq: matbal1b} and \eqref{eq: matbal1c} can be integrated over the entire reservoir domain $\Omega$, which is defined as the region where hydrocarbon saturation is greater than zero for some arbitrary volume (provided that the restriction of macroscopic scale is observed). This reservoir definition excludes any surrounding aquifer zone.
-
-The interpretation of pressure computed from material balance equations becomes clear at this point: it is the reservoir pressure in the absence of pressure gradients, phase segregation, capillary forces and gravity.
-
-Performing volume and then time integration of Eq.~\eqref{eq: matbal1a} between times $t_1$ and $t_2$, material balance for oil phase is obtained:
-\begin{equation}
-\int_{t_1}^{t_2}\int_{\Omega} \frac{\partial}{\partial t}\left(\frac{\phi(p) S_o}{B_o(p,P_b)}\right) dV dt = \int_{t_1}^{t_2}\int_{\Omega} q_{os} dV dt\, ,
-\end{equation}
-\begin{equation}
-\left[ \frac{S_o}{B_o(p,P_b)} \int_{\Omega}\phi dV \right]^{t_2}_{t_1} = -N_p \, ,
-\end{equation}
-\begin{equation}\label{eq: So5}
-\frac{V_{p1} S_{o1}}{B_{o1}}-\frac{V_{p2}S_{o2}}{B_{o2}} = N_p \, .
+\frac{\bar{S}_{o2} V_{p2}}{B_{o2}} = N-N_p \, ,
 \end{equation}
 
-Equations for gas and water phases are obtained following the same procedure:
 % Gas
 \begin{equation}\label{eq: Sg5}
-V_{p2}\left(\frac{S_{g2}}{B_{g2}} +\frac{S_{o2} R_{s2}}{B_{o2}}\right) - N\left(m\frac{B_{o1}}{B_{g1}} + R_{s1}\right)=G_i-G_p \, ,
-\end{equation}
-% Agua
-\begin{equation}\label{eq: Sw5}
-\frac{V_{p2} S_{w2}}{B_{w2}} - W=W_i+W_e-W_p \, ,
+V_{p2}\left(\frac{\bar{S}_{g2}}{B_{g2}} +\frac{\bar{S}_{o2} R_{s2}}{B_{o2}}\right) = N\left(m\frac{B_{o1}}{B_{g1}} + R_{s1}\right) +\left(G_i-G_p\right) \, ,
 \end{equation}
 %
 \begin{equation}\label{eq: S15}
-S_o+S_w+S_g=1 \, ,
-\end{equation}
-where
-\begin{equation}
-N=\frac{V_{p1} S_{o1}}{B_{o1}} \, ,
-\end{equation}
-\begin{equation}
-W=\frac{V_{p1} S_{w1}}{B_{w1}} \, ,
-\end{equation}
-\begin{equation}
-m=\frac{V_{p1} S_{g1}}{B_{o1} N} \, .
+S_o+S_w+S_g=1 \, .
 \end{equation}
 
-An equation for bubble-point pressure in integrated form can be obtained by setting $S_g=0$ in Eq.~\eqref{eq: Sg2} and solving for the solubility ratio at bubble-point pressure $R_s(p=P_b)$:
+Where $N=V_{p1} \bar{S}_{o1}/B_{o1}$ and $W=V_{p1} \bar{S}_{w1}/B_{w1}$ are the initial volumes of oil and water measured at standard conditions and $m=V_{p1} \bar{S}_{g1}/B_{o1} N$ is the ratio of the initial volumes of gas and oil measured in reservoir conditions.
+
+An equation for bubble-point may be obtained by setting $S_g=0$ in Eq.~\eqref{eq: Sg5} and solving it for the solubility ratio at bubble-point pressure $R_s(p=P_b)$:
 \begin{equation}
 \begin{split}
 R_{s2}\left(p=P_b\right) = &\Big[N\left(m B_{1}/B_{g1} +R_{s1}\right)\\
 &+G_i-G_p\Big]/\left(N-N_p\right) \, .
 \end{split}
 \end{equation}
+
+%Equations from \eqref{eq: Sw4} to \eqref{eq: S14} constitute the most general form of material balance equations. So far, the only simplification made to black-oil equations was the absence of fluid motion, allowing pressure to be computed from Eqs.\eqref{eq: capillary_ow}, \eqref{eq: capillary_og} and \eqref{eq: p=rhogh}, and equations to be integrated in the entire reservoir volume.
+
+We now look to solve Eqs. \eqref{eq: Sw5}, \eqref{eq: So5} and \eqref{eq: Sg5} for the averaged quantities. 
+
 
 A single equation for pressure may be obtained by substituting Eqs.~\eqref{eq: So2}, \eqref{eq: Sg2} and \eqref{eq: Sw2} into \eqref{eq: S12}. The resulting equation allows pressure to be calculated from given production ($F_p$) and injection ($F_i$) volumes:
 \begin{equation}\label{eq: MBE}
