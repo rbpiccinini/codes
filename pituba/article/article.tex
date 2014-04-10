@@ -398,7 +398,7 @@ We shall see that for the purpose of computing phase densities in the material b
 %and it may be approximated to a constant density measured at some reference depth.
 
 We may quantify this approximation by putting together the expressions for fluid compressibility and hydrostatic equilibrium.
-For this, we assume a constant isothermal compressibility to oil phase
+For this, we assume a constant isothermal compressibility for oil phase
 \begin{equation}\label{eq: grado}
 \left( \frac{1}{\rho_o}\frac{\partial \rho_o}{\partial p_o} \right)_{T,Y_o} = c_o 
 \end{equation}
@@ -434,7 +434,7 @@ If the reference depth for oil phase is otherwise defined below gas-oil contact,
 \begin{equation}
 \left(\frac{1}{\rho_g}\frac{\partial \rho_g}{\partial z}\right)_{T,Z} = \frac{\rho_o}{\rho_g}\left(\frac{\mathcal{M}}{Z R T}\right)g  \, ,
 \end{equation}
-what is $\rho_o / \rho_g$ times greater than the pure effect of gas hydrostatic pressure on its density.
+what is $\rho_o / \rho_g$ times greater than the sole effect of gas hydrostatic pressure on its density.
 
 \subsubsection{Material balance as a pressure equation}
 
@@ -473,10 +473,10 @@ V_{p2}\left(\frac{\bar{S}_{g2}}{B_{g2}} +\frac{\bar{S}_{o2} R_{s2}}{B_{o2}}\righ
 \end{equation}
 %
 \begin{equation}\label{eq: S15}
-S_o+S_w+S_g=1 \, .
+\bar{S}_o+\bar{S}_w+\bar{S}_g=1 \, .
 \end{equation}
 
-Where $N=V_{p1} \bar{S}_{o1}/B_{o1}$ and $W=V_{p1} \bar{S}_{w1}/B_{w1}$ are the initial volumes of oil and water measured at standard conditions and $m=V_{p1} \bar{S}_{g1}/B_{o1} N$ is the ratio of the initial volumes of gas and oil measured in reservoir conditions.
+Where $N=V_{p1} \bar{S}_{o1}/B_{o1}$ and $W=V_{p1} \bar{S}_{w1}/B_{w1}$ are the initial volumes of oil and water measured at standard conditions and $m=V_{p1} \bar{S}_{g1}/B_{o1} N$ is the ratio of the initial volumes of gas and oil phases measured in reservoir conditions.
 
 An equation for bubble-point may be obtained by setting $S_g=0$ in Eq.~\eqref{eq: Sg5} and solving it for the solubility ratio at bubble-point pressure $R_s(p=P_b)$:
 \begin{equation}
@@ -491,7 +491,7 @@ R_{s2}\left(p=P_b\right) = &\Big[N\left(m B_{1}/B_{g1} +R_{s1}\right)\\
 We now look to solve Eqs. \eqref{eq: Sw5}, \eqref{eq: So5} and \eqref{eq: Sg5} for the averaged quantities. 
 
 
-A single equation for pressure may be obtained by substituting Eqs.~\eqref{eq: So2}, \eqref{eq: Sg2} and \eqref{eq: Sw2} into \eqref{eq: S12}. The resulting equation allows pressure to be calculated from given production ($F_p$) and injection ($F_i$) volumes:
+A single equation for pressure may be obtained by substituting Eqs.~\eqref{eq: So5}, \eqref{eq: Sg5} and \eqref{eq: Sw5} into \eqref{eq: S15}. The resulting equation allows pressure to be calculated from given production ($F_p$) and injection ($F_i$) volumes:
 \begin{equation}\label{eq: MBE}
 F_p - F_i= \underbrace{N E_o + mN E_g + W E_w}_{\text{fluid volume expansion } (E)} +\underbrace{V_{p1}-V_{p2}}_{\text{porous volume contraction } (C)}
 \end{equation}
