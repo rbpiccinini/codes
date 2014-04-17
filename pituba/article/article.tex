@@ -279,7 +279,7 @@ p_{c,go}\left(\mathbf{k},\phi,S_g\right)=p_g-p_o \, .
 
 \subsection{Material balance equations}
 
-Derivation of the material balance equation consists in assuming no fluid motion and in integrating black-oil equations in reservoir volume. The integration process, however, requires all quantities to be either spatially averaged or assumed constant.
+Derivation of the material balance equation consists in assuming no fluid motion and in integrating black-oil equations in reservoir volume. The integration process requires all quantities to be either spatially averaged or assumed constant.
 
 %Defining averages of most quantities is difficulty, though, as they appear in equations as products of up to three factors. Being the quantities self-correlated, the averaging process would involve unclosed terms. Quantities are thus required to be spatially constant wherever needed.
 
@@ -322,9 +322,9 @@ Black-oil equations then become:
 %
 \subsubsection{Averaging quantities}
 
-We now define spatially averaged quantities for porosity ($\phi$), saturation ($S_\alpha$), density ($\rho_\alpha$) and mass concentration of a component $k$ in phase $\alpha$ ($Y_{\alpha,k}$).
+We now define spatially averaged quantities for porosity ($\phi$), saturation ($S_\alpha$), density ($\rho_\alpha$) and mass concentration ($Y_{\alpha,k}$) of a component $k$ in phase $\alpha$.
 
-All quantities are locally functions of space and time, but, after averaged in space, they become functions of time only:
+All quantities are locally functions of space and time that, after averaged in space, become functions of time only:
 
 \begin{equation}
 \bar{\phi} (t) = \frac{1}{\Omega}\int_{\Omega}\phi \left(\mathbf{x},t\right) dV \, .
@@ -343,7 +343,7 @@ We proceed omitting function arguments:
 \bar{\rho_\alpha}\bar{Y_{\alpha,k}}\bar{S_\alpha}\bar{\phi} = \frac{1}{\Omega}\int_{\Omega}\rho_\alpha Y_{\alpha,k} S_\alpha \phi dV \, .
 \end{equation}
 
-Eqs. \eqref{eq: Sw2}, \eqref{eq: So2} and \eqref{eq: Sg2} rewritten in terms of averages read:
+Eqs. \eqref{eq: Sw2}, \eqref{eq: So2} and \eqref{eq: Sg2} rewritten in terms of averaged quantities read:
 
 \begin{itemize}
 \item water component:
@@ -362,7 +362,7 @@ Eqs. \eqref{eq: Sw2}, \eqref{eq: So2} and \eqref{eq: Sg2} rewritten in terms of 
 \end{equation}
 \end{itemize}
 
-We shall now introduce very common definitions from petroleum engineering for the description of volumetric and solubility changes in fluid phases. In what concerns volumetric changes, $B_w$, $B_o$ and $B_g$, the formation volume factors of water, oil and gas phases, respectively, express the ratio of a phase volume at some given pressure and temperature condition to the volume of the same phase at standard pressure and temperature, i.e.:
+We now introduce usual definitions from petroleum engineering for the description of volumetric and solubility changes in fluid phases. In what concerns volumetric changes, $B_w$, $B_o$ and $B_g$, the formation volume factors of water, oil and gas phases, respectively, express the ratio of a phase volume at some given pressure and temperature condition to the volume of the same phase at standard pressure and temperature, i.e.:
 
 \begin{equation}\label{eq: Bw}
 B_w = \frac{\rho_w^{ST}}{\bar{\rho_w}} \, ,
@@ -376,7 +376,7 @@ B_o = \frac{\rho_o^{ST}}{\bar{Y_o} \bar{\rho_o}} \, ,
 B_g = \frac{\rho_g^{ST}}{\bar{\rho_g}} \, .
 \end{equation}
 
-In what concerns changes in gas solubility in oil phase, the solubility ratio ($R_s$) gives the ratio between dissolved gas component volume and oil component volume both measured in standard condition:
+In what concerns changes in gas solubility in oil phase, the solubility ratio ($R_s$) gives the ratio between volumes of dissolved gas and oil both measured in standard condition:
 
 \begin{equation}
 R_s = \frac{\rho_o^{ST} / \bar{Y_o}}{\rho_g^{ST} / \bar{Y_g}} \, ,
@@ -387,17 +387,65 @@ or using $\bar{Y}_o + \bar{Y}_g = 1$:
 R_s = \frac{\rho_o^{ST}}{\rho_g^{ST}}\frac{\bar{Y}_g}{1-\bar{Y}_g} \, .
 \end{equation}
 
+Equations may now be rewritten using the above definitions and denoting porous volume by $V_p = \bar{\phi}\Omega$.
+
+\begin{equation}\label{eq: Sw4}
+\frac{\partial}{\partial t} \left(\frac{\bar{S_w} V_p}{B_w} \right) = Q_w^{ST} \, ,
+\end{equation}
+
+\begin{equation}\label{eq: So4}
+\frac{\partial}{\partial t} \left(\frac{\bar{S_o} V_p}{B_o} \right) = Q_o^{ST} \, ,
+\end{equation}
+
+\begin{equation}\label{eq: Sg4}
+\frac{\partial}{\partial t} \left[ V_p \left(\frac{\bar{S_g}}{B_g} + \frac{\bar{S_o} R_s}{B_o} \right) \right] = Q_g^{ST} \, ,
+\end{equation}
+
+\begin{equation}\label{eq: S14}
+\bar{S_w}+\bar{S_o}+\bar{S_g}=1 \, .
+\end{equation}
+
+Integrating Eqs.~\eqref{eq: Sw4}, \eqref{eq: So4} and \eqref{eq: Sg4} between times $t_1$ and $t_2$ gives:
+% Water
+\begin{equation}\label{eq: Sw5}
+\frac{V_{p2} \bar{S}_{w2}}{B_{w2}}=W+\left(W_i+W_e-W_p\right) \, ,
+\end{equation}
+
+% Oil
+\begin{equation}\label{eq: So5}
+\frac{\bar{S}_{o2} V_{p2}}{B_{o2}} = N-N_p \, ,
+\end{equation}
+
+% Gas
+\begin{equation}\label{eq: Sg5}
+V_{p2}\left(\frac{\bar{S}_{g2}}{B_{g2}} +\frac{\bar{S}_{o2} R_{s2}}{B_{o2}}\right) = N\left(m\frac{B_{o1}}{B_{g1}} + R_{s1}\right) +\left(G_i-G_p\right) \, ,
+\end{equation}
+%
+\begin{equation}\label{eq: S15}
+\bar{S}_o+\bar{S}_w+\bar{S}_g=1 \, .
+\end{equation}
+
+Where $N=V_{p1} \bar{S}_{o1}/B_{o1}$ and $W=V_{p1} \bar{S}_{w1}/B_{w1}$ are the initial volumes of oil and water measured at standard conditions and $m=V_{p1} \bar{S}_{g1}/B_{o1} N$ is the ratio of the initial volumes of gas and oil phases measured in reservoir conditions.
+
+An equation for bubble-point may be obtained by setting $S_g=0$ in Eq.~\eqref{eq: Sg5} and solving it for the solubility ratio at bubble-point pressure $R_s(p=P_b)$:
+\begin{equation}
+\begin{split}
+R_{s2}\left(p=P_b\right) = &\Big[N\left(m B_{1}/B_{g1} +R_{s1}\right)\\
+&+G_i-G_p\Big]/\left(N-N_p\right) \, .
+\end{split}
+\end{equation}
+
 \subsubsection{Definition of a reference depth for pressure}
 
-Material balance equation is widely employed to stablish a relation between production (and injection) and reservoir pressure. It turns out, as we know, that pressure is different for different locations, mostly for different values of depth, and also for different phases.
+Material balance equation is widely employed to stablish a relationship between production (and injection) and reservoir pressure. It turns out, as we know, that pressure is different for different locations, mostly for different depths, and also for different phases.
 
 What is then the significance of a single value of pressure for the entire reservoir? 
 
-We shall see that for the purpose of computing the averaged value of phase densities in material balance, we may define some reference depth and use the corresponding local pressure without introducing any important error. Phase pressure increases with depth according to the hydrostatic gradient. The pressure increase, however, is not significant to produce appreciable variation in density.
+We shall see that for the purpose of computing the averaged value of phase density in material balance, we may define some reference depth and use the corresponding local pressure as an approximation to the averaged density without introducing any important error. Although phase pressure increases with depth according to the hydrostatic gradient, this increase is not significant to produce appreciable variation in density.
 
 %and it may be approximated to a constant density measured at some reference depth.
 
-We may quantify this approximation by putting together the expressions for compressibility and hydrostatic equilibrium. For this, we assume a constant isothermal compressibility for oil phase
+This approximation may be quantified by putting together the expressions for compressibility and hydrostatic equilibrium. For this, we assume a constant isothermal compressibility for oil phase
 \begin{equation}\label{eq: grado}
 \left( \frac{1}{\rho_o}\frac{\partial \rho_o}{\partial p_o} \right)_{T,Y_o} = c_o 
 \end{equation}
@@ -437,53 +485,7 @@ what is $\rho_o / \rho_g$ times greater than the sole effect of gas hydrostatic 
 
 \subsubsection{Material balance as an equation for reservoir pressure}
 
-Equations may now be rewritten using the above definitions and denoting porous volume by $V_p = \bar{\phi}\Omega$.
 
-\begin{equation}\label{eq: Sw4}
-\frac{\partial}{\partial t} \left(\frac{\bar{S_w} V_p}{B_w} \right) = Q_w^{ST} \, ,
-\end{equation}
-
-\begin{equation}\label{eq: So4}
-\frac{\partial}{\partial t} \left(\frac{\bar{S_o} V_p}{B_o} \right) = Q_o^{ST} \, ,
-\end{equation}
-
-\begin{equation}\label{eq: Sg4}
-\frac{\partial}{\partial t} \left[ V_p \left(\frac{\bar{S_g}}{B_g} + \frac{\bar{S_o} R_s}{B_o} \right) \right] = Q_g^{ST} \, ,
-\end{equation}
-
-\begin{equation}\label{eq: S14}
-\bar{S_w}+\bar{S_o}+\bar{S_g}=1 \, .
-\end{equation}
-
-Integrating above equations between times $t_1$ and $t_2$ gives:
-% Water
-\begin{equation}\label{eq: Sw5}
-\frac{V_{p2} \bar{S}_{w2}}{B_{w2}}=W+\left(W_i+W_e-W_p\right) \, ,
-\end{equation}
-
-% Oil
-\begin{equation}\label{eq: So5}
-\frac{\bar{S}_{o2} V_{p2}}{B_{o2}} = N-N_p \, ,
-\end{equation}
-
-% Gas
-\begin{equation}\label{eq: Sg5}
-V_{p2}\left(\frac{\bar{S}_{g2}}{B_{g2}} +\frac{\bar{S}_{o2} R_{s2}}{B_{o2}}\right) = N\left(m\frac{B_{o1}}{B_{g1}} + R_{s1}\right) +\left(G_i-G_p\right) \, ,
-\end{equation}
-%
-\begin{equation}\label{eq: S15}
-\bar{S}_o+\bar{S}_w+\bar{S}_g=1 \, .
-\end{equation}
-
-Where $N=V_{p1} \bar{S}_{o1}/B_{o1}$ and $W=V_{p1} \bar{S}_{w1}/B_{w1}$ are the initial volumes of oil and water measured at standard conditions and $m=V_{p1} \bar{S}_{g1}/B_{o1} N$ is the ratio of the initial volumes of gas and oil phases measured in reservoir conditions.
-
-An equation for bubble-point may be obtained by setting $S_g=0$ in Eq.~\eqref{eq: Sg5} and solving it for the solubility ratio at bubble-point pressure $R_s(p=P_b)$:
-\begin{equation}
-\begin{split}
-R_{s2}\left(p=P_b\right) = &\Big[N\left(m B_{1}/B_{g1} +R_{s1}\right)\\
-&+G_i-G_p\Big]/\left(N-N_p\right) \, .
-\end{split}
-\end{equation}
 
 %Equations from \eqref{eq: Sw4} to \eqref{eq: S14} constitute the most general form of material balance equations. So far, the only simplification made to black-oil equations was the absence of fluid motion, allowing pressure to be computed from Eqs.\eqref{eq: capillary_ow}, \eqref{eq: capillary_og} and \eqref{eq: p=rhogh}, and equations to be integrated in the entire reservoir volume.
 
@@ -523,7 +525,7 @@ We now state without proof that the following affirmatives are sufficient condit
 \item $f'<0$ everywhere.
 \end{itemize}
 
-Residual function clearly satisfies the first two affirmatives because fluid properties are continuous everywhere and are also differentiable everywhere except at bubble-point pressure.
+Residual function clearly satisfies the first two affirmatives because fluid properties are continuous everywhere and are also differentiable everywhere except for the first order phase change at bubble-point pressure.
 The last affirmative is proved by rewriting $d\epsilon/dp$ as a sum of four parcels corresponding each one to a different phase. Each phase parcel is composed of two factors: current volume \textit{in-situ} and volume derivative with respect to pressure:
 \begin{equation}
 \begin{split}
@@ -534,7 +536,7 @@ The last affirmative is proved by rewriting $d\epsilon/dp$ as a sum of four parc
 \end{split}
 \end{equation}
 
-\textit{In-situ} volumes (e.g. $N-N_p$ for oil phase) are clearly non-negative values. Pressure derivatives of fluid volumes are all negative values (as fluid pressure increases, fluid volume contracts) and pressure derivative of rock porous volume is a positive value (as fluid pressure increases, porous volume expands).
+\textit{In-situ} volumes (e.g. $N-N_p$ for oil phase) are non-negative values. Pressure derivatives of fluid volumes are all negative values (as fluid pressure increases, fluid volume contracts) and pressure derivative of rock porous volume is a positive value (as fluid pressure increases, porous volume expands).
 
 The value of $d\varepsilon/dp$ is thus negative because each term is a product of a negative and a positive value, being the sum of all the four terms also a negative value.
 
