@@ -37,7 +37,7 @@
 \begin{document}
 \begin{frontmatter}
 \title{Solution of thermodynamic equilibrium in black-oil reservoirs: the classical material balance equation}
-%\title{Obtaining the classical material balance equations from black-oil equations}
+%\title{Obtaining the classical material balance equation from black-oil equations}
 %\journal{Journal of Petroleum Science and Engineering}
 %\author{R.B. Piccinini}\ead{rbpiccinini@gmail.com}
 %\address{Petrobras - UO-BA/ATP-N/RES. Salvador, Bahia, Brazil.}
@@ -53,20 +53,21 @@ material balance \sep black-oil equations \sep reservoir engineering.
 \end{frontmatter}
 
 \section{Introduction}
-The so called material balance equation is widely employed in reservoir engineering and has become a classical tool in oil reservoir management. The equation was originally presented in \cite{schilthuis1936active} and conceived as a zero dimensional model for estimating reservoir pressure from a balance of fluid production and injection. \cite{schilthuis1936active} introduced the hypothesis of thermodynamic equilibrium occurring not in the entire reservoir volume, but in the regions of high permeability where most of the produced volume would come from and where pressure would present a similar trend. Such regions were said to contain an \textit{active oil}.
+The so called material balance equation is widely employed in reservoir engineering and has become a classical tool in oil reservoir management. It consists of an algebraic equation originally presented in \cite{schilthuis1936active} and derived from a zero dimensional model for estimating reservoir pressure from mass balance. \cite{schilthuis1936active} introduced the hypothesis of thermodynamic equilibrium occurring not in the entire reservoir volume, but in the regions of high permeability where most of the production would come from and where pressure would present a similar behavior. Such regions were said to contain an \textit{active oil}.
 
-The equations developed by \cite{schilthuis1936active} did not account for the non-existence of mechanical, phase or thermal equilibrium. Also, the zero-dimensional approach excluded the effects of mechanical equilibrium under gravity and capillary forces and the resulting phase segregation. An attempt to introduce non-equilibrium effects of hydrodynamic origin came with \textit{black-oil} equations \citep{aziz1979petroleum,blackoil}. The novelty on hydrodynamics was the introduction of a macroscopic equation of motion employing Darcy's law.
+The equations developed by \cite{schilthuis1936active} did not account for the non-existence of mechanical, phase or thermal equilibrium. Furthermore, the zero-dimensional approach excluded the possibility of mechanical equilibrium under gravity and capillary forces as they produce a variable fluid distribution in space. An attempt to introduce non-equilibrium effects of hydrodynamic origin came with \textit{black-oil} equations \citep{aziz1979petroleum,blackoil}. The novelty on hydrodynamics was the introduction of a macroscopic equation of motion employing Darcy's law.
 
-Black-oil equations arise from the generalization of the zero dimensional concept to a three-dimensional macroscopic model which incorporates Darcy's law while entailing the same approach for phase equilibrium \citep{aziz1979petroleum}.
+Black-oil equations arise from the generalization of the zero dimensional concept to a three-dimensional model that incorporates Darcy's law and entails the same approach for phase equilibrium \citep{aziz1979petroleum}.
 
-The term black-oil refers to specific hydrocarbon compositions whose phase equilibrium for isothermal changes in pressure may be well described by a two pseudo-component system. For such reservoir fluids, compositions of gas and oil phases remain essentially constant in the entire range of pressure observed during production life. 
+The term black-oil refers to specific hydrocarbon compositions whose phase equilibrium for isothermal changes in pressure may be described by a two pseudo-component system. For such reservoir fluids, gas phase composition remains essentially constant in the range of pressures observed during production and we may define this composition as a pseudo gas component. A pseudo oil component may then be defined by subtracting the gas component from oil phase composition. After defining the two pseudo components, the number of transport equations needed for hydrocarbon species is reduced from usually a large number to only two.
 
 %A general restriction of this approach is that reservoir temperature must be sufficiently below the mixture critical temperature so that different fluid phases have clearly distinguishable properties \citep{danesh1998pvt,firoozabadi1999thermodynamics}.
 
-%Since black-oil and material balance equations differ only on spatial scale and the existence of local pressure gradients, there must exist conditions under which material balance equations might be recovered from the black-oil approach. This work examines such conditions.
+%Since black-oil and material balance equation differ only on spatial scale and the existence of local pressure gradients, there must exist conditions under which material balance equation might be recovered from the black-oil approach. This work examines such conditions.
 
-Although many applications of material balance equation have been reported in the literature, few explore its connection with black-oil equations. \cite{ertekin2001basic} briefly addressed this issue arguing both approaches to be equivalent if capillarity and gradients of flow potential ($\nabla \Phi = \nabla p - \rho \mathbf{g}$) could be neglected and if PVT properties were averaged.
+Although many applications of material balance equation have been reported in the literature, few explore its connection with black-oil equations. \cite{ertekin2001basic} briefly addressed this issue arguing both approaches to be equivalent if capillarity and gradients of flow potential ($\nabla \Phi = \nabla p - \rho \mathbf{g}$) were neglected and if PVT properties were averaged.
 
+This work develops such assumptions and examines underlying details in obtaining material balance equation from the more general black-oil equations. We shall see that the process of integrating black-oil equations in the reservoir volume suggests the convenient averaging of PVT properties and provides a physical interpretation for pressure computed from material balance equation. 
 
 %\begin{subequations}
 %\begin{equation}
@@ -85,15 +86,13 @@ Although many applications of material balance equation have been reported in th
 
 %The restriction of a spatially constant pressure throughout the reservoir does not require PVT properties to be averaged during the integration procedure. Such averaging process is not straightforward, if not impractical, as it is shown later. For the same reason, bubble-point pressure must also be constant and it is shown that this latter assumption is equivalent to having constant fluid saturations in space.
 
-%The requirement of a spatially constant pressure makes the material balance equations more suitable for shallow reservoirs, where gravity field is less important in phase equilibrium.
+%The requirement of a spatially constant pressure makes the material balance equation more suitable for shallow reservoirs, where gravity field is less important in phase equilibrium.
 
-The present derivation of material balance equations allows bubble-point pressure to vary accordingly to the same concept widely employed in reservoir simulation, which is found in \cite{aziz1979petroleum} and \cite{ertekin2001basic}. The employed approach extends material balance equations to saturated reservoirs under pressure maintenance (e.g. fluid injection). The applicability, however, depend on how important non-equilibrium effects are to the phase equilibrium.
+We employ the same approach of varying bubble-point pressure widely used in reservoir simulation that is found in \cite{aziz1979petroleum} and \cite{ertekin2001basic}. The employed approach extends material balance equation to saturated reservoirs under pressure maintenance (e.g. fluid injection). The applicability, however, depend on how important non-equilibrium effects are to the phase equilibrium.
 
 %It has already been shown the importance of not having strong flow near interface that prevents mixing and causes pressure to drop locally \citep{steffensen1973reservoir,utseth1981numerical}.
 
-After presenting material balance equations, sufficient conditions for solution uniqueness are imposed on PVT properties. These conditions require fluids to be compressible and that gas dissolution occurs with reduction of the overall system volume.
-
-A simple scheme for numerical solution is also proposed based on classical root-finding algorithms for non-linear equations.
+After presenting material balance equation, sufficient conditions for solution uniqueness are imposed on PVT properties. These conditions require fluids to be compressible and that gas dissolution occurs with reduction of the overall system volume. A simple scheme for numerical solution is also proposed based on classical root-finding algorithms for non-linear equations.
 
 %\section{Black-Oil Equations}
 %
@@ -133,7 +132,7 @@ A simple scheme for numerical solution is also proposed based on classical root-
 
 \section{Derivation of equations}
 
-This section starts presenting black-oil equations and it proceeds averaging quantities in space and examining simplifying assumptions for which material balance equations are obtained.
+This section starts presenting black-oil equations and it proceeds averaging quantities in space and examining simplifying assumptions for which material balance equation are obtained.
 
 \subsection{Black-Oil equations}
 
@@ -277,7 +276,7 @@ p_{c,go}\left(\mathbf{k},\phi,S_g\right)=p_g-p_o \, .
 %Cite Bear and Herrera.
 
 
-\subsection{Material balance equations}
+\subsection{Material balance equation}
 
 Derivation of the material balance equation consists in assuming no fluid motion and in integrating black-oil equations in reservoir volume. The integration process requires all quantities to be either spatially averaged or assumed constant.
 
@@ -487,7 +486,7 @@ what is $\rho_o / \rho_g$ times greater than the sole effect of gas hydrostatic 
 
 
 
-%Equations from \eqref{eq: Sw4} to \eqref{eq: S14} constitute the most general form of material balance equations. So far, the only simplification made to black-oil equations was the absence of fluid motion, allowing pressure to be computed from Eqs.\eqref{eq: capillary_ow}, \eqref{eq: capillary_og} and \eqref{eq: p=rhogh}, and equations to be integrated in the entire reservoir volume.
+%Equations from \eqref{eq: Sw4} to \eqref{eq: S14} constitute the most general form of material balance equation. So far, the only simplification made to black-oil equations was the absence of fluid motion, allowing pressure to be computed from Eqs.\eqref{eq: capillary_ow}, \eqref{eq: capillary_og} and \eqref{eq: p=rhogh}, and equations to be integrated in the entire reservoir volume.
 
 We now look to solve Eqs. \eqref{eq: Sw5}, \eqref{eq: So5} and \eqref{eq: Sg5} for the averaged quantities. 
 
@@ -504,7 +503,7 @@ F_p - F_i= E + C \, ,
 
 where newly introduced terms are defined in Table~\ref{tab: MBE}. Eq.~\eqref{eq: MBE} is commonly referred to as the Material Balance Equation (MBE).
 
-\section{Solution of Material Balance Equations}
+\section{Solution of Material balance equation}
 A numerical solution of Eq.~\eqref{eq: MBE_short} is presented here. We shall start defining a residual function ($\varepsilon$) for which the pressure solving Eq.~\eqref{eq: MBE_short} is a root:
 \begin{equation}\label{eq: residual}
 \varepsilon(p_2) = \frac{E+F_i+C-F_p}{V_{p1}} \, .
@@ -540,7 +539,7 @@ The last affirmative is proved by rewriting $d\epsilon/dp$ as a sum of four parc
 
 The value of $d\varepsilon/dp$ is thus negative because each term is a product of a negative and a positive value, being the sum of all the four terms also a negative value.
 
-In summary, the following four relations constitute sufficient conditions for $\varepsilon(p)$ be a strictly decreasing function and for material balance equations to have only one solution:
+In summary, the following four relations constitute sufficient conditions for $\varepsilon(p)$ be a strictly decreasing function and for material balance equation to have only one solution:
 \begin{equation}\label{eq: PVTH1}
 \left(\frac{dB_o}{dp} - B_g \frac{dR_s}{dp} \right) <0 \, ,
 \end{equation}
@@ -570,7 +569,7 @@ An open source implementation of secant method is available in SciPy library \ci
 
 %Either methods were successfully employed to obtain solution of equations.
 
-The steps to solve all material balance equations are summarized bellow:
+The steps to solve all material balance equation are summarized bellow:
 \begin{step}
 Compute bubble-point pressure for instant $t_2$.
 \end{step}
@@ -590,7 +589,7 @@ Compute fluid saturations $t_2$.
 Once $S_{o2}$, $S_{g2}$, $S_{w2}$, $p_2$ and $P_{b2}$ are known, solution for instant $t_2$ is complete.
 
 \section{Results}
-Material balance equations were solved for a black-oil reservoir initially producing in depletion drive mechanism and later subjected to water injection. Fig.~\ref{fig: matbal_p} shows in the solid line curve the severe depletion during initial phases of production. In the dashed curve, Fig.~\ref{fig: matbal_p} shows the bubble-point pressure, indicating how far the saturated reservoir is from undersaturation and allowing for planning of pressure maintenance projects.
+Material balance equation were solved for a black-oil reservoir initially producing in depletion drive mechanism and later subjected to water injection. Fig.~\ref{fig: matbal_p} shows in the solid line curve the severe depletion during initial phases of production. In the dashed curve, Fig.~\ref{fig: matbal_p} shows the bubble-point pressure, indicating how far the saturated reservoir is from undersaturation and allowing for planning of pressure maintenance projects.
 
 
 Water injection starts when oil recovery factor $(RF)$ is about $RF=0.08$ and it is maintained until the reservoir reaches a novel undersaturated state. Initially, the high compressibility of gas prevents pressure from raising and free gas phase is reduced due to redissolution. Finally, the reservoir reaches the undersaturated state and a steep pressure increase is seen in Fig.~\ref{fig: matbal_p} for a recovery factor about $RF=0.15$.
@@ -609,7 +608,7 @@ Figure~\ref{fig: residual} shows the residual of numerical solution as defined i
 
 \section{Conclusions}
 \begin{enumerate}[1.]
-\item Material balance equations can be obtained from black-oil equations under the assumptions of:
+\item Material balance equation can be obtained from black-oil equations under the assumptions of:
 \begin{enumerate}[(a)]
 \item mechanical equilibrium;
 \item absence of gravity and capillary forces;
@@ -644,10 +643,10 @@ $W_p$ & produced volume of water
 
 \section*{Highlights}
 \begin{enumerate}[1.]
-\item The existing link between black-oil and material balance equations is examined in detail.
-\item It is shown that gravity and capillary forces must be neglected and saturations must be constant in space so one can integrate black-oil equations in reservoir volume and obtain material balance equations.
-\item Material balance equations are shown to have a unique solution for a compressible system.
-\item Material balance equations are formulated for a variable bubble-point and they are employed to a reservoir under pressure maintenance.
+\item The existing link between black-oil and material balance equation is examined in detail.
+\item It is shown that gravity and capillary forces must be neglected and saturations must be constant in space so one can integrate black-oil equations in reservoir volume and obtain material balance equation.
+\item Material balance equation are shown to have a unique solution for a compressible system.
+\item Material balance equation are formulated for a variable bubble-point and they are employed to a reservoir under pressure maintenance.
 \end{enumerate}
 
 \pagebreak
@@ -707,7 +706,7 @@ $W_p$ & produced volume of water
 \centering
 \begin{tabular}{ll}
 \toprule
-\multicolumn{2}{l}{\textit{Material Balance Equations}}\\
+\multicolumn{2}{l}{\textit{Material balance equation}}\\
 \midrule
 oil & $S_{o2} = \left(N-N_p\right) B_{o2}/V_{p2}$ \label{eq: oiltab}
 \\
