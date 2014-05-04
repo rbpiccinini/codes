@@ -280,7 +280,7 @@ p_{c,go}\left(\mathbf{k},\phi,S_g\right)=p_g-p_o \, .
 
 \subsection{Material balance equation}
 
-Derivation of the material balance equation consists in assuming no fluid motion and in integrating black-oil equations in reservoir volume. The integration process requires all quantities to be either spatially averaged or assumed constant.
+Derivation of the material balance equation consists in assuming no fluid motion and in integrating black-oil equations in reservoir volume. As it will be shown, the integration process requires all quantities to be either spatially averaged or assumed constant.
 
 %Defining averages of most quantities is difficulty, though, as they appear in equations as products of up to three factors. Being the quantities self-correlated, the averaging process would involve unclosed terms. Quantities are thus required to be spatially constant wherever needed.
 
@@ -325,7 +325,7 @@ Black-oil equations then become:
 
 We now define spatially averaged quantities for porosity ($\phi$), saturation ($S_\alpha$), density ($\rho_\alpha$) and mass concentration ($Y_{\alpha,k}$) of a component $k$ in phase $\alpha$.
 
-All quantities are locally functions of space and time that, after averaged in space, become functions of time only:
+All quantities are initially functions of space and time that become functions of time alone after being averaged in space:
 
 \begin{equation}
 \bar{\phi} (t) = \frac{1}{\Omega}\int_{\Omega}\phi \left(\mathbf{x},t\right) dV \, .
@@ -438,11 +438,10 @@ R_{s2}\left(p=P_b\right) = &\Big[N\left(m B_{1}/B_{g1} +R_{s1}\right)\\
 
 \subsubsection{Definition of a reference depth for pressure}
 
-Material balance equation is widely employed to stablish a relationship between production (and injection) and reservoir pressure. It turns out, as we know, that pressure is different for different locations, mostly for different depths, and also for different phases.
+Material balance equation is widely employed to stablish a relationship between production (and injection) and reservoir pressure. It turns out, though, that pressure is different for different locations, mostly for different depths, and also for different phases.
+What is then the significance of having a single value of pressure for the entire reservoir volume?
 
-What is then the significance of a single value of pressure for the entire reservoir? 
-
-We shall see that for the purpose of computing the averaged value of phase density in material balance, we may define some reference depth and use the corresponding local pressure as an approximation to the averaged density without introducing any important error. Although phase pressure increases with depth according to the hydrostatic gradient, this increase is not significant to produce appreciable variation in density.
+For answering this question, we examine the two roles played by pressure in material balance equation: computation of averaged phase density and phase equilibrium. We shall see that for the purpose of computing the averaged phase density, we may define some reference depth and use the corresponding local density as an approximation to the averaged density without introducing any important error. Pressure increases with depth according to the hydrostatic gradient. Consequently, density also increases but by a negligible amount.
 
 %and it may be approximated to a constant density measured at some reference depth.
 
@@ -474,15 +473,28 @@ Substituting typical values in Eqs.~\eqref{eq: grado} and \eqref{eq: gradg}, we 
 \left(\frac{1}{\rho_g}\frac{\partial \rho_g}{\partial z}\right)_{T,Z} \approx 10^{-5}\ m^{-1} \, .
 \end{equation}
 
-The reference depth for computing fluid density (or formation volume factors) is then any arbitrary depth inside phase volume. 
+The reference depth for computing phase density (or formation volume factors) is then any arbitrary depth inside phase volume. 
 
-For the case of an oil reservoir covered by a gas cap, the reference depth may be defined, with advantage, at the gas-oil contact. The point is that at the contact both gas and oil densities may be computed using the same pressure, i.e., the corresponding local value. 
+For the case of an oil reservoir covered by a gas cap, the reference depth may be defined, with advantage, at the gas-oil contact. The point here is that at phase contact both gas and oil densities may be computed using the same pressure, i.e., the corresponding local value. 
 
-If the reference depth for oil phase is otherwise defined below gas-oil contact, gas density must be computed at some different depth still inside gas phase. This is to avoid the effect of oil hydrostatic gradient in the computation of gas density,
+If the reference depth for oil phase is otherwise defined below gas-oil contact, gas density must be computed at some different depth still inside gas phase, i.e., at or above gas-oil contact. This is to avoid the effect of oil hydrostatic gradient in the computation of gas density,
 \begin{equation}
 \left(\frac{1}{\rho_g}\frac{\partial \rho_g}{\partial z}\right)_{T,Z} = \frac{\rho_o}{\rho_g}\left(\frac{\mathcal{M}}{Z R T}\right)g  \, ,
 \end{equation}
 what is $\rho_o / \rho_g$ times greater than the sole effect of gas hydrostatic pressure on its density.
+
+It has been shown that pressure variation with depth is not important for the computation of gas, oil and water densities. Nevertheless, it was said that pressure also plays a second role in material balance equation by defining phase equilibrium. For this purpose, pressure variation with depth may not be negligible in the evalutation of the solubility ratio: 
+\begin{equation}\label{eq: dRsdz1}
+\frac{1}{R_s}\frac{d R_s}{dz} = \frac{1}{R_s}\frac{d R_s}{dp_o} \frac{dp_o}{dz} = \frac{\rho_o g}{R_s}\frac{dR_s}{dp_o} \, .
+\end{equation}
+
+For a non-volatile saturated oil, we may approximate $dR_s / dp_o$ to the ratio between  solubility ratio ($R_{s}$) and saturation pressure ($p_{sat}$), so that Eq.~\eqref{eq: dRsdz1} becomes:
+\begin{equation}\label{eq: dRsdz2}
+\frac{1}{R_s}\frac{d R_s}{dz} \approx \frac{\rho_o g }{p_{sat}} \approx 10^{-3}\ m^{-1} \, ,
+\end{equation}
+where the following orders of magnitudes were assumed: $p_{sat} \approx 10^{7}\ Pa$, $\rho_o \approx 10^{3}\ kg/m^3$ and $g \approx 10\ m^2/s$. 
+
+From Eq.~\eqref{eq: dRsdz2}, we see that the variation of pressure with depth may not be negligible for the phase equilibrium,  specially for reservoirs of light oils with large depth ranges. In such cases, using an averaged value for the solubility ratio may be worth the accuracy gain in dissolved gas volume.
 
 \subsubsection{Material balance as an equation for reservoir pressure}
 
