@@ -48,9 +48,9 @@
 
 
 \begin{abstract}
-This work derives the classical material balance equation from the more general black-oil model. The material balance equation is formulated for a varying bubble-point pressure and sufficient conditions for solution uniqueness are presented. It is shown that spatially averaged PVT properties are required for material balance approach in general, though the averaging process may be neglected for many practical purposes.  An interpretation for pressure in material balance equation is provided and its relation to a reference depth is examined. Finally, a scheme for numerical solution is proposed.
+This work derives the classical material balance equation from a three dimensional black-oil model. Sufficient conditions for solution uniqueness of material balance equation are presented. It is shown that spatially averaged PVT properties are required for reducing a black-oil model to the material balance approach, although it is also shown that the averaging process may be neglected for many practical purposes.  An interpretation for pressure in material balance equation is provided and its relation to a reference depth is examined. Finally, a scheme for numerical solution is proposed.
 
-Material balance equation and black-oil models are approaches widely employed in reservoir engineering though few works explore their connection beyond the general intuitive notion. 
+Material balance equation and black-oil models are widely employed in reservoir engineering, but few works have explored their connection.
 %
 %This work derives the classical material balance equation from a black-oil model. We examine the existing link between both approaches in detail, including the necessary step of averaging PVT properties. An interpretation for pressure in material balance calculations is provided and the choice of a reference depth (datum) is discussed. The material balance equation is formulated for a varying bubble-point pressure and sufficient conditions for solution uniqueness are presented. A scheme for numerical solution is also proposed.
 \end{abstract}
@@ -219,10 +219,10 @@ A common simplification in black-oil formulations is to restrict mass transport 
 %
 %If gradients of species concentration are present within oil phase, however, as it occurs in saturated reservoirs under pressure maintenance, a combined mechanism of advection and diffusion exists and those are absent of black-oil equations. Some heuristic models have been proposed for problems where this issue is critical, as for gas injection projects. \cite{utseth1981numerical} has proposed to limit $dR_s/dt$ and neglect transport of gas component in oil phase for a simplified treatment.
 
-Momentum balance for each phase is given by an extension of Darcy's law to multiphase flow. This extension consists in multiplying absolute (or single-phase) permeability ($\overleftrightarrow{k}$) by a scalar function called phase relative permeability ($k_{r,\alpha}$):
+Momentum balance for each phase is given by an extension of Darcy's law to multiphase flow. This extension consists in multiplying absolute (or single-phase) permeability ($\vec{\vec{k}}$) by a scalar function called phase relative permeability ($k_{r,\alpha}$):
 
 \begin{equation}\label{eq: exdarcy}
-\vec{u}_\alpha = -\frac{k_{r,\alpha} \vec{k}}{\mu_\alpha} \left(\nabla p_\alpha - \rho_\alpha g\nabla z\right) \, , \quad \alpha=o,w,g \, .
+\vec{u}_\alpha = -\frac{k_{r,\alpha} \vec{\vec{k}}}{\mu_\alpha} \left(\nabla p_\alpha - \rho_\alpha g\nabla z\right) \, , \quad \alpha=o,w,g \, .
 \end{equation}
 
 Phase densities are functions of the local thermodynamic state:
@@ -262,10 +262,10 @@ p_P=p_P\left(p_o,p_w,p_g,S_o,S_w,S_g\right) \, .
 In order to close the system of equations, a connection among different phase pressures must be provided. Such expressions are referred to as capillary pressures and are usually employed in the following forms \citep{aziz1979petroleum}:
 %capillary
 \begin{equation}\label{eq: capillary_ow}
-p_{c,ow}\left(\vec{k},\phi,S_w\right)=p_o-p_w \, ,
+p_{c,ow}\left(\vec{\vec{k}},\phi,S_w\right)=p_o-p_w \, ,
 \end{equation}
 \begin{equation}\label{eq: capillary_og}
-p_{c,go}\left(\vec{k},\phi,S_g\right)=p_g-p_o \, .
+p_{c,go}\left(\vec{\vec{k}},\phi,S_g\right)=p_g-p_o \, .
 \end{equation}
 
 
@@ -281,10 +281,10 @@ p_{c,go}\left(\vec{k},\phi,S_g\right)=p_g-p_o \, .
 %
 %When capillary pressure is present and it is function of phase saturations, a diffusive term is introduced in mass balance equations and shocks originated by phase displacement become smoothed:
 %\begin{equation}
-%\frac{\partial}{\partial t}\left(\frac{\phi (p_P) S_w}{B_w (p_w)}\right)-\nabla\cdot\left[\frac{k_{r,w} \vec{k}}{B_w(p_w)\mu_w} \left(\nabla p_o - \rho_w g\nabla z -\underbrace{\frac{d p_c}{d S_w}\nabla S_w}_{\text{water diffusion}}\right)\right]=q_{ws} \, .
+%\frac{\partial}{\partial t}\left(\frac{\phi (p_P) S_w}{B_w (p_w)}\right)-\nabla\cdot\left[\frac{k_{r,w} \vec{\vec{k}}}{B_w(p_w)\mu_w} \left(\nabla p_o - \rho_w g\nabla z -\underbrace{\frac{d p_c}{d S_w}\nabla S_w}_{\text{water diffusion}}\right)\right]=q_{ws} \, .
 %\end{equation}
 %
-%Discontinuities in saturation may still occur, however, if capillary pressures are functions of discontinuous porous medium properties ($phi$ and $\vec{k}$) or if phase change takes place, as diffusion of gas dissolved in oil phase is not allowed.
+%Discontinuities in saturation may still occur, however, if capillary pressures are functions of discontinuous porous medium properties ($phi$ and $\vec{\vec{k}}$) or if phase change takes place, as diffusion of gas dissolved in oil phase is not allowed.
 %Cite Bear and Herrera.
 
 
@@ -302,7 +302,7 @@ Derivation of the material balance equation consists in assuming no fluid motion
 
 We start assuming mechanical equilibrium, i.e., no bulk motion:
 \begin{equation}
-\vec{u}_\alpha = -\frac{k_{r,\alpha} \vec{k}}{\mu_\alpha} \left(\nabla p_\alpha - \rho_\alpha g\nabla z\right)\equiv 0 \, .
+\vec{u}_\alpha = -\frac{k_{r,\alpha} \vec{\vec{k}}}{\mu_\alpha} \left(\nabla p_\alpha - \rho_\alpha g\nabla z\right)\equiv 0 \, .
 \end{equation}
 This condition implies that pressure gradients must equal gravity force per unit volume:
 \begin{equation}\label{eq: p=rhogh}
