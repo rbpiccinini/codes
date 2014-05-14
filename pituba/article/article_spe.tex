@@ -49,8 +49,6 @@
 
 \begin{abstract}
 This work derives the classical material balance equation from a three dimensional black-oil model. Sufficient conditions for solution uniqueness of material balance equation are presented. It is shown that spatially averaged PVT properties are required for reducing a black-oil model to the material balance approach, although it is also shown that the averaging process may be neglected for many practical purposes.  An interpretation for pressure in material balance equation is provided and its relation to a reference depth is examined. Finally, a scheme for numerical solution is proposed.
-
-Material balance equation and black-oil models are widely employed in reservoir engineering, but few works have explored their connection.
 %
 %This work derives the classical material balance equation from a black-oil model. We examine the existing link between both approaches in detail, including the necessary step of averaging PVT properties. An interpretation for pressure in material balance calculations is provided and the choice of a reference depth (datum) is discussed. The material balance equation is formulated for a varying bubble-point pressure and sufficient conditions for solution uniqueness are presented. A scheme for numerical solution is also proposed.
 \end{abstract}
@@ -61,13 +59,13 @@ material balance \sep black-oil equations \sep reservoir engineering.
 \end{frontmatter}
 
 \section{Introduction}
-The so called material balance equation is widely employed in reservoir engineering and has become a classical tool in oil reservoir management. It consists of an algebraic equation originally presented in \cite{schilthuis1936active} and derived from a zero dimensional model for estimating reservoir pressure from mass balance. \cite{schilthuis1936active} introduced the hypothesis of thermodynamic equilibrium occurring not in the entire reservoir volume, but in the regions of high permeability where most of the production would come from and where pressure would present a similar behavior. Such regions were said to contain an \textit{active oil}.
+The so called material balance equation is widely used in reservoir engineering and has become a classical tool in oil reservoir management. It consists of an algebraic equation originally presented in \cite{schilthuis1936active} and derived from a zero dimensional model for estimating reservoir pressure from mass balance. \cite{schilthuis1936active} introduced the hypothesis of thermodynamic equilibrium occurring not in the entire reservoir volume, but in the regions of high permeability where most of the production would come from and where pressure would present a similar behavior. Such regions were said to contain an active oil.
 
-The equations developed by \cite{schilthuis1936active} did not account for the non-existence of mechanical, phase or thermal equilibrium. Furthermore, the zero-dimensional approach excluded the possibility of mechanical equilibrium under gravity and capillary forces as they produce a variable fluid distribution in space. An attempt to introduce non-equilibrium effects of hydrodynamic origin came with \textit{black-oil} equations \citep{aziz1979petroleum,blackoil}. The novelty on hydrodynamics was the introduction of a macroscopic equation of motion employing Darcy's law.
+The equations developed by \cite{schilthuis1936active} did not account for the non-existence of mechanical, phase or thermal equilibrium. Furthermore, the zero-dimensional approach excluded the possibility of mechanical equilibrium under gravity and capillary forces as they produce a variable fluid distribution in space. An attempt to introduce non-equilibrium effects of hydrodynamic origin came with \textit{black-oil} equations \citep{aziz1979petroleum,blackoil}. The novelty on hydrodynamics was the introduction of a macroscopic equation of motion using Darcy's law.
 
 %Black-oil equations arise from the generalization of the zero dimensional concept to a three-dimensional model that incorporates Darcy's law and entails the same approach for phase equilibrium \citep{aziz1979petroleum}.
 
-The term black-oil refers to specific hydrocarbon compositions whose phase equilibrium for isothermal changes in pressure may be described by a two pseudo-component system. For such reservoir fluids, gas phase composition remains essentially constant in the range of pressures observed during production and we may define this composition as a pseudo gas component. A pseudo oil component may then be defined by subtracting the gas component from oil phase composition. After defining the two pseudo components, the number of transport equations needed for hydrocarbon species is reduced from usually a large number to only two.
+The term black-oil refers to specific hydrocarbon compositions of which phase equilibrium for isothermal changes in pressure may be described by a two pseudo-component system. For such reservoir fluids, gas phase composition remains essentially constant in the range of pressures observed during production and we may define this composition as a pseudo gas component. A pseudo oil component may then be defined by subtracting the gas component from oil phase composition. After defining the two pseudo components, the number of transport equations needed for hydrocarbon species is reduced from usually a large number to only two.
 
 %A general restriction of this approach is that reservoir temperature must be sufficiently below the mixture critical temperature so that different fluid phases have clearly distinguishable properties \citep{danesh1998pvt,firoozabadi1999thermodynamics}.
 
@@ -96,7 +94,7 @@ This work develops such assumptions and examines underlying details in obtaining
 
 %The requirement of a spatially constant pressure makes the material balance equation more suitable for shallow reservoirs, where gravity field is less important in phase equilibrium.
 
-We employ the same approach of varying bubble-point pressure widely used in reservoir simulation that is found in \cite{aziz1979petroleum} and \cite{ertekin2001basic}. The employed approach extends material balance equation to saturated reservoirs under pressure maintenance (e.g. fluid injection). The applicability, however, depends on how important non-equilibrium effects are to the phase equilibrium.
+We use the same approach of varying bubble-point pressure widely used in reservoir simulation, which is found in \cite{aziz1979petroleum} and \cite{ertekin2001basic}. This approach extends material balance equation to saturated reservoirs under pressure maintenance (e.g. fluid injection). The applicability, however, depends on how important non-equilibrium effects are to phase equilibrium.
 
 %It has already been shown the importance of not having strong flow near interface that prevents mixing and causes pressure to drop locally \citep{steffensen1973reservoir,utseth1981numerical}.
 
@@ -176,7 +174,7 @@ Phase saturation is defined as its volumetric fraction of the pore space:
 \begin{equation}
 S_\alpha = \frac{\phi_\alpha}{\phi} \, ,
 \end{equation}
-where $\phi_\alpha$ is the volumetric fraction of a fluid phase $\alpha$ and $\phi$ is the porosity, i.e., the volumetric fraction of the pore volume. Since we consider that pore volume is fully saturated with fluid,
+where $\phi_\alpha$ is the volumetric fraction of a fluid phase $\alpha$ and $\phi$ is the porosity, i.e., the volumetric fraction of the pore volume. Because we consider that pore volume is fully saturated with fluid,
 \begin{equation}
 S_o + S_g +S_w = 1 \, .
 \end{equation}
@@ -254,12 +252,12 @@ Y_g = Y_g (p) \, ,
 Y_o = Y_o (p) \, .
 \end{equation}
 
-Porosity ($\phi$) is assumed a function of pore pressure ($p_P$). Since three phases are present in general, such quantity is defined by some relation of type \citep{kim2011rigorous}:
+Porosity ($\phi$) is assumed a function of pore pressure ($p_P$). Because three phases are present in general, such quantity is defined by some relation of type \citep{kim2011rigorous}:
 \begin{equation}
 p_P=p_P\left(p_o,p_w,p_g,S_o,S_w,S_g\right) \, .
 \end{equation}
 
-In order to close the system of equations, a connection among different phase pressures must be provided. Such expressions are referred to as capillary pressures and are usually employed in the following forms \citep{aziz1979petroleum}:
+To close the system of equations, a connection among different phase pressures must be provided. Such expressions are referred to as capillary pressures and are usually employed in the following forms \citep{aziz1979petroleum}:
 %capillary
 \begin{equation}\label{eq: capillary_ow}
 p_{c,ow}\left(\vec{\vec{k}},\phi,S_w\right)=p_o-p_w \, ,
@@ -335,7 +333,7 @@ Black-oil equations then become:
 
 We now define spatially averaged quantities for porosity ($\phi$), saturation ($S_\alpha$), density ($\rho_\alpha$) and mass concentration ($Y_{\alpha,k}$) of a component $k$ in phase $\alpha$.
 
-All quantities are initially functions of space and time that become functions of time alone after being averaged in space:
+All quantities initially functions of space and time become functions only of time after being averaged in space:
 
 \begin{equation}
 \bar{\phi} (t) = \frac{1}{\Omega}\int_{\Omega}\phi \left(\vec{x},t\right) dV \, .
@@ -446,18 +444,35 @@ R_{s2}\left(p=P_b\right) = &\Big[N\left(m B_{1}/B_{g1} +R_{s1}\right)\\
 \end{split}
 \end{equation}
 
+\subsubsection{Material balance as an equation for reservoir pressure}
+
+%Equations from \eqref{eq: Sw4} to \eqref{eq: S14} constitute the most general form of material balance equation. So far, the only simplification made to black-oil equations was the absence of fluid motion, allowing pressure to be computed from Eqs.\eqref{eq: capillary_ow}, \eqref{eq: capillary_og} and \eqref{eq: p=rhogh}, and equations to be integrated in the entire reservoir volume.
+
+%We now look to solve Eqs. \eqref{eq: Sw5}, \eqref{eq: So5} and \eqref{eq: Sg5} for the averaged quantities. 
+
+Another equation may be obtained by substituting Eqs.~\eqref{eq: Sw5}, \eqref{eq: So5} and \eqref{eq: Sg5} into \eqref{eq: S15}. The resulting equation only involves fluid PVT properties, original fluid volumes ($N$, $W$ and $G)$, cumulative production and cumulative injection:
+\begin{equation}\label{eq: MBE}
+F_p - F_i= \underbrace{N E_o + mN E_g + W E_w}_{\text{fluid volume expansion } (E)} +\underbrace{V_{p1}-V_{p2}}_{\text{porous volume contraction } (C)}
+\end{equation}
+or
+\begin{equation}\label{eq: MBE_short}
+F_p - F_i= E + C \, ,
+\end{equation}
+where newly introduced terms are defined in Table~\ref{tab: MBE}. 
+
+Eq.~\eqref{eq: MBE} is commonly referred to as the Material Balance Equation (MBE) and it is an agelbraic equation that may be solved to any of its terms provided all other are known. Several techniques exist in the literature for one to estimate original volume of fluids, water influx from aquifers or reservoir pressure. 
+
 \subsubsection{Definition of a reference depth for pressure}
 
-Material balance equation is widely employed to stablish a relationship between production (and injection) and reservoir pressure. It turns out, though, that pressure is different for different locations, mostly for different depths, and also for different phases.
-What is then the significance of having a single value of pressure for the entire reservoir volume?
+Material balance equation is widely used to stablish a relationship between production (and injection) and reservoir pressure. In Eq.~\eqref{eq: MBE}, however, formation volume factors were defined using averaged values of fluid properties,  which depend on pressure. It turns out, though, that pressure is a function of depth and phase. Using the average reservoir pressure ($\bar{p}$) to compute fluid properties does not solve this issue because $\bar{\rho}_o$ is not equal to $\rho_o (\bar{p})$ and thus $B_o$ is not a simple function of $p$.
+
+What is then the meaning of pressure calculatoins in Material Balance Equations?
 
 For answering this question, we examine the two roles played by pressure in material balance equation: computation of phase density and phase equilibrium. 
 
-We shall see that for the purpose of computing the averaged phase density, we may define some reference depth and use the corresponding local density as an approximation to the averaged density without introducing any important error. Pressure increases with depth according to the hydrostatic gradient. Consequently, density also increases but by a negligible amount.
+We shall see that to compute the averaged phase density, we may define some reference depth and use the corresponding local density as an approximation to the averaged density without introducing any important error. 
 
-%and it may be approximated to a constant density measured at some reference depth.
-
-This approximation may be quantified by putting together the expressions for compressibility and hydrostatic equilibrium. For this, we assume a constant isothermal compressibility for oil phase
+Pressure increases with depth according to the hydrostatic gradient. Consequently, density also increases but by a negligible amount. This approximation may be quantified by putting together the expressions for compressibility and hydrostatic equilibrium. For this, we assume a constant isothermal compressibility for oil phase
 \begin{equation}\label{eq: grado}
 \left( \frac{1}{\rho_o}\frac{\partial \rho_o}{\partial p_o} \right)_{T,Y_o} = c_o 
 \end{equation}
@@ -506,28 +521,24 @@ For a non-volatile saturated oil, we may approximate $dR_s / dp_o$ to the ratio 
 \end{equation}
 where the following orders of magnitudes were assumed: $p_{sat} \approx 10^{7}\ Pa$, $\rho_o \approx 10^{3}\ kg/m^3$ and $g \approx 10\ m^2/s$. 
 
-From Eq.~\eqref{eq: dRsdz2}, we see that the variation of pressure with depth may not be negligible for the phase equilibrium,  specially for reservoirs of light oils with large depth ranges. In such cases, using an averaged value for the solubility ratio may be worth the accuracy gain in computing dissolved gas volume.
+From Eq.~\eqref{eq: dRsdz2}, we see that the variation of pressure with depth may not be negligible for the phase equilibrium,  specially for thick reservoirs of light oil. In such cases, using an averaged value for the solubility ratio may be worth the accuracy gain in computing dissolved gas volume.
 
-\subsubsection{Material balance as an equation for reservoir pressure}
-
-
+% \subsubsection{Material balance as an equation for reservoir pressure}
 
 %Equations from \eqref{eq: Sw4} to \eqref{eq: S14} constitute the most general form of material balance equation. So far, the only simplification made to black-oil equations was the absence of fluid motion, allowing pressure to be computed from Eqs.\eqref{eq: capillary_ow}, \eqref{eq: capillary_og} and \eqref{eq: p=rhogh}, and equations to be integrated in the entire reservoir volume.
 
-We now look to solve Eqs. \eqref{eq: Sw5}, \eqref{eq: So5} and \eqref{eq: Sg5} for the averaged quantities. 
+%We now look to solve Eqs. \eqref{eq: Sw5}, \eqref{eq: So5} and \eqref{eq: Sg5} for the averaged quantities. 
 
+%A single equation for pressure may be obtained by substituting Eqs.~\eqref{eq: So5}, \eqref{eq: Sg5} and \eqref{eq: Sw5} into \eqref{eq: S15}. The resulting equation allows pressure to be calculated from given production ($F_p$) and injection ($F_i$) volumes:
+%\begin{equation}\label{eq: MBE}
+%F_p - F_i= \underbrace{N E_o + mN E_g + W E_w}_{\text{fluid volume expansion } (E)} +\underbrace{V_{p1}-V_{p2}}_{\text{porous volume contraction } (C)}
+%\end{equation}
+%or
+%\begin{equation}\label{eq: MBE_short}
+%F_p - F_i= E + C \, ,
+%\end{equation}
 
-
-A single equation for pressure may be obtained by substituting Eqs.~\eqref{eq: So5}, \eqref{eq: Sg5} and \eqref{eq: Sw5} into \eqref{eq: S15}. The resulting equation allows pressure to be calculated from given production ($F_p$) and injection ($F_i$) volumes:
-\begin{equation}\label{eq: MBE}
-F_p - F_i= \underbrace{N E_o + mN E_g + W E_w}_{\text{fluid volume expansion } (E)} +\underbrace{V_{p1}-V_{p2}}_{\text{porous volume contraction } (C)}
-\end{equation}
-or
-\begin{equation}\label{eq: MBE_short}
-F_p - F_i= E + C \, ,
-\end{equation}
-
-where newly introduced terms are defined in Table~\ref{tab: MBE}. Eq.~\eqref{eq: MBE} is commonly referred to as the Material Balance Equation (MBE).
+%where newly introduced terms are defined in Table~\ref{tab: MBE}. Eq.~\eqref{eq: MBE} is commonly referred to as the Material Balance Equation (MBE).
 
 \section{Solution of material balance equation}
 A numerical solution of Eq.~\eqref{eq: MBE_short} is presented here. We shall start defining a residual function ($\varepsilon$) for which the pressure solving Eq.~\eqref{eq: MBE_short} is a root:
@@ -582,7 +593,7 @@ In summary, the following four relations constitute sufficient conditions for $\
 Switching inequalities to equalities in Eqs.~\eqref{eq: PVTH1}, \eqref{eq: PVTH2} and \eqref{eq: PVTH3} is equivalent to enforcing system incompressibility. Eq.~\eqref{eq: PVTH1}, for instance, would require a volume increase in oil phase to be equal to gas volume in gas phase for any additional gas dissolution.
 
 \subsection{Solution algorithm}
-Several methods exist to find roots of nonlinear continuous functions \citep{hamming1987numerical}. One possible choice is Newton's method, which linearizes the function using either its gradient or a secant line. The secant line approach introduces an artificial smoothness to the gradient direction near continuous but non-differentiable points, for what it is the approach employed here to deal with the bubble-point pressure.
+Several methods exist to find roots of nonlinear continuous functions \citep{hamming1987numerical}. One possible choice is Newton's method, which linearizes the function using either its gradient or a secant line. The secant line approach introduces an artificial smoothness to the gradient direction near continuous but non-differentiable points, for what it is the approach used here to deal with the bubble-point pressure.
 
 An open source implementation of secant method is available in SciPy library \citep{scipy}. This work used library version $0.12$.
 
@@ -606,7 +617,7 @@ Bubble-point pressure $P_{b2}$ is only a function of the values in initial insta
 Compute fluid pressure for instant $t_2$ finding the root of residual function ($\varepsilon$).
 \end{step}
 
-Pressure in Eq.~\eqref{eq: MBE} is only a function of fluid properties in instant $t_1$, produced and injected values and bubble-point pressure at instant $t_2$, $P_{b2}$, which was already computed in step 1.
+Pressure in Eq.~\eqref{eq: MBE} is a function only of fluid properties in instant $t_1$, produced and injected values and bubble-point pressure at instant $t_2$, $P_{b2}$, which was already computed in step 1.
 
 \begin{step}
 Compute fluid saturations $t_2$.
@@ -618,7 +629,7 @@ Once $S_{o2}$, $S_{g2}$, $S_{w2}$, $p_2$ and $P_{b2}$ are known, solution for in
 Material balance equation were solved for a black-oil reservoir initially producing in depletion drive mechanism and later subjected to water injection. Fig.~\ref{fig: matbal_p} shows in the solid line curve the severe depletion during initial phases of production. In the dashed curve, Fig.~\ref{fig: matbal_p} shows the bubble-point pressure, indicating how far the saturated reservoir is from undersaturation and allowing for planning of pressure maintenance projects.
 
 
-Water injection starts when oil recovery factor $(RF)$ is about $RF=0.08$ and it is maintained until the reservoir reaches a novel undersaturated state. Initially, the high compressibility of gas prevents pressure from raising and free gas phase is reduced due to redissolution. Finally, the reservoir reaches the undersaturated state and a steep pressure increase is seen in Fig.~\ref{fig: matbal_p} for a recovery factor about $RF=0.15$.
+Water injection starts when oil recovery factor $(RF)$ is about $RF=0.08$ and it is maintained until the reservoir reaches a novel undersaturated state. Initially, the high compressibility of gas prevents pressure from raising and free gas phase is reduced because of redissolution. Finally, the reservoir reaches the undersaturated state and a steep pressure increase is seen in Fig.~\ref{fig: matbal_p} for a recovery factor about $RF=0.15$.
 
 It must be observed that the result of gas reentering oil phase completely neglects non-equilibrium effects, e.g. compositional gradients, and must be used with care. For instance, it may be in strong disagreement with real reservoir behavior when gravity segregation is present.
 
@@ -628,7 +639,7 @@ Figure~\ref{fig: epsilon} shows the shape of residual function ($\epsilon$) with
 
 Figure~\ref{fig: iter} shows the count of newtonian iterations required to compute pressure with an accuracy within $0.001$ of initial bubble-point pressure. Typically, $12$ iterations are required.
 
-Figure~\ref{fig: residual} shows the residual of numerical solution as defined in Eq.~\eqref{eq: residual}. Material balance error is bellow $10^{-7}$ units of porous volume for all time steps.
+Figure~\ref{fig: residual} shows the residual of numerical solution as defined in Eq.~\eqref{eq: residual}. Material balance error is less than $10^{-7}$ units of porous volume for all time steps.
 
 
 
@@ -672,7 +683,7 @@ $W_p$ & produced volume of water
 \item The existing link between black-oil and material balance equation is examined in detail.
 \item It is shown that gravity and capillary forces must be neglected and saturations must be constant in space so one can integrate black-oil equations in reservoir volume and obtain material balance equation.
 \item Material balance equation are shown to have a unique solution for a compressible system.
-\item Material balance equation are formulated for a variable bubble-point and they are employed to a reservoir under pressure maintenance.
+\item Material balance equation are formulated for a variable bubble-point and they are used to a reservoir under pressure maintenance.
 \end{enumerate}
 
 \pagebreak
@@ -680,7 +691,7 @@ $W_p$ & produced volume of water
 \begin{figure}
 \centering
 \includegraphics[width=\linewidth]{./python/matbal_p}
-\caption{Reservoir pressure and bubble-point pressure as functions of recovery factor. Once depletion goes below bubble-point, pressure is hardly recovered for a saturated reservoir due to high system compressibility. Pressure is here given in units of the original bubble-point pressure.}
+\caption{Reservoir pressure and bubble-point pressure as functions of recovery factor. Once depletion goes below bubble-point, pressure is hardly recovered for a saturated reservoir because of high system compressibility. Pressure is here given in units of the original bubble-point pressure.}
 \label{fig: matbal_p}
 \end{figure}
 
