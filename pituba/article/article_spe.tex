@@ -144,38 +144,42 @@ This section starts presenting black-oil equations and it proceeds averaging qua
 
 % Oil component, also called stock tank oil, is defined as the hydrocarbon composition in liquid phase for standard surface pressure and temperature. Similarly, gas component is the hydrocarbon composition in gaseous phase for the same surface condition. All species are generally present in both phases although the equilibrium composition is shifted to liquid phase (or gaseous phase) for components of greater (lower) molecular mass.
 
-Reservoir fluids are composed of oil and gas pseudo-components and water component. There can be three fluid phases: oil, gas and (liquid) water. Oil phase may be composed of oil and gas components, gas phase can be composed uniquely by gas component and water phase uniquely by water component. The only allowed mass transfer is of gas component between oil and gas phases, i.e., composition of gas phase is always that of a dry gas.
+%Phase saturation is defined as the fraction of the occupied pore volume:
+%\begin{equation}
+%S_\alpha = \frac{\phi_\alpha}{\phi} \, ,
+%\end{equation}
+%where $\phi_\alpha$ is the volumetric fraction of a fluid phase $\alpha$ and $\phi$ is the porosity. Clearly, all saturations sum up to unity. 
+%\begin{equation}
+%S_o + S_g +S_w = 1 \, .
+%\end{equation}
+
+We assume that the reservoir is a connected volume where hydrocarbon saturation is nonzero. Reservoir fluids are composed of oil and gas pseudo-components and water component. There can be three fluid phases: oil, gas and (liquid) water. Oil phase may be composed of oil and gas components, gas phase is composed uniquely by gas component and water phase uniquely by water component. The only allowed mass transfer is of gas component between oil and gas phases, i.e., gas phase composition is always that of a dry gas.
 
 %In addition to the three fluid components and phases, there is the solid phase composed by the rock.
 
-Mass balance equations for each component are:
+Mass balance equations for each component read:
 
 \begin{itemize}
 \item water component:
 \begin{equation}\label{eq: Sw1}
-\frac{\partial}{\partial t} \int\limits_{\Omega} \rho_w S_w \phi dV + \oint_{\partial \Omega} \rho_w \left( \vec{u}_w \cdot \vec{dS} \right) = \rho_w^{ST}Q_w^{ST} \, ;
+\frac{\partial}{\partial t} \left( \rho_w S_w \phi \right) +\nabla \cdot \left( \rho_w \vec{u}_w \right) = 0 ;
 \end{equation}
 
 \item oil component:
 \begin{equation}\label{eq: So1}
-\frac{\partial}{\partial t} \int\limits_{\Omega} \rho_o Y_o S_o \phi dV + \oint_{\partial \Omega} \rho_o Y_o \left(\vec{u}_o \cdot \vec{dS} \right)= \rho_o^{ST}Q_o^{ST} \, ;
+\frac{\partial}{\partial t}\left( \rho_o Y_o S_o \phi \right) + \nabla \cdot \left( \rho_o Y_o \vec{u}_o \right) = 0 \, ;
 \end{equation}
 
 \item gas component:
 \begin{equation}\label{eq: Sg1}
-\frac{\partial}{\partial t} \int\limits_{\Omega} \left( \rho_o Y_g S_o + \rho_g S_g\right) \phi dV + \oint_{\partial \Omega} \left( \rho_o Y_g \vec{u}_o + \rho_g \vec{u}_g\right) \cdot \vec{dS}= \rho_g^{ST}Q_g^{ST} \, .
+\begin{split}
+\frac{\partial}{\partial t} \left( \rho_o Y_g S_o + \rho_g S_g\right) + \nabla  \cdot \left( \rho_o Y_g \vec{u}_o + \rho_g \vec{u}_g\right) = 0\, .
+\end{split}
 \end{equation}
 \end{itemize}
-Mass concentrations of oil and gas components in oil phases are denoted as $Y_o$ and $Y_g$, respectively.
+Mass concentrations of oil and gas components in oil phase are denoted by $Y_o$ and $Y_g$, respectively. 
 
-Phase saturation is defined as its volumetric fraction of the pore space:
-\begin{equation}
-S_\alpha = \frac{\phi_\alpha}{\phi} \, ,
-\end{equation}
-where $\phi_\alpha$ is the volumetric fraction of a fluid phase $\alpha$ and $\phi$ is the porosity. Clearly, all saturations sum up to unity. 
-\begin{equation}
-S_o + S_g +S_w = 1 \, .
-\end{equation}
+Initial conditions are of no fluid motion and boundary conditions are of no normal flow at all boundaries except for interfaces with wells or aquifers.
 
 A common simplification in black-oil formulation is to restrict mass transport to macroscopic advection. No diffusive or dispersive term is included in mass balance equations. 
 
@@ -282,7 +286,7 @@ p_{c,go}\left(\vec{\vec{k}},\phi,S_g\right)=p_g-p_o \, .
 
 \subsection{Material balance equation}
 
-Derivation of the material balance equation consists in assuming no fluid motion and in integrating black-oil equations in reservoir volume. As it will be shown, the integration process requires all quantities to be either spatially averaged or assumed constant.
+Derivation of the material balance equation consists in integrating black-oil equations in reservoir volume.
 
 %Defining averages of most quantities is difficulty, though, as they appear in equations as products of up to three factors. Being the quantities self-correlated, the averaging process would involve unclosed terms. Quantities are thus required to be spatially constant wherever needed.
 
@@ -291,43 +295,47 @@ Derivation of the material balance equation consists in assuming no fluid motion
 %\bar{S}_\alpha = \int_\Omega S_\alpha \phi dV \, .
 %\end{equation}
 
-
-We start assuming mechanical equilibrium, i.e., no bulk motion:
-\begin{equation}
-\vec{u}_\alpha = -\frac{k_{r,\alpha} \vec{\vec{k}}}{\mu_\alpha} \left(\nabla p_\alpha - \rho_\alpha g\nabla z\right)\equiv 0 \, .
-\end{equation}
-This condition implies that pressure gradients must equal gravity force per unit volume:
-\begin{equation}\label{eq: p=rhogh}
-\nabla p_\alpha = \rho_\alpha g\nabla z
-\end{equation}
-and, consequently, pressure is a function of depth only:
-\begin{equation}\label{eq: p=rhogh}
-\int_{p_\alpha^0}^{p_\alpha} \frac{dp_\alpha^{'}}{\rho_\alpha \left(p_\alpha^{'},T\right)} = g\left(z - z_0\right) \, .
-\end{equation}
-
-Black-oil equations become:
+Integrating Eqs.~\eqref{eq: Sw1}, \eqref{eq: So1} and \eqref{eq: Sg1} in volume and applying divergence theoreom gives:
 \begin{itemize}
 \item water component:
 \begin{equation}\label{eq: Sw2}
-\frac{\partial}{\partial t} \int\limits_{\Omega} \rho_w S_w \phi dV = \rho_w^{ST}Q_w^{ST} \, ;
+\frac{\partial}{\partial t} \int\limits_{\Omega} \rho_w S_w \phi dV = - \oint_{\partial \Omega} \rho_w \left( \vec{u}_w \cdot \vec{dS} \right)= \rho_w^{ST}\left(Q_{we}^{ST} + Q_{wi}^{ST}-Q_w^{ST}\right) \, ;
 \end{equation}
 
 \item oil component:
 \begin{equation}\label{eq: So2}
-\frac{\partial}{\partial t} \int\limits_{\Omega} \rho_o Y_o S_o \phi dV = \rho_o^{ST}Q_o^{ST} \, ;
+\frac{\partial}{\partial t} \int\limits_{\Omega} \rho_o Y_o S_o \phi dV = -\oint_{\partial \Omega} \rho_o Y_o \left(\vec{u}_o \cdot \vec{dS} \right) = \rho_o^{ST}Q_o^{ST} \, ;
 \end{equation}
 
 \item gas component:
 \begin{equation}\label{eq: Sg2}
-\frac{\partial}{\partial t} \int\limits_{\Omega} \left( \rho_o Y_g S_o + \rho_g S_g\right) \phi dV = \rho_g^{ST}Q_g^{ST} \, .
+\frac{\partial}{\partial t} \int\limits_{\Omega} \left( \rho_o Y_g S_o + \rho_g S_g\right) \phi dV = - \oint_{\partial \Omega} \left( \rho_o Y_g \vec{u}_o + \rho_g \vec{u}_g\right) \cdot \vec{dS} 
+=  \rho_g^{ST}(Q_{gi}^{ST}-Q_g^{ST}) \, .
 \end{equation}
 \end{itemize}
+%
+%\begin{itemize}
+%\item water component:
+%\begin{equation}\label{eq: Sw2}
+%\frac{\partial}{\partial t} \int\limits_{\Omega} \rho_w S_w \phi dV = \rho_w^{ST}Q_w^{ST} \, ;
+%\end{equation}
+%
+%\item oil component:
+%\begin{equation}\label{eq: So2}
+%\frac{\partial}{\partial t} \int\limits_{\Omega} \rho_o Y_o S_o \phi dV = \rho_o^{ST}Q_o^{ST} \, ;
+%\end{equation}
+%
+%\item gas component:
+%\begin{equation}\label{eq: Sg2}
+%\frac{\partial}{\partial t} \int\limits_{\Omega} \left( \rho_o Y_g S_o + \rho_g S_g\right) \phi dV = \rho_g^{ST}Q_g^{ST} \, .
+%\end{equation}
+%\end{itemize}
 %
 \subsubsection{Averaging quantities}
 
 Spatially averaged quantities are defined for porosity ($\phi$), saturation ($S_\alpha$), density ($\rho_\alpha$) and mass concentration ($Y_{\alpha,k}$) of a component $k$ in phase $\alpha$.
 
-All quantities are initially functions of space and time and they become functions only of time after being averaged in space:
+All quantities are initially functions of space and time and they become functions of time only after being averaged in space:
 
 \begin{equation}
 \bar{\phi} (t) = \frac{1}{\Omega}\int_{\Omega}\phi \left(\vec{x},t\right) dV \, .
@@ -351,7 +359,7 @@ Eqs. \eqref{eq: Sw2}, \eqref{eq: So2} and \eqref{eq: Sg2} are rewritten in terms
 \begin{itemize}
 \item water component:
 \begin{equation}\label{eq: Sw3}
-\frac{\partial}{\partial t} \left( \bar{\rho_w}\bar{S}_w\bar{\phi} \Omega \right) = \rho_w^{ST}Q_w^{ST}
+\frac{\partial}{\partial t} \left( \bar{\rho_w}\bar{S}_w\bar{\phi} \Omega \right) = \rho_w^{ST}\left(Q_{we}^{ST} + Q_{wi}^{ST}-Q_w^{ST}\right)
 \end{equation}
 
 \item oil component:
@@ -361,7 +369,7 @@ Eqs. \eqref{eq: Sw2}, \eqref{eq: So2} and \eqref{eq: Sg2} are rewritten in terms
 
 \item gas component:
 \begin{equation}\label{eq: Sg3}
-\frac{\partial}{\partial t} \left[\left( \bar{\rho}_o\bar{Y}_g \bar{S}_o + \bar{\rho}_g \bar{S}_g \right) \bar{\phi} \Omega\right] = \rho_g^{ST}Q_g^{ST} \, .
+\frac{\partial}{\partial t} \left[\left( \bar{\rho}_o\bar{Y}_g \bar{S}_o + \bar{\rho}_g \bar{S}_g \right) \bar{\phi} \Omega\right] =  \rho_g^{ST}(Q_{gi}^{ST}-Q_g^{ST}) \, .
 \end{equation}
 \end{itemize}
 
@@ -393,7 +401,7 @@ R_s = \frac{\rho_o^{ST}}{\rho_g^{ST}}\frac{\bar{Y}_g}{1-\bar{Y}_g} \, .
 Equations can now be rewritten using the above definitions and denoting porous volume by $V_p = \bar{\phi}\Omega$.
 
 \begin{equation}\label{eq: Sw4}
-\frac{\partial}{\partial t} \left(\frac{\bar{S}_w V_p}{B_w} \right) = Q_w^{ST} \, ,
+\frac{\partial}{\partial t} \left(\frac{\bar{S}_w V_p}{B_w} \right) = Q_{we}^{ST} + Q_{wi}^{ST}-Q_w^{ST}
 \end{equation}
 
 \begin{equation}\label{eq: So4}
@@ -401,7 +409,7 @@ Equations can now be rewritten using the above definitions and denoting porous v
 \end{equation}
 
 \begin{equation}\label{eq: Sg4}
-\frac{\partial}{\partial t} \left[ V_p \left(\frac{\bar{S}_g}{B_g} + \frac{\bar{S}_o R_s}{B_o} \right) \right] = Q_g^{ST} \, ,
+\frac{\partial}{\partial t} \left[ V_p \left(\frac{\bar{S}_g}{B_g} + \frac{\bar{S}_o R_s}{B_o} \right) \right] = \left( Q_{gi}^{ST}-Q_g^{ST} \right) \, ,
 \end{equation}
 
 \begin{equation}\label{eq: S14}
@@ -465,6 +473,20 @@ What is then the meaning of pressure calculations in material balance equations?
 For answering this question, we examine the two roles played by pressure in material balance equation: computation of phase density and phase equilibrium. 
 
 We shall see that to compute the averaged phase density, we may define some reference depth and use the corresponding local density as an approximation to the averaged density without introducing any important error. 
+
+
+We start assuming mechanical equilibrium, i.e., no bulk motion:
+\begin{equation}
+\vec{u}_\alpha = -\frac{k_{r,\alpha} \vec{\vec{k}}}{\mu_\alpha} \left(\nabla p_\alpha - \rho_\alpha g\nabla z\right)\equiv 0 \, .
+\end{equation}
+This condition implies that pressure gradients must equal gravity force per unit volume:
+\begin{equation}\label{eq: p=rhogh}
+\nabla p_\alpha = \rho_\alpha g\nabla z
+\end{equation}
+and, consequently, pressure is a function of depth only:
+\begin{equation}\label{eq: p=rhogh}
+\int_{p_\alpha^0}^{p_\alpha} \frac{dp_\alpha^{'}}{\rho_\alpha \left(p_\alpha^{'},T\right)} = g\left(z - z_0\right) \, .
+\end{equation}
 
 Pressure increases with depth according to the hydrostatic gradient. Consequently, density also increases but by a negligible amount. This approximation may be quantified by putting together the expressions for compressibility and hydrostatic equilibrium. For this, we assume a constant isothermal compressibility for oil phase
 \begin{equation}\label{eq: grado}
