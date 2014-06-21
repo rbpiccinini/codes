@@ -222,7 +222,7 @@ A common simplification in black-oil formulation is to restrict mass transport t
 Momentum balance for each phase is given by an extension of Darcy's law to multiphase flow. This extension consists in multiplying absolute (or single-phase) permeability ($\vec{\vec{k}}$) by a scalar function called phase relative permeability ($k_{r,\alpha}$):
 
 \begin{equation}\label{eq: exdarcy}
-\vec{u}_\alpha = -\frac{k_{r,\alpha} \vec{\vec{k}}}{\mu_\alpha} \left(\nabla p_\alpha - \rho_\alpha g\nabla z\right) \, , \quad \alpha=o,w,g \, .
+\vec{u}_\alpha = -\frac{k_{r,\alpha} \vec{\vec{k}}}{\mu_\alpha}\cdot \left(\nabla p_\alpha - \rho_\alpha \vec{g}\right) \, , \quad \alpha=o,w,g \, .
 \end{equation}
 
 Phase densities are functions of the local thermodynamic state:
@@ -448,7 +448,7 @@ R_{s2}\left(p=P_b\right) = &\Big[N\left(m B_{1}/B_{g1} +R_{s1}\right)\\
 
 \subsubsection{Material balance equation}
 
-It is now possible to obtain the classical material balance equation substituting the equations for phase saturation, Eqs.~\eqref{eq: Sw5}, \eqref{eq: So5} and \eqref{eq: Sg5}, into Eq.~\eqref{eq: S15}:  
+It is now possible to obtain the general material balance equation substituting the equations for phase saturation, Eqs.~\eqref{eq: Sw5}, \eqref{eq: So5} and \eqref{eq: Sg5}, into Eq.~\eqref{eq: S15}:  
 
 \begin{equation}\label{eq: MBE}
 F_p - F_i= \underbrace{N E_o + mN E_g + W E_w}_{\text{fluid volume expansion } (E)} +\underbrace{V_{p1}-V_{p2}}_{\text{porous volume contraction } (C)}
@@ -460,11 +460,36 @@ F_p - F_i= E + C \, ,
 where new terms $C$, $E$, $F_i$ and $F_p$ are defined in Table~\ref{tab: MBE}. 
 
 Eq~\eqref{eq: MBE} involves fluid properties, original fluid volumes ($N$, $W$ and $G)$, cumulative production and injection and aquifer influx.
-It is an agelbraic equation that can be solved to any one of its terms, provided that all remaining are known. This works focuses on its solution for pressure.
+It is an algebraic equation that can be solved for any one of its terms, provided that all remaining are known. This works focuses on its solution for pressure.
 
-\subsubsection{An interpretation for calculated pressure and the definition of a reference depth}
+\subsubsection{An interpretation for the calculated pressure}
 
-Material balance equation is widely used to stablish a relationship between production (and injection) and reservoir pressure. In Eq.~\eqref{eq: MBE}, however, formation volume factors were defined using averaged values of fluid properties, which are functions of local pressure. It turns out, though, that pressure is a function of depth and phase. 
+% no assumption on static conditions are needed
+% pressure field is not known
+% pressure field can be assumed constant
+% pressure field can be given by hydrostatic equilibrium
+
+Although it was not needed to assume no fluid flow to obtain material balance equation, fluid motion can only be taken into account in the averaging of fluid properties if the pressure field is known. For any practical purpose, this is not true.
+
+A possible simplification to the pressure field is neglecting hydrodynamic gradients and assuming hydrostatic equilibrium:
+%We start assuming mechanical equilibrium, i.e., no bulk motion:
+\begin{equation}
+\vec{u}_\alpha = -\frac{k_{r,\alpha} \vec{\vec{k}}}{\mu_\alpha} \left(\nabla p_\alpha - \rho_\alpha \vec{g}\right)\equiv 0 \, .
+\end{equation}
+This assumption implies the identity of pressure gradient and gravity force per unit volume
+\begin{equation}\label{eq: p=rhogh}
+\nabla p_\alpha \equiv \rho_\alpha \vec{g} \, ,
+\end{equation}
+and, consequently, pressure becomes a function of time and depth only:
+\begin{equation}\label{eq: p=rhogh}
+\int_{p_\alpha^0 (t)}^{p_\alpha} \frac{dp_\alpha^{'}}{\rho_\alpha \left(p_\alpha^{'}\right)} = g\left(z - z_0\right) \, ,
+\end{equation}
+where $p_\alpha^0 (t)$ is the pressure of phase $\alpha$ at some reference depth $z_0$ and time $t$.
+
+Material balance equation is widely used to establish a relationship between production (and injection) and reservoir pressure. In Eq.~\eqref{eq: MBE}, however, formation volume factors were defined using averaged values of fluid properties that depend on the pressure field.
+
+
+Additional assumptions are then needed to simpli
 
 % ERRADO: Using the average reservoir pressure ($\bar{p}$) to compute fluid properties does not solve this issue because $\bar{\rho}_o$ is not equal to $\rho_o (\bar{p})$ and thus $B_o$ is not a simple function of $p$.
 
@@ -475,18 +500,6 @@ For answering this question, we examine the two roles played by pressure in mate
 We shall see that to compute the averaged phase density, we may define some reference depth and use the corresponding local density as an approximation to the averaged density without introducing any important error. 
 
 
-We start assuming mechanical equilibrium, i.e., no bulk motion:
-\begin{equation}
-\vec{u}_\alpha = -\frac{k_{r,\alpha} \vec{\vec{k}}}{\mu_\alpha} \left(\nabla p_\alpha - \rho_\alpha g\nabla z\right)\equiv 0 \, .
-\end{equation}
-This condition implies that pressure gradients must equal gravity force per unit volume:
-\begin{equation}\label{eq: p=rhogh}
-\nabla p_\alpha = \rho_\alpha g\nabla z
-\end{equation}
-and, consequently, pressure is a function of depth only:
-\begin{equation}\label{eq: p=rhogh}
-\int_{p_\alpha^0}^{p_\alpha} \frac{dp_\alpha^{'}}{\rho_\alpha \left(p_\alpha^{'},T\right)} = g\left(z - z_0\right) \, .
-\end{equation}
 
 Pressure increases with depth according to the hydrostatic gradient. Consequently, density also increases but by a negligible amount. This approximation may be quantified by putting together the expressions for compressibility and hydrostatic equilibrium. For this, we assume a constant isothermal compressibility for oil phase
 \begin{equation}\label{eq: grado}
@@ -563,7 +576,7 @@ A numerical solution of Eq.~\eqref{eq: MBE_short} is presented here. We shall st
 \begin{equation}\label{eq: residual}
 \varepsilon(p_2) = \frac{E+F_i+C-F_p}{V_{p1}} \, .
 \end{equation}
-We proceed showing that $\varepsilon$ is a monotonic function provided some conditions on fluid properties are observed and that, as a consequence, only one root of $\varepsilon$ exists at most. Equivalently, we may say that only one solution exists for material balance equation.
+We proceed showing that $\varepsilon$ is a monotonic function provided some conditions on fluid properties are observed and that, as a consequence, only one root of $\varepsilon$ exists at most. Equivalently, we can say that only one solution exists for material balance equation.
 
 %The conditions imposed on fluid PVT properties are the mathematical equivalent of requiring a far from critical thermodynamic state.
 
@@ -580,7 +593,7 @@ We now state without proof that the following affirmatives are sufficient condit
 \end{enumerate}
 
 Residual function clearly satisfies the first two affirmatives because fluid properties are continuous everywhere and are also differentiable everywhere except for the first order phase change at bubble-point pressure.
-The third affirmative is proved by rewriting $d\epsilon/dp$ as a sum of four parcels corresponding each one to a different phase. Each parcel is composed of two factors: current volume \textit{in-situ} and volume derivative with respect to pressure:
+The third affirmative is proved by rewriting $d\epsilon/dp$ as a sum of four parcels corresponding each parcel to a different phase. Each parcel is composed of two factors: current volume \textit{in-situ} and volume derivative with respect to pressure:
 \begin{equation}
 \begin{split}
 &V_{p1}\frac{d\varepsilon}{dp}=\underbrace{\left(N-N_p\right) \left(\frac{dB_o}{dp} - B_g \frac{dR_s}{dp} \right)}_\text{oil phase}\\
@@ -608,8 +621,8 @@ In summary, the following four relations constitute sufficient conditions for $\
 \frac{dV_p}{dp} \geq 0 \, .
 \end{equation}
 
-Eq.~\eqref{eq: PVTH1} also provides one condition to check whether PVT data obtained from laboratory or empirical correlations is physically correct. It can be alternatively formulated as shown below and indicates that any vaporization of oil phase is followed by an increase in its density.
-\begin{equation}
+Eq.~\eqref{eq: PVTH1} also provides one condition to check whether PVT data obtained from laboratory or empirical correlations is physically correct. It can be alternatively formulated as shown in Eq.~\eqref{eq: vaporization} and it simply indicates that any vaporization must be followed by an increase in oil phase density:
+\begin{equation}\label{eq: vaporization}
 \frac{1}{\rho_o}\frac{d\rho_o}{dY_o} \geq Y_o \left( \frac{\rho_o}{\rho_g} - 1 \right) \, .
 \end{equation}
 
@@ -617,7 +630,7 @@ Eq.~\eqref{eq: PVTH1} also provides one condition to check whether PVT data obta
 %Switching inequalities to equalities in Eqs.~\eqref{eq: PVTH1}, \eqref{eq: PVTH2} and \eqref{eq: PVTH3} is equivalent to enforcing system incompressibility. Eq.~\eqref{eq: PVTH1}, for instance, would require a volume increase in oil phase to be equal to gas volume in gas phase for any additional gas dissolution.
 
 \subsection{Solution algorithm}
-Several methods exist to find roots of nonlinear continuous functions \citep{hamming1987numerical}. One possible choice is Newton's method, which linearizes the function using either its gradient or a secant line. The secant line approach introduces an numerical smoothness to the gradient near continuous but non-differentiable points, for what it is the approach used here to deal with the bubble-point pressure.
+Several methods exist to find roots of nonlinear continuous functions \citep{hamming1987numerical}. One possible choice is Newton's method, which linearizes the function using either its gradient or a secant line. The secant line approach introduces a numerical smoothness to the gradient near continuous but non-differentiable points, for what it is the approach used here to deal with the bubble-point pressure.
 
 An open source implementation of secant method is available in SciPy library \citep{scipy}. This work used library version $0.12$.
 
