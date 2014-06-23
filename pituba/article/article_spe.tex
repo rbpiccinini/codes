@@ -1,6 +1,6 @@
 % Review
-\documentclass[authoryear,preprint,review,10pt]{elsarticle}
-%\documentclass[final,authoryear,5p,times,twocolumn,11pt]{elsarticle}
+%\documentclass[authoryear,preprint,review,10pt]{elsarticle}
+\documentclass[final,authoryear,5p,times,twocolumn,10pt]{elsarticle}
 
 % Review topics:
 
@@ -59,9 +59,9 @@ material balance \sep black-oil equations \sep reservoir engineering.
 \end{frontmatter}
 
 \section{Introduction}
-Material balance equation is a classical tool in petroleum reservoir engineering. It consists of an algebraic equation originally presented in \cite{schilthuis1936active} and conceived as a zero dimensional model for estimating reservoir pressure from mass balance. \cite{schilthuis1936active} introduced the hypothesis of equilibrium attained at all times not necessarily in the entire reservoir volume, but in the regions of high permeability where most of the production would come from and where pressure would present a similar behavior. Such regions were said to contain an active oil.
+The material balance equation is a classical tool in petroleum reservoir engineering. It consists of the algebraic equation originally presented in \cite{schilthuis1936active} and conceived as a zero dimensional model for estimating reservoir pressure from mass balance. \cite{schilthuis1936active} introduced the hypothesis of equilibrium attained at all times not necessarily in the entire reservoir volume, but in the regions of high permeability where most of the production would come from and where pressure would present a similar behavior. Such regions were said to contain an active oil.
 
-As mentioned, the equations developed by \cite{schilthuis1936active} did not account for the non-existence of mechanical, phase or thermal equilibrium. An attempt to introduce non-equilibrium effects of hydrodynamic origin came with \textit{black-oil} equations \citep{aziz1979petroleum,blackoil}. The novelty on hydrodynamics was the introduction of a macroscopic equation of motion using Darcy's law. 
+As mentioned, the equation developed by \cite{schilthuis1936active} did not account for the non-existence of mechanical, phase or thermal equilibrium. An attempt to introduce non-equilibrium effects of hydrodynamic origin came with \textit{black-oil} equations \citep{aziz1979petroleum,blackoil}. The novelty on hydrodynamics was the introduction of a macroscopic equation of motion using Darcy's law. 
 
 %Black-oil equations arise from the generalization of the zero dimensional concept to a three-dimensional model that incorporates Darcy's law and entails the same approach for phase equilibrium \citep{aziz1979petroleum}.
 
@@ -298,20 +298,28 @@ Derivation of the material balance equation consists in integrating black-oil eq
 Integrating Eqs.~\eqref{eq: Sw1}, \eqref{eq: So1} and \eqref{eq: Sg1} in volume and applying divergence theoreom gives:
 \begin{itemize}
 \item water component:
-\begin{equation}\label{eq: Sw2}
-\frac{\partial}{\partial t} \int\limits_{\Omega} \rho_w S_w \phi dV = - \oint_{\partial \Omega} \rho_w \left( \vec{u}_w \cdot \vec{dS} \right)= \rho_w^{ST}\left(Q_{we}^{ST} + Q_{wi}^{ST}-Q_w^{ST}\right) \, ;
-\end{equation}
+\begin{align}\label{eq: Sw2}
+\begin{split}
+\frac{\partial}{\partial t} \int\limits_{\Omega} \rho_w S_w \phi dV &= - \oint_{\partial \Omega} \rho_w \left( \vec{u}_w \cdot \vec{dS} \right) \\
+&= \rho_w^{ST}\left(Q_{we}^{ST} + Q_{wi}^{ST}-Q_w^{ST}\right) \, ;
+\end{split}
+\end{align}
 
 \item oil component:
-\begin{equation}\label{eq: So2}
-\frac{\partial}{\partial t} \int\limits_{\Omega} \rho_o Y_o S_o \phi dV = -\oint_{\partial \Omega} \rho_o Y_o \left(\vec{u}_o \cdot \vec{dS} \right) = \rho_o^{ST}Q_o^{ST} \, ;
-\end{equation}
+\begin{align}\label{eq: So2}
+\begin{split}
+\frac{\partial}{\partial t} \int\limits_{\Omega} \rho_o Y_o S_o \phi dV &= -\oint_{\partial \Omega} \rho_o Y_o \left(\vec{u}_o \cdot \vec{dS} \right) \\
+&= \rho_o^{ST}Q_o^{ST} \, ;
+\end{split}
+\end{align}
 
 \item gas component:
-\begin{equation}\label{eq: Sg2}
-\frac{\partial}{\partial t} \int\limits_{\Omega} \left( \rho_o Y_g S_o + \rho_g S_g\right) \phi dV = - \oint_{\partial \Omega} \left( \rho_o Y_g \vec{u}_o + \rho_g \vec{u}_g\right) \cdot \vec{dS} 
-=  \rho_g^{ST}(Q_{gi}^{ST}-Q_g^{ST}) \, .
-\end{equation}
+\begin{align}\label{eq: Sg2}
+\begin{split}
+\frac{\partial}{\partial t} \int\limits_{\Omega} \left( \rho_o Y_g S_o + \rho_g S_g\right) \phi dV &= - \oint_{\partial \Omega} \left( \rho_o Y_g \vec{u}_o + \rho_g \vec{u}_g\right) \cdot \vec{dS} \\
+&=  \rho_g^{ST}(Q_{gi}^{ST}-Q_g^{ST}) \, .
+\end{split}
+\end{align}
 \end{itemize}
 %
 %\begin{itemize}
@@ -448,10 +456,10 @@ R_{s2}\left(p=P_b\right) = &\Big[N\left(m B_{1}/B_{g1} +R_{s1}\right)\\
 
 \subsubsection{Material balance equation}
 
-It is now possible to obtain the general material balance equation substituting the equations for phase saturation, Eqs.~\eqref{eq: Sw5}, \eqref{eq: So5} and \eqref{eq: Sg5}, into Eq.~\eqref{eq: S15}:  
+It is now possible to obtain the so-called generalized material balance equation substituting the equations for phase saturation, Eqs.~\eqref{eq: Sw5}, \eqref{eq: So5} and \eqref{eq: Sg5}, into Eq.~\eqref{eq: S15}:  
 
 \begin{equation}\label{eq: MBE}
-F_p - F_i= \underbrace{N E_o + mN E_g + W E_w}_{\text{fluid volume expansion } (E)} +\underbrace{V_{p1}-V_{p2}}_{\text{porous volume contraction } (C)}
+F_p - F_i= \underbrace{N E_o + mN E_g + W E_w}_{\text{fluid volume expansion } (E)} +\underbrace{V_{p1}-V_{p2}}_{\text{pore volume reduction } (C)}
 \end{equation}
 or
 \begin{equation}\label{eq: MBE_short}
@@ -462,71 +470,68 @@ where new terms $C$, $E$, $F_i$ and $F_p$ are defined in Table~\ref{tab: MBE}.
 Eq~\eqref{eq: MBE} involves fluid properties, original fluid volumes ($N$, $W$ and $G)$, cumulative production and injection and aquifer influx.
 It is an algebraic equation that can be solved for any one of its terms, provided that all remaining are known. This works focuses on its solution for pressure.
 
-\subsubsection{An interpretation for the calculated pressure}
+\subsubsection{An interpretation for how material balance equation relates to reservoir pressure}
 
 % no assumption on static conditions are needed
 % pressure field is not known
 % pressure field can be assumed constant
 % pressure field can be given by hydrostatic equilibrium
 
-Although it was not needed to assume no fluid flow to obtain material balance equation, fluid motion can only be taken into account in the averaging of fluid properties if the pressure field is known. For any practical purpose, this is not true.
-
-A possible simplification to the pressure field is neglecting hydrodynamic gradients and assuming hydrostatic equilibrium:
-%We start assuming mechanical equilibrium, i.e., no bulk motion:
-\begin{equation}
-\vec{u}_\alpha = -\frac{k_{r,\alpha} \vec{\vec{k}}}{\mu_\alpha} \left(\nabla p_\alpha - \rho_\alpha \vec{g}\right)\equiv 0 \, .
-\end{equation}
-This assumption implies the identity of pressure gradient and gravity force per unit volume
-\begin{equation}\label{eq: p=rhogh}
-\nabla p_\alpha \equiv \rho_\alpha \vec{g} \, ,
-\end{equation}
-and, consequently, pressure becomes a function of time and depth only:
-\begin{equation}\label{eq: p=rhogh}
-\int_{p_\alpha^0 (t)}^{p_\alpha} \frac{dp_\alpha^{'}}{\rho_\alpha \left(p_\alpha^{'}\right)} = g\left(z - z_0\right) \, ,
-\end{equation}
-where $p_\alpha^0 (t)$ is the pressure of phase $\alpha$ at some reference depth $z_0$ and time $t$.
-
 Material balance equation is widely used to establish a relationship between production (and injection) and reservoir pressure. In Eq.~\eqref{eq: MBE}, however, formation volume factors were defined using averaged values of fluid properties that depend on the pressure field.
 
+Although it was not needed to assume no fluid flow to obtain material balance equation, fluid motion can only be taken into account in the averaging of fluid properties if the pressure field is known. For any practical purpose, this is not true.
 
-Additional assumptions are then needed to simpli
+A possible simplification to the pressure field is neglecting hydrodynamic gradients and assuming hydrostatic equilibrium: $\vec{u}_\alpha \equiv 0$. This also implies the identity of pressure gradient and gravity force per unit volume, $\nabla p_\alpha \equiv \rho_\alpha \vec{g}$, and, consequently, pressure becomes a function of time and depth only:
+\begin{equation}\label{eq: p=rhogh}
+\int_{p_\alpha^{ref} (t)}^{p_\alpha (t,z)} \frac{dp_\alpha^{'}}{\rho_\alpha \left(p_\alpha^{'}\right)} = g\left(z - z_{ref}\right) \, ,
+\end{equation}
+where $p_\alpha (t,z)$ is the pressure field of phase $\alpha$ and $p_\alpha^{ref} (t)$ is the pressure at some reference depth $z_{ref}$.
 
-% ERRADO: Using the average reservoir pressure ($\bar{p}$) to compute fluid properties does not solve this issue because $\bar{\rho}_o$ is not equal to $\rho_o (\bar{p})$ and thus $B_o$ is not a simple function of $p$.
+It is now possible to compute the pressure field from Eq.~\eqref{eq: p=rhogh} and average fluid properties accordingly in material balance equation. It can be shown, however, that neglecting the variation of fluid properties with depth does not introduce any important error. For instance, the average oil density can be approximated to the local density at the reference level, $\bar{\rho}_o (t) \approx \rho_o (t, z_{ref})$, what also applies to the formation volume factor: $B_o \approx \rho_o (t, z_{ref})/ \rho_o^{ST}$.
 
-What is then the meaning of pressure calculations in material balance equations?
+%For liquids, a first-order approximation to the relationship between density and pressure at constant temperature and composition can be assumed:
 
-For answering this question, we examine the two roles played by pressure in material balance equation: computation of phase density and phase equilibrium. 
+%
+%
+%
+%
+%
+%Additional assumptions are then needed to simpli
+%
+%% ERRADO: Using the average reservoir pressure ($\bar{p}$) to compute fluid properties does not solve this issue because $\bar{\rho}_o$ is not equal to $\rho_o (\bar{p})$ and thus $B_o$ is not a simple function of $p$.
+%
+%What is then the meaning of pressure calculations in material balance equations?
+%
+%For answering this question, we examine the two roles played by pressure in material balance equation: computation of phase density and phase equilibrium. 
+%
+%We shall see that to compute the averaged phase density, we may define some reference depth and use the corresponding local density as an approximation to the averaged density without introducing any important error. 
 
-We shall see that to compute the averaged phase density, we may define some reference depth and use the corresponding local density as an approximation to the averaged density without introducing any important error. 
-
-
-
-Pressure increases with depth according to the hydrostatic gradient. Consequently, density also increases but by a negligible amount. This approximation may be quantified by putting together the expressions for compressibility and hydrostatic equilibrium. For this, we assume a constant isothermal compressibility for oil phase
+As pressure increases with depth according to the hydrostatic gradient, density also increases, but by a negligible amount. This approximation may be quantified by putting together the expressions for compressibility and hydrostatic equilibrium. For this, we assume a constant isothermal compressibility for oil phase,
 \begin{equation}\label{eq: grado}
-\left( \frac{1}{\rho_o}\frac{\partial \rho_o}{\partial p_o} \right)_{T,Y_o} = c_o 
+\frac{1}{\rho_o}\left(\frac{\partial \rho_o}{\partial p_o} \right)_{T,Y_o} = c_o \, ,
 \end{equation}
-and we use hydrostatic equilibrium $dp_o = \rho_o g dz$ to obtain the expression for the derivative of oil density with depth:
+ and we use hydrostatic equilibrium $dp_o = \rho_o g dz$ to obtain the expression for the derivative of oil density with depth:
 \begin{equation}
-\left( \frac{1}{\rho_o}\frac{\partial \rho_o}{\partial z} \right)_{T,Y_o} = c_o \rho_o g \, .
+ \frac{1}{\rho_o}\left(\frac{\partial \rho_o}{\partial z} \right)_{T,Y_o} = c_o \rho_o g \, .
 \end{equation}
 
-Similarly for the gas phase, we obtain its isothermal compressibility from the gas state equation
+Similarly for gas phase, we obtain its isothermal compressibility from the gas state equation, $pV = Zn R T$:
 \begin{equation}
-\left(\frac{1}{\rho_g}\frac{\partial \rho_g}{\partial p_g}\right)_{T,Z} = \frac{1}{p_g} = \frac{\mathcal{M}}{\rho_g ZRT}
+\frac{1}{\rho_g}\left(\frac{\partial \rho_g}{\partial p_g}\right)_{T} = \frac{1}{p_g}-\frac{1}{Z}\frac{\partial Z}{\partial p_g} \, ,
 \end{equation}
 and again we use hydrostatic equilibrium to obtain the derivative of gas density with depth:
 \begin{equation}\label{eq: gradg}
-\left(\frac{1}{\rho_g}\frac{\partial \rho_g}{\partial z}\right)_{T,Z} = \left(\frac{\mathcal{M}}{ Z R T}\right) g \, .
+\frac{1}{\rho_g}\left(\frac{\partial \rho_g}{\partial z}\right)_{T} = \left(\frac{\mathcal{M}}{ Z R T}\right) g \, .
 \end{equation}
 
 
 Substituting typical values in Eqs.~\eqref{eq: grado} and \eqref{eq: gradg}, we see that oil and gas densities are rather constant with depth:
 \begin{equation}
-\left(\frac{1}{\rho_o}\frac{\partial \rho_o}{\partial z}\right)_{T,Y_o} \approx 10^{-6}\ m^{-1} \, ,
+\frac{1}{\rho_o}\left(\frac{\partial \rho_o}{\partial z}\right)_{T,Y_o} \approx 10^{-6}\ m^{-1} \, ,
 \end{equation}
 
 \begin{equation}
-\left(\frac{1}{\rho_g}\frac{\partial \rho_g}{\partial z}\right)_{T,Z} \approx 10^{-5}\ m^{-1} \, .
+\frac{1}{\rho_g}\left(\frac{\partial \rho_g}{\partial z}\right)_{T,Z} \approx 10^{-5}\ m^{-1} \, .
 \end{equation}
 
 Oil and gas densities are thus rather constant with depth and a zeroth order approximation of $\bar{\rho}$ is accurate within $0.5\%$ for material balance calculations.
@@ -537,7 +542,7 @@ For the case of an oil reservoir covered by a gas cap, the reference depth may b
 
 If the reference depth for oil phase is otherwise defined below gas-oil contact, gas density must be computed at some different depth still inside gas phase, i.e., at or above gas-oil contact. This is to avoid the effect of oil hydrostatic gradient in the computation of gas density,
 \begin{equation}
-\left(\frac{1}{\rho_g}\frac{\partial \rho_g}{\partial z}\right)_{T,Z} = \frac{\rho_o}{\rho_g}\left(\frac{\mathcal{M}}{Z R T}\right)g  \, ,
+\frac{1}{\rho_g}\left(\frac{\partial \rho_g}{\partial z}\right)_{T,Z} = \frac{\rho_o}{\rho_g}\left(\frac{\mathcal{M}}{Z R T}\right)g  \, ,
 \end{equation}
 what is $\rho_o / \rho_g$ times greater than the sole effect of gas hydrostatic pressure on its density.
 
@@ -621,7 +626,7 @@ In summary, the following four relations constitute sufficient conditions for $\
 \frac{dV_p}{dp} \geq 0 \, .
 \end{equation}
 
-Eq.~\eqref{eq: PVTH1} also provides one condition to check whether PVT data obtained from laboratory or empirical correlations is physically correct. It can be alternatively formulated as shown in Eq.~\eqref{eq: vaporization} and it simply indicates that any vaporization must be followed by an increase in oil phase density:
+Eq.~\eqref{eq: PVTH1} also provides a condition to check whether PVT data obtained from laboratory or empirical correlations is physically correct. It can be alternatively formulated as shown in Eq.~\eqref{eq: vaporization} and it simply indicates that any vaporization must be followed by an increase in oil phase density:
 \begin{equation}\label{eq: vaporization}
 \frac{1}{\rho_o}\frac{d\rho_o}{dY_o} \geq Y_o \left( \frac{\rho_o}{\rho_g} - 1 \right) \, .
 \end{equation}
@@ -702,7 +707,8 @@ $S_g$ & gas saturation \\
 $S_o$ & oil saturation \\
 $S_w$ & water saturation \\
 $G_p$ & produced volume of gas \\
-$m$ & ratio of original free gas volume to original oil phase volume in reservoir condition \\
+$m$ & ratio of original free gas volume \\
+& to original oil volume in reservoir condition \\
 $N$ & original volume of oil in place \\
 $N_p$ & produced volume of oil \\
 $P_b$ & bubble-point pressure \\
@@ -809,5 +815,6 @@ bubble-point pressure & $R_{s2}\left(P_b\right) = \left[N\left(m B_{1}/B_{g1} +R
 % % %
 % Calcular derivada da função resíduo com relação à pressão.
 % % %
-
+\appendix
+\include{compressibility}
 \end{document}
