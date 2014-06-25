@@ -1,6 +1,6 @@
 % Review
-%\documentclass[authoryear,preprint,review,10pt]{elsarticle}
-\documentclass[final,authoryear,5p,times,twocolumn,10pt]{elsarticle}
+\documentclass[authoryear,preprint,review,11pt]{elsarticle}
+%\documentclass[final,authoryear,5p,twocolumn,10pt]{elsarticle}
 
 % Review topics:
 
@@ -48,7 +48,7 @@
 
 
 \begin{abstract}
-This work derives the classical material balance equation from a three dimensional black-oil model. Sufficient conditions for solution uniqueness of material balance equation are presented for the case that pressure is the unknown quantity. It is shown that spatially averaged PVT properties are required for reducing a black-oil model to the material balance approach. It is also shown that the averaging process may be neglected for many practical purposes.  An interpretation for pressure in material balance equation is provided and its relation to a reference depth is examined. A scheme numerically solve material balance equation for pressure is also proposed.
+This work derives the classical material balance equation from a three dimensional black-oil model. Sufficient conditions for solution uniqueness of the material balance equation are presented for the case that pressure is the unknown quantity. It is shown that spatially averaged PVT properties are required for reducing a black-oil model to the material balance approach. It is also shown that the averaging process may be neglected for many practical purposes.  An interpretation for pressure in material balance equation is provided and its relation to a reference depth is examined. A scheme numerically solve material balance equation for pressure is also proposed.
 %
 %This work derives the classical material balance equation from a black-oil model. We examine the existing link between both approaches in detail, including the necessary step of averaging PVT properties. An interpretation for pressure in material balance calculations is provided and the choice of a reference depth (datum) is discussed. The material balance equation is formulated for a varying bubble-point pressure and sufficient conditions for solution uniqueness are presented. A scheme for numerical solution is also proposed.
 \end{abstract}
@@ -470,24 +470,24 @@ where new terms $C$, $E$, $F_i$ and $F_p$ are defined in Table~\ref{tab: MBE}.
 Eq~\eqref{eq: MBE} involves fluid properties, original fluid volumes ($N$, $W$ and $G)$, cumulative production and injection and aquifer influx.
 It is an algebraic equation that can be solved for any one of its terms, provided that all remaining are known. This works focuses on its solution for pressure.
 
-\subsubsection{An interpretation for how material balance equation relates to reservoir pressure}
+\subsubsection{Relationship between the material balance equation and reservoir pressure}
 
 % no assumption on static conditions are needed
 % pressure field is not known
 % pressure field can be assumed constant
 % pressure field can be given by hydrostatic equilibrium
 
-Material balance equation is widely used to establish a relationship between production (and injection) and reservoir pressure. In Eq.~\eqref{eq: MBE}, however, formation volume factors were defined using averaged values of fluid properties that depend on the pressure field.
+The material balance equation is widely used to relate production, injection and reservoir pressure. Actually, all averaged fluid properties in Eq.~\eqref{eq: MBE} depend on the pressure field, and so does the pore volume. If the reservoir is under production, though, the pressure field is not known and, for its prediction, one would have to resort to more advanced techniques such as reservoir simulation.
 
-Although it was not needed to assume no fluid flow to obtain material balance equation, fluid motion can only be taken into account in the averaging of fluid properties if the pressure field is known. For any practical purpose, this is not true.
+%Although it was not needed to assume no fluid flow to obtain the material balance equation, fluid motion can only be taken into account in the averaging of fluid properties if the pressure field is known. For any practical purpose, this is not true.
 
-A possible simplification to the pressure field is neglecting hydrodynamic gradients and assuming hydrostatic equilibrium: $\vec{u}_\alpha \equiv 0$. This also implies the identity of pressure gradient and gravity force per unit volume, $\nabla p_\alpha \equiv \rho_\alpha \vec{g}$, and, consequently, pressure becomes a function of time and depth only:
+To overcome this difficulty, a possible simplification to the pressure field is to neglect hydrodynamic gradients and to assume hydrostatic equilibrium: $\vec{u}_\alpha \equiv 0$. This implies that $\nabla p_\alpha \equiv \rho_\alpha \vec{g}$, and, as consequence, pressure becomes a function of time and depth only given by
 \begin{equation}\label{eq: p=rhogh}
 \int_{p_\alpha^{ref} (t)}^{p_\alpha (t,z)} \frac{dp_\alpha^{'}}{\rho_\alpha \left(p_\alpha^{'}\right)} = g\left(z - z_{ref}\right) \, ,
 \end{equation}
 where $p_\alpha (t,z)$ is the pressure field of phase $\alpha$ and $p_\alpha^{ref} (t)$ is the pressure at some reference depth $z_{ref}$.
 
-It is now possible to compute the pressure field from Eq.~\eqref{eq: p=rhogh} and average fluid properties accordingly in material balance equation. It can be shown, however, that neglecting the variation of fluid properties with depth does not introduce any important error. For instance, the average oil density can be approximated to the local density at the reference level, $\bar{\rho}_o (t) \approx \rho_o (t, z_{ref})$, what also applies to the formation volume factor: $B_o \approx \rho_o (t, z_{ref})/ \rho_o^{ST}$.
+It is now possible to compute the pressure field from Eq.~\eqref{eq: p=rhogh} and average fluid properties accordingly in the material balance equation. Furthermore, it can be shown that neglecting the variation of fluid properties with depth does not introduce any important error. As pressure increases with depth according to the hydrostatic gradient, density also increases, but by a negligible amount. For instance, the average oil density can be approximated to the local density at the reference level: $\bar{\rho}_o (t) \approx \rho_o (t, z_{ref})$; the same applies to the formation volume factor: $B_o \approx \rho_o (t, z_{ref})/ \rho_o^{ST}$.
 
 %For liquids, a first-order approximation to the relationship between density and pressure at constant temperature and composition can be assumed:
 
@@ -506,7 +506,7 @@ It is now possible to compute the pressure field from Eq.~\eqref{eq: p=rhogh} an
 %
 %We shall see that to compute the averaged phase density, we may define some reference depth and use the corresponding local density as an approximation to the averaged density without introducing any important error. 
 
-As pressure increases with depth according to the hydrostatic gradient, density also increases, but by a negligible amount. This approximation may be quantified by putting together the expressions for compressibility and hydrostatic equilibrium. For this, we assume a constant isothermal compressibility for oil phase,
+This approximation can be quantified by putting together the expressions for compressibility and hydrostatic equilibrium. For this, we assume a constant isothermal compressibility for oil phase,
 \begin{equation}\label{eq: grado}
 \frac{1}{\rho_o}\left(\frac{\partial \rho_o}{\partial p_o} \right)_{T,Y_o} = c_o \, ,
 \end{equation}
@@ -525,7 +525,7 @@ and again we use hydrostatic equilibrium to obtain the derivative of gas density
 \end{equation}
 
 
-Substituting typical values in Eqs.~\eqref{eq: grado} and \eqref{eq: gradg}, we see that oil and gas densities are rather constant with depth:
+Substituting typical values in Eqs.~\eqref{eq: grado} and \eqref{eq: gradg}, we see that oil and gas densities are almost constant with depth:
 \begin{equation}
 \frac{1}{\rho_o}\left(\frac{\partial \rho_o}{\partial z}\right)_{T,Y_o} \approx 10^{-6}\ m^{-1} \, ,
 \end{equation}
@@ -534,11 +534,11 @@ Substituting typical values in Eqs.~\eqref{eq: grado} and \eqref{eq: gradg}, we 
 \frac{1}{\rho_g}\left(\frac{\partial \rho_g}{\partial z}\right)_{T,Z} \approx 10^{-5}\ m^{-1} \, .
 \end{equation}
 
-Oil and gas densities are thus rather constant with depth and a zeroth order approximation of $\bar{\rho}$ is accurate within $0.5\%$ for material balance calculations.
+Oil and gas densities are thus approximately constant with depth. Fig~\ref and a zeroth order approximation of $\bar{\rho}$ is accurate within $0.5\%$ for material balance calculations.
 
-The reference depth for computing phase density (or formation volume factors) is then any arbitrary depth inside phase volume. For a negligible variation of density with depth, it is easily seen that $\bar{\rho} = \rho\left(\bar{p}\right)$ and $\bar{p}=p\left(z^0\right)$ where $z^0$ is the depth of phase gravity center.
+The reference depth for computing phase density (or formation volume factors) is any arbitrary depth inside phase volume. For a negligible variation of density with depth, it is easily seen that $\bar{\rho} = \rho\left(\bar{p}\right)$ and $\bar{p}=p\left(z^0\right)$ where $z^0$ is the depth of phase gravity center.
 
-For the case of an oil reservoir covered by a gas cap, the reference depth may be defined, with advantage, at the gas-oil contact. The point here is that at phase contact both gas and oil densities can be computed using the same pressure, i.e., the corresponding local value (we are neglecting capillary pressure). 
+For the case of an oil reservoir covered by a gas cap, the reference depth may be defined, with advantage, at the gas-oil contact. The point here is that at phase contact both gas and oil densities can be computed using the same pressure, i.e., the corresponding local value. 
 
 If the reference depth for oil phase is otherwise defined below gas-oil contact, gas density must be computed at some different depth still inside gas phase, i.e., at or above gas-oil contact. This is to avoid the effect of oil hydrostatic gradient in the computation of gas density,
 \begin{equation}
@@ -546,7 +546,7 @@ If the reference depth for oil phase is otherwise defined below gas-oil contact,
 \end{equation}
 what is $\rho_o / \rho_g$ times greater than the sole effect of gas hydrostatic pressure on its density.
 
-It has been shown that pressure variation with depth is not important for the computation of gas, oil and water densities. Nevertheless, it was said that pressure also plays a second role in material balance equation by defining phase equilibrium. For this purpose, pressure variation with depth may not be negligible in the evalutation of the solubility ratio: 
+It has been shown that pressure variation with depth is not important for the computation of gas, oil and water densities. Nevertheless, it was said that pressure also plays a second role in the material balance equation by defining phase equilibrium. For this purpose, pressure variation with depth may not be negligible in the evaluation of the solubility ratio: 
 \begin{equation}\label{eq: dRsdz1}
 \frac{1}{R_s}\frac{d R_s}{dz} = \frac{1}{R_s}\frac{d R_s}{dp_o} \frac{dp_o}{dz} = \frac{\rho_o g}{R_s}\frac{dR_s}{dp_o} \, .
 \end{equation}
