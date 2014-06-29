@@ -48,9 +48,8 @@
 
 
 \begin{abstract}
-This work derives the classical material balance equation from a three dimensional black-oil model. Sufficient conditions for solution uniqueness of the material balance equation are presented for the case that pressure is the unknown quantity. It is shown that spatially averaged PVT properties are required for reducing a black-oil model to the material balance approach. It is also shown that the averaging process may be neglected for many practical purposes.  An interpretation for pressure in material balance equation is provided and its relation to a reference depth is examined. A scheme numerically solve material balance equation for pressure is also proposed.
-%
-%This work derives the classical material balance equation from a black-oil model. We examine the existing link between both approaches in detail, including the necessary step of averaging PVT properties. An interpretation for pressure in material balance calculations is provided and the choice of a reference depth (datum) is discussed. The material balance equation is formulated for a varying bubble-point pressure and sufficient conditions for solution uniqueness are presented. A scheme for numerical solution is also proposed.
+This work examines the underlying details in obtaining the classical material balance equation from a three dimensional black-oil model typical of reservoir simulations. The three-dimensional model is integrated in reservoir volume and quantities such as fluid properties are spatially averaged. The material balance equation is obtained for the averaged quantities and it is applied to calculate reservoir pressure. It is shown that the calculated pressure corresponds to the local pressure at a defined depth and not to the average reservoir pressure in general. The definition of a convenient reference depth is discussed. Sufficient conditions for solution uniqueness of the material balance equation are provided for the case that pressure is the unknown quantity and one of such conditions is shown to check for physical correctness of PVT properties.
+Finally, a scheme for solving the material balance equation numerically is proposed.
 \end{abstract}
 
 \begin{keyword}
@@ -487,7 +486,7 @@ To overcome this difficulty, a possible simplification to the pressure field is 
 \end{equation}
 where $p_\alpha (t,z)$ is the pressure field of phase $\alpha$ and $p_\alpha^{ref} (t)$ is the pressure at some reference depth $z_{ref}$.
 
-It is now possible to compute the pressure field from Eq.~\eqref{eq: p=rhogh} and average fluid properties accordingly in the material balance equation. Furthermore, it can be shown that neglecting the variation of fluid properties with depth does not introduce any important error. As pressure increases with depth according to the hydrostatic gradient, density also increases but by a negligible amount. For instance, the average oil density can be approximated to the local density at the reference level: $\bar{\rho}_o (t) \approx \rho_o (t, z_{ref})$; the same applies to the formation volume factor: $B_o \approx \rho_o (t, z_{ref})/ \rho_o^{ST}$.
+It is now possible to compute the pressure field from Eq.~\eqref{eq: p=rhogh} and average fluid properties accordingly. Furthermore, it can be shown that neglecting the variation of fluid properties with depth does not introduce any important error. As pressure increases with depth according to the hydrostatic gradient, density also increases but by a negligible amount. For instance, the average oil density can be approximated to the local density at the reference level: $\bar{\rho}_o (t) \approx \rho_o (t, z_{ref})$; the same applies to the formation volume factor: $B_o \approx \rho_o (t, z_{ref})/ \rho_o^{ST}$.
 
 %For liquids, a first-order approximation to the relationship between density and pressure at constant temperature and composition can be assumed:
 
@@ -511,34 +510,32 @@ This approximation can be quantified by putting together the expressions for com
 \frac{1}{\rho_o}\left(\frac{\partial \rho_o}{\partial p_o} \right)_{T,Y_o} = c_o \, ,
 \end{equation}
  and we use hydrostatic equilibrium $dp_o = \rho_o g dz$ to obtain the expression for the derivative of oil density with depth:
-\begin{equation}
+\begin{equation}\label{eq: gradodz}
  \frac{1}{\rho_o}\left(\frac{\partial \rho_o}{\partial z} \right)_{T,Y_o} = c_o \rho_o g \, .
 \end{equation}
 
-Similarly for gas phase, we obtain its isothermal compressibility from the gas state equation, $pV = Zn R T$:
+Similarly for the gas phase, using the state equation $pV = Zn R T$, we obtain its isothermal compressibility:
 \begin{equation}
-\frac{1}{\rho_g}\left(\frac{\partial \rho_g}{\partial p_g}\right)_{T} = \frac{1}{p_g}-\frac{1}{Z}\frac{\partial Z}{\partial p_g} \, ,
+\frac{1}{\rho_g}\left(\frac{\partial \rho_g}{\partial p_g}\right)_{T} = \frac{1}{p_g}-\frac{1}{Z}\frac{\partial Z}{\partial p_g} \, .
 \end{equation}
-and again we use hydrostatic equilibrium to obtain the derivative of gas density with depth:
-\begin{equation}\label{eq: gradg}
+Neglecting the variation of Z-factor and using hydrostatic equilibrium again, we to obtain the derivative of gas density with depth as:
+\begin{equation}\label{eq: gradgdz}
 \frac{1}{\rho_g}\left(\frac{\partial \rho_g}{\partial z}\right)_{T} = \left(\frac{\mathcal{M}}{ Z R T}\right) g \, .
 \end{equation}
 
-
-Substituting typical values in Eqs.~\eqref{eq: grado} and \eqref{eq: gradg}, we see that oil and gas densities are almost constant with depth:
+For investigating the orders of magnitude of Eqs.~\eqref{eq: gradodz} and \eqref{eq: gradgdz}, we substitute in them the values of $\rho_o = 10^3\ kg/m^3$ and $c_o = 10^{-9}\ Pa^{-1}$ for the oil phase, and $\mathcal{M}=19\ kg/kmol$ and $T=400\ K$ for the gas phase: 
 \begin{equation}
-\frac{1}{\rho_o}\left(\frac{\partial \rho_o}{\partial z}\right)_{T,Y_o} \approx 10^{-6}\ m^{-1} \, ,
+\frac{1}{\rho_o}\left(\frac{\partial \rho_o}{\partial z}\right)_{T,Y_o} \approx 1\times10^{-5}\ m^{-1} \, ,
 \end{equation}
 
 \begin{equation}
-\frac{1}{\rho_g}\left(\frac{\partial \rho_g}{\partial z}\right)_{T,Z} \approx 10^{-5}\ m^{-1} \, .
+\frac{1}{\rho_g}\left(\frac{\partial \rho_g}{\partial z}\right)_{T,Z} \approx 5\times10^{-5}\ m^{-1} \, .
 \end{equation}
 
-Oil and gas densities are thus approximately constant with depth. Fig~\ref and a zeroth order approximation of $\bar{\rho}$ is accurate within $0.5\%$ for material balance calculations.
+Oil and gas densities are thus approximately constant with depth.
+The reference depth for computing phase density (and also the formation volume factor) can be any arbitrary depth inside phase volume. Under the approximation of a constant density, it is easily seen that $\bar{\rho}_\alpha = \rho_\alpha\left(\bar{p}_\alpha\right)$ and $\bar{p}_\alpha=p_\alpha\left(z^0_\alpha\right)$ where $z^0_\alpha$ is the depth of phase gravity center and $\alpha=w, o, g$.
 
-The reference depth for computing phase density (or formation volume factors) is any arbitrary depth inside phase volume. For a negligible variation of density with depth, it is easily seen that $\bar{\rho} = \rho\left(\bar{p}\right)$ and $\bar{p}=p\left(z^0\right)$ where $z^0$ is the depth of phase gravity center.
-
-For the case of an oil reservoir covered by a gas cap, the reference depth may be defined, with advantage, at the gas-oil contact. The point here is that at phase contact both gas and oil densities can be computed using the same pressure, i.e., the corresponding local value. 
+For the case of an oil reservoir with a gas cap, the reference depth may be defined, with advantage, at the gas-oil contact. The point here is that at phase contact both gas and oil densities can be computed using the same pressure, i.e., the corresponding local value. 
 
 If the reference depth for oil phase is otherwise defined below gas-oil contact, gas density must be computed at some different depth still inside gas phase, i.e., at or above gas-oil contact. This is to avoid the effect of oil hydrostatic gradient in the computation of gas density,
 \begin{equation}
@@ -551,7 +548,7 @@ It has been shown that pressure variation with depth is not important for the co
 \frac{1}{R_s}\frac{d R_s}{dz} = \frac{1}{R_s}\frac{d R_s}{dp_o} \frac{dp_o}{dz} = \frac{\rho_o g}{R_s}\frac{dR_s}{dp_o} \, .
 \end{equation}
 
-For a non-volatile saturated oil, we can approximate $dR_s / dp_o$ to the ratio between  solubility ratio ($R_{s}$) and saturation pressure ($p_{sat}$), so that Eq.~\eqref{eq: dRsdz1} becomes:
+For a non-volatile oil, we can approximate $dR_s / dp_o$ to the ratio between the initial solubility ratio ($R_{s,0}$) and saturation pressure ($p_{sat}$), so that Eq.~\eqref{eq: dRsdz1} becomes:
 \begin{equation}\label{eq: dRsdz2}
 \frac{1}{R_s}\frac{d R_s}{dz} \approx \frac{\rho_o g }{p_{sat}} \approx 10^{-3}\ m^{-1} \, ,
 \end{equation}
@@ -626,7 +623,7 @@ In summary, the following four relations constitute sufficient conditions for $\
 \frac{dV_p}{dp} \geq 0 \, .
 \end{equation}
 
-Eq.~\eqref{eq: PVTH1} also provides a condition to check whether PVT data obtained from laboratory or empirical correlations is physically correct. It can be alternatively formulated as shown in Eq.~\eqref{eq: vaporization} and it simply indicates that any vaporization must be followed by an increase in oil phase density:
+Eq.~\eqref{eq: PVTH1} also provides a condition to check whether PVT data obtained from laboratory or empirical correlations is physically correct. It can be alternatively formulated as shown bellow in Eq.~\eqref{eq: vaporization} and it simply indicates that any vaporization must be followed by an increase in oil phase density:
 \begin{equation}\label{eq: vaporization}
 \frac{1}{\rho_o}\frac{d\rho_o}{dY_o} \geq Y_o \left( \frac{\rho_o}{\rho_g} - 1 \right) \, .
 \end{equation}
