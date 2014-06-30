@@ -446,7 +446,7 @@ V_{p2}\left(\frac{\bar{S}_{g2}}{B_{g2}} +\frac{\bar{S}_{o2} R_{s2}}{B_{o2}}\righ
 Where $N=V_{p1} \bar{S}_{o1}/B_{o1}$ and $W=V_{p1} \bar{S}_{w1}/B_{w1}$ are the initial volumes of oil and water measured at surface condition and $m=V_{p1} \bar{S}_{g1}/B_{o1} N$ is the ratio of the initial volumes of gas and oil phases measured in reservoir condition.
 
 An equation for the bubble-point can be obtained by setting $\bar{S}_{g2}=0$ in Eq.~\eqref{eq: Sg5} and solving it for the solubility ratio at bubble-point pressure, or $R_s(p=P_b)$:
-\begin{equation}
+\begin{equation}\label{eq: eqPb}
 \begin{split}
 R_{s2}\left(p=P_b\right) = &\Big[N\left(m B_{1}/B_{g1} +R_{s1}\right)\\
 &+G_i-G_p\Big]/\left(N-N_p\right) \, .
@@ -521,7 +521,7 @@ Similarly for the gas phase, using the state equation $pV = Zn R T$, we obtain i
 \end{equation}
 Neglecting the variation of the Z-factor and using hydrostatic equilibrium again, we obtain the derivative of gas density with depth as:
 \begin{equation}\label{eq: gradgdz}
-\frac{1}{\rho_g}\left(\frac{\partial \rho_g}{\partial z}\right)_{T} = \left(\frac{\mathcal{M}}{ Z R T}\right) g \, .
+\frac{1}{\rho_g}\left(\frac{\partial \rho_g}{\partial z}\right)_{T} = \frac{\rho_g \vec{g}}{p_g} = \left(\frac{\mathcal{M}}{ Z R T}\right) g \, .
 \end{equation}
 
 For investigating the order of magnitude of Eqs.~\eqref{eq: gradodz} and \eqref{eq: gradgdz}, we substitute in them the values of $\rho_o = 10^3\ kg/m^3$ and $c_o = 10^{-9}\ Pa^{-1}$ for the oil phase, and $\mathcal{M}=19\ kg/kmol$ and $T=400\ K$ for the gas phase: 
@@ -534,17 +534,15 @@ For investigating the order of magnitude of Eqs.~\eqref{eq: gradodz} and \eqref{
 \end{equation}
 
 Oil and gas densities are thus approximately constant with depth.
-The reference depth for computing phase density (and also the formation volume factor) can be any arbitrary depth inside phase volume. Under the approximation of a constant density, it is straightforward to show that $\bar{\rho}_\alpha = \rho_\alpha\left(\bar{p}_\alpha\right)$ and $\bar{p}_\alpha=p_\alpha\left(z^0_\alpha\right)$ where $z^0_\alpha$ is the depth of phase gravity center and $\alpha=w, o, g$. The pressure calculated in the material balance equation corresponds to the local pressure at $z^{ref}$, without fluid motion, and only equals the average reservoir pressure $\bar{p}_\alpha$ if $z^{ref}=z^0$.
+The reference depth for computing phase density (and also the formation volume factor) can be any arbitrary depth inside phase volume. Under the approximation of a constant density, it is straightforward to show that $\bar{\rho}_\alpha = \rho_\alpha\left(\bar{p}_\alpha\right)$ and $\bar{p}_\alpha=p_\alpha\left(z^0_\alpha\right)$, where $z^0_\alpha$ is the depth of phase gravity center and $\alpha=w, o, g$. The pressure calculated in the material balance equation corresponds to the local pressure at $z^{ref}$, without fluid motion, and only equals the average reservoir pressure $\bar{p}_\alpha$ if the reference depth is the depth of the gravity center, $z^{ref}=z^0$.
 
-For the case of an oil reservoir with a gas cap, the reference depth can be defined, with advantage, at the gas-oil contact. The point here is that at phase contact both gas and oil densities are computed using the same pressure, i.e., the corresponding local value. 
-
-If the reference depth for oil phase is otherwise defined below gas-oil contact, gas density must be computed at some different depth still inside gas phase, i.e., at or above gas-oil contact. This is to avoid the effect of oil hydrostatic gradient in the computation of gas density,
+For the case of an oil reservoir with a gas cap, the reference depth should be defined at the gas-oil contact. The point here is that at gas-oil contact both gas and oil densities are computed using the same pressure, its local value. If the reference depth, common to all phases, is otherwise defined below gas-oil contact, gas density will increase with depth at a higher rate because of the oil hydrostatic gradient,
 \begin{equation}
 \frac{1}{\rho_g}\left(\frac{\partial \rho_g}{\partial z}\right)_{T,Z} = \frac{\rho_o}{\rho_g}\left(\frac{\mathcal{M}}{Z R T}\right)g  \, ,
 \end{equation}
-what is $\rho_o / \rho_g$ times greater than the sole effect of gas hydrostatic pressure that was computed in Eq.~\eqref{eq: gradgdz}.
+what is $\rho_o / \rho_g$ times greater than the gas hydrostatic gradient used in Eq.~\eqref{eq: gradgdz}.
 
-It has been shown that pressure variation with depth is not important for the computation of gas, oil and water densities. Nevertheless, it was said that pressure also plays a second role in the material balance equation by defining phase equilibrium. For this purpose, pressure variation with depth may not be negligible in the evaluation of the solubility ratio: 
+It has been shown that the pressure variation with depth is not important for the computation of gas, oil and water densities. Nevertheless, pressure also plays a second role in the material balance equation by defining phase equilibrium, for what the pressure variation with depth may not be negligible in the solubility ratio: 
 \begin{equation}\label{eq: dRsdz1}
 \frac{1}{R_s}\frac{d R_s}{dz} = \frac{1}{R_s}\frac{d R_s}{dp_o} \frac{dp_o}{dz} = \frac{\rho_o g}{R_s}\frac{dR_s}{dp_o} \, .
 \end{equation}
@@ -579,7 +577,7 @@ A numerical solution of Eq.~\eqref{eq: MBE_short} is presented here. We shall st
 \begin{equation}\label{eq: residual}
 \varepsilon(p_2) = \frac{E+F_i+C-F_p}{V_{p1}} \, .
 \end{equation}
-We proceed showing that $\varepsilon$ is a monotonic function provided some conditions on fluid properties are observed and that, as a consequence, only one root of $\varepsilon$ exists at most. Equivalently, we can say that only one solution exists for material balance equation.
+We proceed showing that $\varepsilon$ is a monotonic function provided some conditions on fluid properties are observed and that, as a consequence, only one root of $\varepsilon$ exists at most. Equivalently, we can say that only one solution exists for the material balance equation.
 
 %The conditions imposed on fluid PVT properties are the mathematical equivalent of requiring a far from critical thermodynamic state.
 
@@ -596,7 +594,7 @@ We now state without proof that the following affirmatives are sufficient condit
 \end{enumerate}
 
 Residual function clearly satisfies the first two affirmatives because fluid properties are continuous everywhere and are also differentiable everywhere except for the first order phase change at bubble-point pressure.
-The third affirmative is proved by rewriting $d\epsilon/dp$ as a sum of four parcels corresponding each parcel to a different phase. Each parcel is composed of two factors: current volume \textit{in-situ} and volume derivative with respect to pressure:
+The third affirmative is proved by rewriting $d\epsilon/dp$ as a sum of four parcels, each corresponding to a different phase (three fluid phases and the rock). For the fluid phases, each parcel is composed of two factors: current volume \textit{in-situ} and volume derivative with respect to pressure:
 \begin{equation}
 \begin{split}
 &V_{p1}\frac{d\varepsilon}{dp}=\underbrace{\left(N-N_p\right) \left(\frac{dB_o}{dp} - B_g \frac{dR_s}{dp} \right)}_\text{oil phase}\\
@@ -624,7 +622,7 @@ In summary, the following four relations constitute sufficient conditions for $\
 \frac{dV_p}{dp} \geq 0 \, .
 \end{equation}
 
-Eq.~\eqref{eq: PVTH1} also provides a condition to check whether PVT data obtained from laboratory or empirical correlations is physically correct. It can be alternatively formulated as shown bellow in Eq.~\eqref{eq: vaporization}. It simply indicates that any vaporization must be followed by an increase in oil phase density:
+Eq.~\eqref{eq: PVTH1} also provides a condition to check whether PVT data obtained from laboratory or empirical correlations is physically correct. It can be alternatively formulated in terms of densities as shown bellow in Eq.~\eqref{eq: vaporization}. It simply indicates that any vaporization must be followed by an increase in oil phase density:
 \begin{equation}\label{eq: vaporization}
 \frac{1}{\rho_o}\frac{d\rho_o}{dY_o} \geq Y_o \left( \frac{\rho_o}{\rho_g} - 1 \right) \, .
 \end{equation}
@@ -646,18 +644,18 @@ An open source implementation of secant method is available in SciPy library \ci
 
 %Either methods were successfully employed to obtain solution of equations.
 
-The steps to solve all material balance equation are summarized bellow:
+The steps to solve the material balance equation are summarized bellow:
 \begin{step}
-Compute bubble-point pressure for instant $t_2$.
+Compute bubble-point pressure for instant $t_2$ using Eq.~\eqref{eq: eqPb}.
 \end{step}
 
-Bubble-point pressure $P_{b2}$ is only a function of the values in initial instant $t_1$ and produced and injected volumes.
+Bubble-point pressure $P_{b2}$ is only a function of values at instant $t_1$ and produced and injected volumes.
 
 \begin{step}
-Compute fluid pressure for instant $t_2$ finding the root of residual function ($\varepsilon$).
+Compute pressure for instant $t_2$ by finding the root of residual function $\varepsilon \left(p\right)$.
 \end{step}
 
-Pressure in Eq.~\eqref{eq: MBE} is a function only of fluid properties in instant $t_1$, produced and injected values and bubble-point pressure at instant $t_2$, $P_{b2}$, which was already computed in step 1.
+Pressure in Eq.~\eqref{eq: MBE} is only a function of fluid properties in instant $t_1$, produced and injected values and bubble-point pressure at instant $t_2$, $P_{b2}$, which was already computed in step 1.
 
 \begin{step}
 Compute fluid saturations $t_2$.
