@@ -48,8 +48,8 @@
 
 
 \begin{abstract}
-This work examines the underlying details in obtaining the classical material balance equation from a three dimensional black-oil model typical of reservoir simulations. The three-dimensional model is integrated in reservoir volume and quantities such as fluid properties are spatially averaged. The material balance equation is obtained for the averaged quantities and it is applied to calculate reservoir pressure. It is shown that the calculated pressure corresponds to the local pressure at a defined depth and not to the average reservoir pressure in general. The definition of a convenient reference depth is discussed. Sufficient conditions for solution uniqueness of the material balance equation are provided for the case that pressure is the unknown quantity and one of such conditions is shown to check for physical correctness of PVT properties.
-Finally, a scheme for solving the material balance equation numerically is proposed.
+This work examines underlying details in obtaining the classical material balance equation from a three dimensional black-oil model typical of reservoir simulations. The three-dimensional model is integrated in reservoir volume and quantities such as fluid properties are spatially averaged. The material balance equation is obtained for averaged quantities and it is applied to calculate reservoir pressure. It is shown that the calculated pressure corresponds to the local pressure at an arbitrary reference depth and not to the average reservoir pressure in general. The definition of a convenient reference depth is discussed. Sufficient conditions for solution uniqueness of the material balance equation are provided for the case that pressure is the unknown quantity. One of such conditions provides a check for physical correctness of PVT properties obtained from laboratory experiments or empirical correlations.
+Finally, a numerical scheme for solving the material balance equation is proposed.
 \end{abstract}
 
 \begin{keyword}
@@ -64,7 +64,7 @@ The equation developed by \cite{schilthuis1936active} did not account for the no
 
 %Black-oil equations arise from the generalization of the zero dimensional concept to a three-dimensional model that incorporates Darcy's law and entails the same approach for phase equilibrium \citep{aziz1979petroleum}.
 
-The term black-oil in this context refers to specific hydrocarbon compositions to which phase equilibrium for isothermal changes in pressure can be described by a two pseudo-component system. For such reservoir fluids, gas phase composition remains essentially constant in the range of pressures observed during production and a pseudo gas component can thus be defined. Similarly, a pseudo oil component can also be defined by subtracting all the pseudo gas component from oil phase composition. After defining these two pseudo-components, the number of transport equations needed for hydrocarbon components is reduced from a usually large number to only two.
+The term black-oil in this context refers to specific hydrocarbon compositions to which phase equilibrium for isothermal changes in pressure can be described by a two pseudo-component system. For such reservoir fluids, gas phase composition remains essentially constant in the range of pressures observed during production and a pseudo-gas component can be defined. Similarly, a pseudo-oil component can be defined by subtracting all the pseudo-gas component from oil phase composition. After performing this procedure, the number of transport equations needed for hydrocarbon components is reduced from a usually large number to only two.
 
 %A general restriction of this approach is that reservoir temperature must be sufficiently below the mixture critical temperature so that different fluid phases have clearly distinguishable properties \citep{danesh1998pvt,firoozabadi1999thermodynamics}.
 
@@ -152,7 +152,7 @@ This section presents black-oil equations, performs averaging of quantities in s
 %S_o + S_g +S_w = 1 \, .
 %\end{equation}
 
-We assume that the reservoir is a connected volume where hydrocarbon saturation is nonzero. Reservoir fluids are composed of oil and gas pseudo-components and water component. There can be three fluid phases: oil, gas and (liquid) water. Oil phase is composed of oil and gas components, gas phase is composed uniquely by gas component and, water phase, uniquely by water component. The only allowed mass transfer is of gas component between oil and gas phases. Gas phase composition is always that of a dry gas.
+We assume that the reservoir is a connected volume where hydrocarbon saturation is nonzero. Reservoir fluids are composed of oil and gas pseudo-components and water component. There can be three fluid phases: oil, gas and (liquid) water. Oil phase is composed of oil and gas components, gas phase is composed uniquely by gas component and, water phase, uniquely by water component. The only allowed mass transfer is of gas component between oil and gas phases, i.e., gas phase composition is always that of a dry gas.
 
 %In addition to the three fluid components and phases, there is the solid phase composed by the rock.
 
@@ -235,12 +235,12 @@ Phase densities are functions of the local thermodynamic state:
 \rho_g = \rho_g \left(p_g, T_g\right)
 \end{equation}
 
-Another simplification is now made assuming thermal equilibrium in the entire reservoir volume, i.e.,
+Another simplification is now made assuming thermal equilibrium in the reservoir volume, i.e.,
 \begin{equation}
 T_w = T_o = T_g = T_{rock} = T = \text{constant} \, .
 \end{equation}
 
-Temperature is a constant prescribed value and thus no equation for energy balance is needed. It follows from Gibbs' phase rule that the equilibrium of oil and gas phases has only two degrees of freedom if the component number is restricted to the two pseudo-components. As temperature is assumed constant, oil phase density is a function of pressure alone. The same is valid for mass fractions of gas and oil components in oil phase:
+Temperature is a constant prescribed value and no equation for energy balance is needed. It follows from Gibbs' phase rule that the equilibrium of oil and gas phases has only two degrees of freedom if the component number is restricted to the two pseudo-components. As temperature is assumed constant, oil phase density is a function of pressure alone. The same is valid for mass fractions of gas and oil components in oil phase:
 
 \begin{equation}
 Y_g = Y_g (p_o) \, ,
@@ -257,10 +257,10 @@ p_P=p_P\left(p_o,p_w,p_g,S_o,S_w,S_g\right) \, .
 To close the system of equations, a connection among different phase pressures is provided by capillary pressure relations:
 %capillary
 \begin{equation}\label{eq: capillary_ow}
-p_{c,ow}\left(\vec{\vec{k}},\phi,S_w\right)=p_o-p_w \, ,
+p_{c,ow}=p_o-p_w \, ,
 \end{equation}
 \begin{equation}\label{eq: capillary_og}
-p_{c,go}\left(\vec{\vec{k}},\phi,S_g\right)=p_g-p_o \, .
+p_{c,go}=p_g-p_o \, .
 \end{equation}
 
 
@@ -342,13 +342,13 @@ Integrating Eqs.~\eqref{eq: Sw1}, \eqref{eq: So1} and \eqref{eq: Sg1} in volume 
 
 Spatially averaged quantities are defined for porosity ($\phi$), saturation ($S_\alpha$), density ($\rho_\alpha$) and mass concentration ($Y_{\alpha,k}$) of a component $k$ in phase $\alpha$.
 
-All quantities are initially functions of space and time, but they become functions of time only after being averaged in space:
+All quantities are initially functions of space and time, but they become functions of time alone after being averaged in space:
 
 \begin{equation}
 \bar{\phi} (t) = \frac{1}{\Omega}\int_{\Omega}\phi \left(\vec{x},t\right) dV \, .
 \end{equation}
 
-We proceed omitting function arguments:
+Omitting function arguments:
 \begin{equation}
 \bar{S}_\alpha\bar{\phi} = \frac{1}{\Omega}\int_{\Omega}S_\alpha \phi dV \, ,
 \end{equation}
@@ -380,7 +380,7 @@ Eqs. \eqref{eq: Sw2}, \eqref{eq: So2} and \eqref{eq: Sg2} are rewritten in terms
 \end{equation}
 \end{itemize}
 
-We now introduce usual definitions from petroleum engineering for the description of volumetric and solubility changes in fluid phases. In what concerns volumetric changes, $B_w$, $B_o$ and $B_g$, the formation volume factors of water, oil and gas phases, respectively, express the ratio of a phase volume at reservoir condition to its volume at surface condition, i.e.:
+We now introduce usual definitions from petroleum engineering for the description of volumetric and solubility changes. In what concerns volumetric changes, $B_w$, $B_o$ and $B_g$, the formation volume factors of water, oil and gas phases, respectively, express the ratio of a phase volume at reservoir condition to its volume at surface condition, i.e.:
 
 \begin{equation}\label{eq: Bw}
 B_w = \frac{\rho_w^{ST}}{\bar{\rho}_w} \, ,
@@ -469,7 +469,7 @@ where new terms $C$, $E$, $F_i$ and $F_p$ are defined in Table~\ref{tab: MBE}.
 Eq~\eqref{eq: MBE} involves fluid properties, original fluid volumes ($N$, $W$ and $G)$, cumulative production and injection and aquifer influx.
 It is an algebraic equation that can be solved for any one of its terms, provided that all remaining are known. This works focuses on its solution for pressure.
 
-\subsubsection{Relationship between the material balance equation and the reservoir pressure}
+\subsubsection{Relationship between the material balance equation and reservoir pressure}
 
 % no assumption on static conditions are needed
 % pressure field is not known
@@ -480,14 +480,14 @@ The material balance equation is widely used to relate production and injection 
 
 %Although it was not needed to assume no fluid flow to obtain the material balance equation, fluid motion can only be taken into account in the averaging of fluid properties if the pressure field is known. For any practical purpose, this is not true.
 
-To overcome this difficulty, a possible simplification to the pressure field is to neglect hydrodynamic gradients and assume hydrostatic equilibrium: $\vec{u}_\alpha \equiv 0$. This implies that $\nabla p_\alpha \equiv \rho_\alpha \vec{g}$, and, as a consequence, pressure becomes a function of time and depth only given by the following expression:
+To overcome this difficulty, a possible simplification to the pressure field is to neglect hydrodynamic gradients and assume hydrostatic equilibrium: $\vec{u}_\alpha \equiv 0$. This implies that $\nabla p_\alpha \equiv \rho_\alpha \vec{g}$, and, as a consequence, pressure becomes a function of time and depth given by the following expression:
 \begin{equation}\label{eq: p=rhogh}
 \int_{p_\alpha^{ref} (t)}^{p_\alpha (t,z)} \frac{dp_\alpha^{'}}{\rho_\alpha \left(p_\alpha^{'}\right)} = g\left(z - z_{ref}\right) \, ,
 \end{equation}
 where $p_\alpha (t,z)$ is the pressure field of phase $\alpha$ and $p_\alpha^{ref} (t)$ is the pressure at some reference depth $z_{ref}$.
 It is now possible to compute the pressure field from Eq.~\eqref{eq: p=rhogh} and average fluid properties accordingly. 
 
-It can be shown that neglecting the variation of fluid properties with depth does not introduce any important error. As pressure increases with depth according to the hydrostatic gradient, density also increases but by a negligible amount. For instance, the average oil density can be approximated to the local density at the reference level: $\bar{\rho}_o (t) \approx \rho_o (t, z_{ref})$; the same applies to the formation volume factor: $B_o \approx \rho_o (t, z_{ref})/ \rho_o^{ST}$.
+It can be shown that neglecting the variation of density with depth does not introduce any important error. As pressure increases with depth according to the hydrostatic gradient, density also increases but by a negligible amount. For instance, the average oil density can be approximated to the local density at the reference level: $\bar{\rho}_o (t) \approx \rho_o (t, z_{ref})$; the same applies to the formation volume factor: $B_o \approx \rho_o (t, z_{ref})/ \rho_o^{ST}$.
 
 %For liquids, a first-order approximation to the relationship between density and pressure at constant temperature and composition can be assumed:
 
@@ -634,7 +634,7 @@ Eq.~\eqref{eq: PVTH1} also provides a condition to check whether PVT data obtain
 \subsection{Solution algorithm}
 Several methods exist to find roots of nonlinear continuous functions \citep{hamming1987numerical}. One possible choice is Newton's method, which linearizes the function using either its gradient or a secant line. The secant line approach introduces a numerical smoothness to the gradient near continuous but non-differentiable points, for what it is the approach used here to deal with the bubble-point pressure.
 
-An open source implementation of secant method is available in SciPy library \citep{scipy}. This work used library version $0.12$.
+An open source implementation of the secant method is available in SciPy library \citep{scipy}. This work used library version $0.12$.
 
 %A more simple and robust option is the bisection method, which does not require the function to be differentiable anywhere. The number of iterations $n$ required to reduce search interval by a factor of $\delta$ is \citep{hamming1987numerical}:
 %\begin{equation}
@@ -674,9 +674,9 @@ It must be observed that the result of gas reentering oil phase completely negle
 
 Figure~\ref{fig: matbal_s} shows the formation of a free gas phase with growing $S_g$ and then its disappearance. Depending on the ratio of vertical and horizontal permeabilities or reservoir dip angle, it may also suggest the formation of a secondary gas cap.
 
-Figure~\ref{fig: epsilon} shows the shape of residual function ($\epsilon$) with respect to pressure, i.e., holding all produced or injected volumes constant and allowing only pressure to change. Each different solid line corresponds to a different volume of fluid production and injection. The function root is the solution of material balance equation, Eq.~\eqref{eq: MBE_short}, and the non-differentiable point is the bubble-point pressure. Also, it is seen that function $\epsilon$ monotonically decreases with pressure, as theoretically shown before.
+Figure~\ref{fig: epsilon} shows the shape of residual function ($\epsilon$) when pressure is varying and all remaining terms are held constant. Each different solid line corresponds to a different instant of time and therefore different volumes of cumulative production and injection. The function root is the solution of material balance equation, Eq.~\eqref{eq: MBE_short}, and the non-differentiable point is the bubble-point pressure. Also, it is seen that function $\epsilon$ monotonically decreases with pressure, as theoretically shown before.
 
-Figure~\ref{fig: iter} shows the count of newtonian iterations required to compute pressure with an accuracy within $0.001$ of initial bubble-point pressure. Typically, $12$ iterations are required.
+Figure~\ref{fig: iter} shows the count of newtonian iterations required to compute pressure with an accuracy within $0.1\%$ of the initial bubble-point pressure. Typically, $12$ iterations are required.
 
 Figure~\ref{fig: residual} shows the residual of numerical solution as defined in Eq.~\eqref{eq: residual}. Material balance error is less than $10^{-7}$ units of porous volume for all time steps.
 
