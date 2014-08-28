@@ -172,7 +172,7 @@ Mass balance equation for each component reads:
 \item gas component:
 \begin{equation}\label{eq: Sg1}
 \begin{split}
-\frac{\partial}{\partial t} \left( \rho_o Y_g S_o + \rho_g S_g\right) + \nabla  \cdot \left( \rho_o Y_g \vec{u}_o + \rho_g \vec{u}_g\right) = 0\, .
+\frac{\partial}{\partial t} \left[\left( \rho_o Y_g S_o + \rho_g S_g\right)\phi \right] + \nabla  \cdot \left( \rho_o Y_g \vec{u}_o + \rho_g \vec{u}_g\right) = 0\, .
 \end{split}
 \end{equation}
 \end{itemize}
@@ -308,7 +308,7 @@ Integrating Eqs.~\eqref{eq: Sw1}, \eqref{eq: So1} and \eqref{eq: Sg1} in volume 
 \begin{align}\label{eq: So2}
 \begin{split}
 \frac{\partial}{\partial t} \int\limits_{\Omega} \rho_o Y_o S_o \phi dV &= -\oint_{\partial \Omega} \rho_o Y_o \left(\vec{u}_o \cdot \vec{dS} \right) \\
-&= \rho_o^{ST}Q_o^{ST} \, ;
+&= - \rho_o^{ST}Q_o^{ST} \, ;
 \end{split}
 \end{align}
 
@@ -371,7 +371,7 @@ Eqs. \eqref{eq: Sw2}, \eqref{eq: So2} and \eqref{eq: Sg2} are rewritten in terms
 
 \item oil component:
 \begin{equation}\label{eq: So3}
-\frac{\partial}{\partial t} \left( \bar{\rho_o}\bar{Y}_o\bar{S}_o\bar{\phi} \Omega \right) = \rho_o^{ST}Q_o^{ST}
+\frac{\partial}{\partial t} \left( \bar{\rho_o}\bar{Y}_o\bar{S}_o\bar{\phi} \Omega \right) = - \rho_o^{ST}Q_o^{ST}
 \end{equation}
 
 \item gas component:
@@ -412,7 +412,7 @@ Equations can now be rewritten using the above definitions and denoting porous v
 \end{equation}
 
 \begin{equation}\label{eq: So4}
-\frac{\partial}{\partial t} \left(\frac{\bar{S}_o V_p}{B_o} \right) = Q_o^{ST} \, ,
+\frac{\partial}{\partial t} \left(\frac{\bar{S}_o V_p}{B_o} \right) = - Q_o^{ST} \, ,
 \end{equation}
 
 \begin{equation}\label{eq: Sg4}
@@ -487,7 +487,9 @@ To overcome this difficulty, a possible simplification to the pressure field is 
 where $p_\alpha (t,z)$ is the pressure field of phase $\alpha$ and $p_\alpha^{ref} (t)$ is the pressure at some reference depth $z_{ref}$.
 It is now possible to compute the pressure field from Eq.~\eqref{eq: p=rhogh} and average fluid properties accordingly. 
 
-It can be shown that neglecting the variation of density with depth does not introduce any important error. As pressure increases with depth according to the hydrostatic gradient, density also increases but by a negligible amount. For instance, the average oil density can be approximated to the local density at the reference level: $\bar{\rho}_o (t) \approx \rho_o (t, z_{ref})$; the same applies to the formation volume factor: $B_o \approx \rho_o (t, z_{ref})/ \rho_o^{ST}$.
+It can be shown that neglecting the variation of density with depth does not introduce any important error. As pressure increases with depth according to the hydrostatic gradient, density also increases but by a negligible amount. For instance, the average oil density can be approximated to the local density at the reference level: $\bar{\rho}_o (t) \approx \rho_o (t, z_{ref})$.
+
+%the same applies to the formation volume factor: $B_o \approx \rho_o (t, z_{ref})/ \rho_o^{ST}$.
 
 %For liquids, a first-order approximation to the relationship between density and pressure at constant temperature and composition can be assumed:
 
