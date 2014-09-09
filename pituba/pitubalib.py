@@ -67,7 +67,7 @@ class classAquifero:
 
 	model='tank'
 
-	def We(self,p,dt,Np=0):
+	def We(self,p,dt=0,Np=0):
 		if self.model == 'tank':
 			return self.tank(p)
 		elif self.model == 'FetPcte':
@@ -102,6 +102,7 @@ class classPressData:
 	Np=0.
 	Wp=0.
 	Wi=0.
+	Gi=0.
 	Gp=0.
 
 class classRes:
@@ -130,10 +131,16 @@ class classRes:
 
 class classHist:
 	p=[]
+	Bo=[]
+	Rs=[]
+	Bg=[]
+	px=[]
 	Sw=[]
 	Sg=[]
 	So=[]
 	Eo=[]
+	Eo_p1=[]
+	Eo_p2=[]
 	Eg=[]
 	Efw=[]
 	Vp=[]
@@ -235,7 +242,7 @@ class classEBM:
 	def Sg(self,p,N,Np,Gp,Gi):
 		res=self.res
 		pvt=self.pvt
-		return pvt.Bg(p)/res.Vp(p)*(N*((pvt.Rs(res.p0,res.Pb0)-pvt.Rs(p,pvt.Pb))+res.m*pvt.Bo(res.p0,res.Pb0)/pvt.Bg(p))+Gi-Np*(Gp/Np-pvt.Rs(p,pvt.Pb)))
+		return pvt.Bg(p)/res.Vp(p)*(N*((pvt.Rs(res.p0,res.Pb0)-pvt.Rs(p,pvt.Pb))+res.m*pvt.Bo(res.p0,res.Pb0)/pvt.Bg(res.p0))+Gi-Np*(Gp/Np-pvt.Rs(p,pvt.Pb)))
 
 	def residual(self,p,Np,Gp,Gi,Wi,Wp,dt):
 		res=self.res
@@ -250,6 +257,24 @@ class classEBM:
 		#return (E-Fp+Fi)/(abs(Fp)+abs(Fi)+abs(E))
 		return (E-Fp+Fi)/res.Vp0
 
+	def VOIP(self):
+		p=self.res.teste.p
+		Np=self.res.teste.Np
+		Wp=self.res.teste.Wp
+		Wi=self.res.teste.Wi
+		We=zeros(len(Wi))
+		Gi=self.res.teste.Gi
+		Gp=self.res.teste.Gp
+		res=self.res
+		pvt=self.pvt
+		N=[]
+		for i in range(len(p)):
+			E=self.Eo(p[i])+res.m*self.Eg(p[i])+self.Efw(p[i])
+			Fi=(Wi[i]+We[i])*pvt.Bw(p[i])+Gi[i]*pvt.Bg(p[i])
+			Fp=Np[i]*(pvt.Bo(p[i],pvt.Pb)+(Gp[i]/Np[i]-pvt.Rs(p[i],pvt.Pb))*pvt.Bg(p[i]))+Wp[i]*pvt.Bw(p[i])
+			N.append((Fp-Fi)/E)
+
+		return array(N)
 
 	def runHist(self,pmin,pmax):
 		out=self.out
@@ -264,6 +289,8 @@ class classEBM:
 		pvt=self.pvt
 		dt=self.dt
 
+		px=linspace(pmin, pmax, 100)
+		out.px.append(px/res.Pb0)
 		RGO=gradient(Gp)/gradient(Np)
 
 ##		if 'out' in locals():
@@ -271,7 +298,6 @@ class classEBM:
 ##			out=[]
 		for i in range(len(Np)):
 			pvt.Pb=self.updatePb(Np[i],Gp[i],Gi[i])
-
 #			pbisect,bisect_r=sp.bisect(self.residual, min(pvt.pe[:]) ,0.99*res.p0, args=(Np[i],Gp[i],Wi[i],Wp[i],dt[i]),xtol=1e-5, rtol=1e-6, maxiter=1000, full_output=True, disp=True)
 			pbrentq,brentq_r=sp.brentq(self.residual, min(pvt.pe[:]) ,2.*res.p0, args=(Np[i],Gp[i],Gi[i],Wi[i],Wp[i],dt[i]),xtol=1e-5, rtol=1e-8, maxiter=2000, full_output=True, disp=True)
 #			pnewton=sp.newton(self.residual, pbisect, args=(Np[i],Gp[i],Wi[i],Wp[i],dt[i]),tol=1e-5, maxiter=1000)
@@ -280,7 +306,6 @@ class classEBM:
 			pnewton=pbrentq
 			fval = self.residual(p,Np[i],Gp[i],Gi[i],Wi[i],Wp[i],dt[i])
 
-			px=linspace(pmin, pmax, 100)
 
 			if mod(i,2)==0:
 				resd=zeros(len(px))
@@ -300,11 +325,16 @@ class classEBM:
 			self.p=p
 
 			# Save output data
+			out.px.append(resd)
+			out.Eo_p1.append(pvt.Bo(p,pvt.Pb)-pvt.Bo(res.p0,res.Pb0))
+			out.Eo_p2.append((pvt.Rs(res.p0,res.Pb0)-pvt.Rs(p,pvt.Pb))*pvt.Bg(p))
 			out.p.append(p)
 			out.Vp.append(res.Vp(p))
 			out.Sw.append(self.Sw(p,Wi[i],Wp[i],self.aquifero.We(p,dt[i],Np[i])))
 			out.So.append(self.So(p,Np[i]))
 			out.Sg.append(self.Sg(p,self.N,Np[i],Gp[i],Gi[i]))
+			out.Rs.append(pvt.Rs(p,pvt.Pb))
+			out.Bo.append(pvt.Bo(p,pvt.Pb))
 			out.residual.append(fval)
 			out.Eo.append(self.Eo(p))
 			out.Eg.append(self.Eg(p))
@@ -331,7 +361,6 @@ class classEBM:
 		plot(pvt.Pb/res.Pb0,self.residual(pvt.Pb,Np[i],Gp[i],Gi[i],Wi[i],Wp[i],We[i]),'ok',markersize=5,markerfacecolor='#ffffff',markeredgewidth=2,label='bubble-point pressure')
 		legend(loc='upper right')
 		subplots_adjust(bottom=0.15,left=0.15)
-		savefig('./article/python/matbal_res.pdf',dpi=600)
 		return out
 
 	def EqPb(self,Np,Gp,Gi):
@@ -432,10 +461,9 @@ class classEBM:
 ##			out=[]
 		for i in range(len(Np)):
 			pvt.Pb=self.updatePb(Np[i],Gp[i],Gi[i])
-
+			print 'Residual = ', self.We_residual(0.,p[i],Np[i],Gp[i],Gi[i],Wi[i],Wp[i])
 #			We[i],brentq_r=sp.bisect(self.We_residual, 0. ,10.*(Wp[i]+Np[i]), args=(p[i],Np[i],Gp[i],Gi[i],Wi[i],Wp[i]),xtol=1e-8, rtol=1e-8, maxiter=2000, full_output=True, disp=True)
-			We[i],brentq_r=sp.brentq(self.We_residual, 0. ,10.*(Wp[i]+Np[i]), args=(p[i],Np[i],Gp[i],Gi[i],Wi[i],Wp[i]),xtol=1e-8, rtol=1e-8, maxiter=2000, full_output=True, disp=True)
-#			pnewton=sp.newton(self.residual, pbisect, args=(Np[i],Gp[i],Wi[i],Wp[i],dt[i]),tol=1e-5, maxiter=1000)
+			We[i],brentq_r=sp.brentq(self.We_residual, 0. ,5.*(Wp[i]+Np[i]), args=(p[i],Np[i],Gp[i],Gi[i],Wi[i],Wp[i]),xtol=1e-8, rtol=1e-8, maxiter=2000, full_output=True, disp=True)
 			fval = self.We_residual(We[i],p[i],Np[i],Gp[i],Gi[i],Wi[i],Wp[i])
 
 			# Save output data
@@ -449,17 +477,19 @@ class classEBM:
 			out.Eg.append(self.Eg(p[i]))
 			out.Efw.append(self.Efw(p[i]))
 			out.We.append(self.We[i])
-			out.fw.append(gradient(Wp)[i]/(gradient(Np)[i]+gradient(Wp)[i]))
+			#out.fw.append(gradient(Wp)[i]/(gradient(Np)[i]+gradient(Wp)[i]))
 
 			# Compute new bubble pressure
 			out.Pb.append(pvt.Pb)
 			print '[iter = ',i,']'
 			print 'brentq iter, fcalls = ',brentq_r.iterations,brentq_r.function_calls
 			print 'p [kgf/cm2], residual = ',p[i],fval
+			print 'We [MM m3] = ', We[i]/1e6
 			print 'MBE oil = ',out.So[-1]*out.Vp[-1]/pvt.Bo(p[i],pvt.Pb)/(self.N-Np[i])
 			print 'Pb [kgf/cm2] = ',out.Pb[-1]
 			print 'RGO = ', RGO[i]
 			print 'FR Oil, FR Gas = ',Np[i]/self.N, Gp[i]/(self.N*pvt.Rs(res.p0,res.Pb0))
 			print 'So, Sg, Sw = ',out.So[-1],out.Sg[-1],out.Sw[-1]
 			print '--------------------------------------------'
-		r
+
+		return out
