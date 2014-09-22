@@ -58,19 +58,21 @@ material balance \sep black-oil equations \sep reservoir engineering.
 \end{frontmatter}
 
 \section{Introduction}
-The material balance equation is a classical tool in petroleum reservoir engineering. It consists of the algebraic equation originally presented in \cite{schilthuis1936active} and conceived as a zero dimensional model for estimating reservoir pressure from mass balance. \cite{schilthuis1936active} introduced the hypothesis of equilibrium attained at all times not necessarily in the entire reservoir volume, but in the regions of high permeability where most of the production would come from and where pressure would present a similar behavior. Such regions were said to contain an active oil.
+The material balance equation is a classical tool in petroleum reservoir engineering. It consists of the algebraic equation originally presented in \cite{schilthuis1936active} as a zero dimensional model for estimating reservoir pressure from mass balance. \cite{schilthuis1936active} introduced the hypothesis of equilibrium attained at all times not necessarily in the entire reservoir volume, but in the regions of high permeability where most of the production would come from and where pressure would present a similar behavior. Such regions were said to contain an active oil.
 
 The equation developed by \cite{schilthuis1936active} did not account for the non-existence of mechanical, phase or thermal equilibrium. An attempt to introduce non-equilibrium effects of hydrodynamic origin came with \textit{black-oil} equations \citep{aziz1979petroleum,blackoil}. The novelty on hydrodynamics was the introduction of a macroscopic equation of motion using Darcy's law. 
 
 %Black-oil equations arise from the generalization of the zero dimensional concept to a three-dimensional model that incorporates Darcy's law and entails the same approach for phase equilibrium \citep{aziz1979petroleum}.
 
-The term black-oil in this context refers to specific hydrocarbon compositions to which phase equilibrium for isothermal changes in pressure can be described by a two pseudo-component system. For such reservoir fluids, gas phase composition remains essentially constant in the range of pressures observed during production and a pseudo-gas component can be defined. Similarly, a pseudo-oil component can be defined by subtracting all the pseudo-gas component from oil phase composition. After performing this procedure, the number of transport equations needed for hydrocarbon components is reduced from a usually large number to only two.
+The term black-oil in this context refers to specific hydrocarbon compositions to which phase equilibrium for isothermal changes in pressure can be described by a two pseudo-component system. For such reservoir fluids, gas phase composition remains essentially constant in the range of pressures observed during production so that a pseudo-gas component can be defined. Similarly, a pseudo-oil component can be defined by subtracting the pseudo-gas component from oil phase composition. After defining the pseudo-components, the number of transport equations needed for hydrocarbon components is reduced from a usually large number to only two.
 
 %A general restriction of this approach is that reservoir temperature must be sufficiently below the mixture critical temperature so that different fluid phases have clearly distinguishable properties \citep{danesh1998pvt,firoozabadi1999thermodynamics}.
 
 %Since black-oil and material balance equation differ only on spatial scale and the existence of local pressure gradients, there must exist conditions under which material balance equation might be recovered from the black-oil approach. This work examines such conditions.
 
-A great number of applications of material balance equation have been reported in the literature, but few of them explore its connection with black-oil equations. \cite{ertekin2001basic} briefly addressed this subject arguing both approaches to be equivalent if capillarity and gradients of flow potential ($\nabla \Phi = \nabla p - \rho \vec{g}$) were neglected and if PVT properties were averaged in reservoir volume. This work develops this process examining underlying details.
+%Many applications of the material balance equation have been reported in the literature, but few of them explore its connection with black-oil equations. \cite{ertekin2001basic} briefly addressed this subject arguing both approaches to be equivalent if capillarity and gradients of flow potential ($\nabla \Phi = \nabla p - \rho \vec{g}$) were neglected and if PVT properties were averaged in reservoir volume. This work develops this process examining underlying details.
+
+Many works have reported applications of the material balance equation in the literature, but few have explored its connection with black-oil equations. \cite{ertekin2001basic} briefly addressed this subject arguing both approaches to be equivalent if capillarity and gradients of flow potential ($\nabla \Phi = \nabla p - \rho \vec{g}$) were neglected and if PVT properties were averaged in reservoir volume. This work develops this concept examining underlying details.
 
 %\begin{subequations}
 %\begin{equation}
@@ -91,11 +93,11 @@ A great number of applications of material balance equation have been reported i
 
 %The requirement of a spatially constant pressure makes the material balance equation more suitable for shallow reservoirs, where gravity field is less important in phase equilibrium.
 
- The same approach of varying bubble-point pressure widely used in reservoir simulation, which is found in \cite{aziz1979petroleum} and \cite{ertekin2001basic}, is also applied here to material balance. This approach extends the material balance equation to saturated reservoirs under pressure maintenance (e.g. fluid injection). The applicability, however, depends on how important non-equilibrium effects are to phase equilibrium.
+ The same approach of varying bubble-point pressure widely used in reservoir simulation, which is found in \cite{aziz1979petroleum} and \cite{ertekin2001basic}, is also applied here to material balance. This approach extends the material balance equation to saturated reservoirs under pressure maintenance (e.g. fluid injection). The applicability, however, requires negligible non-equilibrium effects in phase equilibrium.
 
 %It has already been shown the importance of not having strong flow near interface that prevents mixing and causes pressure to drop locally \citep{steffensen1973reservoir,utseth1981numerical}.
 
-After presenting material balance equation, sufficient conditions are shown for which material balance equation has only one solution for pressure. These conditions require fluids to be compressible and that gas vaporization occurs with reduction of oil phase volume. A simple scheme for numerical solution is also proposed based on classical root-finding algorithms for non-linear equations.
+After presenting the material balance equation, sufficient conditions are shown for which material balance equation has only one solution for pressure. These conditions require fluids to be compressible and gas vaporization to occur with increase of oil phase density. A simple scheme for numerical solution is also proposed based on classical root-finding algorithms for non-linear equations.
 
 %\section{Black-oil equations}
 %
@@ -135,7 +137,7 @@ After presenting material balance equation, sufficient conditions are shown for 
 
 \section{Derivation of equations}
 
-This section presents black-oil equations, performs averaging of quantities in space and examines simplifying assumptions necessary to obtain the material balance equation.
+This section presents black-oil equations, performs the averaging of quantities in space and examines simplifying assumptions necessary to obtain the material balance equation.
 
 \subsection{Black-oil equations}
 
@@ -152,7 +154,7 @@ This section presents black-oil equations, performs averaging of quantities in s
 %S_o + S_g +S_w = 1 \, .
 %\end{equation}
 
-We assume that the reservoir is a connected volume where hydrocarbon saturation is nonzero. Reservoir fluids are composed of oil and gas pseudo-components and water component. There can be three fluid phases: oil, gas and (liquid) water. Oil phase is composed of oil and gas components, gas phase is composed uniquely by gas component and, water phase, uniquely by water component. The only allowed mass transfer is of gas component between oil and gas phases, i.e., gas phase composition is always that of a dry gas.
+We assume that the reservoir is a hydraulically connected volume where hydrocarbon saturation is nonzero. By a hidraulically connected volume, we mean that it is possible to observe a common pressure decline trend when some region of the reservoir is under prodution, as discussed in \cite{dakepractice}. Reservoir fluids are composed of oil and gas pseudo-components and water component. There can be three fluid phases: oil, gas and (liquid) water. Oil phase is composed of oil and gas components, gas phase is composed uniquely by gas component and, water phase, uniquely by water component. The only allowed mass transfer is of gas component between oil and gas phases, i.e., gas phase composition is always that of a dry gas.
 
 %In addition to the three fluid components and phases, there is the solid phase composed by the rock.
 
@@ -239,9 +241,11 @@ Another simplification is now made assuming thermal equilibrium in the reservoir
 \begin{equation}
 T_w = T_o = T_g = T_{rock} = T = \text{constant} \, .
 \end{equation}
+Temperature is a constant prescribed value and no equation for energy balance is needed. 
 
-Temperature is a constant prescribed value and no equation for energy balance is needed. It follows from Gibbs' phase rule that the equilibrium of oil and gas phases has only two degrees of freedom if the component number is restricted to the two pseudo-components. As temperature is assumed constant, oil phase density is a function of pressure alone. The same is valid for mass fractions of gas and oil components in oil phase:
+%Temperature is a constant prescribed value and no equation for energy balance is needed. It follows from Gibbs' phase rule that the equilibrium of oil and gas phases has only two degrees of freedom if the component number is restricted to the two pseudo-components. As temperature is assumed constant, oil phase density is a function of pressure alone. The same is valid for mass fractions of gas and oil components in oil phase:
 
+It follows from Duhem's theorem that the equilibrium of oil and gas phases is determined if, in addition to the mass balance equations, two properties are prescribed. From Gibbs' phase rule, the system has two degrees of freedom. It is then necessary to specify two intensive properties. The constant temperature is one and pressure is chosen as the other. Oil phase density now becomes a function of pressure alone. The same is valid for mass fractions of gas and oil components in oil phase:
 \begin{equation}
 Y_g = Y_g (p_o) \, ,
 \end{equation}
@@ -285,7 +289,7 @@ p_{c,go}=p_g-p_o \, .
 
 \subsection{Material balance equation}
 
-Derivation of the material balance equation consists in integrating black-oil equations in reservoir volume.
+Derivation of the material balance equation consists in integrating black-oil equations in reservoir volume ($\Omega$).
 
 %Defining averages of most quantities is difficulty, though, as they appear in equations as products of up to three factors. Being the quantities self-correlated, the averaging process would involve unclosed terms. Quantities are thus required to be spatially constant wherever needed.
 
