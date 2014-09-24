@@ -1,3 +1,6 @@
+% This work is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.
+
+
 % Review
 \documentclass[authoryear,preprint,review,11pt]{elsarticle}
 %\documentclass[final,authoryear,5p,twocolumn,10pt]{elsarticle}
@@ -40,7 +43,6 @@
 %\title{Obtaining the classical material balance equation from black-oil equations}
 %\journal{Journal of Petroleum Science and Engineering}
 %\author{R.B. Piccinini}\ead{rbpiccinini@gmail.com}
-%\address{Petrobras - UO-BA/ATP-N/RES. Salvador, Bahia, Brazil.}
 
 %
 %This work derives the classical material balance equation from the more general black-oil model. It is shown that spatially averaged PVT properties are required for the material balance approach in general, but that for many cases the averaging is simply negligible for practical purposes.  An interpretation for pressure in material balance equation is provided and its relation to a reference depth is examined. The material balance equation is formulated for a varying bubble-point pressure and sufficient conditions for solution uniqueness are presented. A scheme for numerical solution is also proposed.
@@ -344,7 +346,7 @@ Integrating Eqs.~\eqref{eq: Sw1}, \eqref{eq: So1} and \eqref{eq: Sg1} in volume 
 %
 \subsubsection{Averaging quantities}
 
-Spatially averaged quantities are defined for porosity ($\phi$), saturation ($S_\alpha$), density ($\rho_\alpha$) and mass concentration ($Y_{\alpha,k}$) of a component $k$ in phase $\alpha$.
+Spatially averaged quantities are defined for porosity ($\phi$), phase saturation ($S_\alpha$), density ($\rho_\alpha$) and mass concentration ($Y_{\alpha,k}$) of a component $k$ in phase $\alpha$.
 
 All quantities are initially functions of space and time, but they become functions of time alone after being averaged in space:
 
@@ -462,7 +464,7 @@ R_{s2}\left(p=P_b\right) = &\Big[N\left(m B_{1}/B_{g1} +R_{s1}\right)\\
 It is now possible to obtain the so-called generalized material balance equation by substituting the equations for phase saturation, Eqs.~\eqref{eq: Sw5}, \eqref{eq: So5} and \eqref{eq: Sg5}, into Eq.~\eqref{eq: S15}:  
 
 \begin{equation}\label{eq: MBE}
-F_p - F_i= \underbrace{N E_o + mN E_g + W E_w}_{\text{fluid volume expansion } (E)} +\underbrace{V_{p1}-V_{p2}}_{\text{pore volume reduction } (C)}
+F_p - F_i= \underbrace{N E_o + mN E_g + W E_w}_{\text{fluid volume expansion } (E)} +\underbrace{V_{p1}-V_{p2}}_{\text{pore volume compaction} (C)}
 \end{equation}
 or
 \begin{equation}\label{eq: MBE_short}
@@ -526,7 +528,7 @@ Similarly for the gas phase, using the state equation $pV = Zn R T$, we obtain i
 \frac{1}{\rho_g}\left(\frac{\partial \rho_g}{\partial p_g}\right)_{T} = \frac{1}{p_g}-\frac{1}{Z}\frac{\partial Z}{\partial p_g} \, .
 \end{equation}
 
-Assuming reservoir temperature to be sufficiently above gas critical temperature for negligible variation of the Z-factor with pressure, we use hydrostatic equilibrium again and obtain the derivative of gas density with depth:
+Assuming reservoir temperature to be sufficiently above gas critical temperature for a negligible variation of the Z-factor with pressure, we use hydrostatic equilibrium again and obtain the derivative of gas density with depth:
 \begin{equation}\label{eq: gradgdz}
 \frac{1}{\rho_g}\left(\frac{\partial \rho_g}{\partial z}\right)_{T} = \frac{\rho_g \vec{g}}{p_g} = \left(\frac{\mathcal{M}}{ Z R T}\right) g \, .
 \end{equation}
@@ -541,9 +543,9 @@ For investigating the order of magnitude of Eqs.~\eqref{eq: gradodz} and \eqref{
 \end{equation}
 
 Oil and gas densities are thus approximately constant with depth.
-The reference depth for computing phase density (and also the formation volume factor) can be any arbitrary depth inside phase volume. Under the approximation of a constant density, it is straightforward to show that $\bar{\rho}_\alpha = \rho_\alpha\left(\bar{p}_\alpha\right)$ and $\bar{p}_\alpha=p_\alpha\left(z^0_\alpha\right)$, where $z^0_\alpha$ is the depth of phase gravity center and $\alpha=w, o, g$. The pressure calculated in the material balance equation corresponds to the local pressure at $z^{ref}$, without fluid motion, and only equals the average reservoir pressure $\bar{p}_\alpha$ if the reference depth is that of the gravity center, $z^{ref}=z^0$.
+The reference depth for computing phase density (and also the formation volume factor) can be any arbitrary depth inside phase volume. Under the approximation of a constant density, it is straightforward to show that $\bar{\rho}_\alpha = \rho_\alpha\left(\bar{p}_\alpha\right)$ and $\bar{p}_\alpha=p_\alpha\left(z^0_\alpha\right)$, where $z^0_\alpha$ is the depth of phase gravity center for $\alpha=w, o, g$. The pressure calculated in the material balance equation corresponds to the local pressure at $z^{ref}$ for negligible hydrodynamic gradients and only equals the average reservoir pressure $\bar{p}_\alpha$ if the reference depth is that of the gravity center, $z^{ref}=z^0$.
 
-For the case of an oil reservoir with a gas cap, the reference depth should be defined at the gas-oil contact. The point here is that at gas-oil contact both gas and oil densities are computed using the same pressure, its local value. If the reference depth, common to all phases, is otherwise defined below gas-oil contact, gas density will increase with depth at a higher rate because of the oil hydrostatic gradient,
+For the case of an oil reservoir with a gas cap, the reference depth should be defined at the gas-oil contact. The point here is that at gas-oil contact both gas and oil densities are computed using the same pressure its local value. If the reference depth, common to all phases, is otherwise defined below gas-oil contact, gas density will increase with depth at a higher rate because of the oil hydrostatic gradient,
 \begin{equation}
 \frac{1}{\rho_g}\left(\frac{\partial \rho_g}{\partial z}\right)_{T,Z} = \frac{\rho_o}{\rho_g}\left(\frac{\mathcal{M}}{Z R T}\right)g  \, ,
 \end{equation}
