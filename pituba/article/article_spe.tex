@@ -50,7 +50,7 @@
 
 
 \begin{abstract}
-This work examines underlying details in obtaining the classical material balance equation from a three dimensional black-oil model typical of reservoir simulations. The three-dimensional model is integrated in reservoir volume and quantities such as fluid properties are spatially averaged. The material balance equation is obtained for averaged quantities and it is applied to calculate reservoir pressure. It is shown that the calculated pressure corresponds to the local pressure at an arbitrary reference depth and not to the average reservoir pressure in general. The definition of a convenient reference depth is discussed. Sufficient conditions for solution uniqueness of the material balance equation are provided for the case that pressure is the unknown quantity. One of such conditions provides a check for physical correctness of PVT properties obtained from laboratory experiments or empirical correlations.
+This work examines underlying details in obtaining the classical material balance equation from a three dimensional black-oil model typical of reservoir simulations. The three-dimensional model is integrated in reservoir volume and quantities such as fluid properties are spatially averaged. The material balance equation is obtained for averaged quantities and it is applied to calculate reservoir pressure. It is shown that the calculated pressure corresponds to the local pressure at an arbitrary reference depth and not to the average reservoir pressure in general. The definition of a convenient reference depth is discussed. It is found that the physical correctness of PVT properties obtained from laboratory experiments or empirical correlations is a sufficient condition for solution uniqueness of the material balance equation when pressure is the unknown quantity.
 Finally, a numerical scheme for solving the material balance equation is proposed.
 \end{abstract}
 
@@ -60,7 +60,7 @@ material balance \sep black-oil equations \sep reservoir engineering.
 \end{frontmatter}
 
 \section{Introduction}
-The material balance equation is a classical tool in petroleum reservoir engineering. It consists of the algebraic equation originally presented in \cite{schilthuis1936active} as a zero dimensional model for estimating reservoir pressure from mass balance. \cite{schilthuis1936active} introduced the hypothesis of equilibrium attained at all times not necessarily in the entire reservoir volume, but in the regions of high permeability where most of the production would come from and where pressure would present a similar behavior. Such regions were said to contain an active oil.
+The material balance equation is a classical tool in petroleum reservoir engineering. It consists of the algebraic equation originally presented in \cite{schilthuis1936active} as a zero dimensional model for estimating reservoir pressure from mass balance. \cite{schilthuis1936active} introduced the hypothesis of equilibrium attained at all times not necessarily in the entire reservoir volume, but in the regions of high permeability where most of the production would come from and where pressure would present a similar trend. Such regions were said to contain an active oil.
 
 The equation developed by \cite{schilthuis1936active} did not account for the non-existence of mechanical, phase or thermal equilibrium. An attempt to introduce non-equilibrium effects of hydrodynamic origin came with \textit{black-oil} equations \citep{aziz1979petroleum,blackoil}. The novelty on hydrodynamics was the introduction of a macroscopic equation of motion using Darcy's law. 
 
@@ -95,7 +95,7 @@ Many works have reported applications of the material balance equation in the li
 
 %The requirement of a spatially constant pressure makes the material balance equation more suitable for shallow reservoirs, where gravity field is less important in phase equilibrium.
 
- The same approach of varying bubble-point pressure widely used in reservoir simulation, which is found in \cite{aziz1979petroleum} and \cite{ertekin2001basic}, is also applied here to material balance. This approach extends the material balance equation to saturated reservoirs under pressure maintenance (e.g. fluid injection). The applicability, however, requires negligible non-equilibrium effects in phase equilibrium.
+ The same approach of varying bubble-point pressure widely used in reservoir simulation, which is found in \cite{aziz1979petroleum} and \cite{ertekin2001basic}, is also applied here. This approach extends the material balance equation to saturated reservoirs under pressure maintenance (e.g. fluid injection). The applicability, however, requires negligible non-equilibrium effects in phase equilibrium.
 
 %It has already been shown the importance of not having strong flow near interface that prevents mixing and causes pressure to drop locally \citep{steffensen1973reservoir,utseth1981numerical}.
 
