@@ -2,8 +2,8 @@
 
 
 % Review
-%\documentclass[authoryear,preprint,review,11pt]{elsarticle}
-\documentclass[final,authoryear,5p,twocolumn,10pt]{elsarticle}
+\documentclass[authoryear,preprint,review,11pt]{elsarticle}
+%\documentclass[final,authoryear,5p,twocolumn,10pt]{elsarticle}
 
 % Review topics:
 
@@ -101,7 +101,7 @@ Many works have reported applications of the material balance equation in the li
 
 %It has already been shown the importance of not having strong flow near interface that prevents mixing and causes pressure to drop locally \citep{steffensen1973reservoir,utseth1981numerical}.
 
-After presenting the material balance equation, sufficient conditions are shown for which material balance equation has only one solution for pressure. These conditions require fluids to be compressible and gas vaporization to occur with increase of oil phase density. A simple scheme for numerical solution is also proposed based on classical root-finding algorithms for non-linear equations.
+After presenting the material balance equation, sufficient conditions are shown for which the material balance equation has only one solution for pressure. These conditions require fluids to be compressible and gas vaporization to occur with increase of oil phase density. A simple scheme for numerical solution is also proposed based on classical root-finding algorithms for non-linear equations.
 
 %\section{Black-oil equations}
 %
@@ -232,13 +232,13 @@ Momentum balance for each phase is given by an extension of Darcy's law to multi
 
 Phase densities are functions of the local thermodynamic state:
 \begin{equation}
-\rho_w = \rho_w \left(p_w, T_w\right)
+\rho_w = \rho_w \left(p_w, T_w\right) \, ,
 \end{equation}
 \begin{equation}
-\rho_o = \rho_o \left(p_o, T_o,Y_g\right)
+\rho_o = \rho_o \left(p_o, T_o,Y_g\right) \, ,
 \end{equation}
 \begin{equation}
-\rho_g = \rho_g \left(p_g, T_g\right)
+\rho_g = \rho_g \left(p_g, T_g\right) \, .
 \end{equation}
 
 Another simplification is now made assuming thermal equilibrium in the reservoir volume, i.e.,
