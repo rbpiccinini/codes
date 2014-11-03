@@ -402,7 +402,7 @@ B_o = \frac{\rho_o^{ST}}{\bar{Y}_o \bar{\rho}_o} \, ,
 B_g = \frac{\rho_g^{ST}}{\bar{\rho}_g} \, .
 \end{equation}
 
-In what concerns changes in gas solubility in oil phase, the solubility ratio ($R_s$) gives the ratio between the volume of dissolved gas and the volume of oil both measured in surface condition:
+In what concerns changes in gas solubility in oil phase, the solubility ratio ($R_s$) gives the ratio between the volume of dissolved gas and the volume of oil both measured at surface condition:
 
 \begin{equation}
 R_s = \frac{\rho_o^{ST} / \bar{Y}_o}{\rho_g^{ST} / \bar{Y}_g} \, ,
@@ -451,7 +451,7 @@ V_{p2}\left(\frac{\bar{S}_{g2}}{B_{g2}} +\frac{\bar{S}_{o2} R_{s2}}{B_{o2}}\righ
 \bar{S}_o+\bar{S}_w+\bar{S}_g=1 \, .
 \end{equation}
 
-Where $N=V_{p1} \bar{S}_{o1}/B_{o1}$ and $W=V_{p1} \bar{S}_{w1}/B_{w1}$ are the initial volumes of oil and water measured at surface condition and $m=V_{p1} \bar{S}_{g1}/B_{o1} N$ is the ratio of the initial volumes of gas and oil phases measured in reservoir condition.
+Where $N=V_{p1} \bar{S}_{o1}/B_{o1}$ and $W=V_{p1} \bar{S}_{w1}/B_{w1}$ are the initial volumes of oil and water measured at surface condition and $m=V_{p1} \bar{S}_{g1}/B_{o1} N$ is the ratio of the initial volumes of gas and oil phases measured at reservoir condition.
 
 An equation for the bubble-point can be obtained by setting $\bar{S}_{g2}=0$ in Eq.~\eqref{eq: Sg5} and solving it for the solubility ratio at bubble-point pressure, or $R_s(p=P_b)$:
 \begin{equation}\label{eq: eqPb}
@@ -463,7 +463,7 @@ R_{s2}\left(p=P_b\right) = &\Big[N\left(m B_{1}/B_{g1} +R_{s1}\right)\\
 
 \subsubsection{Material balance equation}
 
-It is now possible to obtain the so-called generalized material balance equation by substituting the equations for phase saturation, Eqs.~\eqref{eq: Sw5}, \eqref{eq: So5} and \eqref{eq: Sg5}, into Eq.~\eqref{eq: S15}:  
+It is now possible to obtain the generalized material balance equation by substituting the equations for phase saturation, Eqs.~\eqref{eq: Sw5}, \eqref{eq: So5} and \eqref{eq: Sg5}, into Eq.~\eqref{eq: S15}:  
 
 \begin{equation}\label{eq: MBE}
 F_p - F_i= \underbrace{N E_o + mN E_g + W E_w}_{\text{fluid volume expansion } (E)} +\underbrace{V_{p1}-V_{p2}}_{\text{pore volume compaction} (C)}
@@ -495,7 +495,7 @@ To overcome this difficulty, a possible simplification to the pressure field is 
 where $p_\alpha (t,z)$ is the pressure field of phase $\alpha$ and $p_\alpha^{ref} (t)$ is the pressure at some reference depth $z_{ref}$.
 It is now possible to compute the pressure field from Eq.~\eqref{eq: p=rhogh} and average fluid properties accordingly. 
 
-It can be shown that neglecting the variation of density with depth does not introduce  important error. As pressure increases with depth according to the hydrostatic gradient, density also increases but by a negligible amount. For instance, the average oil density can be approximated to the local density at the reference level: $\bar{\rho}_o (t) \approx \rho_o (t, z_{ref})$.
+It can be shown that neglecting the variation of density with depth does not introduce  important errors. As pressure increases with depth according to the hydrostatic gradient, density also increases but by a negligible amount. For instance, the average oil density can be approximated to the local density at the reference level: $\bar{\rho}_o (t) \approx \rho_o (t, z_{ref})$.
 
 %the same applies to the formation volume factor: $B_o \approx \rho_o (t, z_{ref})/ \rho_o^{ST}$.
 
@@ -535,7 +535,7 @@ Assuming reservoir temperature to be sufficiently above gas critical temperature
 \frac{1}{\rho_g}\left(\frac{\partial \rho_g}{\partial z}\right)_{T} = \frac{\rho_g \vec{g}}{p_g} = \left(\frac{\mathcal{M}}{ Z R T}\right) g \, .
 \end{equation}
 
-For investigating the order of magnitude of Eqs.~\eqref{eq: gradodz} and \eqref{eq: gradgdz}, we substitute into them the values of $\rho_o = 10^3\ kg/m^3$ and $c_o = 10^{-9}\ Pa^{-1}$ for the oil phase, and $\mathcal{M}=19\ kg/kmol$ and $T=400\ K$ for the gas phase: 
+To investigate the order of magnitude of Eqs.~\eqref{eq: gradodz} and \eqref{eq: gradgdz}, we substitute into them the values of $\rho_o = 10^3\ kg/m^3$ and $c_o = 10^{-9}\ Pa^{-1}$ for the oil phase, and $\mathcal{M}=19\ kg/kmol$ and $T=400\ K$ for the gas phase: 
 \begin{equation}
 \frac{1}{\rho_o}\left(\frac{\partial \rho_o}{\partial z}\right)_{T,Y_o} \approx 1\times10^{-5}\ m^{-1} \, ,
 \end{equation}
@@ -675,7 +675,7 @@ Compute fluid saturations $t_2$.
 Once $S_{o2}$, $S_{g2}$, $S_{w2}$, $p_2$ and $P_{b2}$ are known, solution for instant $t_2$ is complete.
 
 \section{Results}
-For illustrating the numerical procedure, the material balance equation was solved for a fictitious black-oil reservoir initially producing in a pure depletion drive mechanism and later subjected to water injection. Fig.~\ref{fig: matbal_p} shows in the solid line curve the severe depletion during initial phases of production. In the dashed curve, Fig.~\ref{fig: matbal_p} shows the bubble-point pressure, indicating how far the saturated reservoir is from undersaturation and allowing for planning of pressure maintenance projects.
+To illustrate the numerical procedure, the material balance equation was solved for a fictitious black-oil reservoir initially producing in a pure depletion drive mechanism and later subjected to water injection. Fig.~\ref{fig: matbal_p} shows in the solid line curve the severe depletion during initial phases of production. In the dashed curve, Fig.~\ref{fig: matbal_p} shows the bubble-point pressure, indicating how far the saturated reservoir is from undersaturation and allowing for planning of pressure maintenance projects.
 
 
 Water injection starts when oil recovery factor $(RF)$ is $RF=0.08$ and it is maintained until the reservoir reaches a novel undersaturated state. Initially, the high compressibility of gas prevents pressure from raising and free gas phase is reduced because of redissolution. Finally, the reservoir reaches the undersaturated state and a steep pressure increase is seen in Fig.~\ref{fig: matbal_p} for a recovery factor about $RF=0.15$.
@@ -715,7 +715,7 @@ $S_o$ & oil saturation \\
 $S_w$ & water saturation \\
 $G_p$ & produced volume of gas \\
 $m$ & ratio of original free gas volume \\
-& to original oil volume in reservoir condition \\
+& to original oil volume at reservoir condition \\
 $N$ & original volume of oil in place \\
 $N_p$ & produced volume of oil \\
 $P_b$ & bubble-point pressure \\
