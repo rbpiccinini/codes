@@ -45,12 +45,12 @@
 %\author{R.B. Piccinini}\ead{rbpiccinini@gmail.com}
 
 %
-%This work derives the classical material balance equation from the more general black-oil model. It is shown that spatially averaged PVT properties are required for the material balance approach in general, but that for many cases the averaging is simply negligible for practical purposes.  An interpretation for pressure in material balance equation is provided and its relation to a reference depth is examined. The material balance equation is formulated for a varying bubble-point pressure and sufficient conditions for solution uniqueness are presented. A scheme for numerical solution is also proposed.
+%This work derives the classical material balance equation from the more general black-oil model. It is shown that spatially averaged PVT properties are required for the material balance approach in general, but that for many cases the averaging is simply negligible for practical purposes.  An interpretation for pressure in material balance equation is provided and its relation to a datum level is examined. The material balance equation is formulated for a varying bubble-point pressure and sufficient conditions for solution uniqueness are presented. A scheme for numerical solution is also proposed.
 
 
 
 \begin{abstract}
-This work examines underlying details in obtaining the classical material balance equation from a three dimensional black-oil model typical of reservoir simulations. The black-oil equations are integrated in reservoir volume and quantities such as fluid properties are spatially averaged. The material balance equation is obtained for averaged quantities and it is applied to calculate reservoir pressure. It is shown that the calculated pressure corresponds to the local pressure at an arbitrary reference depth and not to the average reservoir pressure in general. The definition of a convenient reference depth is also discussed. It is found that the physical correctness of PVT properties
+This work examines underlying details in obtaining the classical material balance equation from a three dimensional black-oil model typical of reservoir simulations. The black-oil equations are integrated in reservoir volume and quantities such as fluid properties are spatially averaged. The material balance equation is obtained for averaged quantities and it is applied to calculate reservoir pressure. It is shown that the calculated pressure corresponds to the local pressure at the datum level. The definition of a convenient datum level is also discussed. It is found that the physical correctness of PVT properties
 % obtained from laboratory experiments or empirical correlations
 is a sufficient condition for solution uniqueness of the material balance equation when pressure is the unknown quantity.
 Finally, a numerical scheme for solving the material balance equation is proposed based on nonlinear root finding algorithms.
@@ -158,7 +158,7 @@ This section presents black-oil equations, performs the averaging of quantities 
 %S_o + S_g +S_w = 1 \, .
 %\end{equation}
 
-We assume that the reservoir is a hydraulically connected volume where hydrocarbon saturation is nonzero. By a hidraulically connected volume, we mean that it is possible to observe a common pressure decline trend when some region of the reservoir is under prodution, as discussed in \cite{dakepractice}. Reservoir fluids are composed of oil and gas pseudo-components and water component. There can be three fluid phases: oil, gas and (liquid) water. Oil phase is composed of oil and gas components, gas phase is composed uniquely by gas component and, water phase, uniquely by water component. The only allowed mass transfer is of gas component between oil and gas phases, i.e., gas phase composition is always that of a dry gas.
+We assume that the reservoir is a hydraulically connected volume where hydrocarbon saturation is nonzero. By a hidraulically connected volume, we mean that it is possible to observe a common pressure decline trend when any reservoir portion is under production \citep{dakepractice}. Reservoir fluids are composed of oil and gas pseudo-components and water component. There can be three fluid phases: oil, gas and (liquid) water. Oil phase is composed of oil and gas components, gas phase is composed uniquely by gas component and, water phase, uniquely by water component. The only allowed mass transfer is of gas component between oil and gas phases, i.e., the gas phase composition is always that of a dry gas.
 
 %In addition to the three fluid components and phases, there is the solid phase composed by the rock.
 
@@ -230,18 +230,18 @@ Momentum balance for each phase is given by an extension of Darcy's law to multi
 \vec{u}_\alpha = -\frac{k_{r,\alpha} \vec{\vec{k}}}{\mu_\alpha}\cdot \left(\nabla p_\alpha - \rho_\alpha \vec{g}\right) \, , \quad \alpha=o,w,g \, .
 \end{equation}
 
-Phase densities are functions of the local thermodynamic state:
-\begin{equation}
-\rho_w = \rho_w \left(p_w, T_w\right) \, ,
-\end{equation}
-\begin{equation}
-\rho_o = \rho_o \left(p_o, T_o,Y_g\right) \, ,
-\end{equation}
-\begin{equation}
-\rho_g = \rho_g \left(p_g, T_g\right) \, .
-\end{equation}
+%Phase densities are functions of the local thermodynamic state:
+%\begin{equation}
+%\rho_w = \rho_w \left(p_w, T_w\right) \, ,
+%\end{equation}
+%\begin{equation}
+%\rho_o = \rho_o \left(p_o, T_o,Y_g\right) \, ,
+%\end{equation}
+%\begin{equation}
+%\rho_g = \rho_g \left(p_g, T_g\right) \, .
+%\end{equation}
 
-Another simplification is now made assuming thermal equilibrium in the reservoir volume, i.e.,
+Another simplification is now assuming thermal equilibrium in the reservoir volume, i.e.,
 \begin{equation}
 T_w = T_o = T_g = T_{rock} = T = \text{constant} \, .
 \end{equation}
@@ -249,13 +249,11 @@ Temperature is a constant prescribed value and no equation for energy balance is
 
 %Temperature is a constant prescribed value and no equation for energy balance is needed. It follows from Gibbs' phase rule that the equilibrium of oil and gas phases has only two degrees of freedom if the component number is restricted to the two pseudo-components. As temperature is assumed constant, oil phase density is a function of pressure alone. The same is valid for mass fractions of gas and oil components in oil phase:
 
-It follows from Duhem's theorem that the equilibrium of oil and gas phases is determined if, in addition to the mass balance equations, two other properties are prescribed. From Gibbs' phase rule, the system has two degrees of freedom. It is then necessary to specify two intensive properties. The constant temperature is one and pressure is chosen as the other. Oil phase density now becomes a function of pressure alone. The same is valid for mass fractions of gas and oil components in oil phase:
+It follows from Duhem's theorem that the equilibrium of oil and gas phases is determined if, in addition to the mass balance equations, two other properties are prescribed. From Gibbs' phase rule, the system has two degrees of freedom. It is then necessary to specify two intensive properties: the constant temperature is one and the local pressure is chosen as the other. Oil phase density now becomes a function of pressure alone. The same is valid for mass fractions of gas and oil components in oil phase:
 \begin{equation}
-Y_g = Y_g (p_o) \, ,
+\rho_o = \rho_o \left(p_o\right) \, , \quad Y_g = Y_g (p_o) \, , \quad Y_o = Y_o (p_o) \, .
 \end{equation}
-\begin{equation}
-Y_o = Y_o (p_o) \, .
-\end{equation}
+
 
 Porosity ($\phi$) is assumed a function of pore pressure ($p_P$). Because three phases are present in general, such quantity is defined by some relation of the type \citep{kim2011rigorous}:
 \begin{equation}
@@ -492,8 +490,8 @@ To overcome this difficulty, a possible simplification to the pressure field is 
 \begin{equation}\label{eq: p=rhogh}
 \int_{p_\alpha^{ref} (t)}^{p_\alpha (t,z)} \frac{dp_\alpha^{'}}{\rho_\alpha \left(p_\alpha^{'}\right)} = g\left(z - z_{ref}\right) \, ,
 \end{equation}
-where $p_\alpha (t,z)$ is the pressure field of phase $\alpha$ and $p_\alpha^{ref} (t)$ is the pressure at some reference depth $z_{ref}$.
-It is now possible to compute the pressure field from Eq.~\eqref{eq: p=rhogh} and average fluid properties accordingly. 
+where $p_\alpha (t,z)$ is the pressure field of phase $\alpha$ and $p_\alpha^{ref} (t)$ is the pressure at the datum level $z_{ref}$.
+It is now possible to compute the pressure field from Eq.~\eqref{eq: p=rhogh} and average fluid properties accordingly.
 
 It can be shown that neglecting the variation of density with depth does not introduce  important errors. As pressure increases with depth according to the hydrostatic gradient, density also increases but by a negligible amount. For instance, the average oil density can be approximated to the local density at the reference level: $\bar{\rho}_o (t) \approx \rho_o (t, z_{ref})$.
 
@@ -514,7 +512,7 @@ It can be shown that neglecting the variation of density with depth does not int
 %
 %For answering this question, we examine the two roles played by pressure in material balance equation: computation of phase density and phase equilibrium. 
 %
-%We shall see that to compute the averaged phase density, we may define some reference depth and use the corresponding local density as an approximation to the averaged density without introducing any important error. 
+%We shall see that to compute the averaged phase density, we may define some datum level and use the corresponding local density as an approximation to the averaged density without introducing any important error. 
 
 This approximation can be quantified by putting together the expressions for compressibility and hydrostatic equilibrium. For this, we assume a constant isothermal compressibility for oil phase,
 \begin{equation}\label{eq: grado}
@@ -545,9 +543,9 @@ To investigate the order of magnitude of Eqs.~\eqref{eq: gradodz} and \eqref{eq:
 \end{equation}
 
 Oil and gas densities are thus approximately constant with depth.
-The reference depth for computing phase density (and also the formation volume factor) can be any arbitrary depth inside phase volume. Under the approximation of a constant density, it is straightforward to show that $\bar{\rho}_\alpha = \rho_\alpha\left(\bar{p}_\alpha\right)$ and $\bar{p}_\alpha=p_\alpha\left(z^0_\alpha\right)$, where $z^0_\alpha$ is the depth of phase gravity center for $\alpha=w, o, g$. The pressure calculated in the material balance equation corresponds to the local pressure at $z^{ref}$ for negligible hydrodynamic gradients and only equals the average reservoir pressure $\bar{p}_\alpha$ if the reference depth is that of the gravity center, $z^{ref}=z^0$.
+The datum level for computing phase density (and also the formation volume factor) can be any arbitrary depth inside phase volume. Under the approximation of a constant density, it is straightforward to show that $\bar{\rho}_\alpha = \rho_\alpha\left(\bar{p}_\alpha\right)$ and $\bar{p}_\alpha=p_\alpha\left(z^0_\alpha\right)$, where $z^0_\alpha$ is the depth of phase gravity center for $\alpha=w, o, g$. The pressure calculated in the material balance equation corresponds to the local pressure at $z^{ref}$ for negligible hydrodynamic gradients and only equals the average reservoir pressure $\bar{p}_\alpha$ if the datum level is that of the gravity center, $z^{ref}=z^0$.
 
-For the case of an oil reservoir with a gas cap, the reference depth should be defined at the gas-oil contact. The point here is that at gas-oil contact both gas and oil densities are computed using the pressure local value. If the reference depth, common to all phases, is otherwise defined below gas-oil contact, a higher gas density will be computed because of the oil hydrostatic gradient:
+For the case of an oil reservoir with a gas cap, the datum level can be defined at the gas-oil contact. The point here is that at gas-oil contact both gas and oil densities are computed using the pressure local value. If the datum level, common to all phases, is otherwise defined below gas-oil contact, a higher gas density will be computed because of the oil hydrostatic gradient:
 \begin{equation}
 \frac{1}{\rho_g}\left(\frac{\partial \rho_g}{\partial z}\right)_{T,Z} = \frac{\rho_o}{\rho_g}\left(\frac{\mathcal{M}}{Z R T}\right)g  \, ,
 \end{equation}
