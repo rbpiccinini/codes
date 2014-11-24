@@ -488,14 +488,14 @@ The material balance equation is widely used to relate production and injection 
 
 To overcome this difficulty, a possible simplification to the pressure field is to neglect hydrodynamic gradients and assume hydrostatic equilibrium: $\vec{u}_\alpha \equiv 0$. This implies that $\nabla p_\alpha \equiv \rho_\alpha \vec{g}$, and, as a consequence, pressure becomes a function of time and depth given by the following expression:
 \begin{equation}\label{eq: p=rhogh}
-\int_{p_\alpha^{ref} (t)}^{p_\alpha (t,z)} \frac{dp_\alpha^{'}}{\rho_\alpha \left(p_\alpha^{'}\right)} = g\left(z - z_{ref}\right) \, ,
+\int_{p_\alpha (t,z_{datum})}^{p_\alpha (t,z)} \frac{dp_\alpha^{'}}{\rho_\alpha \left(p_\alpha^{'}\right)} = g\left(z - z_{datum}\right) \, ,
 \end{equation}
-where $p_\alpha (t,z)$ is the pressure field of phase $\alpha$ and $p_\alpha^{ref} (t)$ is the pressure at the datum level $z_{ref}$.
+where $p_\alpha (t,z)$ is the pressure field of phase $\alpha$ and $p_\alpha (t,z_{datum})$ is the pressure at the datum level $z_{datum}$.
 It is now possible to compute the pressure field from Eq.~\eqref{eq: p=rhogh} and average fluid properties accordingly.
 
-It can be shown that neglecting the variation of density with depth does not introduce  important errors. As pressure increases with depth according to the hydrostatic gradient, density also increases but by a negligible amount. For instance, the average oil density can be approximated to the local density at the reference level: $\bar{\rho}_o (t) \approx \rho_o (t, z_{ref})$.
+It can be shown that neglecting the variation of density with depth does not introduce  important errors. As pressure increases with depth according to the hydrostatic gradient, density also increases but by a negligible amount. For instance, the average oil density can be approximated to the local density at the datum level: $\bar{\rho}_o (t) \approx \rho_o (t, z_{datum})$.
 
-%the same applies to the formation volume factor: $B_o \approx \rho_o (t, z_{ref})/ \rho_o^{ST}$.
+%the same applies to the formation volume factor: $B_o \approx \rho_o (t, z_{datum})/ \rho_o^{ST}$.
 
 %For liquids, a first-order approximation to the relationship between density and pressure at constant temperature and composition can be assumed:
 
@@ -543,7 +543,9 @@ To investigate the order of magnitude of Eqs.~\eqref{eq: gradodz} and \eqref{eq:
 \end{equation}
 
 Oil and gas densities are thus approximately constant with depth.
-The datum level for computing phase density (and also the formation volume factor) can be any arbitrary depth inside phase volume. Under the approximation of a constant density, it is straightforward to show that $\bar{\rho}_\alpha = \rho_\alpha\left(\bar{p}_\alpha\right)$ and $\bar{p}_\alpha=p_\alpha\left(z^0_\alpha\right)$, where $z^0_\alpha$ is the depth of phase gravity center for $\alpha=w, o, g$. The pressure calculated in the material balance equation corresponds to the local pressure at $z^{ref}$ for negligible hydrodynamic gradients and only equals the average reservoir pressure $\bar{p}_\alpha$ if the datum level is that of the gravity center, $z^{ref}=z^0$.
+The datum level for computing phase density (or the formation volume factor) can be any arbitrary depth inside phase volume. The pressure calculated in the material balance equation corresponds to the local pressure at $z_{datum}$ for negligible hydrodynamic gradients.
+
+%Under the approximation of a constant density, it is straightforward to show that $\bar{\rho}_\alpha = \rho_\alpha\left(\bar{p}_\alpha\right)$ and $\bar{p}_\alpha=p_\alpha\left(z^0_\alpha\right)$, where $z^0_\alpha$ is the depth of phase gravity center for $\alpha=w, o, g$. 
 
 For the case of an oil reservoir with a gas cap, the datum level can be defined at the gas-oil contact. The point here is that at gas-oil contact both gas and oil densities are computed using the pressure local value. If the datum level, common to all phases, is otherwise defined below gas-oil contact, a higher gas density will be computed because of the oil hydrostatic gradient:
 \begin{equation}
