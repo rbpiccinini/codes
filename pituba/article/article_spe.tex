@@ -68,7 +68,7 @@ The equation developed by \cite{schilthuis1936active} did not account for the no
 
 %Black-oil equations arise from the generalization of the zero dimensional concept to a three-dimensional model that incorporates Darcy's law and entails the same approach for phase equilibrium \citep{aziz1979petroleum}.
 
-The term black-oil in this context refers to specific hydrocarbon compositions to which phase equilibrium for isothermal changes in pressure can be described by a two pseudo-component system. For such reservoir fluids, gas phase composition remains essentially constant in the range of pressures observed during production so that a pseudo-gas component can be defined. Similarly, a pseudo-oil component can be defined by subtracting the pseudo-gas component from oil phase composition. After defining the pseudo-components, the number of transport equations needed for hydrocarbon components is reduced from a usually large number to only two.
+The term black-oil in this context refers to specific hydrocarbon compositions to which phase equilibrium for isothermal changes in pressure can be described by a two pseudo-component system. For such reservoir fluids, gas phase composition remains essentially constant in the range of pressures observed during production so that a pseudo-gas component can be defined. Similarly, a pseudo-oil component can be defined by subtraction of the pseudo-gas component from oil phase composition. After defining the pseudo-components, the number of transport equations needed for hydrocarbon components is reduced from a usually large number to only two.
 
 %A general restriction of this approach is that reservoir temperature must be sufficiently below the mixture critical temperature so that different fluid phases have clearly distinguishable properties \citep{danesh1998pvt,firoozabadi1999thermodynamics}.
 
@@ -97,7 +97,7 @@ Many works have reported applications of the material balance equation in the li
 
 %The requirement of a spatially constant pressure makes the material balance equation more suitable for shallow reservoirs, where gravity field is less important in phase equilibrium.
 
- The same approach of varying bubble-point pressure widely used in reservoir simulation, which is found in \cite{aziz1979petroleum} and \cite{ertekin2001basic}, is also applied here. This approach extends the material balance equation to saturated reservoirs under pressure maintenance (e.g. fluid injection). The applicability, however, requires negligible non-equilibrium effects in chemical equilibrium.
+ The same approach of varying bubble-point pressure widely used in reservoir simulation, which is found in \cite{aziz1979petroleum} and \cite{ertekin2001basic}, is also applied here. This approach extends the material balance equation to saturated reservoirs under pressure maintenance (e.g. fluid injection). The applicability, however, requires negligible non-equilibrium effects.
 
 %It has already been shown the importance of not having strong flow near interface that prevents mixing and causes pressure to drop locally \citep{steffensen1973reservoir,utseth1981numerical}.
 
@@ -158,7 +158,7 @@ This section presents black-oil equations, performs the averaging of quantities 
 %S_o + S_g +S_w = 1 \, .
 %\end{equation}
 
-We assume that the reservoir is a hydraulically connected volume where hydrocarbon saturation is nonzero. By a hidraulically connected volume, we mean that it is possible to observe a common pressure decline trend when any reservoir portion is under production \citep{dakepractice}. Reservoir fluids are composed of oil and gas pseudo-components and water component. There can be three fluid phases: oil, gas and (liquid) water. Oil phase is composed of oil and gas components, gas phase is composed uniquely by gas component and, water phase, uniquely by water component. The only allowed mass transfer is of gas component between oil and gas phases, i.e., the gas phase composition is always that of a dry gas.
+We assume that the reservoir is a hydraulically connected volume where hydrocarbon saturation is nonzero. By a hidraulically connected volume, we mean that it is possible to observe a common pressure decline trend when any reservoir portion is under production \citep{dakepractice}. Reservoir fluids are composed of oil and gas pseudo-components and water component. There can be three fluid phases at most: oil, gas and (liquid) water. Oil phase is composed of oil and gas components, gas phase is composed uniquely by gas component and, water phase, uniquely by water component. The only allowed mass transfer is of gas component between oil and gas phases. The gas phase composition is always that of a dry gas.
 
 %In addition to the three fluid components and phases, there is the solid phase composed by the rock.
 
@@ -241,7 +241,7 @@ Momentum balance for each phase is given by an extension of Darcy's law to multi
 %\rho_g = \rho_g \left(p_g, T_g\right) \, .
 %\end{equation}
 
-Another simplification is now assuming thermal equilibrium in the reservoir volume, i.e.,
+Another simplification is now made assuming thermal equilibrium in the reservoir volume, i.e.,
 \begin{equation}
 T_w = T_o = T_g = T_{rock} = T = \text{constant} \, .
 \end{equation}
@@ -249,7 +249,7 @@ Temperature is a constant prescribed value and no equation for energy balance is
 
 %Temperature is a constant prescribed value and no equation for energy balance is needed. It follows from Gibbs' phase rule that the equilibrium of oil and gas phases has only two degrees of freedom if the component number is restricted to the two pseudo-components. As temperature is assumed constant, oil phase density is a function of pressure alone. The same is valid for mass fractions of gas and oil components in oil phase:
 
-It follows from Duhem's theorem that the equilibrium of oil and gas phases is determined if, in addition to the mass balance equations, two other properties are prescribed. From Gibbs' phase rule, the system has two degrees of freedom. It is then necessary to specify two intensive properties: the constant temperature is one and the local pressure is chosen as the other. Oil phase density now becomes a function of pressure alone. The same is valid for mass fractions of gas and oil components in oil phase:
+It follows from Duhem's theorem that the equilibrium of oil and gas phases is determined if, in addition to the mass balance equations, two other properties are prescribed. From Gibbs' phase rule, the system has two degrees of freedom. It is then necessary to specify two intensive properties: the constant temperature is one and the local pressure is chosen as the other. Since temperature was assumed constant, oil phase density becomes a function of pressure alone. The same is valid for mass fractions of gas and oil components in oil phase:
 \begin{equation}
 \rho_o = \rho_o \left(p_o\right) \, , \quad Y_g = Y_g (p_o) \, , \quad Y_o = Y_o (p_o) \, .
 \end{equation}
@@ -300,7 +300,7 @@ Derivation of the material balance equation consists in integrating black-oil eq
 %\bar{S}_\alpha = \int_\Omega S_\alpha \phi dV \, .
 %\end{equation}
 
-Integrating Eqs.~\eqref{eq: Sw1}, \eqref{eq: So1} and \eqref{eq: Sg1} in volume and applying divergence theoreom gives:
+Integrating Eqs.~\eqref{eq: Sw1}, \eqref{eq: So1} and \eqref{eq: Sg1} in volume and applying divergence theorem gives:
 \begin{itemize}
 \item water component:
 \begin{align}\label{eq: Sw2}
@@ -386,7 +386,7 @@ Eqs. \eqref{eq: Sw2}, \eqref{eq: So2} and \eqref{eq: Sg2} are rewritten in terms
 \end{equation}
 \end{itemize}
 
-We now introduce usual definitions from petroleum engineering for the description of volumetric and solubility changes. In what concerns volumetric changes, $B_w$, $B_o$ and $B_g$, the formation volume factors of water, oil and gas phases, respectively, express the ratio of a phase volume at reservoir condition to its volume at surface condition, i.e.:
+We now introduce usual definitions from petroleum engineering for the description of volumetric and solubility changes. In what concerns volumetric changes, $B_w$, $B_o$ and $B_g$, the formation volume factors of water, oil and gas phases, respectively, express the ratio of a phase volume at reservoir condition to its volume at standard surface condition, i.e.:
 
 \begin{equation}\label{eq: Bw}
 B_w = \frac{\rho_w^{ST}}{\bar{\rho}_w} \, ,
@@ -406,7 +406,7 @@ In what concerns changes in gas solubility in oil phase, the solubility ratio ($
 R_s = \frac{\rho_o^{ST} / \bar{Y}_o}{\rho_g^{ST} / \bar{Y}_g} \, ,
 \end{equation}
 
-or using $\bar{Y}_o + \bar{Y}_g = 1$:
+or, using $\bar{Y}_o + \bar{Y}_g = 1$:
 \begin{equation}
 R_s = \frac{\rho_o^{ST}}{\rho_g^{ST}}\frac{\bar{Y}_g}{1-\bar{Y}_g} \, .
 \end{equation}
@@ -451,7 +451,7 @@ V_{p2}\left(\frac{\bar{S}_{g2}}{B_{g2}} +\frac{\bar{S}_{o2} R_{s2}}{B_{o2}}\righ
 
 Where $N=V_{p1} \bar{S}_{o1}/B_{o1}$ and $W=V_{p1} \bar{S}_{w1}/B_{w1}$ are the initial volumes of oil and water measured at surface condition and $m=V_{p1} \bar{S}_{g1}/B_{o1} N$ is the ratio of the initial volumes of gas and oil phases measured at reservoir condition.
 
-An equation for the bubble-point can be obtained by setting $\bar{S}_{g2}=0$ in Eq.~\eqref{eq: Sg5} and solving it for the solubility ratio at bubble-point pressure, or $R_s(p=P_b)$:
+An equation for the bubble-point can be obtained by setting $\bar{S}_{g2}=0$ in Eq.~\eqref{eq: Sg5} and solving it for the solubility ratio at bubble-point pressure, $R_s(p=P_b)$:
 \begin{equation}\label{eq: eqPb}
 \begin{split}
 R_{s2}\left(p=P_b\right) = &\Big[N\left(m B_{1}/B_{g1} +R_{s1}\right)\\
@@ -594,7 +594,7 @@ A numerical solution of Eq.~\eqref{eq: MBE_short} is presented here. We start by
 \begin{equation}\label{eq: residual}
 \varepsilon(p_2) = \frac{E+F_i+C-F_p}{V_{p1}} \, .
 \end{equation}
-We proceed showing that $\varepsilon$ is a monotonic function provided some conditions on fluid properties are observed and that, as a consequence, only one root of $\varepsilon$ exists at most. Equivalently, we can say that only one solution exists for the material balance equation.
+We proceed showing that $\varepsilon$ is a monotonic function provided some conditions on fluid properties are observed and that only one root of $\varepsilon$ exists at most. Equivalently, we can say that only one solution exists for the material balance equation.
 
 %The conditions imposed on fluid PVT properties are the mathematical equivalent of requiring a far from critical thermodynamic state.
 
@@ -610,9 +610,10 @@ We now state without proof that the following affirmatives are sufficient condit
 \item $f'<0$ everywhere.
 \end{enumerate}
 
-The residual function clearly satisfies the first two affirmatives because phase properties are continuous everywhere and are also differentiable everywhere except for the phase change at bubble-point pressure.
-The third affirmative is proved by rewriting $d\epsilon/dp$ as a sum of four parcels, each corresponding to a different phase (three fluid phases and the solid rock). For the fluid phases, each parcel is composed of two factors: current volume \textit{in-situ} and volume derivative with respect to pressure:
-\begin{equation}
+The residual function clearly satisfies the first two affirmatives because phase properties are continuous everywhere and are also differentiable everywhere except  at bubble-point pressure.
+
+The third affirmative is proved by rewriting $d\epsilon/dp$ as a sum of four negative terms:
+\begin{equation}\label{eq: deps}
 \begin{split}
 &V_{p1}\frac{d\varepsilon}{dp}=\underbrace{\left(N-N_p\right) \left(\frac{dB_o}{dp} - B_g \frac{dR_s}{dp} \right)}_\text{oil phase}\\
 &+\underbrace{\left[N R_{s1}+mN\frac{B_{o1}}{B_{g1}}+G_i-\left(N-N_p\right)R_{s2}-G_p\right] \frac{dB_g}{dp}}_\text{gas phase}\\
@@ -621,9 +622,7 @@ The third affirmative is proved by rewriting $d\epsilon/dp$ as a sum of four par
 \end{split}
 \end{equation}
 
-\textit{In-situ} volumes (e.g. $N-N_p$ for oil phase) are non-negative values,  pressure derivatives of fluid volumes are non-positive values (fluid volume cannot increase as pressure increases) and the pressure derivative of porous volume is a positive value (as fluid pressure increases, porous volume expands owing to rock compression). 
-
-The value of $d\varepsilon/dp$ is thus negative if at least one phase is compressible because it is a sum of products between negative and positive factors.
+Each term in Eq. \eqref{eq: deps} corresponds to a different phase (three fluid phases and the solid rock). For the fluid phases, each term is the product of the current volume \textit{in-situ} (a positive quantity) and a volume derivative with respect to pressure (a negative quantity). Since pore volume expands with an increase of fluid pressure, $dV_p/dp$ is positive. The value of $d\varepsilon/dp$ is thus necessarily negative.
 
 In summary, the following four relations constitute sufficient conditions for $\varepsilon(p)$ be a strictly decreasing function and, therefore, for material balance equation to have only one solution:
 \begin{equation}\label{eq: PVTH1}
