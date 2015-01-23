@@ -64,7 +64,7 @@ material balance \sep black-oil equations \sep reservoir engineering.
 \section{Introduction}
 The material balance equation is a classical tool in petroleum reservoir engineering. It consists of the algebraic equation originally presented in \cite{schilthuis1936active} as a zero dimensional model for estimating reservoir pressure from mass balance. \cite{schilthuis1936active} introduced the hypothesis of equilibrium attained at all times not necessarily in the entire reservoir volume, but in the regions of high permeability where most of the production would come from and where pressure would present a similar trend. Such regions were said to contain an active oil.
 
-The equation developed by \cite{schilthuis1936active} did not account for the non-existence of mechanical, phase or thermal equilibrium. An attempt to introduce non-equilibrium effects of hydrodynamic origin came with \textit{black-oil} equations \citep{aziz1979petroleum,blackoil}. The novelty on hydrodynamics was the introduction of a macroscopic equation of motion using Darcy's law. 
+The equation developed by \cite{schilthuis1936active} did not account for the non-existence of mechanical, chemical or thermal equilibrium. An attempt to introduce non-equilibrium effects of hydrodynamic origin came with \textit{black-oil} equations \citep{aziz1979petroleum,blackoil}. The novelty on hydrodynamics was the introduction of a macroscopic equation of motion using Darcy's law. 
 
 %Black-oil equations arise from the generalization of the zero dimensional concept to a three-dimensional model that incorporates Darcy's law and entails the same approach for phase equilibrium \citep{aziz1979petroleum}.
 
@@ -97,7 +97,7 @@ Many works have reported applications of the material balance equation in the li
 
 %The requirement of a spatially constant pressure makes the material balance equation more suitable for shallow reservoirs, where gravity field is less important in phase equilibrium.
 
- The same approach of varying bubble-point pressure widely used in reservoir simulation, which is found in \cite{aziz1979petroleum} and \cite{ertekin2001basic}, is also applied here. This approach extends the material balance equation to saturated reservoirs under pressure maintenance (e.g. fluid injection). The applicability, however, requires negligible non-equilibrium effects in phase equilibrium.
+ The same approach of varying bubble-point pressure widely used in reservoir simulation, which is found in \cite{aziz1979petroleum} and \cite{ertekin2001basic}, is also applied here. This approach extends the material balance equation to saturated reservoirs under pressure maintenance (e.g. fluid injection). The applicability, however, requires negligible non-equilibrium effects in chemical equilibrium.
 
 %It has already been shown the importance of not having strong flow near interface that prevents mixing and causes pressure to drop locally \citep{steffensen1973reservoir,utseth1981numerical}.
 
@@ -482,18 +482,23 @@ It is an algebraic equation that can be solved for any one of its terms, provide
 % pressure field can be assumed constant
 % pressure field can be given by hydrostatic equilibrium
 
-The material balance equation is widely used to relate production and injection to reservoir pressure. Actually, all averaged phase properties in Eq.~\eqref{eq: MBE} depend on the pressure field, and so does the pore volume. If the reservoir is under production, though, the pressure field is not known and for its prediction one would have to resort to more advanced techniques such as reservoir simulation.
+The material balance equation is widely used to relate production and injection to reservoir pressure. Actually, all averaged phase properties in Eq.~\eqref{eq: MBE} depend on the pressure field. If the reservoir is under production, though, the pressure field is not known and for its prediction one would have to resort to more advanced techniques such as reservoir simulation.
 
 %Although it was not needed to assume no fluid flow to obtain the material balance equation, fluid motion can only be taken into account in the averaging of fluid properties if the pressure field is known. For any practical purpose, this is not true.
 
-To overcome this difficulty, a possible simplification to the pressure field is to neglect hydrodynamic gradients and assume hydrostatic equilibrium: $\vec{u}_\alpha \equiv 0$. This implies that $\nabla p_\alpha \equiv \rho_\alpha \vec{g}$, and, as a consequence, pressure becomes a function of time and depth given by the following expression:
-\begin{equation}\label{eq: p=rhogh}
-\int_{p_\alpha (t,z_{datum})}^{p_\alpha (t,z)} \frac{dp_\alpha^{'}}{\rho_\alpha \left(p_\alpha^{'}\right)} = g\left(z - z_{datum}\right) \, ,
-\end{equation}
-where $p_\alpha (t,z)$ is the pressure field of phase $\alpha$ and $p_\alpha (t,z_{datum})$ is the pressure at the datum level $z_{datum}$.
-It is now possible to compute the pressure field from Eq.~\eqref{eq: p=rhogh} and average fluid properties accordingly.
+To overcome this difficulty, a possible simplification to the pressure field is to neglect hydrodynamic gradients and assume mechanical equilibrium, i.e., $\vec{u}_\alpha = 0$. This implies that pressure at some time instant is only a function of depth: $\nabla p = \partial p_\alpha/\partial z = \rho_\alpha \vec{g}$.
 
-It can be shown that neglecting the variation of density with depth does not introduce  important errors. As pressure increases with depth according to the hydrostatic gradient, density also increases but by a negligible amount. For instance, the average oil density can be approximated to the local density at the datum level: $\bar{\rho}_o (t) \approx \rho_o (t, z_{datum})$.
+% so that pressure is a function of time and depth given by the following expression:
+%\begin{equation}\label{eq: p=rhogh}
+%\int_{p_\alpha (t,z_{datum})}^{p_\alpha (t,z)} %\frac{dp_\alpha^{'}}{\rho_\alpha \left(p_\alpha^{'}\right)} = g\left(z - %z_{datum}\right) \, ,
+%\end{equation}
+
+%where $p_\alpha (t,z)$ is the pressure field of phase $\alpha$ and $p_\alpha (t,z_{datum})$ is the pressure at the datum level $z_{datum}$. If the pressure at the datum level is known, it is possible to compute the pressure field from Eq.~\eqref{eq: p=rhogh} and average fluid properties accordingly.
+
+It will be shown that the pressure field can be further simplified by neglecting the variation of density with depth. For instance, the average oil density can be approximated to the local density at the datum level, $\rho_o (t,z) \approx \rho_o (t, z_{datum})$, what results in the following simple expression for the pressure field:
+\begin{equation}
+p_\alpha (t,z) = p_\alpha \left(t, z_{datum}\right)+ \rho_\alpha (t, z_{datum}) g \left(z-z_{datum}\right) \, .
+\end{equation}
 
 %the same applies to the formation volume factor: $B_o \approx \rho_o (t, z_{datum})/ \rho_o^{ST}$.
 
@@ -514,7 +519,7 @@ It can be shown that neglecting the variation of density with depth does not int
 %
 %We shall see that to compute the averaged phase density, we may define some datum level and use the corresponding local density as an approximation to the averaged density without introducing any important error. 
 
-This approximation can be quantified by putting together the expressions for compressibility and hydrostatic equilibrium. For this, we assume a constant isothermal compressibility for oil phase,
+ As pressure increases with depth according to the hydrostatic gradient, density also increases but by a negligible amount. This approximation can be quantified by putting together the expressions for compressibility and hydrostatic equilibrium. For this, we assume a constant isothermal compressibility for oil phase,
 \begin{equation}\label{eq: grado}
 \frac{1}{\rho_o}\left(\frac{\partial \rho_o}{\partial p_o} \right)_{T,Y_o} = c_o \, ,
 \end{equation}
@@ -528,7 +533,7 @@ Similarly for the gas phase, using the state equation $pV = Zn R T$, we obtain i
 \frac{1}{\rho_g}\left(\frac{\partial \rho_g}{\partial p_g}\right)_{T} = \frac{1}{p_g}-\frac{1}{Z}\frac{\partial Z}{\partial p_g} \, .
 \end{equation}
 
-Assuming reservoir temperature to be sufficiently above gas critical temperature and thus a negligible variation of the Z-factor with pressure, we use hydrostatic equilibrium again and obtain the derivative of gas density with depth:
+Assuming reservoir temperature to be sufficiently above gas phase critical temperature and thus a negligible variation of the Z-factor with pressure, we use hydrostatic equilibrium again and obtain the derivative of gas density with depth:
 \begin{equation}\label{eq: gradgdz}
 \frac{1}{\rho_g}\left(\frac{\partial \rho_g}{\partial z}\right)_{T} = \frac{\rho_g \vec{g}}{p_g} = \left(\frac{\mathcal{M}}{ Z R T}\right) g \, .
 \end{equation}
@@ -542,18 +547,19 @@ To investigate the order of magnitude of Eqs.~\eqref{eq: gradodz} and \eqref{eq:
 \frac{1}{\rho_g}\left(\frac{\partial \rho_g}{\partial z}\right)_{T,Z} \approx 5\times10^{-5}\ m^{-1} \, .
 \end{equation}
 
-Oil and gas densities are thus approximately constant with depth.
-The datum level for computing phase density (or the formation volume factor) can be any arbitrary depth inside phase volume. The pressure calculated in the material balance equation corresponds to the local pressure at $z_{datum}$ for negligible hydrodynamic gradients.
+Oil and gas densities are thus approximately constant with depth and their average values can be approximated to the local values at the datum level. The pressure calculated in the material balance equation thus corresponds to the local pressure at $z_{datum}$.
 
 %Under the approximation of a constant density, it is straightforward to show that $\bar{\rho}_\alpha = \rho_\alpha\left(\bar{p}_\alpha\right)$ and $\bar{p}_\alpha=p_\alpha\left(z^0_\alpha\right)$, where $z^0_\alpha$ is the depth of phase gravity center for $\alpha=w, o, g$. 
 
-For the case of an oil reservoir with a gas cap, the datum level can be defined at the gas-oil contact. The point here is that at gas-oil contact both gas and oil densities are computed using the pressure local value. If the datum level, common to all phases, is otherwise defined below gas-oil contact, a higher gas density will be computed because of the oil hydrostatic gradient:
+For the case of an oil reservoir with a gas cap, it is more accurate to define the datum level at the gas-oil contact. The point is that a higher gas density will be computed for a datum level bellow gas-oil contact because of the higher hydrostatic gradient of oil phase,
 \begin{equation}
 \frac{1}{\rho_g}\left(\frac{\partial \rho_g}{\partial z}\right)_{T,Z} = \frac{\rho_o}{\rho_g}\left(\frac{\mathcal{M}}{Z R T}\right)g  \, ,
 \end{equation}
 what is $\rho_o / \rho_g$ times greater than the gas hydrostatic gradient used in Eq.~\eqref{eq: gradgdz}.
 
-It was shown that the pressure variation with depth is not important for the computation of gas, oil and water densities. Nevertheless, pressure also plays a second role in the material balance equation by defining phase equilibrium, for what the pressure variation with depth may not be negligible in the solubility ratio: 
+It was shown that the pressure variation with depth can be neglected for the computation of gas, oil and water densities. This is true provided that phase changes do not occur. 
+
+ for what the pressure variation with depth may not be negligible in the solubility ratio: 
 \begin{equation}\label{eq: dRsdz1}
 \frac{1}{R_s}\frac{d R_s}{dz} = \frac{1}{R_s}\frac{d R_s}{dp_o} \frac{dp_o}{dz} = \frac{\rho_o g}{R_s}\frac{dR_s}{dp_o} \, .
 \end{equation}
@@ -584,7 +590,7 @@ From Eq.~\eqref{eq: dRsdz2}, we see that the variation of pressure with depth ma
 %where newly introduced terms are defined in Table~\ref{tab: MBE}. Eq.~\eqref{eq: MBE} is commonly referred to as the Material Balance Equation (MBE).
 
 \section{Solution of material balance equation}
-A numerical solution of Eq.~\eqref{eq: MBE_short} is presented here. We shall start defining a residual function ($\varepsilon$) for which the pressure solving Eq.~\eqref{eq: MBE_short} is a root:
+A numerical solution of Eq.~\eqref{eq: MBE_short} is presented here. We start by defining a residual function ($\varepsilon$) for which the pressure solving Eq.~\eqref{eq: MBE_short} is a root:
 \begin{equation}\label{eq: residual}
 \varepsilon(p_2) = \frac{E+F_i+C-F_p}{V_{p1}} \, .
 \end{equation}
@@ -604,7 +610,7 @@ We now state without proof that the following affirmatives are sufficient condit
 \item $f'<0$ everywhere.
 \end{enumerate}
 
-The residual function clearly satisfies the first two affirmatives because fluid properties are continuous everywhere and are also differentiable everywhere except for the first order phase change at bubble-point pressure.
+The residual function clearly satisfies the first two affirmatives because phase properties are continuous everywhere and are also differentiable everywhere except for the phase change at bubble-point pressure.
 The third affirmative is proved by rewriting $d\epsilon/dp$ as a sum of four parcels, each corresponding to a different phase (three fluid phases and the solid rock). For the fluid phases, each parcel is composed of two factors: current volume \textit{in-situ} and volume derivative with respect to pressure:
 \begin{equation}
 \begin{split}
@@ -615,9 +621,9 @@ The third affirmative is proved by rewriting $d\epsilon/dp$ as a sum of four par
 \end{split}
 \end{equation}
 
-\textit{In-situ} volumes (e.g. $N-N_p$ for oil phase) are non-negative values. Pressure derivatives of fluid volumes are non-positive values (fluid volume cannot increase as pressure increases) and pressure derivative of porous volume is a positive value (as fluid pressure increases, porous volume expands owing to rock compression).
+\textit{In-situ} volumes (e.g. $N-N_p$ for oil phase) are non-negative values,  pressure derivatives of fluid volumes are non-positive values (fluid volume cannot increase as pressure increases) and the pressure derivative of porous volume is a positive value (as fluid pressure increases, porous volume expands owing to rock compression). 
 
-The value of $d\varepsilon/dp$ is thus negative if at least one phase is compressible because it would be a sum of products between negative and positive factors.
+The value of $d\varepsilon/dp$ is thus negative if at least one phase is compressible because it is a sum of products between negative and positive factors.
 
 In summary, the following four relations constitute sufficient conditions for $\varepsilon(p)$ be a strictly decreasing function and, therefore, for material balance equation to have only one solution:
 \begin{equation}\label{eq: PVTH1}
@@ -680,7 +686,7 @@ To illustrate the numerical procedure, the material balance equation was solved 
 
 Water injection starts when oil recovery factor $(RF)$ is $RF=0.08$ and it is maintained until the reservoir reaches a novel undersaturated state. Initially, the high compressibility of gas prevents pressure from raising and free gas phase is reduced because of redissolution. Finally, the reservoir reaches the undersaturated state and a steep pressure increase is seen in Fig.~\ref{fig: matbal_p} for a recovery factor about $RF=0.15$.
 
-It must be observed that the result of gas reentering oil phase completely neglects non-equilibrium effects, e.g. compositional gradients, and must be used with care. For instance, it may be in strong disagreement with real reservoir behavior when gravity segregation is present.
+It must be observed that the result of gas reentering oil phase completely neglects non-equilibrium effects, e.g. compositional gradients and diffusion of matter, and must be used with care. .
 
 Figure~\ref{fig: matbal_s} shows the formation of a free gas phase with growing $S_g$ and then its disappearance. Depending on the ratio of vertical and horizontal permeabilities or reservoir dip angle, it may also suggest the formation of a secondary gas cap.
 
