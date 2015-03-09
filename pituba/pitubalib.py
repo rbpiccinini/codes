@@ -322,8 +322,6 @@ class classEBM:
 				xlim([0,2.2])
 
 
-			self.p=p
-
 			# Save output data
 			out.px.append(resd)
 			out.Eo_p1.append(pvt.Bo(p,pvt.Pb)-pvt.Bo(res.p0,res.Pb0))
@@ -366,7 +364,6 @@ class classEBM:
 	def EqPb(self,Np,Gp,Gi):
 		res=self.res
 		pvt=self.pvt
-		p1=self.p
 		pmax=max(pvt.pe[:])
 		return (self.N*(pvt.Rs(res.p0,res.Pb0)+res.m*pvt.Bo(res.p0,res.Pb0)/pvt.Bg(res.p0))-Gp+Gi)/(self.N-Np)
 

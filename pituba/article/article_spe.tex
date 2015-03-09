@@ -486,7 +486,7 @@ The material balance equation is widely used to relate production and injection 
 
 %Although it was not needed to assume no fluid flow to obtain the material balance equation, fluid motion can only be taken into account in the averaging of fluid properties if the pressure field is known. For any practical purpose, this is not true.
 
-To overcome this difficulty, a possible simplification to the pressure field is to neglect hydrodynamic gradients and assume mechanical equilibrium, i.e., $\vec{u}_\alpha = 0$. This implies that pressure at some time instant is only a function of depth: $\nabla p = \partial p_\alpha/\partial z = \rho_\alpha \vec{g}$.
+To overcome this difficulty, a possible simplification to the pressure field is to neglect hydrodynamic gradients and assume mechanical equilibrium: $\vec{u}_\alpha = 0$. This implies that pressure at some time instant is only a function of depth: $\nabla p = \partial p_\alpha/\partial z = \rho_\alpha \vec{g}$.
 
 % so that pressure is a function of time and depth given by the following expression:
 %\begin{equation}\label{eq: p=rhogh}
@@ -495,7 +495,7 @@ To overcome this difficulty, a possible simplification to the pressure field is 
 
 %where $p_\alpha (t,z)$ is the pressure field of phase $\alpha$ and $p_\alpha (t,z_{datum})$ is the pressure at the datum level $z_{datum}$. If the pressure at the datum level is known, it is possible to compute the pressure field from Eq.~\eqref{eq: p=rhogh} and average fluid properties accordingly.
 
-It will be shown that the pressure field can be further simplified by neglecting the variation of density with depth. For instance, the average oil density can be approximated to the local density at the datum level, $\rho_o (t,z) \approx \rho_o (t, z_{datum})$, what results in the following simple expression for the pressure field:
+It will be shown that the pressure field can be further simplified by neglecting the variation of density with depth, what allows us to express the pressure field in the following simple expression:
 \begin{equation}
 p_\alpha (t,z) = p_\alpha \left(t, z_{datum}\right)+ \rho_\alpha (t, z_{datum}) g \left(z-z_{datum}\right) \, .
 \end{equation}
@@ -647,9 +647,7 @@ Eq.~\eqref{eq: PVTH1} also provides a condition to check whether PVT data obtain
 %Switching inequalities to equalities in Eqs.~\eqref{eq: PVTH1}, \eqref{eq: PVTH2} and \eqref{eq: PVTH3} is equivalent to enforcing system incompressibility. Eq.~\eqref{eq: PVTH1}, for instance, would require a volume increase in oil phase to be equal to gas volume in gas phase for any additional gas dissolution.
 
 \subsection{Solution algorithm}
-Several methods exist to find roots of nonlinear continuous functions \citep{hamming1987numerical}. One possible choice is Newton's method, which linearizes the function using either its gradient or a secant line. The secant line approach introduces a numerical smoothness to the gradient near continuous but non-differentiable points, for what it is the approach used here to deal with the bubble-point pressure.
-
-An open source implementation of the secant method is available in SciPy library \citep{scipy}. This work used the library version $0.12$.
+Several methods exist to find roots of nonlinear continuous functions \citep{hamming1987numerical}. One possible choice is Newton's method with a switch from the tangent to the secant line near the non-differentiable bubble-point pressure. Both methods are available in the open source SciPy library \citep{scipy}. This work used the library version $0.12$.
 
 %A more simple and robust option is the bisection method, which does not require the function to be differentiable anywhere. The number of iterations $n$ required to reduce search interval by a factor of $\delta$ is \citep{hamming1987numerical}:
 %\begin{equation}
