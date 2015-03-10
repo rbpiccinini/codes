@@ -2,8 +2,8 @@
 
 
 % Review
-\documentclass[authoryear,preprint,review,11pt]{elsarticle}
-%\documentclass[final,authoryear,5p,twocolumn,10pt]{elsarticle}
+%\documentclass[authoryear,preprint,review,11pt]{elsarticle}
+\documentclass[final,authoryear,5p,twocolumn,10pt]{elsarticle}
 
 % Review topics:
 
@@ -62,13 +62,15 @@ material balance \sep black-oil equations \sep reservoir engineering.
 \end{frontmatter}
 
 \section{Introduction}
-The material balance equation is a classical tool in petroleum reservoir engineering. It consists of the algebraic equation originally presented in \cite{schilthuis1936active} as a zero dimensional model for estimating reservoir pressure from mass balance. \cite{schilthuis1936active} introduced the hypothesis of equilibrium attained at all times not necessarily in the entire reservoir volume, but in the regions of high permeability where most of the production would come from and where pressure would present a similar trend. Such regions were said to contain an active oil.
+The material balance equation is a classical tool in petroleum reservoir engineering. It consists of the algebraic equation originally presented in \cite{schilthuis1936active} as a zero dimensional model for estimating reservoir pressure from mass balance. \cite{schilthuis1936active} introduced the hypothesis of mechanical equilibrium attained at all times not necessarily in the entire reservoir volume, but in the regions of high permeability where most of the production would come from and where pressure would present a similar trend. Such regions were said to contain an active oil. 
 
-The equation developed by \cite{schilthuis1936active} did not account for the non-existence of mechanical, chemical or thermal equilibrium. An attempt to introduce non-equilibrium effects of hydrodynamic origin came with \textit{black-oil} equations \citep{aziz1979petroleum,blackoil}. The novelty on hydrodynamics was the introduction of a macroscopic equation of motion using Darcy's law. 
+The equation developed by \cite{schilthuis1936active} did not account for the non-existence of hydrodynamic, chemical or thermal equilibrium. An attempt to introduce non-equilibrium effects of hydrodynamic origin came with \textit{black-oil} equations \citep{aziz1979petroleum,blackoil}. The novelty on hydrodynamics was the introduction of a macroscopic equation of motion using Darcy's law. To account for the hydrodynamic non-equilibrium, black-oil equations are usually solved for in three dimensional models that aim to predict the pressure field responsible for reservoir fluid flow.
+
+Many works have reported applications of the material balance equation in the literature, but few have explored its connection with black-oil equations. \cite{ertekin2001basic} briefly addressed this subject arguing both approaches to be equivalent if capillarity and gradients of flow potential ($\nabla \Phi = \nabla p - \rho \vec{g}$) were neglected and if PVT properties were averaged in reservoir volume. This work develops the concept of negligible flow potential and proposes an averaging scheme for flow properties. Subsequently, we suggest how the pressure computed from material balance equation can be compared to the pressure field in 3D black-oil models.
 
 %Black-oil equations arise from the generalization of the zero dimensional concept to a three-dimensional model that incorporates Darcy's law and entails the same approach for phase equilibrium \citep{aziz1979petroleum}.
 
-The term black-oil in this context refers to specific hydrocarbon compositions to which phase equilibrium for isothermal changes in pressure can be described by a two pseudo-component system. For such reservoir fluids, gas phase composition remains essentially constant in the range of pressures observed during production so that a pseudo-gas component can be defined. Similarly, a pseudo-oil component can be defined by subtraction of the pseudo-gas component from oil phase composition. After defining the pseudo-components, the number of transport equations needed for hydrocarbon components is reduced from a usually large number to only two.
+The term black-oil in this context refers to specific hydrocarbon compositions to which phase equilibrium can be described by a two pseudo-component system. For such reservoir fluids, gas phase composition remains essentially constant in the range of pressures (and temperatures) observed during production so that a pseudo-gas component can be defined. Similarly, a pseudo-oil component can be defined by subtraction of the pseudo-gas component from oil phase composition. After defining the pseudo-components, the number of transport equations needed for hydrocarbon components is reduced from a usually large number to only two.
 
 %A general restriction of this approach is that reservoir temperature must be sufficiently below the mixture critical temperature so that different fluid phases have clearly distinguishable properties \citep{danesh1998pvt,firoozabadi1999thermodynamics}.
 
@@ -76,7 +78,7 @@ The term black-oil in this context refers to specific hydrocarbon compositions t
 
 %Many applications of the material balance equation have been reported in the literature, but few of them explore its connection with black-oil equations. \cite{ertekin2001basic} briefly addressed this subject arguing both approaches to be equivalent if capillarity and gradients of flow potential ($\nabla \Phi = \nabla p - \rho \vec{g}$) were neglected and if PVT properties were averaged in reservoir volume. This work develops this process examining underlying details.
 
-Many works have reported applications of the material balance equation in the literature, but few have explored its connection with black-oil equations. \cite{ertekin2001basic} briefly addressed this subject arguing both approaches to be equivalent if capillarity and gradients of flow potential ($\nabla \Phi = \nabla p - \rho \vec{g}$) were neglected and if PVT properties were averaged in reservoir volume. This work develops this concept examining underlying details.
+
 
 %\begin{subequations}
 %\begin{equation}
