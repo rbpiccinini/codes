@@ -2,8 +2,8 @@
 
 
 % Review
-%\documentclass[authoryear,preprint,review,11pt]{elsarticle}
-\documentclass[final,authoryear,5p,twocolumn,10pt]{elsarticle}
+\documentclass[authoryear,preprint,review,11pt]{elsarticle}
+%\documentclass[final,authoryear,5p,twocolumn,10pt]{elsarticle}
 
 % Review topics:
 
@@ -50,7 +50,7 @@
 
 
 \begin{abstract}
-This work examines underlying details in obtaining the classical material balance equation from a three dimensional black-oil model typical of reservoir simulations. The black-oil equations are integrated in reservoir volume and quantities such as fluid properties are spatially averaged. The material balance equation is obtained for averaged quantities and it is applied to calculate reservoir pressure. It is shown that the calculated pressure corresponds to the local pressure at the datum level. The definition of a convenient datum level is also discussed. It is found that the physical correctness of PVT properties
+This work examines underlying details in obtaining the classical material balance equation from a three dimensional black-oil model typical of reservoir simulations. The black-oil equations are integrated in reservoir volume and quantities are spatially averaged. The material balance equation is obtained for averaged quantities and it is applied to calculate reservoir pressure. It is shown that the calculated pressure corresponds to the local pressure at the datum level. The definition of a convenient datum level is also discussed. It is found that the physical correctness of PVT properties
 % obtained from laboratory experiments or empirical correlations
 is a sufficient condition for solution uniqueness of the material balance equation when pressure is the unknown quantity.
 Finally, a numerical scheme for solving the material balance equation is proposed based on nonlinear root finding algorithms.
@@ -64,13 +64,13 @@ material balance \sep black-oil equations \sep reservoir engineering.
 \section{Introduction}
 The material balance equation is a classical tool in petroleum reservoir engineering. It consists of the algebraic equation originally presented in \cite{schilthuis1936active} as a zero dimensional model for estimating reservoir pressure from mass balance. \cite{schilthuis1936active} introduced the hypothesis of mechanical equilibrium attained at all times not necessarily in the entire reservoir volume, but in the regions of high permeability where most of the production would come from and where pressure would present a similar trend. Such regions were said to contain an active oil. 
 
-The equation developed by \cite{schilthuis1936active} did not account for the non-existence of hydrodynamic, chemical or thermal equilibrium. An attempt to introduce non-equilibrium effects of hydrodynamic origin came with \textit{black-oil} equations \citep{aziz1979petroleum,blackoil}. The novelty on hydrodynamics was the introduction of a macroscopic equation of motion using Darcy's law. To account for the hydrodynamic non-equilibrium, black-oil equations are usually solved for in three dimensional models that aim to predict the pressure field responsible for reservoir fluid flow.
+The equation developed by \cite{schilthuis1936active} did not account for the non-existence of hydrodynamic, chemical or thermal equilibrium. An attempt to introduce non-equilibrium effects of hydrodynamic origin came with \textit{black-oil} equations \citep{aziz1979petroleum,blackoil}. The novelty on hydrodynamics was the introduction of a macroscopic equation of motion using Darcy's law. Black-oil equations are usually solved for in three dimensional models that aim to predict the pressure field responsible for reservoir fluid flow.
 
-Many works have reported applications of the material balance equation in the literature, but few have explored its connection with black-oil equations. \cite{ertekin2001basic} briefly addressed this subject arguing both approaches to be equivalent if capillarity and gradients of flow potential ($\nabla \Phi = \nabla p - \rho \vec{g}$) were neglected and if PVT properties were averaged in reservoir volume. This work develops the concept of negligible flow potential and proposes an averaging scheme for flow properties. Subsequently, we suggest how the pressure computed from material balance equation can be compared to the pressure field in 3D black-oil models.
+Many works have reported applications of the material balance equation in the literature, but few have explored its connection with black-oil equations. \cite{ertekin2001basic} briefly addressed this subject arguing both approaches to be equivalent if capillarity and gradients of flow potential ($\nabla \Phi = \nabla p - \rho \vec{g}$) were neglected and if PVT properties were averaged in reservoir volume. This work develops on those concepts and proposes an averaging scheme for flow properties. Subsequently, it suggest how the pressure computed from material balance equation can be compared to the pressure field in 3D black-oil models.
 
 %Black-oil equations arise from the generalization of the zero dimensional concept to a three-dimensional model that incorporates Darcy's law and entails the same approach for phase equilibrium \citep{aziz1979petroleum}.
 
-The term black-oil in this context refers to specific hydrocarbon compositions to which phase equilibrium can be described by a two pseudo-component system. For such reservoir fluids, gas phase composition remains essentially constant in the range of pressures (and temperatures) observed during production so that a pseudo-gas component can be defined. Similarly, a pseudo-oil component can be defined by subtraction of the pseudo-gas component from oil phase composition. After defining the pseudo-components, the number of transport equations needed for hydrocarbon components is reduced from a usually large number to only two.
+The term black-oil in this context refers to specific hydrocarbon compositions to which phase equilibrium can be described by a two pseudo-component system. For such reservoir fluids, gas phase composition remains essentially constant in the range of pressure and temperature observed during production so that a pseudo-gas component can be defined. Similarly, a pseudo-oil component can be defined by subtraction of the pseudo-gas component from the oil phase composition. After defining the pseudo-components, the number of transport equations needed for hydrocarbon components is reduced from a usually large number to only two.
 
 %A general restriction of this approach is that reservoir temperature must be sufficiently below the mixture critical temperature so that different fluid phases have clearly distinguishable properties \citep{danesh1998pvt,firoozabadi1999thermodynamics}.
 
@@ -251,11 +251,12 @@ Temperature is a constant prescribed value and no equation for energy balance is
 
 %Temperature is a constant prescribed value and no equation for energy balance is needed. It follows from Gibbs' phase rule that the equilibrium of oil and gas phases has only two degrees of freedom if the component number is restricted to the two pseudo-components. As temperature is assumed constant, oil phase density is a function of pressure alone. The same is valid for mass fractions of gas and oil components in oil phase:
 
-It follows from Duhem's theorem that the equilibrium of oil and gas phases is determined if, in addition to the mass balance equations, two other properties are prescribed. From Gibbs' phase rule, the system has two degrees of freedom. It is then necessary to specify two intensive properties: the constant temperature is one and the local pressure is chosen as the other. Since temperature was assumed constant, oil phase density becomes a function of pressure alone. The same is valid for mass fractions of gas and oil components in oil phase:
+It follows from Duhem's theorem that the equilibrium of oil and gas phases is determined if, in addition to the mass balance equations, two other properties are prescribed. From Gibbs' phase rule, the system has two degrees of freedom. It is then necessary to specify two intensive properties: the constant temperature is one and the local pressure is chosen as the other. Since temperature was assumed constant, oil phase density becomes a function of pressure alone. The same is valid for mass fractions of gas and oil components in the oil phase:
 \begin{equation}
 \rho_o = \rho_o \left(p_o\right) \, , \quad Y_g = Y_g (p_o) \, , \quad Y_o = Y_o (p_o) \, .
 \end{equation}
 
+When the oil phase is undersaturated, the system has an additional degree of freedom and both pressure and the amount of dissolved gas must be known to define its thermodynamic state, e.g., $\rho = \rho(p_o,Y_o)$.
 
 Porosity ($\phi$) is assumed a function of pore pressure ($p_P$). Because three phases are present in general, such quantity is defined by some relation of the type \citep{kim2011rigorous}:
 \begin{equation}
@@ -348,7 +349,7 @@ Integrating Eqs.~\eqref{eq: Sw1}, \eqref{eq: So1} and \eqref{eq: Sg1} in volume 
 %
 \subsubsection{Averaging quantities}
 
-Spatially averaged quantities are defined for porosity ($\phi$), phase saturation ($S_\alpha$), density ($\rho_\alpha$) and mass concentration ($Y_{\alpha,k}$) of a component $k$ in phase $\alpha$.
+Spatially averaged quantities are defined for porosity ($\phi$), phase saturation ($S_\alpha$), density ($\rho_\alpha$) and mass concentration of a component $k$ in phase $\alpha$ ($Y_{\alpha,k}$).
 
 All quantities are initially functions of space and time, but they become functions of time alone after being averaged in space:
 
@@ -356,7 +357,7 @@ All quantities are initially functions of space and time, but they become functi
 \bar{\phi} (t) = \frac{1}{\Omega}\int_{\Omega}\phi \left(\vec{x},t\right) dV \, .
 \end{equation}
 
-Omitting function arguments:
+We proceed omitting function arguments:
 \begin{equation}
 \bar{S}_\alpha\bar{\phi} = \frac{1}{\Omega}\int_{\Omega}S_\alpha \phi dV \, ,
 \end{equation}
@@ -488,7 +489,7 @@ The material balance equation is widely used to relate production and injection 
 
 %Although it was not needed to assume no fluid flow to obtain the material balance equation, fluid motion can only be taken into account in the averaging of fluid properties if the pressure field is known. For any practical purpose, this is not true.
 
-To overcome this difficulty, a possible simplification to the pressure field is to neglect hydrodynamic gradients and assume mechanical equilibrium: $\vec{u}_\alpha = 0$. This implies that pressure at some time instant is only a function of depth: $\nabla p = \partial p_\alpha/\partial z = \rho_\alpha \vec{g}$.
+To overcome this difficulty, a possible simplification to the pressure field is to neglect hydrodynamic gradients and assume mechanical equilibrium: $\vec{u}_\alpha \equiv 0$. This implies that pressure at any time instant is only a function of depth: $\nabla p = \partial p_\alpha/\partial z = \rho_\alpha \vec{g}$.
 
 % so that pressure is a function of time and depth given by the following expression:
 %\begin{equation}\label{eq: p=rhogh}
@@ -520,22 +521,33 @@ p_\alpha (t,z) = p_\alpha \left(t, z_{datum}\right)+ \rho_\alpha (t, z_{datum}) 
 %For answering this question, we examine the two roles played by pressure in material balance equation: computation of phase density and phase equilibrium. 
 %
 %We shall see that to compute the averaged phase density, we may define some datum level and use the corresponding local density as an approximation to the averaged density without introducing any important error. 
+\begin{equation}
+\rho_o=\rho_o\left(p_o,Y_o\right)
+\end{equation}
 
- As pressure increases with depth according to the hydrostatic gradient, density also increases but by a negligible amount. This approximation can be quantified by putting together the expressions for compressibility and hydrostatic equilibrium. For this, we assume a constant isothermal compressibility for oil phase,
-\begin{equation}\label{eq: grado}
-\frac{1}{\rho_o}\left(\frac{\partial \rho_o}{\partial p_o} \right)_{T,Y_o} = c_o \, ,
+\begin{equation}
+\rho_o\left( t,z\right) \approx \rho_o\left(t,z_{datum}\right)\left[1+\frac{1}{\rho_o}\frac{\partial \rho_o}{\partial z} dz\right]
 \end{equation}
- and we use hydrostatic equilibrium $dp_o = \rho_o g dz$ to obtain the expression for the derivative of oil density with depth:
-\begin{equation}\label{eq: gradodz}
- \frac{1}{\rho_o}\left(\frac{\partial \rho_o}{\partial z} \right)_{T,Y_o} = c_o \rho_o g \, .
-\end{equation}
+For an undersaturated oil with no compositional gradient,
+ %As pressure increases with depth according to the hydrostatic gradient, density also increases but by a negligible amount. This approximation can be quantified by putting together the expressions for compressibility and hydrostatic equilibrium. For an undersaturated oil with no compositional gradient,
+ \begin{equation}
+\frac{1}{\rho_o}\left(\frac{\partial \rho_o}{\partial z} \right)_{T,Y_o} = \frac{1}{\rho_o}\left(\frac{\partial \rho_o}{\partial p_o} \right)\frac{\partial p_o}{\partial z} = c_o \rho_o g \, ,
+ \end{equation}
+ where $c_o$ is the isothermal compressibility.
+
+ For a saturated oil,
+ \begin{equation}
+\frac{1}{\rho_o}\left(\frac{\partial \rho_o}{\partial z} \right)_T = \frac{1}{\rho_o}\left(\frac{\partial \rho_o}{\partial p_o} \right)_T = 
+\frac{1}{\rho_o}\frac{d}{d p_o}\left(\frac{\rho_o^{ST}+R_s\rho_g^{ST}}{B_o}\right) 
+ \end{equation}
+
 
 Similarly for the gas phase, using the state equation $pV = Zn R T$, we obtain its isothermal compressibility:
 \begin{equation}
 \frac{1}{\rho_g}\left(\frac{\partial \rho_g}{\partial p_g}\right)_{T} = \frac{1}{p_g}-\frac{1}{Z}\frac{\partial Z}{\partial p_g} \, .
 \end{equation}
 
-Assuming reservoir temperature to be sufficiently above gas phase critical temperature and thus a negligible variation of the Z-factor with pressure, we use hydrostatic equilibrium again and obtain the derivative of gas density with depth:
+Assuming reservoir temperature to be sufficiently above gas phase critical temperature, we have a negligible variation of the Z-factor with pressure, $\partial Z / \partial p_g \approx 0$. We use hydrostatic equilibrium again and obtain the derivative of gas density with depth:
 \begin{equation}\label{eq: gradgdz}
 \frac{1}{\rho_g}\left(\frac{\partial \rho_g}{\partial z}\right)_{T} = \frac{\rho_g \vec{g}}{p_g} = \left(\frac{\mathcal{M}}{ Z R T}\right) g \, .
 \end{equation}
