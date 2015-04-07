@@ -2,8 +2,8 @@
 
 
 % Review
-\documentclass[authoryear,preprint,review,11pt]{elsarticle}
-%\documentclass[final,authoryear,5p,twocolumn,10pt]{elsarticle}
+%\documentclass[authoryear,preprint,review,11pt]{elsarticle}
+\documentclass[final,authoryear,5p,twocolumn,10pt]{elsarticle}
 
 % Review topics:
 
@@ -50,8 +50,9 @@
 
 
 \begin{abstract}
-This work examines underlying details in obtaining the classical material balance equation from a three dimensional black-oil model typical of reservoir simulations. The black-oil equations are integrated in reservoir volume and quantities are spatially averaged. The material balance equation is obtained for averaged quantities and it is applied to calculate reservoir pressure. It is shown that the calculated pressure corresponds to the local pressure at the datum level. The definition of a convenient datum level is also discussed. It is found that the physical correctness of PVT properties
-% obtained from laboratory experiments or empirical correlations
+It is generally known that the material balance equation can be derived from a 3D black-oil model typical of reservoir simulation. However, the existing literature is not comprehensive about what are the needed assumptions and how the pressure calculated from the material balance equation relates to the pressure field of a 3D black-oil model.
+
+This work examines underlying details in obtaining the material balance equation from a 3D black-oil model. The black-oil equations are integrated in reservoir volume and quantities are averaged in space. The material balance equation is obtained for the averaged quantities and it is applied to calculate reservoir pressure. It is shown that this calculated pressure corresponds to the pressure at a chosen datum level in the 3D black-oil model (and not, in general, to the average pressure in the 3D model). The definition of a convenient datum level is also discussed. It is found that the physical correctness of PVT properties 
 is a sufficient condition for solution uniqueness of the material balance equation when pressure is the unknown quantity.
 Finally, a numerical scheme for solving the material balance equation is proposed based on nonlinear root finding algorithms.
 \end{abstract}
@@ -160,7 +161,7 @@ This section presents black-oil equations, performs the averaging of quantities 
 %S_o + S_g +S_w = 1 \, .
 %\end{equation}
 
-We assume that the reservoir is a hydraulically connected volume where hydrocarbon saturation is nonzero. By a hidraulically connected volume, we mean that it is possible to observe a common pressure decline trend when any reservoir portion is under production \citep{dakepractice}. Reservoir fluids are composed of oil and gas pseudo-components and water component. There can be three fluid phases at most: oil, gas and (liquid) water. Oil phase is composed of oil and gas components, gas phase is composed uniquely by gas component and, water phase, uniquely by water component. The only allowed mass transfer is of gas component between oil and gas phases. The gas phase composition is always that of a dry gas.
+We assume that the reservoir is a hydraulically connected volume where hydrocarbon saturation is nonzero. By a hidraulically connected volume, we mean that it is possible to observe a common pressure decline trend when any reservoir portion is under production \citep{dakepractice}. Reservoir fluids are composed of oil and gas pseudo-components and water component. There can be three fluid phases at most: oil, gas and liquid water. Oil phase is composed of oil and gas components, gas phase is composed uniquely by gas component and, water phase, uniquely by water component. The only allowed mass transfer is of gas component between oil and gas phases. The gas phase composition is always that of a dry gas.
 
 %In addition to the three fluid components and phases, there is the solid phase composed by the rock.
 
@@ -251,12 +252,12 @@ Temperature is a constant prescribed value and no equation for energy balance is
 
 %Temperature is a constant prescribed value and no equation for energy balance is needed. It follows from Gibbs' phase rule that the equilibrium of oil and gas phases has only two degrees of freedom if the component number is restricted to the two pseudo-components. As temperature is assumed constant, oil phase density is a function of pressure alone. The same is valid for mass fractions of gas and oil components in oil phase:
 
-It follows from Duhem's theorem that the equilibrium of oil and gas phases is determined if, in addition to the mass balance equations, two other properties are prescribed. From Gibbs' phase rule, the system has two degrees of freedom. It is then necessary to specify two intensive properties: the constant temperature is one and the local pressure is chosen as the other. Since temperature was assumed constant, oil phase density becomes a function of pressure alone. The same is valid for mass fractions of gas and oil components in the oil phase:
+It follows from Duhem's theorem that the equilibrium of oil and gas phases is determined if, in addition to the mass balance equations, two other properties are prescribed. From Gibbs' phase rule, the oil an gas system has two degrees of freedom. It is then necessary to specify two intensive properties. The constant temperature is one and the local pressure is chosen as the other. Since temperature was assumed constant, oil phase density becomes a function of pressure alone. The same is valid for mass fractions of gas and oil components in the oil phase:
 \begin{equation}
 \rho_o = \rho_o \left(p_o\right) \, , \quad Y_g = Y_g (p_o) \, , \quad Y_o = Y_o (p_o) \, .
 \end{equation}
 
-When the oil phase is undersaturated, the system has an additional degree of freedom and both pressure and the amount of dissolved gas must be known to define its thermodynamic state, e.g., $\rho = \rho(p_o,Y_o)$.
+When the oil phase is undersaturated, the system has one additional degree of freedom and both pressure and the amount of dissolved gas must be known to define its thermodynamic state, e.g., $\rho_o = \rho_o (p_o,Y_o)$.
 
 Porosity ($\phi$) is assumed a function of pore pressure ($p_P$). Because three phases are present in general, such quantity is defined by some relation of the type \citep{kim2011rigorous}:
 \begin{equation}
@@ -357,7 +358,7 @@ All quantities are initially functions of space and time, but they become functi
 \bar{\phi} (t) = \frac{1}{\Omega}\int_{\Omega}\phi \left(\vec{x},t\right) dV \, .
 \end{equation}
 
-We proceed omitting function arguments:
+Omitting function arguments:
 \begin{equation}
 \bar{S}_\alpha\bar{\phi} = \frac{1}{\Omega}\int_{\Omega}S_\alpha \phi dV \, ,
 \end{equation}
@@ -370,7 +371,7 @@ We proceed omitting function arguments:
 \bar{\rho}_\alpha \bar{Y}_{\alpha,k}\bar{S}_\alpha \bar{\phi} = \frac{1}{\Omega}\int_{\Omega}\rho_\alpha Y_{\alpha,k} S_\alpha \phi dV \, .
 \end{equation}
 
-Eqs. \eqref{eq: Sw2}, \eqref{eq: So2} and \eqref{eq: Sg2} are rewritten in terms of averaged quantities:
+Eqs. \eqref{eq: Sw2}, \eqref{eq: So2} and \eqref{eq: Sg2} can now be rewritten in terms of averaged quantities:
 
 \begin{itemize}
 \item water component:
@@ -389,7 +390,7 @@ Eqs. \eqref{eq: Sw2}, \eqref{eq: So2} and \eqref{eq: Sg2} are rewritten in terms
 \end{equation}
 \end{itemize}
 
-We now introduce usual definitions from petroleum engineering for the description of volumetric and solubility changes. In what concerns volumetric changes, $B_w$, $B_o$ and $B_g$, the formation volume factors of water, oil and gas phases, respectively, express the ratio of a phase volume at reservoir condition to its volume at standard surface condition, i.e.:
+Usual definitions from petroleum engineering can be introduced for the description of volumetric and solubility changes. For volumetric changes, $B_w$, $B_o$ and $B_g$, the formation volume factors of water, oil and gas phases, respectively, express the ratio of a phase volume at reservoir condition to its volume at standard surface condition, i.e.:
 
 \begin{equation}\label{eq: Bw}
 B_w = \frac{\rho_w^{ST}}{\bar{\rho}_w} \, ,
@@ -403,7 +404,7 @@ B_o = \frac{\rho_o^{ST}}{\bar{Y}_o \bar{\rho}_o} \, ,
 B_g = \frac{\rho_g^{ST}}{\bar{\rho}_g} \, .
 \end{equation}
 
-In what concerns changes in gas solubility in oil phase, the solubility ratio ($R_s$) gives the ratio between the volume of dissolved gas and the volume of oil both measured at surface condition:
+For changes in gas solubility in oil phase, the solubility ratio ($R_s$) gives the ratio between the volume of dissolved gas and the volume of oil both measured at surface condition:
 
 \begin{equation}
 R_s = \frac{\rho_o^{ST} / \bar{Y}_o}{\rho_g^{ST} / \bar{Y}_g} \, ,
@@ -454,7 +455,7 @@ V_{p2}\left(\frac{\bar{S}_{g2}}{B_{g2}} +\frac{\bar{S}_{o2} R_{s2}}{B_{o2}}\righ
 
 Where $N=V_{p1} \bar{S}_{o1}/B_{o1}$ and $W=V_{p1} \bar{S}_{w1}/B_{w1}$ are the initial volumes of oil and water measured at surface condition and $m=V_{p1} \bar{S}_{g1}/B_{o1} N$ is the ratio of the initial volumes of gas and oil phases measured at reservoir condition.
 
-An equation for the bubble-point can be obtained by setting $\bar{S}_{g2}=0$ in Eq.~\eqref{eq: Sg5} and solving it for the solubility ratio at bubble-point pressure, $R_s(p=P_b)$:
+An inplicit equation for the bubble-point can be obtained by setting $\bar{S}_{g2}=0$ in Eq.~\eqref{eq: Sg5} and solving it for the solubility ratio at bubble-point pressure, $R_s(p=P_b)$:
 \begin{equation}\label{eq: eqPb}
 \begin{split}
 R_{s2}\left(p=P_b\right) = &\Big[N\left(m B_{1}/B_{g1} +R_{s1}\right)\\
@@ -476,7 +477,7 @@ F_p - F_i= E + C \, ,
 where new terms $C$, $E$, $F_i$ and $F_p$ are defined in Table~\ref{tab: MBE}. 
 
 Eq~\eqref{eq: MBE} involves fluid properties, original phase volumes ($N$, $W$ and $G)$, cumulative production and injection and aquifer influx.
-It is an algebraic equation that can be solved for any one of its terms, provided that all remaining are known. This works focuses on its solution for pressure.
+It is an algebraic equation that can be solved for any one of its terms, provided that all remaining are known. This work focuses on its solution for pressure.
 
 \subsubsection{Relationship between the material balance equation and reservoir pressure}
 
@@ -486,6 +487,11 @@ It is an algebraic equation that can be solved for any one of its terms, provide
 % pressure field can be given by hydrostatic equilibrium
 
 The material balance equation is widely used to relate production and injection to reservoir pressure. Actually, all averaged phase properties in Eq.~\eqref{eq: MBE} depend on the pressure field. If the reservoir is under production, though, the pressure field is not known and for its prediction one would have to resort to more advanced techniques such as reservoir simulation.
+
+\begin{itemize}
+\item density is approximately constant;
+\item pressure field does not deviates from hydrostatic equilibrium.
+\end{itemize}
 
 %Although it was not needed to assume no fluid flow to obtain the material balance equation, fluid motion can only be taken into account in the averaging of fluid properties if the pressure field is known. For any practical purpose, this is not true.
 
@@ -528,17 +534,21 @@ p_\alpha (t,z) = p_\alpha \left(t, z_{datum}\right)+ \rho_\alpha (t, z_{datum}) 
 \begin{equation}
 \rho_o\left( t,z\right) \approx \rho_o\left(t,z_{datum}\right)\left[1+\frac{1}{\rho_o}\frac{\partial \rho_o}{\partial z} dz\right]
 \end{equation}
-For an undersaturated oil with no compositional gradient,
+For an undersaturated oil, $\rho_o$ is a function of pressure and the amount of dissolved gas:
  %As pressure increases with depth according to the hydrostatic gradient, density also increases but by a negligible amount. This approximation can be quantified by putting together the expressions for compressibility and hydrostatic equilibrium. For an undersaturated oil with no compositional gradient,
  \begin{equation}
-\frac{1}{\rho_o}\left(\frac{\partial \rho_o}{\partial z} \right)_{T,Y_o} = \frac{1}{\rho_o}\left(\frac{\partial \rho_o}{\partial p_o} \right)\frac{\partial p_o}{\partial z} = c_o \rho_o g \, ,
+\frac{1}{\rho_o}\left(\frac{\partial \rho_o}{\partial z} \right)_{T} = \frac{1}{\rho_o}\left(\frac{\partial \rho_o}{\partial p_o} \frac{\partial p_o}{\partial z} + \frac{\partial \rho_o}{\partial Y_o}\frac{\partial Y_o}{\partial z}\right) \, . 
  \end{equation}
+Neglecting any compositional gradient, $\partial Y_o/\partial z = 0$, and using the hydrostatic gradient:
+\begin{equation}
+\frac{1}{\rho_o}\left(\frac{\partial \rho_o}{\partial z} \right)_{T} = c_o \rho_o g \, ,
+\end{equation}
  where $c_o$ is the isothermal compressibility.
 
  For a saturated oil,
  \begin{equation}
-\frac{1}{\rho_o}\left(\frac{\partial \rho_o}{\partial z} \right)_T = \frac{1}{\rho_o}\left(\frac{\partial \rho_o}{\partial p_o} \right)_T = 
-\frac{1}{\rho_o}\frac{d}{d p_o}\left(\frac{\rho_o^{ST}+R_s\rho_g^{ST}}{B_o}\right) 
+\frac{1}{\rho_o}\left(\frac{\partial \rho_o}{\partial z} \right)_T = g\left(\frac{\partial \rho_o}{\partial p_o} \right)_T = 
+g\frac{d}{d p_o}\left(\frac{\rho_o^{ST}+R_s\rho_g^{ST}}{B_o}\right) 
  \end{equation}
 
 
@@ -584,7 +594,7 @@ For a non-volatile oil, we can approximate $dR_s / dp_o$ to the ratio between th
 \end{equation}
 where the following orders of magnitudes were assumed: $p_{sat} \approx 10^{7}\ Pa$, $\rho_o \approx 10^{3}\ kg/m^3$ and $g \approx 10\ m^2/s$. 
 
-From Eq.~\eqref{eq: dRsdz2}, we see that the variation of pressure with depth may not be negligible for the phase equilibrium,  specially for thick reservoirs of light oil. In such cases, using an averaged value for the solubility ratio may be worth the accuracy gain in computing dissolved gas volume.
+From Eq.~\eqref{eq: dRsdz2}, we see that the variation of pressure with depth may not be negligible for the phase equilibrium,  specially for thick reservoirs of low saturation pressure. In such cases, using an averaged value for the solubility ratio may be worth the accuracy gain in computing dissolved gas volume.
 
 % \subsubsection{Material balance as an equation for reservoir pressure}
 
