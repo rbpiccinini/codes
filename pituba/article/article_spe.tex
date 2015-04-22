@@ -52,7 +52,7 @@
 \begin{abstract}
 It is generally known that the material balance equation can be derived from a 3D black-oil model typical of reservoir simulation. However, the existing literature is not comprehensive about what are the needed assumptions and how the pressure calculated from the material balance equation relates to the pressure field of a 3D black-oil model.
 
-This work examines underlying details in obtaining the material balance equation from a 3D black-oil model. The black-oil equations are integrated in reservoir volume and quantities are averaged in space. The material balance equation is obtained for the averaged quantities and it is applied to calculate reservoir pressure. It is shown that this calculated pressure corresponds to the pressure at a chosen datum level in the 3D black-oil model (and not, in general, to the average pressure in the 3D model). The definition of a convenient datum level is also discussed. It is found that the physical correctness of PVT properties 
+This work examines underlying details in obtaining the material balance equation from a 3D black-oil model. The black-oil equations are integrated in reservoir volume and quantities are averaged in space. The material balance equation is obtained for the averaged quantities and it is applied to calculate reservoir pressure. It is shown that this calculated pressure corresponds to the pressure at a chosen datum level in the 3D black-oil model (and not, in general, to the average pressure of the 3D model). The definition of a convenient datum level is also discussed. It is found that the physical correctness of PVT properties 
 is a sufficient condition for solution uniqueness of the material balance equation when pressure is the unknown quantity.
 Finally, a numerical scheme for solving the material balance equation is proposed based on nonlinear root finding algorithms.
 \end{abstract}
@@ -455,7 +455,7 @@ V_{p2}\left(\frac{\bar{S}_{g2}}{B_{g2}} +\frac{\bar{S}_{o2} R_{s2}}{B_{o2}}\righ
 
 Where $N=V_{p1} \bar{S}_{o1}/B_{o1}$ and $W=V_{p1} \bar{S}_{w1}/B_{w1}$ are the initial volumes of oil and water measured at surface condition and $m=V_{p1} \bar{S}_{g1}/B_{o1} N$ is the ratio of the initial volumes of gas and oil phases measured at reservoir condition.
 
-An inplicit equation for the bubble-point can be obtained by setting $\bar{S}_{g2}=0$ in Eq.~\eqref{eq: Sg5} and solving it for the solubility ratio at bubble-point pressure, $R_s(p=P_b)$:
+An implicit equation for the bubble-point can be obtained by setting $\bar{S}_{g2}=0$ in Eq.~\eqref{eq: Sg5} and solving it for the solubility ratio at bubble-point pressure, $R_s(p=P_b)$:
 \begin{equation}\label{eq: eqPb}
 \begin{split}
 R_{s2}\left(p=P_b\right) = &\Big[N\left(m B_{1}/B_{g1} +R_{s1}\right)\\
@@ -484,18 +484,28 @@ It is an algebraic equation that can be solved for any one of its terms, provide
 % no assumption on static conditions are needed
 % pressure field is not known
 % pressure field can be assumed constant
-% pressure field can be given by hydrostatic equilibrium
+% pressure field can be given by hydros tatic equilibrium
 
-The material balance equation is widely used to relate production and injection to reservoir pressure. Actually, all averaged phase properties in Eq.~\eqref{eq: MBE} depend on the pressure field. If the reservoir is under production, though, the pressure field is not known and for its prediction one would have to resort to more advanced techniques such as reservoir simulation.
+The material balance equation is mostly used to relate production and injection to reservoir pressure. In fact, all averaged phase properties in Eq.~\eqref{eq: MBE} depend on the pressure field. If the reservoir is under production, though, the pressure field is not known and for its prediction one would have to resort to more advanced techniques such as reservoir simulation. Further, even if the pressure field were known, one would still need to average fluid properties in space in order to apply Eq.~\eqref{eq: MBE}. In practice, the reservoir engineer is unlikely to perform any averaging of properties since the main reason for using the material balance equation is to avoid the complexities of a 3D reservoir model. 
 
+It can be shown that the averaging of fluid properties can be neglected under the following assumptions:
 \begin{itemize}
-\item density is approximately constant;
-\item pressure field does not deviates from hydrostatic equilibrium.
+\item Negligible hydrodynamic gradients and capillarity. This implies that pressure at any time is only a function of depth: $\nabla p = \partial p\partial z = \rho_\alpha \vec{g}$.
+\item Phase densities and gas solubility ratio are approximately constant with depth.
 \end{itemize}
 
-%Although it was not needed to assume no fluid flow to obtain the material balance equation, fluid motion can only be taken into account in the averaging of fluid properties if the pressure field is known. For any practical purpose, this is not true.
+To show that phase densities can be considered approximately constant with depth, a first order Taylor expansion
 
-To overcome this difficulty, a possible simplification to the pressure field is to neglect hydrodynamic gradients and assume mechanical equilibrium: $\vec{u}_\alpha \equiv 0$. This implies that pressure at any time instant is only a function of depth: $\nabla p = \partial p_\alpha/\partial z = \rho_\alpha \vec{g}$.
+%To overcome this difficulty, a possible simplification to the pressure field is to neglect hydrodynamic gradients and assume mechanical equilibrium: $\vec{u}_\alpha \equiv 0$. This implies that pressure at any time instant is only a function of depth: $\nabla p = \partial p_\alpha/\partial z = \rho_\alpha \vec{g}$.
+
+
+
+\begin{equation}
+\rho_o \left(z\right) \approx \rho_o\left(z_\text{datum}\right)+\left(\frac{\partial \rho_o}{\partial Y_o}\frac{\partial Y_o}{\partial z}+\frac{\partial \rho_o}{\partial p_o}\frac{\partial p_o}{\partial z}\right) dz
+\end{equation}
+
+
+%Although it was not needed to assume no fluid flow to obtain the material balance equation, fluid motion can only be taken into account in the averaging of fluid properties if the pressure field is known. For any practical purpose, this is not true.
 
 % so that pressure is a function of time and depth given by the following expression:
 %\begin{equation}\label{eq: p=rhogh}
@@ -531,9 +541,6 @@ p_\alpha (t,z) = p_\alpha \left(t, z_{datum}\right)+ \rho_\alpha (t, z_{datum}) 
 \rho_o=\rho_o\left(p_o,Y_o\right)
 \end{equation}
 
-\begin{equation}
-\rho_o\left( t,z\right) \approx \rho_o\left(t,z_{datum}\right)\left[1+\frac{1}{\rho_o}\frac{\partial \rho_o}{\partial z} dz\right]
-\end{equation}
 For an undersaturated oil, $\rho_o$ is a function of pressure and the amount of dissolved gas:
  %As pressure increases with depth according to the hydrostatic gradient, density also increases but by a negligible amount. This approximation can be quantified by putting together the expressions for compressibility and hydrostatic equilibrium. For an undersaturated oil with no compositional gradient,
  \begin{equation}
