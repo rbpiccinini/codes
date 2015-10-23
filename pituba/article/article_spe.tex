@@ -71,7 +71,7 @@ Many works have reported applications of the material balance equation in the li
 
 %Black-oil equations arise from the generalization of the zero dimensional concept to a three-dimensional model that incorporates Darcy's law and entails the same approach for phase equilibrium \citep{aziz1979petroleum}.
 
-The term black-oil in this context refers to specific hydrocarbon compositions to which phase equilibrium can be described by a two pseudo-component system. For such reservoir fluids, gas phase composition remains essentially constant in the range of pressure and temperature observed during production so that a pseudo-gas component can be defined. Similarly, a pseudo-oil component can be defined by subtraction of the pseudo-gas component from the oil phase composition. After defining the pseudo-components, the number of transport equations needed for hydrocarbon components is reduced from a usually large number to only two.
+The term black-oil used in this work refers to specific hydrocarbon compositions to which phase equilibrium can be described by a two pseudo-component system. For such reservoir fluids, gas phase composition remains essentially constant in the range of pressure and temperature observed during production so that a pseudo-gas component can be defined. Similarly, a pseudo-oil component can be defined by subtraction of the pseudo-gas component from the oil phase composition. After defining the pseudo-components, the number of transport equations needed for hydrocarbon components is reduced from a usually large number to only two.
 
 %A general restriction of this approach is that reservoir temperature must be sufficiently below the mixture critical temperature so that different fluid phases have clearly distinguishable properties \citep{danesh1998pvt,firoozabadi1999thermodynamics}.
 
@@ -161,7 +161,7 @@ This section presents black-oil equations, performs the averaging of quantities 
 %S_o + S_g +S_w = 1 \, .
 %\end{equation}
 
-We assume that the reservoir is a hydraulically connected volume where hydrocarbon saturation is nonzero. By a hidraulically connected volume, we mean that it is possible to observe a common pressure decline trend when any reservoir portion is under production \citep{dakepractice}. Reservoir fluids are composed of oil and gas pseudo-components and water component. There can be three fluid phases at most: oil, gas and liquid water. Oil phase is composed of oil and gas components, gas phase is composed uniquely by gas component and, water phase, uniquely by water component. The only allowed mass transfer is of gas component between oil and gas phases. The gas phase composition is always that of a dry gas.
+We assume that the reservoir is a hydraulically connected volume where hydrocarbon saturation is nonzero. By a hidraulically connected volume, we mean that it is possible to observe a common pressure decline trend when any reservoir portion is under production \citep{dakepractice}. Mathematically, this is equivalent to having pressure diffusivity above certain minimal value everywhere. Reservoir fluids are composed of oil and gas pseudo-components and water component. There can be three fluid phases at most: oil, gas and liquid water. Oil phase is composed of oil and gas components, gas phase is composed uniquely by gas component and, water phase, uniquely by water component. The only allowed mass transfer is of gas component between oil and gas phases. The gas phase composition is always that of a dry gas.
 
 %In addition to the three fluid components and phases, there is the solid phase composed by the rock.
 
@@ -486,11 +486,9 @@ It is an algebraic equation that can be solved for any one of its terms, provide
 % pressure field can be assumed constant
 % pressure field can be given by hydros tatic equilibrium
 
-The material balance equation is mostly used to relate production and injection to reservoir pressure. In fact, all averaged phase properties in Eq.~\eqref{eq: MBE} depend on the pressure field. If the reservoir is under production, though, the pressure field is not known and for its prediction one would have to resort to more advanced techniques such as reservoir simulation. Further, even if the pressure field were known, one would still need to average fluid properties in space in order to apply Eq.~\eqref{eq: MBE}. In practice, the reservoir engineer is unlikely to perform any averaging of properties since the main reason for using the material balance equation is to avoid the complexities of a 3D reservoir model. 
-
-It can be shown that the averaging of fluid properties can be neglected under the following assumptions:
+The material balance equation is mostly used to relate production and injection to reservoir pressure. In fact, all averaged phase properties in Eq.~\eqref{eq: MBE} depend on the pressure field. If the reservoir is under production, though, the pressure field is not known and for its prediction one would have to resort to more advanced techniques such as reservoir simulation. Further, even if the pressure field were known, one would still need to average fluid properties in space in order to apply Eq.~\eqref{eq: MBE}. In practice, the reservoir engineer is unlikely to perform any averaging of properties since the main reason for using the material balance equation is to avoid the complexities of a 3D reservoir model. It can be shown that the averaging of fluid properties can be neglected under the following assumptions:
 \begin{itemize}
-\item Negligible hydrodynamic gradients and capillarity. This implies that pressure at any time is only a function of depth: $\nabla p = \partial p\partial z = \rho_\alpha \vec{g}$.
+\item Negligible hydrodynamic gradients and capillarity. This implies that pressure at any time is only a function of depth: $\nabla p = \partial p / \partial z = \rho_\alpha \vec{g}$.
 \item Phase densities and gas solubility ratio are approximately constant with depth.
 \end{itemize}
 
@@ -703,7 +701,7 @@ Compute pressure for instant $t_2$ by finding the root of residual function $\va
 Pressure in Eq.~\eqref{eq: MBE} is only a function of fluid properties in instant $t_1$, produced and injected values and bubble-point pressure at instant $t_2$, $P_{b2}$, which was already computed in step 1.
 
 \begin{step}
-Compute fluid saturations $t_2$.
+Compute fluid saturations  for instant $t_2$.
 \end{step}
 
 Once $S_{o2}$, $S_{g2}$, $S_{w2}$, $p_2$ and $P_{b2}$ are known, solution for instant $t_2$ is complete.
