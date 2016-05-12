@@ -274,7 +274,24 @@ class classEBM:
 			Fp=Np[i]*(pvt.Bo(p[i],pvt.Pb)+(Gp[i]/Np[i]-pvt.Rs(p[i],pvt.Pb))*pvt.Bg(p[i]))+Wp[i]*pvt.Bw(p[i])
 			N.append((Fp-Fi)/E)
 
-		return array(N)
+	def VOIPW(self):
+		p=self.res.teste.p
+		Np=self.res.teste.Np
+		Wp=self.res.teste.Wp
+		Wi=self.res.teste.Wi
+		We=zeros(len(Wi))
+		Gi=self.res.teste.Gi
+		Gp=self.res.teste.Gp
+		res=self.res
+		pvt=self.pvt
+		A=zeros(len(p))
+		B=zeros(len(p))
+		C=zeros(len(p))
+		for i in range(len(p)):
+			A[i]=self.Eo(p[i])+res.m*self.Eg(p[i])+self.Efw(p[i])
+			B[i]=(self.res.cr+self.pvt.cw)*pvt.Bw(p[i])*(self.res.p0-p[i])
+			C[i]=Np[i]*(pvt.Bo(p[i],pvt.Pb)+(Gp[i]/Np[i]-pvt.Rs(p[i],pvt.Pb))*pvt.Bg(p[i]))+Wp[i]*pvt.Bw(p[i])-Wi[i]*pvt.Bw(p[i])-Gi[i]*pvt.Bg(p[i])
+		# least square regression of Ai*N+Bi*We-Ci=0
 
 	def runHist(self,pmin,pmax):
 		out=self.out
