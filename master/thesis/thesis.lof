@@ -1,0 +1,43 @@
+\select@language {english}
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {1.1}{\ignorespaces Effect of Stokes number on particle dispersion in large-scale turbulent structures, reproduced from \cite {crowe1988particle}.\relax }}{25}{figure.caption.8}
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {2.1}{\ignorespaces Definition of axis orientation and domain boundaries for the emerging round jet flow. Adapted from \cite {luppes}.\relax }}{48}{figure.caption.10}
+\contentsline {figure}{\numberline {2.2}{\ignorespaces Scheme of heat flux from air to droplet, adapted from \cite {naca}.\relax }}{58}{figure.caption.11}
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {3.1}{\ignorespaces Configuration of the spray jet nozzle from \cite {chen}.\relax }}{64}{figure.caption.13}
+\contentsline {figure}{\numberline {3.2}{\ignorespaces Lognormal probability density function used for sampling droplet diameter at nozzle exit.\relax }}{66}{figure.caption.14}
+\contentsline {figure}{\numberline {3.3}{\ignorespaces Droplet injection velocity as a function of its injection position.\relax }}{66}{figure.caption.15}
+\contentsline {figure}{\numberline {3.4}{\ignorespaces Radial profiles of the boundary conditions for the gas phase at the nozzle exit plane: mean axial velocity (a), turbulent kinetic energy (b) and its dissipation rate (c).\relax }}{68}{figure.caption.16}
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {}}}{68}{subfigure.4.1}
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {}}}{68}{subfigure.4.2}
+\contentsline {subfigure}{\numberline {(c)}{\ignorespaces {}}}{68}{subfigure.4.3}
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {4.1}{\ignorespaces Planar view of the fine (a) and the coarse grid (b).\relax }}{77}{figure.caption.17}
+\contentsline {figure}{\numberline {4.2}{\ignorespaces Comparison of radial profiles obtained for the fine and the coarse meshes for a pure gaseous jet. Mean axial velocity ($\mathaccentV {tilde}07E{U}_x$) on the left for axial coordinates: $x/D=5$ in (a), $x/D=15$ in (c) and $x/D=25$ in (e); and turbulent kinetic energy ($k$) on the right: $x/D=5$ in (b), $x/D=15$ in (d) and $x/D=25$ in (f).\relax }}{79}{figure.caption.18}
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {5.1}{\ignorespaces Numerical results showing the evolution to self-similar profiles of the following gas phase properties: (a) dimensionless mean axial velocity - $\mathaccentV {hat}05E{U}_x$, (b) dimensionless turbulent kinetic energy - $\mathaccentV {hat}05E{k}$ - and (c) dimensionless turbulent viscosity - $\mathaccentV {hat}05E{\nu }_t$. The different curves show the profiles for the corresponding axial coordinate indicated in the legend.\relax }}{84}{figure.caption.19}
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {}}}{84}{subfigure.1.1}
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {}}}{84}{subfigure.1.2}
+\contentsline {subfigure}{\numberline {(c)}{\ignorespaces {}}}{84}{subfigure.1.3}
+\contentsline {figure}{\numberline {5.2}{\ignorespaces (a) Half-radius as a function of the axial coordinate in the experiment and in the simulation. (b) Self-similar radial profile of the numerical and the experimental dimensionless axial velocity - $\mathaccentV {hat}05E{U}_x$. The measurements were obtained from \cite {chen}.\relax }}{85}{figure.caption.20}
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {}}}{85}{subfigure.2.1}
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {}}}{85}{subfigure.2.2}
+\contentsline {figure}{\numberline {5.3}{\ignorespaces Solution of droplet drag model of Equation \textup {\hbox {\mathsurround \z@ \normalfont (\ignorespaces \ref {eq: drop_dudt}\unskip \@@italiccorr )}}. Droplet velocity as a function of time for an initial velocity of $10\ m/s$ in stagnant air at standard conditions and for droplet diameters of $10$, $20$, $30$ and $40 \mu m$. \relax }}{87}{figure.caption.21}
+\contentsline {figure}{\numberline {5.4}{\ignorespaces Measured and computed radial profiles of the mean axial velocity of the gas phase ($\mathaccentV {tilde}07E{U}_x$). Each figure shows the profile in a different axial location: $x/D=5$ in (a), $x/D=10$ in (b), $x/D=15$ in (c), $x/D=20$ in (d) and $x/D=25$ in (e). The measurements were obtained from \cite {chen}.\relax }}{88}{figure.caption.22}
+\contentsline {figure}{\numberline {5.5}{\ignorespaces The comparison of four simulations of a turbulent air jet (Re = 37,600) with measurements. The centerline axial velocity is shown. In each plot the axial distance is normalized by the nozzle diameter. Simulation 1: standard k-epsilon model. Simulation 2: $c_{\mu } =0.06$. Simulation 3: $c_{\mu }=0.06$, $c_{\epsilon , 2} =1.87$. Simulation 4: $c_{\mu }=0.09$, $c_{\epsilon , 2}=1.87$, n =10. Figure reproduced from \cite {luppes}.\relax }}{89}{figure.caption.23}
+\contentsline {figure}{\numberline {5.6}{\ignorespaces Measured radial profiles of the gas phase velocities $<U''_x>$ and $<U''_y>$ and the characteristic velocity defined for the k-epsilon model $<U''>=\sqrt {2/3 k}$ obtained from the simulation. Each figure shows the profile in a different axial location: $x/D=5$ in (a), $x/D=10$ in (b), $x/D=15$ in (c), $x/D=20$ in (d) and $x/D=25$ in (e). The measurements were obtained from \cite {chen}.\relax }}{90}{figure.caption.24}
+\contentsline {figure}{\numberline {5.7}{\ignorespaces Red squares present measured radial profiles of mean axial velocity of droplets ($\mathaccentV {tilde}07E{U}_{d,x}$) in the size class of $10\mu m <D<20\mu m$. Scattered black dots are the computed velocities for each droplet in the numerical simulation. Each figure shows the velocity profile in the axial coordinate specified above the plot window. The measurements were obtained from \cite {chen}.\relax }}{92}{figure.caption.25}
+\contentsline {figure}{\numberline {5.8}{\ignorespaces Scatter plot of the numerical radial velocity of droplets ($U_{y}$) in two different size classes: $D< 10\ \mu m$ on the left or (a), (c) and (e) labels; and $D> 30\ \mu m$ on the right or (b), (d) and (f) labels. The dispersion in the radial velocity is higher for the smaller droplet class and in the vicinity of the nozzle exit.\relax }}{93}{figure.caption.26}
+\contentsline {figure}{\numberline {5.9}{\ignorespaces Droplet mass flow rate at four axial locations. Measurements were obtained from \cite {chen}.\relax }}{94}{figure.caption.27}
+\contentsline {figure}{\numberline {5.10}{\ignorespaces Radial profiles of mean axial mass flux of acetone vapor: $\mathaccentV {dot}05F{m}''_{ac}=\rho \mathaccentV {bar}016{Y}_{ac} \mathaccentV {tilde}07E{U}_x$. The measurements were obtained from \cite {chen}.\relax }}{95}{figure.caption.28}
+\contentsline {figure}{\numberline {5.11}{\ignorespaces Numerical and experimental radial profiles of Sauter mean diameter (SMD). The measurements were obtained from \cite {chen}.\relax }}{97}{figure.caption.29}
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {A.1}{\ignorespaces Temperature of droplets. The computational domain is only half of the shown above, it is here mirrored for visualization purpose.\relax }}{106}{figure.caption.31}
+\contentsline {figure}{\numberline {A.2}{\ignorespaces Magnitude of droplet velocities. The computational domain is only half of the shown above, it is here mirrored for visualization purpose.\relax }}{107}{figure.caption.32}
+\contentsline {figure}{\numberline {A.3}{\ignorespaces Gas mean temperature field $\mathaccentV {tilde}07E{T}$. The computational domain is only half of the shown above, it is here mirrored for visualization purpose.\relax }}{108}{figure.caption.33}
+\contentsline {figure}{\numberline {A.4}{\ignorespaces Gas mean velocity magnitude $|\mathaccentV {tilde}07E{\mathbf {U}}|$. The computational domain is only half of the shown above, it is here mirrored for visualization purpose.\relax }}{109}{figure.caption.34}
+\contentsline {figure}{\numberline {A.5}{\ignorespaces Gas mean turbulent kinetic energy. The computational domain is only half of the shown above, it is here mirrored for visualization purpose.\relax }}{110}{figure.caption.35}
+\contentsline {figure}{\numberline {A.6}{\ignorespaces Mean of acetone vapor mass concentration - $\mathaccentV {tilde}07E{Y}_{ac}$. The computational domain is only half of the shown above, it is here mirrored for visualization purpose.\relax }}{111}{figure.caption.36}
+\contentsline {figure}{\numberline {A.7}{\ignorespaces Finite volume discretization, reproduced from \cite {foamDev}.\relax }}{112}{figure.caption.37}

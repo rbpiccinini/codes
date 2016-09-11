@@ -1,0 +1,355 @@
+/*---------------------------------------------------------------------------*\ 
+| =========                 |                                                 | 
+| \      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           | 
+|  \    /   O peration     | Version:  1.6                                   | 
+|   \  /    A nd           | Web:      http://www.openfoam.org               | 
+|    \/     M anipulation  |                                                 | 
+\*---------------------------------------------------------------------------*/ 
+
+FoamFile 
+{    version         2.0; 
+    format          ascii; 
+
+    root            "";
+    case            "";
+    instance        "";
+    local           "";
+
+    class           dictionary; 
+    object          injectorProperties;
+}
+
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * // 
+(
+
+// z = 0.004 ------------------------------------------------------------------------- 
+
+    {
+        injectorType        definedInjector;
+        definedInjectorProps
+        {
+            position        (0.004 0 1e-4);
+            direction       (0 0 1);
+            diameter        0.001;
+            Cd              1.0;
+            mass            1.6483e-05;
+            nParcels        1;
+            temperature     308.0;
+            X ( 1.0 );
+            
+            massFlowRateProfile 
+            (
+                (0.0     1)
+                (5.0     1)
+           );
+            temperatureProfile 
+            (
+                (0.0     308.0)
+                (5.0     308.0)
+           );
+            velocityProfile 
+            (
+                (0.0     12.56)
+                (5.0     12.56)
+           );
+        }
+    }
+
+// z = 0.005 ------------------------------------------------------------------------- 
+
+    {
+        injectorType        definedInjector;
+        definedInjectorProps
+        {
+            position        (0.005 0 1e-4);
+            direction       (0 0 1);
+            diameter        0.001;
+            Cd              1.0;
+            mass            8.002e-05;
+            nParcels        1;
+            temperature     308.0;
+            X ( 1.0 );
+            
+            massFlowRateProfile 
+            (
+                (0.0     1)
+                (5.0     1)
+           );
+            temperatureProfile 
+            (
+                (0.0     308.0)
+                (5.0     308.0)
+           );
+            velocityProfile 
+            (
+                (0.0     15.66)
+                (5.0     15.66)
+           );
+        }
+    }
+
+// z = 0.006 ------------------------------------------------------------------------- 
+
+    {
+        injectorType        definedInjector;
+        definedInjectorProps
+        {
+            position        (0.006 0 1e-4);
+            direction       (0 0 1);
+            diameter        0.001;
+            Cd              1.0;
+            mass            0.00018868;
+            nParcels        1;
+            temperature     308.0;
+            X ( 1.0 );
+            
+            massFlowRateProfile 
+            (
+                (0.0     1)
+                (5.0     1)
+           );
+            temperatureProfile 
+            (
+                (0.0     308.0)
+                (5.0     308.0)
+           );
+            velocityProfile 
+            (
+                (0.0     17.39)
+                (5.0     17.39)
+           );
+        }
+    }
+
+// z = 0.007 ------------------------------------------------------------------------- 
+
+    {
+        injectorType        definedInjector;
+        definedInjectorProps
+        {
+            position        (0.007 0 1e-4);
+            direction       (0 0 1);
+            diameter        0.001;
+            Cd              1.0;
+            mass            0.00026372;
+            nParcels        1;
+            temperature     308.0;
+            X ( 1.0 );
+            
+            massFlowRateProfile 
+            (
+                (0.0     1)
+                (5.0     1)
+           );
+            temperatureProfile 
+            (
+                (0.0     308.0)
+                (5.0     308.0)
+           );
+            velocityProfile 
+            (
+                (0.0     15.72)
+                (5.0     15.72)
+           );
+        }
+    }
+
+// z = 0.008 ------------------------------------------------------------------------- 
+
+    {
+        injectorType        definedInjector;
+        definedInjectorProps
+        {
+            position        (0.008 0 1e-4);
+            direction       (0 0 1);
+            diameter        0.001;
+            Cd              1.0;
+            mass            0.00016256;
+            nParcels        1;
+            temperature     308.0;
+            X ( 1.0 );
+            
+            massFlowRateProfile 
+            (
+                (0.0     1)
+                (5.0     1)
+           );
+            temperatureProfile 
+            (
+                (0.0     308.0)
+                (5.0     308.0)
+           );
+            velocityProfile 
+            (
+                (0.0     12.75)
+                (5.0     12.75)
+           );
+        }
+    }
+
+// z = 0.009 ------------------------------------------------------------------------- 
+
+    {
+        injectorType        definedInjector;
+        definedInjectorProps
+        {
+            position        (0.009 0 1e-4);
+            direction       (0 0 1);
+            diameter        0.001;
+            Cd              1.0;
+            mass            7.3488e-05;
+            nParcels        1;
+            temperature     308.0;
+            X ( 1.0 );
+            
+            massFlowRateProfile 
+            (
+                (0.0     1)
+                (5.0     1)
+           );
+            temperatureProfile 
+            (
+                (0.0     308.0)
+                (5.0     308.0)
+           );
+            velocityProfile 
+            (
+                (0.0     10.79)
+                (5.0     10.79)
+           );
+        }
+    }
+
+// z = 0.01 ------------------------------------------------------------------------- 
+
+    {
+        injectorType        definedInjector;
+        definedInjectorProps
+        {
+            position        (0.01 0 1e-4);
+            direction       (0 0 1);
+            diameter        0.001;
+            Cd              1.0;
+            mass            2.4049e-05;
+            nParcels        1;
+            temperature     308.0;
+            X ( 1.0 );
+            
+            massFlowRateProfile 
+            (
+                (0.0     1)
+                (5.0     1)
+           );
+            temperatureProfile 
+            (
+                (0.0     308.0)
+                (5.0     308.0)
+           );
+            velocityProfile 
+            (
+                (0.0     9.89)
+                (5.0     9.89)
+           );
+        }
+    }
+
+// z = 0.011 ------------------------------------------------------------------------- 
+
+    {
+        injectorType        definedInjector;
+        definedInjectorProps
+        {
+            position        (0.011 0 1e-4);
+            direction       (0 0 1);
+            diameter        0.001;
+            Cd              1.0;
+            mass            8.4273e-06;
+            nParcels        1;
+            temperature     308.0;
+            X ( 1.0 );
+            
+            massFlowRateProfile 
+            (
+                (0.0     1)
+                (5.0     1)
+           );
+            temperatureProfile 
+            (
+                (0.0     308.0)
+                (5.0     308.0)
+           );
+            velocityProfile 
+            (
+                (0.0     9.49)
+                (5.0     9.49)
+           );
+        }
+    }
+
+// z = 0.012 ------------------------------------------------------------------------- 
+
+    {
+        injectorType        definedInjector;
+        definedInjectorProps
+        {
+            position        (0.012 0 1e-4);
+            direction       (0 0 1);
+            diameter        0.001;
+            Cd              1.0;
+            mass            3.1542e-06;
+            nParcels        1;
+            temperature     308.0;
+            X ( 1.0 );
+            
+            massFlowRateProfile 
+            (
+                (0.0     1)
+                (5.0     1)
+           );
+            temperatureProfile 
+            (
+                (0.0     308.0)
+                (5.0     308.0)
+           );
+            velocityProfile 
+            (
+                (0.0     9.29)
+                (5.0     9.29)
+           );
+        }
+    }
+
+// z = 0.013 ------------------------------------------------------------------------- 
+
+    {
+        injectorType        definedInjector;
+        definedInjectorProps
+        {
+            position        (0.013 0 1e-4);
+            direction       (0 0 1);
+            diameter        0.001;
+            Cd              1.0;
+            mass            1.4191e-06;
+            nParcels        1;
+            temperature     308.0;
+            X ( 1.0 );
+            
+            massFlowRateProfile 
+            (
+                (0.0     1)
+                (5.0     1)
+           );
+            temperatureProfile 
+            (
+                (0.0     308.0)
+                (5.0     308.0)
+           );
+            velocityProfile 
+            (
+                (0.0     9.16)
+                (5.0     9.16)
+           );
+        }
+    }
+// ------------------------------------------------------------------------- 
+)

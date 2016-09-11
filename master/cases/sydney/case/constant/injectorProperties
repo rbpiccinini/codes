@@ -1,0 +1,56 @@
+/*---------------------------------------------------------------------------*\ 
+| =========                 |                                                 | 
+| \      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           | 
+|  \    /   O peration     | Version:  1.6                                   | 
+|   \  /    A nd           | Web:      http://www.openfoam.org               | 
+|    \/     M anipulation  |                                                 | 
+\*---------------------------------------------------------------------------*/ 
+
+FoamFile 
+{    version         2.0; 
+    format          ascii; 
+
+    root            "";
+    case            "";
+    instance        "";
+    local           "";
+
+    class           dictionary; 
+    object          injectorProperties;
+}
+
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * // 
+(
+
+    {
+        injectorType        myDefinedInjector;
+        myDefinedInjectorProps
+        {
+            position        (0.005 0 0);
+            direction       (1 0 0);
+            diameter        0.010;
+            Cd              1.0;
+            mass            1.833e-5;
+            nParcels        1;
+            temperature     276.0;
+            X ( 1.0 );
+            
+            massFlowRateProfile 
+            (
+                (0.     1)
+                (1.     1)
+           );
+            temperatureProfile 
+            (
+                (0.     276.)
+                (1.     276.)
+           );
+            velocityProfile 
+            (
+                (0.     31.)
+                (1.     31.)
+           );
+        }
+    }
+// ------------------------------------------------------------------------- 
+)

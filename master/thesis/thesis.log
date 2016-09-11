@@ -1,0 +1,2375 @@
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2011.10.12)  18 DEC 2011 17:05
+entering extended mode
+ %&-line parsing enabled.
+**thesis.tex
+(./thesis.tex
+LaTeX2e <2009/09/24>
+Babel <v3.8l> and hyphenation patterns for english, usenglishmax, dumylang, noh
+yphenation, loaded.
+(./ita.cls
+Document Class: ita 2006/03/10 v2.0 Classe de documento com padrões do ITA
+(./defaults.def) (./msc.def) (/usr/share/texmf-texlive/tex/latex/base/book.cls
+Document Class: book 2007/10/19 v1.4h Standard LaTeX document class
+(/usr/share/texmf-texlive/tex/latex/base/bk12.clo
+File: bk12.clo 2007/10/19 v1.4h Standard LaTeX file (size option)
+)
+\c@part=\count79
+\c@chapter=\count80
+\c@section=\count81
+\c@subsection=\count82
+\c@subsubsection=\count83
+\c@paragraph=\count84
+\c@subparagraph=\count85
+\c@figure=\count86
+\c@table=\count87
+\abovecaptionskip=\skip41
+\belowcaptionskip=\skip42
+\bibindent=\dimen102
+)
+(/usr/share/texmf-texlive/tex/latex/tools/calc.sty
+Package: calc 2007/08/22 v4.3 Infix arithmetic (KKT,FJ)
+\calc@Acount=\count88
+\calc@Bcount=\count89
+\calc@Adimen=\dimen103
+\calc@Bdimen=\dimen104
+\calc@Askip=\skip43
+\calc@Bskip=\skip44
+LaTeX Info: Redefining \setlength on input line 76.
+LaTeX Info: Redefining \addtolength on input line 77.
+\calc@Ccount=\count90
+\calc@Cskip=\skip45
+)
+(/usr/share/texmf-texlive/tex/latex/base/ifthen.sty
+Package: ifthen 2001/05/26 v1.1c Standard LaTeX ifthen package (DPC)
+)
+(/usr/share/texmf-texlive/tex/generic/babel/babel.sty
+Package: babel 2008/07/06 v3.8l The Babel package
+
+(/usr/share/texmf-texlive/tex/generic/babel/english.ldf
+Language: english 2005/03/30 v3.3o English support from the babel system
+
+(/usr/share/texmf-texlive/tex/generic/babel/babel.def
+File: babel.def 2008/07/06 v3.8l Babel common definitions
+\babel@savecnt=\count91
+\U@D=\dimen105
+)
+\l@british = a dialect from \language\l@english 
+\l@UKenglish = a dialect from \language\l@english 
+\l@canadian = a dialect from \language\l@american 
+\l@australian = a dialect from \language\l@british 
+\l@newzealand = a dialect from \language\l@british 
+)) (./itaeng.babel)
+(/usr/share/texmf-texlive/tex/latex/base/inputenc.sty
+Package: inputenc 2008/03/30 v1.1d Input encoding file
+\inpenc@prehook=\toks14
+\inpenc@posthook=\toks15
+
+(/usr/share/texmf-texlive/tex/latex/base/latin1.def
+File: latin1.def 2008/03/30 v1.1d Input encoding file
+))
+(/usr/share/texmf-texlive/tex/latex/setspace/setspace.sty
+Package: setspace 2000/12/01 6.7 Contributed and Supported LaTeX2e package
+
+Package: `setspace' 6.7 <2000/12/01>
+) (/usr/share/texmf-texlive/tex/latex/fancyhdr/fancyhdr.sty
+\fancy@headwidth=\skip46
+\f@ncyO@elh=\skip47
+\f@ncyO@erh=\skip48
+\f@ncyO@olh=\skip49
+\f@ncyO@orh=\skip50
+\f@ncyO@elf=\skip51
+\f@ncyO@erf=\skip52
+\f@ncyO@olf=\skip53
+\f@ncyO@orf=\skip54
+)
+(/usr/share/texmf-texlive/tex/latex/amsfonts/amsfonts.sty
+Package: amsfonts 2009/06/22 v3.00 Basic AMSFonts support
+\@emptytoks=\toks16
+\symAMSa=\mathgroup4
+\symAMSb=\mathgroup5
+LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
+(Font)                  U/euf/m/n --> U/euf/b/n on input line 96.
+)
+(/usr/share/texmf-texlive/tex/latex/lastpage/lastpage.sty
+Package: lastpage 1994/06/25 v0.1b LaTeX2e package for refs to last page number
+ (JPG)
+)
+(/usr/share/texmf-texlive/tex/latex/tools/indentfirst.sty
+Package: indentfirst 1995/11/23 v1.03 Indent first paragraph (DPC)
+)
+(/usr/share/texmf-texlive/tex/latex/caption/caption.sty
+Package: caption 2009/10/09 v3.1k Customizing captions (AR)
+
+(/usr/share/texmf-texlive/tex/latex/caption/caption3.sty
+Package: caption3 2009/10/09 v3.1k caption3 kernel (AR)
+
+(/usr/share/texmf-texlive/tex/latex/graphics/keyval.sty
+Package: keyval 1999/03/16 v1.13 key=value parser (DPC)
+\KV@toks@=\toks17
+)
+\captionmargin=\dimen106
+\captionmargin@=\dimen107
+\captionwidth=\dimen108
+\caption@indent=\dimen109
+\caption@parindent=\dimen110
+\caption@hangindent=\dimen111
+)
+\c@ContinuedFloat=\count92
+)
+(/usr/share/texmf-texlive/tex/latex/tools/longtable.sty
+Package: longtable 2004/02/01 v4.11 Multi-page Table package (DPC)
+\LTleft=\skip55
+\LTright=\skip56
+\LTpre=\skip57
+\LTpost=\skip58
+\LTchunksize=\count93
+\LTcapwidth=\dimen112
+\LT@head=\box26
+\LT@firsthead=\box27
+\LT@foot=\box28
+\LT@lastfoot=\box29
+\LT@cols=\count94
+\LT@rows=\count95
+\c@LT@tables=\count96
+\c@LT@chunks=\count97
+\LT@p@ftn=\toks18
+)
+(/usr/share/texmf-texlive/tex/latex/tools/array.sty
+Package: array 2008/09/09 v2.4c Tabular extension package (FMi)
+\col@sep=\dimen113
+\extrarowheight=\dimen114
+\NC@list=\toks19
+\extratabsurround=\skip59
+\backup@length=\skip60
+)
+(/usr/share/texmf-texlive/tex/latex/tools/tabularx.sty
+Package: tabularx 1999/01/07 v2.07 `tabularx' package (DPC)
+\TX@col@width=\dimen115
+\TX@old@table=\dimen116
+\TX@old@col=\dimen117
+\TX@target=\dimen118
+\TX@delta=\dimen119
+\TX@cols=\count98
+\TX@ftn=\toks20
+) (./makeglo.sty
+Package: makeglo 
+\glossentrylen=\skip61
+)
+(/usr/share/texmf-texlive/tex/latex/graphics/color.sty
+Package: color 2005/11/14 v1.0j Standard LaTeX Color (DPC)
+
+(/etc/texmf/tex/latex/config/color.cfg
+File: color.cfg 2007/01/18 v1.5 color configuration of teTeX/TeXLive
+)
+Package color Info: Driver file: pdftex.def on input line 130.
+
+(/usr/share/texmf-texlive/tex/latex/pdftex-def/pdftex.def
+File: pdftex.def 2010/03/12 v0.04p Graphics/color for pdfTeX
+\Gread@gobject=\count99
+))
+(/usr/share/texmf-texlive/tex/latex/hyphenat/hyphenat.sty
+Package: hyphenat 2009/09/02 v2.3c hyphenation utilities
+\langwohyphens=\language4
+LaTeX Info: Redefining \_ on input line 43.
+)
+(/usr/share/texmf-texlive/tex/latex/base/makeidx.sty
+Package: makeidx 2000/03/29 v1.0m Standard LaTeX package
+)
+(/usr/share/texmf-texlive/tex/latex/hyperref/hyperref.sty
+Package: hyperref 2009/10/09 v6.79a Hypertext links for LaTeX
+
+(/usr/share/texmf-texlive/tex/generic/oberdiek/ifpdf.sty
+Package: ifpdf 2009/04/10 v2.0 Provides the ifpdf switch (HO)
+Package ifpdf Info: pdfTeX in pdf mode detected.
+)
+(/usr/share/texmf-texlive/tex/generic/oberdiek/ifvtex.sty
+Package: ifvtex 2008/11/04 v1.4 Switches for detecting VTeX and its modes (HO)
+Package ifvtex Info: VTeX not detected.
+)
+(/usr/share/texmf-texlive/tex/generic/ifxetex/ifxetex.sty
+Package: ifxetex 2009/01/23 v0.5 Provides ifxetex conditional
+)
+(/usr/share/texmf-texlive/tex/latex/oberdiek/hycolor.sty
+Package: hycolor 2009/10/02 v1.5 Code for color options of hyperref/bookmark (H
+O)
+
+(/usr/share/texmf-texlive/tex/latex/oberdiek/xcolor-patch.sty
+Package: xcolor-patch 2009/10/02 xcolor patch
+))
+\@linkdim=\dimen120
+\Hy@linkcounter=\count100
+\Hy@pagecounter=\count101
+
+(/usr/share/texmf-texlive/tex/latex/hyperref/pd1enc.def
+File: pd1enc.def 2009/10/09 v6.79a Hyperref: PDFDocEncoding definition (HO)
+)
+(/usr/share/texmf-texlive/tex/generic/oberdiek/etexcmds.sty
+Package: etexcmds 2007/12/12 v1.2 Prefix for e-TeX command names (HO)
+
+(/usr/share/texmf-texlive/tex/generic/oberdiek/infwarerr.sty
+Package: infwarerr 2007/09/09 v1.2 Providing info/warning/message (HO)
+)
+Package etexcmds Info: Could not find \expanded.
+(etexcmds)             That can mean that you are not using pdfTeX 1.50 or
+(etexcmds)             that some package has redefined \expanded.
+(etexcmds)             In the latter case, load this package earlier.
+)
+(/usr/share/texmf-texlive/tex/latex/latexconfig/hyperref.cfg
+File: hyperref.cfg 2002/06/06 v1.2 hyperref configuration of TeXLive
+)
+(/usr/share/texmf-texlive/tex/latex/oberdiek/kvoptions.sty
+Package: kvoptions 2009/08/13 v3.4 Keyval support for LaTeX options (HO)
+
+(/usr/share/texmf-texlive/tex/generic/oberdiek/kvsetkeys.sty
+Package: kvsetkeys 2009/07/30 v1.5 Key value parser with default handler suppor
+t (HO)
+))
+Package hyperref Info: Option `debug' set `true' on input line 2864.
+Package hyperref Info: Option `breaklinks' set `true' on input line 2864.
+Package hyperref Info: Option `bookmarksopen' set `true' on input line 2864.
+Package hyperref Info: Option `colorlinks' set `true' on input line 2864.
+Package hyperref Info: Option `bookmarksnumbered' set `true' on input line 2864
+.
+Package hyperref Info: Option `hyperindex' set `true' on input line 2864.
+Package hyperref Info: Option `verbose' set `true' on input line 2864.
+Package hyperref Info: Hyper figures OFF on input line 2975.
+Package hyperref Info: Link nesting OFF on input line 2980.
+Package hyperref Info: Hyper index ON on input line 2983.
+Package hyperref Info: Plain pages OFF on input line 2990.
+Package hyperref Info: Backreferencing ON on input line 2993.
+
+Implicit mode ON; LaTeX internals redefined
+Package hyperref Info: Bookmarks ON on input line 3191.
+(/usr/share/texmf-texlive/tex/latex/hyperref/backref.sty
+Package: backref 2006/09/05 v1.28 Bibliographical back referencing
+)
+(/usr/share/texmf-texlive/tex/latex/ltxmisc/url.sty
+\Urlmuskip=\muskip10
+Package: url 2006/04/12  ver 3.3  Verb mode for urls, etc.
+)
+LaTeX Info: Redefining \url on input line 3428.
+
+(/usr/share/texmf-texlive/tex/generic/oberdiek/bitset.sty
+Package: bitset 2007/09/28 v1.0 Data type bit set (HO)
+
+(/usr/share/texmf-texlive/tex/generic/oberdiek/intcalc.sty
+Package: intcalc 2007/09/27 v1.1 Expandable integer calculations (HO)
+)
+(/usr/share/texmf-texlive/tex/generic/oberdiek/bigintcalc.sty
+Package: bigintcalc 2007/11/11 v1.1 Expandable big integer calculations (HO)
+
+(/usr/share/texmf-texlive/tex/generic/oberdiek/pdftexcmds.sty
+Package: pdftexcmds 2009/09/23 v0.6 LuaTeX support for pdfTeX utility functions
+ (HO)
+
+(/usr/share/texmf-texlive/tex/generic/oberdiek/ifluatex.sty
+Package: ifluatex 2009/04/17 v1.2 Provides the ifluatex switch (HO)
+Package ifluatex Info: LuaTeX not detected.
+)
+(/usr/share/texmf-texlive/tex/generic/oberdiek/ltxcmds.sty
+Package: ltxcmds 2009/08/05 v1.0 Some LaTeX kernel commands for general use (HO
+)
+)
+Package pdftexcmds Info: LuaTeX not detected.
+Package pdftexcmds Info: \pdf@primitive is available.
+Package pdftexcmds Info: \pdf@ifprimitive is available.
+)))
+\Fld@menulength=\count102
+\Field@Width=\dimen121
+\Fld@charsize=\dimen122
+\Field@toks=\toks21
+Package hyperref Info: Hyper figures OFF on input line 4377.
+Package hyperref Info: Link nesting OFF on input line 4382.
+Package hyperref Info: Hyper index ON on input line 4385.
+Package hyperref Info: backreferencing ON on input line 4390.
+Package hyperref Info: Link coloring ON on input line 4395.
+Package hyperref Info: Link coloring with OCG OFF on input line 4402.
+Package hyperref Info: PDF/A mode OFF on input line 4407.
+
+(/usr/share/texmf-texlive/tex/generic/oberdiek/atbegshi.sty
+Package: atbegshi 2008/07/31 v1.9 At begin shipout hook (HO)
+)
+\Hy@abspage=\count103
+\c@Item=\count104
+)
+*hyperref using default driver hpdftex*
+(/usr/share/texmf-texlive/tex/latex/hyperref/hpdftex.def
+File: hpdftex.def 2009/10/09 v6.79a Hyperref driver for pdfTeX
+\Fld@listcount=\count105
+)
+(/usr/share/texmf-texlive/tex/latex/ae/ae.sty
+Package: ae 2001/02/12 1.3 Almost European Computer Modern
+
+(/usr/share/texmf-texlive/tex/latex/base/fontenc.sty
+Package: fontenc 2005/09/27 v1.99g Standard LaTeX package
+
+(/usr/share/texmf-texlive/tex/latex/base/t1enc.def
+File: t1enc.def 2005/09/27 v1.99g Standard LaTeX file
+LaTeX Font Info:    Redeclaring font encoding T1 on input line 43.
+)
+LaTeX Font Info:    Try loading font information for T1+aer on input line 100.
+
+(/usr/share/texmf-texlive/tex/latex/ae/t1aer.fd
+File: t1aer.fd 1997/11/16 Font definitions for T1/aer.
+)))
+(/usr/share/texmf-texlive/tex/latex/graphics/graphicx.sty
+Package: graphicx 1999/02/16 v1.0f Enhanced LaTeX Graphics (DPC,SPQR)
+
+(/usr/share/texmf-texlive/tex/latex/graphics/graphics.sty
+Package: graphics 2009/02/05 v1.0o Standard LaTeX Graphics (DPC,SPQR)
+
+(/usr/share/texmf-texlive/tex/latex/graphics/trig.sty
+Package: trig 1999/03/16 v1.09 sin cos tan (DPC)
+)
+(/etc/texmf/tex/latex/config/graphics.cfg
+File: graphics.cfg 2009/08/28 v1.8 graphics configuration of TeX Live
+)
+Package graphics Info: Driver file: pdftex.def on input line 91.
+)
+\Gin@req@height=\dimen123
+\Gin@req@width=\dimen124
+)
+(/usr/share/texmf-texlive/tex/latex/geometry/geometry.sty
+Package: geometry 2008/12/21 v4.2 Page Geometry
+\Gm@cnth=\count106
+\Gm@cntv=\count107
+\c@Gm@tempcnt=\count108
+\Gm@bindingoffset=\dimen125
+\Gm@wd@mp=\dimen126
+\Gm@odd@mp=\dimen127
+\Gm@even@mp=\dimen128
+\Gm@dimlist=\toks22
+)
+(/usr/share/texmf/tex/latex/abntex/abntcite.sty
+(/usr/share/texmf/tex/latex/abntex/cvs-id.def)
+Package: abntcite 2006/04/25 v1.30 Chamadas de referencias no texto (NBR10520, 
+NBR10522)
+
+(/usr/share/texmf/tex/latex/abntex/abntex-abrev.sty
+(/usr/share/texmf/tex/latex/abntex/cvs-id.def)
+Package: abntex-abrev 2005/11/14 v1.4 Abreviacoes
+
+(/usr/share/texmf/tex/latex/abntex/nbr10522-1988.def
+(/usr/share/texmf/tex/latex/abntex/cvs-id.def)
+File: nbr10522-1988.def 2003/10/13 v1.2 Abreviacoes bibliograficas (NBR10522:19
+88)
+)
+(/usr/share/texmf/tex/latex/abntex/abntex-abrev-pt_BR.def
+(/usr/share/texmf/tex/latex/abntex/cvs-id.def)
+File: abntex-abrev-pt_BR.def 2005/11/14 v1.3 definicao de abntex-abrev, traduca
+o de termos en_US/pt_BR
+))
+(/usr/share/texmf/tex/latex/abntex/abntex-text.sty
+(/usr/share/texmf/tex/latex/abntex/cvs-id.def)
+Package: abntex-text 2005/11/14 v1.1 abnTeX text replacements
+
+(/usr/share/texmf/tex/latex/abntex/abntex-text-pt_BR.def
+(/usr/share/texmf/tex/latex/abntex/cvs-id.def)
+File: abntex-text-pt_BR.def 2005/12/21 v1.2 Definicao de nomes em Portugues/Bra
+sil (pt_BR)
+))
+(/usr/share/texmf/tex/latex/abntex/abntex-default-design.sty
+(/usr/share/texmf/tex/latex/abntex/cvs-id.def)
+Package: abntex-default-design 2005/06/22 v1.2 Definicoes de design padrao do a
+bntex
+
+(/usr/share/texmf-texlive/tex/latex/ltxmisc/relsize.sty
+Package: relsize 2003/07/04 ver 3.1
+)
+\ABNTanapindent=\skip62
+\ABNTsignwidth=\skip63
+\ABNTsignthickness=\skip64
+\ABNTsignskip=\skip65
+)
+\minimumbiblabelwidth=\skip66
+\ABCIauxlen=\skip67
+\c@ABCIaux=\count109
+\c@ABCImax=\count110
+
+(/usr/share/texmf/tex/latex/abntex/nbr10520-2002.def
+(/usr/share/texmf/tex/latex/abntex/cvs-id.def)
+File: nbr10520-2002.def 2006/04/25 v1.4 Definicoes para abntcite (NBR10520:2002
+)
+)
+\biblabelsep=\skip68
+LaTeX Info: Redefining \newblock on input line 466.
+LaTeX Info: Redefining \cite on input line 493.
+\ABCItoken=\toks23
+)
+\c@mecounter=\count111
+\c@kwcipcounter=\count112
+\nohyphen=\language5
+)
+(/usr/share/texmf-texlive/tex/latex/amsfonts/amssymb.sty
+Package: amssymb 2009/06/22 v3.00
+)
+(/usr/share/texmf-texlive/tex/latex/amsmath/amsmath.sty
+Package: amsmath 2000/07/18 v2.13 AMS math features
+\@mathmargin=\skip69
+
+For additional information on amsmath, use the `?' option.
+(/usr/share/texmf-texlive/tex/latex/amsmath/amstext.sty
+Package: amstext 2000/06/29 v2.01
+
+(/usr/share/texmf-texlive/tex/latex/amsmath/amsgen.sty
+File: amsgen.sty 1999/11/30 v2.0
+\@emptytoks=\toks24
+\ex@=\dimen129
+))
+(/usr/share/texmf-texlive/tex/latex/amsmath/amsbsy.sty
+Package: amsbsy 1999/11/29 v1.2d
+\pmbraise@=\dimen130
+)
+(/usr/share/texmf-texlive/tex/latex/amsmath/amsopn.sty
+Package: amsopn 1999/12/14 v2.01 operator names
+)
+\inf@bad=\count113
+LaTeX Info: Redefining \frac on input line 211.
+\uproot@=\count114
+\leftroot@=\count115
+LaTeX Info: Redefining \overline on input line 307.
+\classnum@=\count116
+\DOTSCASE@=\count117
+LaTeX Info: Redefining \ldots on input line 379.
+LaTeX Info: Redefining \dots on input line 382.
+LaTeX Info: Redefining \cdots on input line 467.
+\Mathstrutbox@=\box30
+\strutbox@=\box31
+\big@size=\dimen131
+LaTeX Font Info:    Redeclaring font encoding OML on input line 567.
+LaTeX Font Info:    Redeclaring font encoding OMS on input line 568.
+\macc@depth=\count118
+\c@MaxMatrixCols=\count119
+\dotsspace@=\muskip11
+\c@parentequation=\count120
+\dspbrk@lvl=\count121
+\tag@help=\toks25
+\row@=\count122
+\column@=\count123
+\maxfields@=\count124
+\andhelp@=\toks26
+\eqnshift@=\dimen132
+\alignsep@=\dimen133
+\tagshift@=\dimen134
+\tagwidth@=\dimen135
+\totwidth@=\dimen136
+\lineht@=\dimen137
+\@envbody=\toks27
+\multlinegap=\skip70
+\multlinetaggap=\skip71
+\mathdisplay@stack=\toks28
+LaTeX Info: Redefining \[ on input line 2666.
+LaTeX Info: Redefining \] on input line 2667.
+)
+(/usr/share/texmf-texlive/tex/latex/placeins/placeins.sty
+Package: placeins 2005/04/18  v 2.2
+)
+(/usr/share/texmf-texlive/tex/latex/subfig/subfig.sty
+Package: subfig 2005/06/28 ver: 1.3 subfig package
+\c@KVtest=\count125
+\sf@farskip=\skip72
+\sf@captopadj=\dimen138
+\sf@capskip=\skip73
+\sf@nearskip=\skip74
+\c@subfigure=\count126
+\c@subfigure@save=\count127
+\c@lofdepth=\count128
+\c@subtable=\count129
+\c@subtable@save=\count130
+\c@lotdepth=\count131
+\sf@top=\skip75
+\sf@bottom=\skip76
+)
+\@glossaryfile=\write3
+\openout3 = `thesis.glo'.
+
+
+Writing glossary file thesis.glo 
+(./thesis.aux
+
+LaTeX Warning: Label `eq: film_species_bc' multiply defined.
+
+)
+\openout1 = `thesis.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 89.
+LaTeX Font Info:    ... okay on input line 89.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 89.
+LaTeX Font Info:    ... okay on input line 89.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 89.
+LaTeX Font Info:    ... okay on input line 89.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 89.
+LaTeX Font Info:    ... okay on input line 89.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 89.
+LaTeX Font Info:    ... okay on input line 89.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 89.
+LaTeX Font Info:    ... okay on input line 89.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 89.
+LaTeX Font Info:    ... okay on input line 89.
+Package caption Info: Begin \AtBeginDocument code.
+Package caption3 Info: subfig package 1.2 or 1.3 is loaded.
+LaTeX Info: Redefining \subref on input line 89.
+Package caption Info: hyperref package is loaded.
+Package caption Info: longtable package is loaded.
+ (/usr/share/texmf-texlive/tex/latex/caption/ltcaption.sty
+Package: ltcaption 2008/03/28 v1.2 longtable captions (AR)
+)
+Package caption Info: End \AtBeginDocument code.
+
+(/usr/share/texmf-texlive/tex/context/base/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count132
+\scratchdimen=\dimen139
+\scratchbox=\box32
+\nofMPsegments=\count133
+\nofMParguments=\count134
+\everyMPshowfont=\toks29
+\MPscratchCnt=\count135
+\MPscratchDim=\dimen140
+\MPnumerator=\count136
+\everyMPtoPDFconversion=\toks30
+)
+Package hyperref Info: Link coloring ON on input line 89.
+ (/usr/share/texmf-texlive/tex/latex/hyperref/nameref.sty
+Package: nameref 2007/05/29 v2.31 Cross-referencing by name of section
+
+(/usr/share/texmf-texlive/tex/latex/oberdiek/refcount.sty
+Package: refcount 2008/08/11 v3.1 Data extraction from references (HO)
+)
+\c@section@level=\count137
+)
+LaTeX Info: Redefining \ref on input line 89.
+LaTeX Info: Redefining \pageref on input line 89.
+ (./thesis.out)
+(./thesis.out)
+\@outlinefile=\write4
+\openout4 = `thesis.out'.
+
+
+pdftex: define anchor at line 89: Doc-Start
+\AtBeginShipoutBox=\box33
+*geometry detected driver: pdftex*
+-------------------- Geometry parameters
+paper: a4paper
+landscape: --
+twocolumn: --
+twoside: --
+asymmetric: --
+h-parts: 85.35826pt, 455.24411pt, 56.9055pt
+v-parts: 85.35826pt, 702.78308pt, 56.9055pt
+hmarginratio: --
+vmarginratio: --
+lines: --
+heightrounded: --
+bindingoffset: 0.0pt
+truedimen: --
+includehead: --
+includefoot: --
+includemp: --
+driver: pdftex
+-------------------- Page layout dimensions and switches
+\paperwidth  597.50787pt
+\paperheight 845.04684pt
+\textwidth  455.24411pt
+\textheight 702.78308pt
+\oddsidemargin  13.08827pt
+\evensidemargin 13.08827pt
+\topmargin  -17.07156pt
+\headheight 15.93347pt
+\headsep    14.22636pt
+\footskip   35.24373pt
+\marginparwidth 38.0pt
+\marginparsep   7.0pt
+\columnsep  10.0pt
+\skip\footins  10.8pt plus 4.0pt minus 2.0pt
+\hoffset 0.0pt
+\voffset 0.0pt
+\mag 1000
+
+(1in=72.27pt, 1cm=28.45pt)
+-----------------------
+\c@butlastpage=\count138
+pdftex: define anchor at line 103: titulo.0
+LaTeX Font Info:    Try loading font information for U+msa on input line 103.
+(/usr/share/texmf-texlive/tex/latex/amsfonts/umsa.fd
+File: umsa.fd 2009/06/22 v3.00 AMS symbols A
+)
+LaTeX Font Info:    Try loading font information for U+msb on input line 103.
+
+(/usr/share/texmf-texlive/tex/latex/amsfonts/umsb.fd
+File: umsb.fd 2009/06/22 v3.00 AMS symbols B
+)
+pdftex: define anchor at line 103: page.i
+[1
+
+
+
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
+pdftex: define anchor at line 103: cip.0
+
+Underfull \hbox (badness 10000) in paragraph at lines 103--103
+
+ []
+
+pdftex: define anchor at line 103: page.ii
+[2]
+pdftex: define anchor at line 103: aprovacao.0
+pdftex: define anchor at line 103: page.iii
+[3]
+pdftex: define anchor at line 106: dedication.0
+pdftex: define anchor at line 108: page.iv
+[4]
+pdftex: define anchor at line 112: chapter*.1
+pdftex: define anchor at line 112: acknowledgment.0
+(./acknowledgements.tex
+Overfull \hbox (2.51419pt too wide) in paragraph at lines 15--16
+[]\T1/aer/m/n/12 Agradeço às co-mu-nidades de código aberto que man-têm soft-wa
+res de qual-i-dade disponi-
+ []
+
+)
+pdftex: define anchor at line 113: page.v
+[5
+
+]
+pdftex: define anchor at line 117: epigrafe.0
+LaTeX Font Info:    Try loading font information for T1+aess on input line 121.
+
+(/usr/share/texmf-texlive/tex/latex/ae/t1aess.fd
+File: t1aess.fd 1997/11/16 Font definitions for T1/aess.
+)
+LaTeX Font Info:    Font shape `T1/aess/m/it' in size <12> not available
+(Font)              Font shape `T1/aess/m/sl' tried instead on input line 121.
+
+pdftex: define anchor at line 129: page.vi
+[6]
+pdftex: define anchor at line 129: chapter*.2
+pdftex: define anchor at line 129: resumo.0
+(./resumo.tex)
+pdftex: define anchor at line 137: page.vii
+[7
+
+]
+pdftex: define anchor at line 137: chapter*.3
+pdftex: define anchor at line 137: abstract.0
+(./abstract.tex)
+pdftex: define anchor at line 145: page.viii
+[8
+
+]
+pdftex: define anchor at line 145: contents.0
+pdftex: define anchor at line 145: chapter*.4
+(./thesis.toc
+Underfull \hbox (badness 10000) in paragraph at lines 2--2
+ []  
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 3--3
+ []  
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 4--4
+ []  
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 5--5
+ []  
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 13--13
+ []  
+ []
+
+pdftex: define anchor at line 20: page.ix
+[9
+
+]
+Underfull \hbox (badness 10000) in paragraph at lines 36--36
+ []  
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 44--44
+ []  
+ []
+
+pdftex: define anchor at line 44: page.x
+[10]
+Underfull \hbox (badness 10000) in paragraph at lines 50--50
+ []  
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 54--54
+ []  
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 55--55
+ []  
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 57--57
+ []  
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 61--61
+ []  
+ []
+
+)
+\tf@toc=\write5
+\openout5 = `thesis.toc'.
+
+
+pdftex: define anchor at line 147: page.xi
+[11]
+pdftex: define anchor at line 147: chapter*.5
+pdftex: bookmark at 147: {0} {List of Figures} {chapter*.5}{0}{toc}
+(./thesis.lof
+pdftex: define anchor at line 23: page.xii
+[12
+
+]
+pdftex: define anchor at line 30: page.xiii
+[13]
+pdftex: define anchor at line 40: page.xiv
+[14])
+\tf@lof=\write6
+\openout6 = `thesis.lof'.
+
+
+pdftex: define anchor at line 149: page.xv
+[15]
+pdftex: define anchor at line 149: chapter*.6
+pdftex: bookmark at 149: {0} {List of Tables} {chapter*.6}{0}{toc}
+(./thesis.lot)
+\tf@lot=\write7
+\openout7 = `thesis.lot'.
+
+
+pdftex: define anchor at line 154: page.xvi
+[16
+
+]
+pdftex: define anchor at line 154: chapter*.7
+pdftex: bookmark at 154: {0} {List of Symbols} {chapter*.7}{0}{toc}
+(./thesis.lof)
+\tf@lof=\write8
+\openout8 = `thesis.lof'.
+
+ (./symbols.tex
+pdftex: define anchor at line 24: table.0.1
+pdftex: define anchor at line 44: page.xvii
+[17
+
+]
+pdftex: define anchor at line 72: page.xviii
+[18])
+pdftex: define anchor at line 157: page.xix
+[19]
+pdftex: define anchor at line 160: chapter.1
+Chapter 1.
+pdftex: bookmark at 160: {1} {\numberline{1}Introduction} {chapter.1}{0}{toc}
+(./chap1.tex
+pdftex: define anchor at line 1: section.1.1
+pdftex: bookmark at 1: {1.1} {\numberline{1.1}Motivation} {section.1.1}{1}{toc}
+
+pdftex: define anchor at line 9: section.1.2
+pdftex: bookmark at 9: {1.2} {\numberline{1.2}Objective} {section.1.2}{1}{toc}
+pdftex: define anchor at line 12: page.20
+[20
+
+
+]
+LaTeX Font Info:    Try loading font information for OMS+aer on input line 12.
+ (/usr/share/texmf-texlive/tex/latex/ae/omsaer.fd
+File: omsaer.fd 1999/12/27
+)
+LaTeX Font Info:    Font shape `OMS/aer/m/n' in size <12> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 12.
+
+pdftex: define anchor at line 17: section.1.3
+pdftex: bookmark at 17: {1.3} {\numberline{1.3}The Spray Jet and the Lagrangian
+ Point-Particle Method} {section.1.3}{1}{toc}
+pdftex: define anchor at line 24: page.21
+[21]
+pdftex: define anchor at line 31: section.1.4
+pdftex: bookmark at 31: {1.4} {\numberline{1.4}Low Mach Number Approximation} {
+section.1.4}{1}{toc}
+pdftex: define anchor at line 34: page.22
+[22]
+pdftex: define anchor at line 43: section.1.5
+pdftex: bookmark at 43: {1.5} {\numberline{1.5}Droplet Evaporation} {section.1.
+5}{1}{toc}
+pdftex: define anchor at line 46: page.23
+[23]
+pdftex: define anchor at line 51: section.1.6
+pdftex: bookmark at 51: {1.6} {\numberline{1.6}Turbulence and Droplet Submodels
+} {section.1.6}{1}{toc}
+pdftex: define anchor at line 53: figure.caption.8
+<./figuras/chap1/stokes.png, id=639, 968.61874pt x 508.90125pt>
+File: ./figuras/chap1/stokes.png Graphic file (type png)
+
+<use ./figuras/chap1/stokes.png>
+pdftex: bookmark at 58: {1.1} {\numberline{1.1}{\ignorespaces Effect of Stokes 
+number on particle dispersion in large-scale turbulent structures, reproduced f
+rom \cite {crowe1988particle}.\relax }} {figure.caption.8}{0}{lof}
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+pdftex: define anchor at line 64: page.24
+[24]
+pdftex: define anchor at line 74: section.1.7
+pdftex: bookmark at 74: {1.7} {\numberline{1.7}Thesis Outline} {section.1.7}{1}
+{toc}
+pdftex: define anchor at line 78: page.25
+[25 <./figuras/chap1/stokes.png (PNG copy)>])
+pdftex: define anchor at line 163: page.26
+[26]
+pdftex: define anchor at line 163: chapter.2
+Chapter 2.
+pdftex: bookmark at 163: {2} {\numberline{2}Governing Equations} {chapter.2}{0}
+{toc}
+(./chap2.tex
+Overfull \hbox (15.41386pt too wide) in paragraph at lines 4--5
+[]\T1/aer/m/n/12 Continuous phase equa-tions start from the com-press-ible for-
+mu-la-tion found in ([][]POINSOT;
+ []
+
+pdftex: define anchor at line 8: section.2.1
+pdftex: bookmark at 8: {2.1} {\numberline{2.1}Continuous (Gaseous) Phase} {sect
+ion.2.1}{1}{toc}
+pdftex: define anchor at line 21: page.27
+[27
+
+]
+pdftex: define anchor at line 21: subsection.2.1.1
+pdftex: bookmark at 21: {2.1.1} {\numberline{2.1.1}Fully Compressible Formulati
+on} {subsection.2.1.1}{2}{toc}
+pdftex: define anchor at line 25: equation.2.1.1
+pdftex: define anchor at line 34: equation.2.1.2
+pdftex: define anchor at line 50: equation.2.1.3
+pdftex: define anchor at line 63: equation.2.1.4
+pdftex: define anchor at line 67: equation.2.1.1
+pdftex: define anchor at line 67: equation.2.1.2
+pdftex: define anchor at line 67: page.28
+[28]
+pdftex: define anchor at line 73: equation.2.1.5
+pdftex: define anchor at line 81: equation.2.1.6
+pdftex: define anchor at line 88: equation.2.1.7
+pdftex: define anchor at line 92: equation.2.1.8
+pdftex: define anchor at line 98: equation.2.1.9
+pdftex: define anchor at line 100: page.29
+[29pdfTeX warning (ext4): destination with the same identifier (name{equation.2
+.1.1}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.100 \end{equation}
+                    pdfTeX warning (ext4): destination with the same identifier
+ (name{equation.2.1.2}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.100 \end{equation}
+                    ]
+pdftex: define anchor at line 115: equation.2.1.10
+pdftex: define anchor at line 122: equation.2.1.11
+pdftex: define anchor at line 128: equation.2.1.12
+pdftex: define anchor at line 135: equation.2.1.13
+pdftex: define anchor at line 149: equation.2.1.14
+pdftex: define anchor at line 150: page.30
+[30]
+pdftex: define anchor at line 154: equation.2.1.1
+pdfTeX warning (ext4): destination with the same identifier (name{equation.2.1.
+1}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.154  \end{align}
+                  
+pdftex: define anchor at line 154: equation.2.1.2
+pdfTeX warning (ext4): destination with the same identifier (name{equation.2.1.
+2}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.154  \end{align}
+                  
+pdftex: define anchor at line 154: equation.2.1.3
+pdfTeX warning (ext4): destination with the same identifier (name{equation.2.1.
+3}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.154  \end{align}
+                  
+pdftex: define anchor at line 158: equation.2.1.15
+pdftex: define anchor at line 162: equation.2.1.16
+pdftex: define anchor at line 170: subsection.2.1.2
+pdftex: bookmark at 170: {2.1.2} {\numberline{2.1.2}Non-Dimensional Equations} 
+{subsection.2.1.2}{2}{toc}
+pdftex: define anchor at line 181: page.31
+[31]
+pdftex: define anchor at line 193: equation.2.1.17
+pdftex: define anchor at line 202: equation.2.1.1
+pdfTeX warning (ext4): destination with the same identifier (name{equation.2.1.
+1}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.202  \end{align}
+                  
+pdftex: define anchor at line 202: equation.2.1.2
+pdfTeX warning (ext4): destination with the same identifier (name{equation.2.1.
+2}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.202  \end{align}
+                  
+pdftex: define anchor at line 202: equation.2.1.3
+pdfTeX warning (ext4): destination with the same identifier (name{equation.2.1.
+3}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.202  \end{align}
+                  
+pdftex: define anchor at line 202: equation.2.1.4
+pdfTeX warning (ext4): destination with the same identifier (name{equation.2.1.
+4}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.202  \end{align}
+                  
+pdftex: define anchor at line 202: equation.2.1.5
+pdfTeX warning (ext4): destination with the same identifier (name{equation.2.1.
+5}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.202  \end{align}
+                  
+pdftex: define anchor at line 202: equation.2.1.6
+pdfTeX warning (ext4): destination with the same identifier (name{equation.2.1.
+6}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.202  \end{align}
+                  
+pdftex: define anchor at line 208: equation.2.1.18
+pdftex: define anchor at line 210: page.32
+[32]
+pdftex: define anchor at line 212: equation.2.1.19
+pdftex: define anchor at line 217: equation.2.1.20
+pdftex: define anchor at line 218: equation.2.1.1
+pdfTeX warning (ext4): destination with the same identifier (name{equation.2.1.
+1}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.218 \begin{equation}
+                      
+pdftex: define anchor at line 223: equation.2.1.2
+pdfTeX warning (ext4): destination with the same identifier (name{equation.2.1.
+2}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.223 \begin{equation}
+                      
+pdftex: define anchor at line 228: equation.2.1.21
+pdftex: define anchor at line 234: equation.2.1.22
+pdftex: define anchor at line 243: equation.2.1.23
+pdftex: define anchor at line 248: equation.2.1.24
+pdftex: define anchor at line 250: page.33
+[33]
+pdftex: define anchor at line 252: equation.2.1.25
+pdftex: define anchor at line 257: subsection.2.1.3
+pdftex: bookmark at 257: {2.1.3} {\numberline{2.1.3}Low Mach Number Approximati
+on} {subsection.2.1.3}{2}{toc}
+pdftex: define anchor at line 282: equation.2.1.26
+pdftex: define anchor at line 288: equation.2.1.1
+pdfTeX warning (ext4): destination with the same identifier (name{equation.2.1.
+1}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.288  \end{align}
+                  
+pdftex: define anchor at line 288: equation.2.1.2
+pdfTeX warning (ext4): destination with the same identifier (name{equation.2.1.
+2}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.288  \end{align}
+                  
+pdftex: define anchor at line 288: equation.2.1.3
+pdfTeX warning (ext4): destination with the same identifier (name{equation.2.1.
+3}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.288  \end{align}
+                  
+pdftex: define anchor at line 288: equation.2.1.4
+pdfTeX warning (ext4): destination with the same identifier (name{equation.2.1.
+4}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.288  \end{align}
+                  
+pdftex: define anchor at line 288: page.34
+[34]
+pdftex: define anchor at line 299: equation.2.1.27
+pdftex: define anchor at line 305: equation.2.1.28
+pdftex: define anchor at line 311: equation.2.1.29
+pdftex: define anchor at line 317: equation.2.1.1
+pdfTeX warning (ext4): destination with the same identifier (name{equation.2.1.
+1}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.317 \end{align}
+                 
+pdftex: define anchor at line 317: equation.2.1.2
+pdfTeX warning (ext4): destination with the same identifier (name{equation.2.1.
+2}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.317 \end{align}
+                 
+pdftex: define anchor at line 323: equation.2.1.30
+pdftex: define anchor at line 324: page.35
+[35]
+pdftex: define anchor at line 330: equation.2.1.1
+pdfTeX warning (ext4): destination with the same identifier (name{equation.2.1.
+1}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.330 \end{align}
+                 
+pdftex: define anchor at line 330: equation.2.1.2
+pdfTeX warning (ext4): destination with the same identifier (name{equation.2.1.
+2}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.330 \end{align}
+                 
+pdftex: define anchor at line 330: equation.2.1.3
+pdfTeX warning (ext4): destination with the same identifier (name{equation.2.1.
+3}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.330 \end{align}
+                 
+pdftex: define anchor at line 341: equation.2.1.31
+pdftex: define anchor at line 346: equation.2.1.32
+pdftex: define anchor at line 353: equation.2.1.33
+pdftex: define anchor at line 357: equation.2.1.34
+pdftex: define anchor at line 359: page.36
+[36]
+pdftex: define anchor at line 365: equation.2.1.35
+pdftex: define anchor at line 375: subsection.2.1.4
+pdftex: bookmark at 375: {2.1.4} {\numberline{2.1.4}Turbulence Modeling} {subse
+ction.2.1.4}{2}{toc}
+pdftex: define anchor at line 395: page.37
+[37]
+pdftex: define anchor at line 400: equation.2.1.36
+pdftex: define anchor at line 407: equation.2.1.37
+pdftex: define anchor at line 413: equation.2.1.38
+pdftex: define anchor at line 417: equation.2.1.39
+pdftex: define anchor at line 423: subsubsection.2.1.4.1
+pdftex: bookmark at 423: {2.1.4.1} {\numberline{2.1.4.1}Mass and Species Equati
+ons} {subsubsection.2.1.4.1}{3}{toc}
+pdftex: define anchor at line 426: equation.2.1.40
+pdftex: define anchor at line 429: page.38
+[38]
+pdftex: define anchor at line 432: equation.2.1.41
+pdftex: define anchor at line 433: equation.2.1.1
+pdfTeX warning (ext4): destination with the same identifier (name{equation.2.1.
+1}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.433 \begin{equation}
+                      
+pdftex: define anchor at line 439: equation.2.1.2
+pdfTeX warning (ext4): destination with the same identifier (name{equation.2.1.
+2}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.439 \begin{equation}
+                      
+pdftex: define anchor at line 449: equation.2.1.42
+pdftex: define anchor at line 457: equation.2.1.43
+pdftex: define anchor at line 464: equation.2.1.44
+pdftex: define anchor at line 465: equation.2.1.1
+pdfTeX warning (ext4): destination with the same identifier (name{equation.2.1.
+1}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.465 \begin{equation}
+                      
+pdftex: define anchor at line 470: page.39
+[39]
+pdftex: define anchor at line 471: equation.2.1.2
+pdfTeX warning (ext4): destination with the same identifier (name{equation.2.1.
+2}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.471 \begin{equation}
+                      
+pdftex: define anchor at line 476: subsubsection.2.1.4.2
+pdftex: bookmark at 476: {2.1.4.2} {\numberline{2.1.4.2}Momentum Equation} {sub
+subsection.2.1.4.2}{3}{toc}
+pdftex: define anchor at line 479: equation.2.1.45
+pdftex: define anchor at line 489: equation.2.1.46
+pdftex: define anchor at line 494: equation.2.1.47
+pdftex: define anchor at line 501: equation.2.1.48
+pdftex: define anchor at line 509: equation.2.1.49
+pdftex: define anchor at line 509: page.40
+[40]
+pdftex: define anchor at line 516: equation.2.1.50
+pdftex: define anchor at line 522: equation.2.1.51
+pdftex: define anchor at line 529: subsubsection.2.1.4.3
+pdftex: bookmark at 529: {2.1.4.3} {\numberline{2.1.4.3}Sensible Enthalpy Equat
+ion} {subsubsection.2.1.4.3}{3}{toc}
+pdftex: define anchor at line 531: equation.2.1.52
+pdftex: define anchor at line 537: equation.2.1.53
+pdftex: define anchor at line 551: equation.2.1.54
+pdftex: define anchor at line 554: page.41
+[41]
+pdftex: define anchor at line 559: equation.2.1.55
+pdftex: define anchor at line 564: equation.2.1.56
+pdftex: define anchor at line 571: equation.2.1.57
+pdftex: define anchor at line 577: equation.2.1.58
+pdftex: define anchor at line 584: equation.2.1.59
+pdftex: define anchor at line 590: equation.2.1.60
+pdftex: define anchor at line 594: page.42
+[42]
+pdftex: define anchor at line 607: equation.2.1.61
+pdftex: define anchor at line 614: equation.2.1.62
+pdftex: define anchor at line 622: subsubsection.2.1.4.4
+pdftex: bookmark at 622: {2.1.4.4} {\numberline{2.1.4.4}State Equation} {subsub
+section.2.1.4.4}{3}{toc}
+pdftex: define anchor at line 625: equation.2.1.63
+pdftex: define anchor at line 631: equation.2.1.64
+pdftex: define anchor at line 633: page.43
+[43]
+pdftex: define anchor at line 635: subsubsection.2.1.4.5
+pdftex: bookmark at 635: {2.1.4.5} {\numberline{2.1.4.5}Relation of Averaged En
+thalpy and Temperature} {subsubsection.2.1.4.5}{3}{toc}
+pdftex: define anchor at line 638: equation.2.1.65
+pdftex: define anchor at line 643: equation.2.1.66
+pdftex: define anchor at line 648: equation.2.1.67
+pdftex: define anchor at line 652: subsubsection.2.1.4.6
+pdftex: bookmark at 652: {2.1.4.6} {\numberline{2.1.4.6}Standard k-epsilon Turb
+ulence Model} {subsubsection.2.1.4.6}{3}{toc}
+pdftex: define anchor at line 659: equation.2.1.68
+pdftex: define anchor at line 661: page.44
+[44]
+pdftex: define anchor at line 663: equation.2.1.69
+pdftex: define anchor at line 670: equation.2.1.70
+pdftex: define anchor at line 683: equation.2.1.71
+pdftex: define anchor at line 693: table.caption.9
+pdftex: bookmark at 699: {2.1} {\numberline{2.1}{\ignorespaces k-epsilon model 
+constants.\relax }} {table.caption.9}{0}{lot}
+pdftex: define anchor at line 706: subsection.2.1.5
+pdftex: bookmark at 706: {2.1.5} {\numberline{2.1.5}Boundary Conditions} {subse
+ction.2.1.5}{2}{toc}
+pdftex: define anchor at line 710: page.45
+[45]
+pdftex: define anchor at line 715: equation.2.1.71
+pdfTeX warning (ext4): destination with the same identifier (name{equation.2.1.
+71}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.715 \begin{subequations}
+                          
+pdftex: define anchor at line 721: equation.2.1.1
+pdfTeX warning (ext4): destination with the same identifier (name{equation.2.1.
+1}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.721  \end{align}
+                  
+pdftex: define anchor at line 721: equation.2.1.2
+pdfTeX warning (ext4): destination with the same identifier (name{equation.2.1.
+2}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.721  \end{align}
+                  
+pdftex: define anchor at line 721: equation.2.1.3
+pdfTeX warning (ext4): destination with the same identifier (name{equation.2.1.
+3}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.721  \end{align}
+                  
+pdftex: define anchor at line 721: equation.2.1.4
+pdfTeX warning (ext4): destination with the same identifier (name{equation.2.1.
+4}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.721  \end{align}
+                  
+pdftex: define anchor at line 725: equation.2.1.72
+pdftex: define anchor at line 731: equation.2.1.1
+pdfTeX warning (ext4): destination with the same identifier (name{equation.2.1.
+1}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.731  \end{align}
+                  
+pdftex: define anchor at line 731: equation.2.1.2
+pdfTeX warning (ext4): destination with the same identifier (name{equation.2.1.
+2}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.731  \end{align}
+                  
+pdftex: define anchor at line 731: equation.2.1.3
+pdfTeX warning (ext4): destination with the same identifier (name{equation.2.1.
+3}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.731  \end{align}
+                  
+pdftex: define anchor at line 731: equation.2.1.4
+pdfTeX warning (ext4): destination with the same identifier (name{equation.2.1.
+4}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.731  \end{align}
+                  
+pdftex: define anchor at line 735: equation.2.1.73
+pdftex: define anchor at line 741: equation.2.1.1
+pdfTeX warning (ext4): destination with the same identifier (name{equation.2.1.
+1}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.741  \end{align}
+                  
+pdftex: define anchor at line 741: equation.2.1.2
+pdfTeX warning (ext4): destination with the same identifier (name{equation.2.1.
+2}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.741  \end{align}
+                  
+pdftex: define anchor at line 741: equation.2.1.3
+pdfTeX warning (ext4): destination with the same identifier (name{equation.2.1.
+3}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.741  \end{align}
+                  
+pdftex: define anchor at line 741: equation.2.1.4
+pdfTeX warning (ext4): destination with the same identifier (name{equation.2.1.
+4}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.741  \end{align}
+                  
+pdftex: define anchor at line 741: page.46
+[46]
+pdftex: define anchor at line 745: equation.2.1.74
+pdftex: define anchor at line 751: equation.2.1.1
+pdfTeX warning (ext4): destination with the same identifier (name{equation.2.1.
+1}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.751  \end{align}
+                  
+pdftex: define anchor at line 751: equation.2.1.2
+pdfTeX warning (ext4): destination with the same identifier (name{equation.2.1.
+2}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.751  \end{align}
+                  
+pdftex: define anchor at line 751: equation.2.1.3
+pdfTeX warning (ext4): destination with the same identifier (name{equation.2.1.
+3}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.751  \end{align}
+                  
+pdftex: define anchor at line 751: equation.2.1.4
+pdfTeX warning (ext4): destination with the same identifier (name{equation.2.1.
+4}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.751  \end{align}
+                  
+pdftex: define anchor at line 759: figure.caption.10
+<./figuras/chap2/jet.png, id=886, 1078.0275pt x 697.60625pt>
+File: ./figuras/chap2/jet.png Graphic file (type png)
+
+<use ./figuras/chap2/jet.png>
+pdftex: bookmark at 762: {2.1} {\numberline{2.1}{\ignorespaces Definition of ax
+is orientation and domain boundaries for the emerging round jet flow. Adapted f
+rom \cite {luppes}.\relax }} {figure.caption.10}{0}{lof}
+pdftex: define anchor at line 769: equation.2.1.75
+pdftex: define anchor at line 771: page.47
+[47]
+pdftex: define anchor at line 774: subsubsection.2.1.5.1
+pdftex: bookmark at 774: {2.1.5.1} {\numberline{2.1.5.1}Boundary Conditions of 
+Turbulent Quantities} {subsubsection.2.1.5.1}{3}{toc}
+pdftex: define anchor at line 780: equation.2.1.76
+pdftex: define anchor at line 784: equation.2.1.1
+pdfTeX warning (ext4): destination with the same identifier (name{equation.2.1.
+1}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.784  \end{align}
+                  
+pdftex: define anchor at line 784: equation.2.1.2
+pdfTeX warning (ext4): destination with the same identifier (name{equation.2.1.
+2}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.784  \end{align}
+                  
+pdftex: define anchor at line 788: equation.2.1.77
+pdftex: define anchor at line 792: equation.2.1.1
+pdfTeX warning (ext4): destination with the same identifier (name{equation.2.1.
+1}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.792  \end{align}
+                  
+pdftex: define anchor at line 792: equation.2.1.2
+pdfTeX warning (ext4): destination with the same identifier (name{equation.2.1.
+2}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.792  \end{align}
+                  
+pdftex: define anchor at line 792: page.48
+[48 <./figuras/chap2/jet.png>]
+pdftex: define anchor at line 796: equation.2.1.78
+pdftex: define anchor at line 800: equation.2.1.1
+pdfTeX warning (ext4): destination with the same identifier (name{equation.2.1.
+1}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.800  \end{align}
+                  
+pdftex: define anchor at line 800: equation.2.1.2
+pdfTeX warning (ext4): destination with the same identifier (name{equation.2.1.
+2}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.800  \end{align}
+                  
+pdftex: define anchor at line 804: equation.2.1.79
+pdftex: define anchor at line 808: equation.2.1.1
+pdfTeX warning (ext4): destination with the same identifier (name{equation.2.1.
+1}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.808  \end{align}
+                  
+pdftex: define anchor at line 808: equation.2.1.2
+pdfTeX warning (ext4): destination with the same identifier (name{equation.2.1.
+2}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.808  \end{align}
+                  
+pdftex: define anchor at line 814: section.2.2
+pdftex: bookmark at 814: {2.2} {\numberline{2.2}Dispersed (Liquid) Phase} {sect
+ion.2.2}{1}{toc}
+pdftex: define anchor at line 825: page.49
+[49]
+pdftex: define anchor at line 851: subsection.2.2.1
+pdftex: bookmark at 851: {2.2.1} {\numberline{2.2.1}Atomization or Primary Brea
+k-Up} {subsection.2.2.1}{2}{toc}
+pdftex: define anchor at line 855: page.50
+[50]
+pdftex: define anchor at line 863: equation.2.2.80
+pdftex: define anchor at line 876: subsection.2.2.2
+pdftex: bookmark at 876: {2.2.2} {\numberline{2.2.2}Secondary Break-Up} {subsec
+tion.2.2.2}{2}{toc}
+pdftex: define anchor at line 882: page.51
+[51]
+pdftex: define anchor at line 882: subsection.2.2.3
+pdftex: bookmark at 882: {2.2.3} {\numberline{2.2.3}Momentum Transfer} {subsect
+ion.2.2.3}{2}{toc}
+pdftex: define anchor at line 885: equation.2.2.81
+pdftex: define anchor at line 893: equation.2.2.82
+pdftex: define anchor at line 899: equation.2.2.83
+pdftex: define anchor at line 906: equation.2.2.84
+pdftex: define anchor at line 909: page.52
+[52]
+pdftex: define anchor at line 912: equation.2.2.85
+pdftex: define anchor at line 919: equation.2.2.86
+pdftex: define anchor at line 924: equation.2.2.87
+pdftex: define anchor at line 929: equation.2.2.88
+pdftex: define anchor at line 934: subsection.2.2.4
+pdftex: bookmark at 934: {2.2.4} {\numberline{2.2.4}Heat and Mass Transfer} {su
+bsection.2.2.4}{2}{toc}
+pdftex: define anchor at line 939: page.53
+[53]
+Overfull \hbox (5.45229pt too wide) in paragraph at lines 939--940
+\T1/aer/m/n/12 ([][]SIRIG-NANO; ED-WARDS[][], [][]2000[][]) as infinity-liquid-
+conductivity model, it con-sid-ers spheric
+ []
+
+pdftex: define anchor at line 942: equation.2.2.89
+pdftex: define anchor at line 949: subsubsection.2.2.4.1
+pdftex: bookmark at 949: {2.2.4.1} {\numberline{2.2.4.1}Gas-Droplet Heat Transf
+er} {subsubsection.2.2.4.1}{3}{toc}
+pdftex: define anchor at line 959: page.54
+[54]
+pdftex: define anchor at line 969: equation.2.2.90
+pdftex: define anchor at line 976: equation.2.2.91
+pdftex: define anchor at line 982: equation.2.2.92
+pdftex: define anchor at line 984: page.55
+[55]
+pdftex: define anchor at line 987: equation.2.2.93
+pdftex: define anchor at line 991: equation.2.2.94
+pdftex: define anchor at line 995: equation.2.2.95
+pdftex: define anchor at line 1005: equation.2.2.96
+pdftex: define anchor at line 1010: equation.2.2.97
+pdftex: define anchor at line 1015: equation.2.2.98
+pdftex: define anchor at line 1017: page.56
+[56]
+pdftex: define anchor at line 1020: equation.2.2.99
+pdftex: define anchor at line 1025: equation.2.2.100
+pdftex: define anchor at line 1029: equation.2.2.101
+pdftex: define anchor at line 1036: figure.caption.11
+<./figuras/chap2/droplet_heat.png, id=986, 650.43pt x 606.265pt>
+File: ./figuras/chap2/droplet_heat.png Graphic file (type png)
+
+<use ./figuras/chap2/droplet_heat.png>
+pdftex: bookmark at 1038: {2.2} {\numberline{2.2}{\ignorespaces Scheme of heat 
+flux from air to droplet, adapted from \cite {naca}.\relax }} {figure.caption.1
+1}{0}{lof}
+pdftex: define anchor at line 1043: subsubsection.2.2.4.2
+pdftex: bookmark at 1043: {2.2.4.2} {\numberline{2.2.4.2}Mass Transfer} {subsub
+section.2.2.4.2}{3}{toc}
+pdftex: define anchor at line 1049: equation.2.2.102
+pdftex: define anchor at line 1051: page.57
+[57]
+pdftex: define anchor at line 1051: page.58
+[58 <./figuras/chap2/droplet_heat.png>]
+pdftex: define anchor at line 1055: equation.2.2.103
+pdftex: define anchor at line 1061: equation.2.2.104
+pdftex: define anchor at line 1065: equation.2.2.105
+pdftex: define anchor at line 1070: equation.2.2.106
+pdftex: define anchor at line 1075: equation.2.2.107
+pdftex: define anchor at line 1082: equation.2.2.108
+pdftex: define anchor at line 1082: page.59
+[59]
+pdftex: define anchor at line 1088: equation.2.2.109
+pdftex: define anchor at line 1094: equation.2.2.110
+pdftex: define anchor at line 1099: equation.2.2.111
+pdftex: define anchor at line 1105: equation.2.2.112
+pdftex: define anchor at line 1109: equation.2.2.113
+pdftex: define anchor at line 1112: page.60
+[60]
+pdftex: define anchor at line 1135: subsection.2.2.5
+pdftex: bookmark at 1135: {2.2.5} {\numberline{2.2.5}Droplets at Domain Boundar
+ies} {subsection.2.2.5}{2}{toc}
+pdftex: define anchor at line 1139: subsection.2.2.6
+pdftex: bookmark at 1139: {2.2.6} {\numberline{2.2.6}Droplet Dispersion} {subse
+ction.2.2.6}{2}{toc}
+pdftex: define anchor at line 1146: equation.2.2.114
+pdftex: define anchor at line 1151: equation.2.2.114
+pdftex: define anchor at line 1156: page.61
+[61pdfTeX warning (ext4): destination with the same identifier (name{equation.2
+.2.114}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.1156 
+       ]
+pdftex: define anchor at line 1159: equation.2.2.115
+)
+pdftex: define anchor at line 166: page.62
+[62]
+pdftex: define anchor at line 166: chapter.3
+Chapter 3.
+pdftex: bookmark at 166: {3} {\numberline{3}The Experiment of Chen, St\r a{}rne
+r and Masri} {chapter.3}{0}{toc}
+(./chap3.tex
+pdftex: define anchor at line 10: page.63
+[63
+
+]
+pdftex: define anchor at line 11: equation.3.0.1
+pdftex: define anchor at line 17: table.caption.12
+pdftex: bookmark at 30: {3.1} {\numberline{3.1}{\ignorespaces Basic information
+ about the experiment of Chen, St\r a{}rner and Masri, \cite {chen}.\relax }} {
+table.caption.12}{0}{lot}
+pdftex: define anchor at line 35: figure.caption.13
+<./figuras/chap3/setup.png, id=1064, 647.41875pt x 677.53125pt>
+File: ./figuras/chap3/setup.png Graphic file (type png)
+
+<use ./figuras/chap3/setup.png>
+pdftex: bookmark at 38: {3.1} {\numberline{3.1}{\ignorespaces Configuration of 
+the spray jet nozzle from \cite {chen}.\relax }} {figure.caption.13}{0}{lof}
+pdftex: define anchor at line 43: section.3.1
+pdftex: bookmark at 43: {3.1} {\numberline{3.1}Boundary Conditions for the Nume
+rical Simulation} {section.3.1}{1}{toc}
+pdftex: define anchor at line 47: page.64
+[64 <./figuras/chap3/setup.png>]
+pdftex: define anchor at line 48: subsection.3.1.1
+pdftex: bookmark at 48: {3.1.1} {\numberline{3.1.1}Nozzle} {subsection.3.1.1}{2
+}{toc}
+pdftex: define anchor at line 52: subsubsection.3.1.1.1
+pdftex: bookmark at 52: {3.1.1.1} {\numberline{3.1.1.1}Liquid Phase:} {subsubse
+ction.3.1.1.1}{3}{toc}
+pdftex: define anchor at line 59: equation.3.1.2
+pdftex: define anchor at line 63: equation.3.1.3
+pdftex: define anchor at line 68: figure.caption.14
+<./figuras/chap3/lognormal.png, id=1079, 578.16pt x 356.2911pt>
+File: ./figuras/chap3/lognormal.png Graphic file (type png)
+
+<use ./figuras/chap3/lognormal.png>
+pdftex: bookmark at 71: {3.2} {\numberline{3.2}{\ignorespaces Lognormal probabi
+lity density function used for sampling droplet diameter at nozzle exit.\relax 
+}} {figure.caption.14}{0}{lof}
+pdftex: define anchor at line 77: page.65
+[65]
+pdftex: define anchor at line 82: figure.caption.15
+<./figuras/chap3/bc/bc_dropU.png, id=1087, 578.16pt x 356.2911pt>
+File: ./figuras/chap3/bc/bc_dropU.png Graphic file (type png)
+
+<use ./figuras/chap3/bc/bc_dropU.png>
+pdftex: bookmark at 85: {3.3} {\numberline{3.3}{\ignorespaces Droplet injection
+ velocity as a function of its injection position.\relax }} {figure.caption.15}
+{0}{lof}
+pdftex: define anchor at line 90: equation.3.1.4
+pdftex: define anchor at line 92: page.66
+[66 <./figuras/chap3/lognormal.png> <./figuras/chap3/bc/bc_dropU.png>]
+pdftex: define anchor at line 100: subsubsection.3.1.1.2
+pdftex: bookmark at 100: {3.1.1.2} {\numberline{3.1.1.2}Gas Phase:} {subsubsect
+ion.3.1.1.2}{3}{toc}
+pdftex: define anchor at line 104: equation.3.1.5
+
+Overfull \hbox (11.47855pt too wide) in paragraph at lines 103--104
+[]
+ []
+
+pdftex: define anchor at line 112: equation.3.1.6
+pdftex: define anchor at line 112: page.67
+[67]
+pdftex: define anchor at line 123: figure.caption.16
+pdftex: define anchor at line 126: subfigure.3.4.1
+<./figuras/chap3/bc/bc_Ux.png, id=1104, 578.16pt x 356.2911pt>
+File: ./figuras/chap3/bc/bc_Ux.png Graphic file (type png)
+
+<use ./figuras/chap3/bc/bc_Ux.png>
+pdftex: define anchor at line 126: subfigure.3.4.2
+<./figuras/chap3/bc/bc_k.png, id=1105, 578.16pt x 357.0138pt>
+File: ./figuras/chap3/bc/bc_k.png Graphic file (type png)
+
+<use ./figuras/chap3/bc/bc_k.png>
+pdftex: define anchor at line 127: subfigure.3.4.3
+<./figuras/chap3/bc/bc_eps.png, id=1106, 578.16pt x 357.0138pt>
+File: ./figuras/chap3/bc/bc_eps.png Graphic file (type png)
+
+<use ./figuras/chap3/bc/bc_eps.png>
+Overfull \hbox (24.0pt too wide) in paragraph at lines 125--129
+ [][] 
+ []
+
+pdftex: bookmark at 129: {3.4} {\numberline{3.4}{\ignorespaces Radial profiles 
+of the boundary conditions for the gas phase at the nozzle exit plane: mean axi
+al velocity (a), turbulent kinetic energy (b) and its dissipation rate (c).\rel
+ax }} {figure.caption.16}{0}{lof}
+pdftex: bookmark at 129: {} {\numberline{(a)}{\ignorespaces {}}} {subfigure.4.1
+}{1}{lof}
+pdftex: bookmark at 129: {} {\numberline{(b)}{\ignorespaces {}}} {subfigure.4.2
+}{1}{lof}
+pdftex: bookmark at 129: {} {\numberline{(c)}{\ignorespaces {}}} {subfigure.4.3
+}{1}{lof}
+pdftex: define anchor at line 134: subsection.3.1.2
+pdftex: bookmark at 134: {3.1.2} {\numberline{3.1.2}Coflow} {subsection.3.1.2}{
+2}{toc}
+pdftex: define anchor at line 139: page.68
+[68 <./figuras/chap3/bc/bc_Ux.png> <./figuras/chap3/bc/bc_k.png> <./figuras/cha
+p3/bc/bc_eps.png>]
+pdftex: define anchor at line 140: equation.3.1.7
+
+Overfull \hbox (22.54576pt too wide) in paragraph at lines 139--140
+[]\T1/aer/m/n/12 A fixed
+ []
+
+pdftex: define anchor at line 151: equation.3.1.8
+pdftex: define anchor at line 157: subsection.3.1.3
+pdftex: bookmark at 157: {3.1.3} {\numberline{3.1.3}Far-field} {subsection.3.1.
+3}{2}{toc}
+pdftex: define anchor at line 161: section.3.2
+pdftex: bookmark at 161: {3.2} {\numberline{3.2}Species Equations} {section.3.2
+}{1}{toc}
+pdftex: define anchor at line 164: equation.3.2.9
+pdftex: define anchor at line 168: page.69
+[69]
+pdftex: define anchor at line 170: equation.3.2.10
+)
+pdftex: define anchor at line 169: page.70
+[70]
+pdftex: define anchor at line 169: chapter.4
+Chapter 4.
+pdftex: bookmark at 169: {4} {\numberline{4}Numerical Solution and Computationa
+l Details} {chapter.4}{0}{toc}
+(./chap4.tex
+pdftex: define anchor at line 1: section.4.1
+pdftex: bookmark at 1: {4.1} {\numberline{4.1}Numerical Solution of Equations} 
+{section.4.1}{1}{toc}
+pdftex: define anchor at line 3: subsection.4.1.1
+pdftex: bookmark at 3: {4.1.1} {\numberline{4.1.1}The OpenFOAM Code} {subsectio
+n.4.1.1}{2}{toc}
+pdftex: define anchor at line 11: page.71
+[71
+
+]
+LaTeX Font Info:    Try loading font information for T1+aett on input line 14.
+ (/usr/share/texmf-texlive/tex/latex/ae/t1aett.fd
+File: t1aett.fd 1997/11/16 Font definitions for T1/aett.
+)
+pdftex: define anchor at line 49: page.72
+[72]
+pdftex: define anchor at line 68: page.73
+[73]
+pdftex: define anchor at line 84: equation.4.1.1
+pdftex: define anchor at line 90: page.74
+[74]
+pdftex: define anchor at line 90: section.4.2
+pdftex: bookmark at 90: {4.2} {\numberline{4.2}Aspects of the Numerical Solutio
+n} {section.4.2}{1}{toc}
+pdftex: define anchor at line 103: subsection.4.2.1
+pdftex: bookmark at 103: {4.2.1} {\numberline{4.2.1}Discretization of the Gover
+ning Equations} {subsection.4.2.1}{2}{toc}
+pdftex: define anchor at line 105: equation.4.2.2
+pdftex: define anchor at line 107: page.75
+[75]
+pdftex: define anchor at line 118: subsection.4.2.2
+pdftex: bookmark at 118: {4.2.2} {\numberline{4.2.2}Domain Discretization (The 
+Numerical Grid)} {subsection.4.2.2}{2}{toc}
+pdftex: define anchor at line 122: figure.caption.17
+<./figuras/chap4/grid.png, id=1173, 647.41875pt x 1302.8675pt>
+File: ./figuras/chap4/grid.png Graphic file (type png)
+
+<use ./figuras/chap4/grid.png>
+pdftex: bookmark at 125: {4.1} {\numberline{4.1}{\ignorespaces Planar view of t
+he fine (a) and the coarse grid (b).\relax }} {figure.caption.17}{0}{lof}
+pdftex: define anchor at line 130: page.76
+[76]
+
+LaTeX Warning: Text page 77 contains only floats.
+
+pdftex: define anchor at line 130: page.77
+[77 <./figuras/chap4/grid.png>]
+pdftex: define anchor at line 133: figure.caption.18
+<./figuras/chap4/coarse_fine/grid_0_U.png, id=1187, 578.16pt x 356.2911pt>
+File: ./figuras/chap4/coarse_fine/grid_0_U.png Graphic file (type png)
+
+<use ./figuras/chap4/coarse_fine/grid_0_U.png>
+<./figuras/chap4/coarse_fine/grid_0_k.png, id=1188, 578.16pt x 356.2911pt>
+File: ./figuras/chap4/coarse_fine/grid_0_k.png Graphic file (type png)
+
+<use ./figuras/chap4/coarse_fine/grid_0_k.png>
+<./figuras/chap4/coarse_fine/grid_2_U.png, id=1189, 578.16pt x 356.2911pt>
+File: ./figuras/chap4/coarse_fine/grid_2_U.png Graphic file (type png)
+
+<use ./figuras/chap4/coarse_fine/grid_2_U.png>
+<./figuras/chap4/coarse_fine/grid_2_k.png, id=1190, 578.16pt x 356.2911pt>
+File: ./figuras/chap4/coarse_fine/grid_2_k.png Graphic file (type png)
+
+<use ./figuras/chap4/coarse_fine/grid_2_k.png>
+<./figuras/chap4/coarse_fine/grid_4_U.png, id=1191, 578.16pt x 356.2911pt>
+File: ./figuras/chap4/coarse_fine/grid_4_U.png Graphic file (type png)
+
+<use ./figuras/chap4/coarse_fine/grid_4_U.png>
+<./figuras/chap4/coarse_fine/grid_4_k.png, id=1192, 578.16pt x 356.2911pt>
+File: ./figuras/chap4/coarse_fine/grid_4_k.png Graphic file (type png)
+
+<use ./figuras/chap4/coarse_fine/grid_4_k.png>
+Overfull \hbox (24.0pt too wide) in paragraph at lines 135--143
+ [][] 
+ []
+
+pdftex: bookmark at 143: {4.2} {\numberline{4.2}{\ignorespaces Comparison of ra
+dial profiles obtained for the fine and the coarse meshes for a pure gaseous je
+t. Mean axial velocity ($\mathaccentV{tilde}07E{U}_x$) on the left for axial co
+ordinates: $x/D=5$ in (a), $x/D=15$ in (c) and $x/D=25$ in (e); and turbulent k
+inetic energy ($k$) on the right: $x/D=5$ in (b), $x/D=15$ in (d) and $x/D=25$ 
+in (f).\relax }} {figure.caption.18}{0}{lof}
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+)
+pdftex: define anchor at line 172: page.78
+[78]
+pdftex: define anchor at line 172: page.79
+[79 <./figuras/chap4/coarse_fine/grid_0_U.png> <./figuras/chap4/coarse_fine/gri
+d_0_k.png> <./figuras/chap4/coarse_fine/grid_2_U.png> <./figuras/chap4/coarse_f
+ine/grid_2_k.png> <./figuras/chap4/coarse_fine/grid_4_U.png> <./figuras/chap4/c
+oarse_fine/grid_4_k.png>]
+pdftex: define anchor at line 172: chapter.5
+Chapter 5.
+pdftex: bookmark at 172: {5} {\numberline{5}Results and Discussions} {chapter.5
+}{0}{toc}
+(./chap5.tex
+pdftex: define anchor at line 4: section.5.1
+pdftex: bookmark at 4: {5.1} {\numberline{5.1}The Turbulent Round jet} {section
+.5.1}{1}{toc}
+pdftex: define anchor at line 9: equation.5.1.1
+pdftex: define anchor at line 13: equation.5.1.2
+pdftex: define anchor at line 17: page.80
+[80
+
+]
+pdftex: define anchor at line 18: equation.5.1.3
+pdftex: define anchor at line 24: equation.5.1.4
+pdftex: define anchor at line 29: equation.5.1.5
+pdftex: define anchor at line 34: equation.5.1.6
+pdftex: define anchor at line 45: page.81
+[81]
+pdftex: define anchor at line 55: figure.caption.19
+pdftex: define anchor at line 58: subfigure.5.1.1
+
+<./figuras/chap5/selfsimilar/selfsimilar_U.png, id=1238, 578.16pt x 356.2911pt>
+File: ./figuras/chap5/selfsimilar/selfsimilar_U.png Graphic file (type png)
+<use ./figuras/chap5/selfsimilar/selfsimilar_U.png>
+pdftex: define anchor at line 59: subfigure.5.1.2
+
+<./figuras/chap5/selfsimilar/selfsimilar_k.png, id=1239, 578.16pt x 356.2911pt>
+File: ./figuras/chap5/selfsimilar/selfsimilar_k.png Graphic file (type png)
+<use ./figuras/chap5/selfsimilar/selfsimilar_k.png>
+pdftex: define anchor at line 60: subfigure.5.1.3
+
+<./figuras/chap5/selfsimilar/selfsimilar_nut.png, id=1240, 578.16pt x 356.2911p
+t>
+File: ./figuras/chap5/selfsimilar/selfsimilar_nut.png Graphic file (type png)
+ <use ./figuras/chap5/selfsimilar/selfsimilar_nut.png>
+pdftex: bookmark at 62: {5.1} {\numberline{5.1}{\ignorespaces Numerical results
+ showing the evolution to self-similar profiles of the following gas phase prop
+erties: (a) dimensionless mean axial velocity - $\mathaccentV{hat}05E{U}_x$, (b
+) dimensionless turbulent kinetic energy - $\mathaccentV{hat}05E{k}$ - and (c) 
+dimensionless turbulent viscosity - $\mathaccentV{hat}05E{\nu }_t$. The differe
+nt curves show the profiles for the corresponding axial coordinate indicated in
+ the legend.\relax }} {figure.caption.19}{0}{lof}
+pdftex: bookmark at 62: {} {\numberline{(a)}{\ignorespaces {}}} {subfigure.1.1}
+{1}{lof}
+pdftex: bookmark at 62: {} {\numberline{(b)}{\ignorespaces {}}} {subfigure.1.2}
+{1}{lof}
+pdftex: bookmark at 62: {} {\numberline{(c)}{\ignorespaces {}}} {subfigure.1.3}
+{1}{lof}
+pdftex: define anchor at line 70: page.82
+[82]
+pdftex: define anchor at line 74: figure.caption.20
+pdftex: define anchor at line 77: subfigure.5.2.1
+
+<./figuras/chap5/selfsimilar/selfsimilar_spread.png, id=1259, 578.16pt x 356.29
+11pt>
+File: ./figuras/chap5/selfsimilar/selfsimilar_spread.png Graphic file (type png
+)
+ <use ./figuras/chap5/selfsimilar/selfsimilar_spread.png>
+pdftex: define anchor at line 77: subfigure.5.2.2
+
+<./figuras/chap5/selfsimilar/selfsimilar_num_exp.png, id=1260, 578.16pt x 356.2
+911pt>
+File: ./figuras/chap5/selfsimilar/selfsimilar_num_exp.png Graphic file (type pn
+g)
+ <use ./figuras/chap5/selfsimilar/selfsimilar_num_exp.png>
+Overfull \hbox (24.0pt too wide) in paragraph at lines 76--79
+ [][] 
+ []
+
+pdftex: bookmark at 79: {5.2} {\numberline{5.2}{\ignorespaces (a) Half-radius a
+s a function of the axial coordinate in the experiment and in the simulation. (
+b) Self-similar radial profile of the numerical and the experimental dimensionl
+ess axial velocity - $\mathaccentV{hat}05E{U}_x$. The measurements were obtaine
+d from \cite {chen}.\relax }} {figure.caption.20}{0}{lof}
+pdftex: bookmark at 79: {} {\numberline{(a)}{\ignorespaces {}}} {subfigure.2.1}
+{1}{lof}
+pdftex: bookmark at 79: {} {\numberline{(b)}{\ignorespaces {}}} {subfigure.2.2}
+{1}{lof}
+pdftex: define anchor at line 83: page.83
+[83]
+pdftex: define anchor at line 83: page.84
+[84 <./figuras/chap5/selfsimilar/selfsimilar_U.png> <./figuras/chap5/selfsimila
+r/selfsimilar_k.png> <./figuras/chap5/selfsimilar/selfsimilar_nut.png>]
+pdftex: define anchor at line 83: page.85
+[85 <./figuras/chap5/selfsimilar/selfsimilar_spread.png> <./figuras/chap5/selfs
+imilar/selfsimilar_num_exp.png>]
+pdftex: define anchor at line 84: section.5.2
+pdftex: bookmark at 84: {5.2} {\numberline{5.2}Gas and Droplet Velocities and D
+roplet Dispersion} {section.5.2}{1}{toc}
+pdftex: define anchor at line 91: figure.caption.21
+<./figuras/chap5/drag/drop_drag.png, id=1288, 505.89pt x 311.4837pt>
+File: ./figuras/chap5/drag/drop_drag.png Graphic file (type png)
+
+<use ./figuras/chap5/drag/drop_drag.png>
+pdftex: bookmark at 95: {5.3} {\numberline{5.3}{\ignorespaces Solution of dropl
+et drag model of Equation \textup {\hbox {\mathsurround \z@ \normalfont (\ignor
+espaces \ref {eq: drop_dudt}\unskip \@@italiccorr )}}. Droplet velocity as a fu
+nction of time for an initial velocity of $10\ m/s$ in stagnant air at standard
+ conditions and for droplet diameters of $10$, $20$, $30$ and $40 \mu m$. \rela
+x }} {figure.caption.21}{0}{lof}
+pdftex: define anchor at line 105: figure.caption.22
+<./figuras/chap5/Ux/Ux_gas/Ux_gas5.png, id=1294, 433.62pt x 266.6763pt>
+File: ./figuras/chap5/Ux/Ux_gas/Ux_gas5.png Graphic file (type png)
+
+<use ./figuras/chap5/Ux/Ux_gas/Ux_gas5.png>
+<./figuras/chap5/Ux/Ux_gas/Ux_gas10.png, id=1295, 433.62pt x 266.6763pt>
+File: ./figuras/chap5/Ux/Ux_gas/Ux_gas10.png Graphic file (type png)
+
+<use ./figuras/chap5/Ux/Ux_gas/Ux_gas10.png>
+<./figuras/chap5/Ux/Ux_gas/Ux_gas15.png, id=1296, 433.62pt x 266.6763pt>
+File: ./figuras/chap5/Ux/Ux_gas/Ux_gas15.png Graphic file (type png)
+
+<use ./figuras/chap5/Ux/Ux_gas/Ux_gas15.png>
+<./figuras/chap5/Ux/Ux_gas/Ux_gas20.png, id=1297, 433.62pt x 266.6763pt>
+File: ./figuras/chap5/Ux/Ux_gas/Ux_gas20.png Graphic file (type png)
+
+<use ./figuras/chap5/Ux/Ux_gas/Ux_gas20.png>
+<./figuras/chap5/Ux/Ux_gas/Ux_gas25.png, id=1298, 433.62pt x 266.6763pt>
+File: ./figuras/chap5/Ux/Ux_gas/Ux_gas25.png Graphic file (type png)
+
+<use ./figuras/chap5/Ux/Ux_gas/Ux_gas25.png>
+Overfull \hbox (24.0pt too wide) in paragraph at lines 107--115
+ [][] 
+ []
+
+pdftex: bookmark at 115: {5.4} {\numberline{5.4}{\ignorespaces Measured and com
+puted radial profiles of the mean axial velocity of the gas phase ($\mathaccent
+V{tilde}07E{U}_x$). Each figure shows the profile in a different axial location
+: $x/D=5$ in (a), $x/D=10$ in (b), $x/D=15$ in (c), $x/D=20$ in (d) and $x/D=25
+$ in (e). The measurements were obtained from \cite {chen}.\relax }} {figure.ca
+ption.22}{0}{lof}
+pdftex: define anchor at line 120: page.86
+[86
+
+]
+pdftex: define anchor at line 125: figure.caption.23
+<./figuras/chap5/refs/luppes_vel.png, id=1313, 561.09625pt x 380.42125pt>
+File: ./figuras/chap5/refs/luppes_vel.png Graphic file (type png)
+
+<use ./figuras/chap5/refs/luppes_vel.png>
+pdftex: bookmark at 131: {5.5} {\numberline{5.5}{\ignorespaces The comparison o
+f four simulations of a turbulent air jet (Re = 37,600) with measurements. The 
+centerline axial velocity is shown. In each plot the axial distance is normaliz
+ed by the nozzle diameter. Simulation 1: standard k-epsilon model. Simulation 2
+: $c_{\mu } =0.06$. Simulation 3: $c_{\mu }=0.06$, $c_{\epsilon , 2} =1.87$. Si
+mulation 4: $c_{\mu }=0.09$, $c_{\epsilon , 2}=1.87$, n =10. Figure reproduced 
+from \cite {luppes}.\relax }} {figure.caption.23}{0}{lof}
+pdftex: define anchor at line 136: page.87
+[87 <./figuras/chap5/drag/drop_drag.png>]
+pdftex: define anchor at line 139: page.88
+[88 <./figuras/chap5/Ux/Ux_gas/Ux_gas5.png> <./figuras/chap5/Ux/Ux_gas/Ux_gas10
+.png> <./figuras/chap5/Ux/Ux_gas/Ux_gas15.png> <./figuras/chap5/Ux/Ux_gas/Ux_ga
+s20.png> <./figuras/chap5/Ux/Ux_gas/Ux_gas25.png>]
+pdftex: define anchor at line 148: figure.caption.24
+<./figuras/chap5/UU/UUx5.png, id=1337, 433.62pt x 266.6763pt>
+File: ./figuras/chap5/UU/UUx5.png Graphic file (type png)
+
+<use ./figuras/chap5/UU/UUx5.png>
+<./figuras/chap5/UU/UUx10.png, id=1338, 433.62pt x 266.6763pt>
+File: ./figuras/chap5/UU/UUx10.png Graphic file (type png)
+
+<use ./figuras/chap5/UU/UUx10.png>
+<./figuras/chap5/UU/UUx15.png, id=1339, 433.62pt x 266.6763pt>
+File: ./figuras/chap5/UU/UUx15.png Graphic file (type png)
+
+<use ./figuras/chap5/UU/UUx15.png>
+<./figuras/chap5/UU/UUx20.png, id=1340, 433.62pt x 266.6763pt>
+File: ./figuras/chap5/UU/UUx20.png Graphic file (type png)
+
+<use ./figuras/chap5/UU/UUx20.png>
+<./figuras/chap5/UU/UUx25.png, id=1341, 433.62pt x 266.6763pt>
+File: ./figuras/chap5/UU/UUx25.png Graphic file (type png)
+
+<use ./figuras/chap5/UU/UUx25.png>
+Overfull \hbox (24.0pt too wide) in paragraph at lines 150--158
+ [][] 
+ []
+
+pdftex: bookmark at 158: {5.6} {\numberline{5.6}{\ignorespaces Measured radial 
+profiles of the gas phase velocities $<U''_x>$ and $<U''_y>$ and the characteri
+stic velocity defined for the k-epsilon model $<U''>=\sqrt {2/3 k}$ obtained fr
+om the simulation. Each figure shows the profile in a different axial location:
+ $x/D=5$ in (a), $x/D=10$ in (b), $x/D=15$ in (c), $x/D=20$ in (d) and $x/D=25$
+ in (e). The measurements were obtained from \cite {chen}.\relax }} {figure.cap
+tion.24}{0}{lof}
+pdftex: define anchor at line 163: page.89
+[89 <./figuras/chap5/refs/luppes_vel.png (PNG copy)>]
+pdftex: define anchor at line 164: page.90
+[90 <./figuras/chap5/UU/UUx5.png> <./figuras/chap5/UU/UUx10.png> <./figuras/cha
+p5/UU/UUx15.png> <./figuras/chap5/UU/UUx20.png> <./figuras/chap5/UU/UUx25.png>]
+pdftex: define anchor at line 168: figure.caption.25
+<./figuras/chap5/Ux/Ux_drops/Ux_x5.png, id=1362, 433.62pt x 266.6763pt>
+File: ./figuras/chap5/Ux/Ux_drops/Ux_x5.png Graphic file (type png)
+
+<use ./figuras/chap5/Ux/Ux_drops/Ux_x5.png>
+<./figuras/chap5/Ux/Ux_drops/Ux_x10.png, id=1363, 433.62pt x 266.6763pt>
+File: ./figuras/chap5/Ux/Ux_drops/Ux_x10.png Graphic file (type png)
+
+<use ./figuras/chap5/Ux/Ux_drops/Ux_x10.png>
+<./figuras/chap5/Ux/Ux_drops/Ux_x15.png, id=1364, 433.62pt x 266.6763pt>
+File: ./figuras/chap5/Ux/Ux_drops/Ux_x15.png Graphic file (type png)
+
+<use ./figuras/chap5/Ux/Ux_drops/Ux_x15.png>
+<./figuras/chap5/Ux/Ux_drops/Ux_x20.png, id=1365, 433.62pt x 266.6763pt>
+File: ./figuras/chap5/Ux/Ux_drops/Ux_x20.png Graphic file (type png)
+
+<use ./figuras/chap5/Ux/Ux_drops/Ux_x20.png>
+<./figuras/chap5/Ux/Ux_drops/Ux_x25.png, id=1366, 433.62pt x 266.6763pt>
+File: ./figuras/chap5/Ux/Ux_drops/Ux_x25.png Graphic file (type png)
+
+<use ./figuras/chap5/Ux/Ux_drops/Ux_x25.png>
+Overfull \hbox (24.0pt too wide) in paragraph at lines 170--178
+ [][] 
+ []
+
+pdftex: bookmark at 178: {5.7} {\numberline{5.7}{\ignorespaces Red squares pres
+ent measured radial profiles of mean axial velocity of droplets ($\mathaccentV{
+tilde}07E{U}_{d,x}$) in the size class of $10\mu m <D<20\mu m$. Scattered black
+ dots are the computed velocities for each droplet in the numerical simulation.
+ Each figure shows the velocity profile in the axial coordinate specified above
+ the plot window. The measurements were obtained from \cite {chen}.\relax }} {f
+igure.caption.25}{0}{lof}
+pdftex: define anchor at line 184: figure.caption.26
+<./figuras/chap5/dispersion/class0_5.png, id=1373, 578.16pt x 356.2911pt>
+File: ./figuras/chap5/dispersion/class0_5.png Graphic file (type png)
+
+<use ./figuras/chap5/dispersion/class0_5.png>
+<./figuras/chap5/dispersion/class4_5.png, id=1374, 578.16pt x 356.2911pt>
+File: ./figuras/chap5/dispersion/class4_5.png Graphic file (type png)
+
+<use ./figuras/chap5/dispersion/class4_5.png>
+<./figuras/chap5/dispersion/class0_10.png, id=1375, 578.16pt x 356.2911pt>
+File: ./figuras/chap5/dispersion/class0_10.png Graphic file (type png)
+
+<use ./figuras/chap5/dispersion/class0_10.png>
+<./figuras/chap5/dispersion/class4_10.png, id=1376, 578.16pt x 356.2911pt>
+File: ./figuras/chap5/dispersion/class4_10.png Graphic file (type png)
+
+<use ./figuras/chap5/dispersion/class4_10.png>
+<./figuras/chap5/dispersion/class0_25.png, id=1377, 578.16pt x 356.2911pt>
+File: ./figuras/chap5/dispersion/class0_25.png Graphic file (type png)
+
+<use ./figuras/chap5/dispersion/class0_25.png>
+<./figuras/chap5/dispersion/class4_25.png, id=1378, 578.16pt x 356.2911pt>
+File: ./figuras/chap5/dispersion/class4_25.png Graphic file (type png)
+
+<use ./figuras/chap5/dispersion/class4_25.png>
+Overfull \hbox (24.0pt too wide) in paragraph at lines 186--194
+ [][] 
+ []
+
+pdftex: bookmark at 194: {5.8} {\numberline{5.8}{\ignorespaces Scatter plot of 
+the numerical radial velocity of droplets ($U_{y}$) in two different size class
+es: $D< 10\ \mu m$ on the left or (a), (c) and (e) labels; and $D> 30\ \mu m$ o
+n the right or (b), (d) and (f) labels. The dispersion in the radial velocity i
+s higher for the smaller droplet class and in the vicinity of the nozzle exit.\
+relax }} {figure.caption.26}{0}{lof}
+pdftex: define anchor at line 198: page.91
+[91]
+pdftex: define anchor at line 198: page.92
+[92 <./figuras/chap5/Ux/Ux_drops/Ux_x5.png> <./figuras/chap5/Ux/Ux_drops/Ux_x10
+.png> <./figuras/chap5/Ux/Ux_drops/Ux_x15.png> <./figuras/chap5/Ux/Ux_drops/Ux_
+x20.png> <./figuras/chap5/Ux/Ux_drops/Ux_x25.png>]
+pdftex: define anchor at line 198: page.93
+[93 <./figuras/chap5/dispersion/class0_5.png> <./figuras/chap5/dispersion/class
+4_5.png> <./figuras/chap5/dispersion/class0_10.png> <./figuras/chap5/dispersion
+/class4_10.png> <./figuras/chap5/dispersion/class0_25.png> <./figuras/chap5/dis
+persion/class4_25.png>]
+pdftex: define anchor at line 199: section.5.3
+pdftex: bookmark at 199: {5.3} {\numberline{5.3}Liquid Mass Flow Rate and Vapor
+ Mass Fluxes} {section.5.3}{1}{toc}
+pdftex: define anchor at line 205: figure.caption.27
+<./figuras/chap5/massflow/drop_mflux.png, id=1407, 505.89pt x 311.4837pt>
+File: ./figuras/chap5/massflow/drop_mflux.png Graphic file (type png)
+
+<use ./figuras/chap5/massflow/drop_mflux.png>
+pdftex: bookmark at 208: {5.9} {\numberline{5.9}{\ignorespaces Droplet mass flo
+w rate at four axial locations. Measurements were obtained from \cite {chen}.\r
+elax }} {figure.caption.27}{0}{lof}
+pdftex: define anchor at line 213: figure.caption.28
+<./figuras/chap5/massflow/mvapor5.png, id=1412, 433.62pt x 266.6763pt>
+File: ./figuras/chap5/massflow/mvapor5.png Graphic file (type png)
+
+<use ./figuras/chap5/massflow/mvapor5.png>
+<./figuras/chap5/massflow/mvapor10.png, id=1413, 433.62pt x 266.6763pt>
+File: ./figuras/chap5/massflow/mvapor10.png Graphic file (type png)
+
+<use ./figuras/chap5/massflow/mvapor10.png>
+<./figuras/chap5/massflow/mvapor15.png, id=1414, 433.62pt x 266.6763pt>
+File: ./figuras/chap5/massflow/mvapor15.png Graphic file (type png)
+
+<use ./figuras/chap5/massflow/mvapor15.png>
+<./figuras/chap5/massflow/mvapor20.png, id=1415, 433.62pt x 266.6763pt>
+File: ./figuras/chap5/massflow/mvapor20.png Graphic file (type png)
+
+<use ./figuras/chap5/massflow/mvapor20.png>
+pdftex: bookmark at 221: {5.10} {\numberline{5.10}{\ignorespaces Radial profile
+s of mean axial mass flux of acetone vapor: $\mathaccentV{dot}05F{m}''_{ac}=\rh
+o \mathaccentV{bar}016{Y}_{ac} \mathaccentV{tilde}07E{U}_x$. The measurements w
+ere obtained from \cite {chen}.\relax }} {figure.caption.28}{0}{lof}
+pdftex: define anchor at line 226: page.94
+[94
+
+ <./figuras/chap5/massflow/drop_mflux.png>]
+pdftex: define anchor at line 230: page.95
+[95 <./figuras/chap5/massflow/mvapor5.png> <./figuras/chap5/massflow/mvapor10.p
+ng> <./figuras/chap5/massflow/mvapor15.png> <./figuras/chap5/massflow/mvapor20.
+png>]
+pdftex: define anchor at line 233: figure.caption.29
+<./figuras/chap5/smd/smd5.png, id=1445, 433.62pt x 266.6763pt>
+File: ./figuras/chap5/smd/smd5.png Graphic file (type png)
+
+<use ./figuras/chap5/smd/smd5.png>
+<./figuras/chap5/smd/smd15.png, id=1446, 433.62pt x 266.6763pt>
+File: ./figuras/chap5/smd/smd15.png Graphic file (type png)
+
+<use ./figuras/chap5/smd/smd15.png>
+<./figuras/chap5/smd/smd25.png, id=1447, 433.62pt x 266.6763pt>
+File: ./figuras/chap5/smd/smd25.png Graphic file (type png)
+
+<use ./figuras/chap5/smd/smd25.png>
+pdftex: bookmark at 243: {5.11} {\numberline{5.11}{\ignorespaces Numerical and 
+experimental radial profiles of Sauter mean diameter (SMD). The measurements we
+re obtained from \cite {chen}.\relax }} {figure.caption.29}{0}{lof}
+pdftex: define anchor at line 254: page.96
+[96])
+pdftex: define anchor at line 175: page.97
+[97 <./figuras/chap5/smd/smd5.png> <./figuras/chap5/smd/smd15.png> <./figuras/c
+hap5/smd/smd25.png>]
+pdftex: define anchor at line 175: chapter.6
+Chapter 6.
+pdftex: bookmark at 175: {6} {\numberline{6}Conclusions} {chapter.6}{0}{toc}
+(./chap6.tex
+pdftex: define anchor at line 14: page.98
+[98
+
+]) (./thesis.bbl (./thesis.brf)
+\tf@brf=\write9
+\openout9 = `thesis.brf'.
+
+
+pdftex: define anchor at line 3: page.99
+[99]
+pdftex: define anchor at line 3: chapter.7
+pdftex: bookmark at 3: {7} {Bibliography} {chapter.7}{0}{toc}
+pdftex: define anchor at line 3: chapter*.30
+pdftex: define anchor at line 13: cite.kiva
+pdftex: define anchor at line 19: cite.balachandar2010turbulent
+pdftex: define anchor at line 24: cite.batchelor2000introduction
+pdftex: define anchor at line 29: cite.baumgarten2006mixture
+pdftex: define anchor at line 35: cite.bini
+pdftex: define anchor at line 42: cite.chen
+pdftex: define anchor at line 48: cite.crowe1988particle
+pdftex: define anchor at line 54: cite.santanu
+pdftex: define anchor at line 60: cite.favre1969statistical
+pdftex: define anchor at line 65: cite.ferziger
+pdftex: define anchor at line 72: cite.jasak
+pdftex: define anchor at line 77: cite.liu2000science
+pdftex: define anchor at line 83: cite.luppes
+pdftex: define anchor at line 89: cite.majda
+pdftex: define anchor at line 89: page.100
+[100
+
+]
+pdftex: define anchor at line 96: cite.muller1999low
+pdftex: define anchor at line 102: cite.nordin
+pdftex: define anchor at line 107: cite.foamDev
+pdftex: define anchor at line 112: cite.poinsot2005theoretical
+pdftex: define anchor at line 116: cite.pope2000turbulent
+pdftex: define anchor at line 121: cite.ranzmarshall
+pdftex: define anchor at line 127: cite.sirignano
+pdftex: define anchor at line 132: cite.vonkarman
+pdftex: define anchor at line 138: cite.viozat1997implicit
+pdftex: define anchor at line 144: cite.naca
+pdftex: define anchor at line 150: cite.weller
+)
+pdftex: define anchor at line 189: page.101
+[101]
+pdftex: define anchor at line 190: appendix.A
+Appendix A.
+pdftex: bookmark at 190: {A} {\numberline{A}Appendix} {appendix.A}{0}{toc}
+(./apendiceA.tex
+pdftex: define anchor at line 1: section.A.1
+pdftex: bookmark at 1: {A.1} {\numberline{A.1}Sensible Enthalpy Equation} {sect
+ion.A.1}{1}{toc}
+pdftex: define anchor at line 6: equation.A.1.1
+pdftex: define anchor at line 17: equation.A.1.2
+pdftex: define anchor at line 19: page.102
+[102
+
+
+]
+pdftex: define anchor at line 21: equation.A.1.3
+pdftex: define anchor at line 30: equation.A.1.4
+pdftex: define anchor at line 36: equation.A.1.5
+pdftex: define anchor at line 42: page.103
+[103]
+pdftex: define anchor at line 45: equation.A.1.6
+pdftex: define anchor at line 50: equation.A.1.7
+pdftex: define anchor at line 55: equation.A.1.8
+pdftex: define anchor at line 63: equation.A.1.9
+pdftex: define anchor at line 68: equation.A.1.10
+pdftex: define anchor at line 70: page.104
+[104]
+pdftex: define anchor at line 73: equation.A.1.11
+pdftex: define anchor at line 80: equation.A.1.12
+pdftex: define anchor at line 89: equation.A.1.13
+pdftex: define anchor at line 95: equation.A.1.14
+) (./apendiceB.tex
+pdftex: define anchor at line 1: section.A.2
+pdftex: bookmark at 1: {A.2} {\numberline{A.2}Extra Figures} {section.A.2}{1}{t
+oc}
+pdftex: define anchor at line 2: figure.caption.31
+<./figuras/appA2/visit_Td.png, id=1516, 759.83875pt x 1027.84pt>
+File: ./figuras/appA2/visit_Td.png Graphic file (type png)
+
+<use ./figuras/appA2/visit_Td.png>
+pdftex: bookmark at 6: {A.1} {\numberline{A.1}{\ignorespaces Temperature of dro
+plets. The computational domain is only half of the shown above, it is here mir
+rored for visualization purpose.\relax }} {figure.caption.31}{0}{lof}
+pdftex: define anchor at line 8: page.105
+[105]
+pdftex: define anchor at line 10: page.106
+[106 <./figuras/appA2/visit_Td.png (PNG copy)>]
+pdftex: define anchor at line 12: figure.caption.32
+<./figuras/appA2/visit_U.png, id=1530, 759.83875pt x 1027.84pt>
+File: ./figuras/appA2/visit_U.png Graphic file (type png)
+
+<use ./figuras/appA2/visit_U.png>
+Overfull \hbox (12.338pt too wide) in paragraph at lines 13--14
+ [][] 
+ []
+
+pdftex: bookmark at 14: {A.2} {\numberline{A.2}{\ignorespaces Magnitude of drop
+let velocities. The computational domain is only half of the shown above, it is
+ here mirrored for visualization purpose.\relax }} {figure.caption.32}{0}{lof}
+pdftex: define anchor at line 18: page.107
+[107 <./figuras/appA2/visit_U.png (PNG copy)>]
+pdftex: define anchor at line 20: figure.caption.33
+<./figuras/appA2/visit_T.png, id=1535, 759.83875pt x 1027.84pt>
+File: ./figuras/appA2/visit_T.png Graphic file (type png)
+
+<use ./figuras/appA2/visit_T.png>
+Overfull \hbox (12.338pt too wide) in paragraph at lines 21--22
+ [] 
+ []
+
+pdftex: bookmark at 23: {A.3} {\numberline{A.3}{\ignorespaces Gas mean temperat
+ure field $\mathaccentV{tilde}07E{T}$. The computational domain is only half of
+ the shown above, it is here mirrored for visualization purpose.\relax }} {figu
+re.caption.33}{0}{lof}
+pdftex: define anchor at line 27: page.108
+[108 <./figuras/appA2/visit_T.png (PNG copy)>]
+pdftex: define anchor at line 29: figure.caption.34
+<./figuras/appA2/visit_Ux.png, id=1540, 759.83875pt x 1027.84pt>
+File: ./figuras/appA2/visit_Ux.png Graphic file (type png)
+
+<use ./figuras/appA2/visit_Ux.png>
+Overfull \hbox (12.338pt too wide) in paragraph at lines 30--31
+ [] 
+ []
+
+pdftex: bookmark at 32: {A.4} {\numberline{A.4}{\ignorespaces Gas mean velocity
+ magnitude $|\mathaccentV{tilde}07E{\mathbf {U}}|$. The computational domain is
+ only half of the shown above, it is here mirrored for visualization purpose.\r
+elax }} {figure.caption.34}{0}{lof}
+pdftex: define anchor at line 36: page.109
+[109 <./figuras/appA2/visit_Ux.png (PNG copy)>]
+pdftex: define anchor at line 38: figure.caption.35
+<./figuras/appA2/visit_k.png, id=1546, 759.83875pt x 1027.84pt>
+File: ./figuras/appA2/visit_k.png Graphic file (type png)
+
+<use ./figuras/appA2/visit_k.png>
+Overfull \hbox (12.338pt too wide) in paragraph at lines 39--40
+ [] 
+ []
+
+pdftex: bookmark at 41: {A.5} {\numberline{A.5}{\ignorespaces Gas mean turbulen
+t kinetic energy. The computational domain is only half of the shown above, it 
+is here mirrored for visualization purpose.\relax }} {figure.caption.35}{0}{lof
+}
+pdftex: define anchor at line 45: page.110
+[110 <./figuras/appA2/visit_k.png (PNG copy)>]
+pdftex: define anchor at line 47: figure.caption.36
+<./figuras/appA2/visit_aC3H6O.png, id=1551, 759.83875pt x 1027.84pt>
+File: ./figuras/appA2/visit_aC3H6O.png Graphic file (type png)
+
+<use ./figuras/appA2/visit_aC3H6O.png>
+Overfull \hbox (12.338pt too wide) in paragraph at lines 48--49
+ [] 
+ []
+
+pdftex: bookmark at 50: {A.6} {\numberline{A.6}{\ignorespaces Mean of acetone v
+apor mass concentration - $\mathaccentV{tilde}07E{Y}_{ac}$. The computational d
+omain is only half of the shown above, it is here mirrored for visualization pu
+rpose.\relax }} {figure.caption.36}{0}{lof}
+pdftex: define anchor at line 54: page.111
+[111 <./figuras/appA2/visit_aC3H6O.png (PNG copy)>]) (./apendiceC.tex
+pdftex: define anchor at line 2: section.A.3
+pdftex: bookmark at 2: {A.3} {\numberline{A.3}Equation Discretization and PISO 
+Algorithm} {section.A.3}{1}{toc}
+pdftex: define anchor at line 4: figure.caption.37
+<./figuras/appA3/finite_volume.png, id=1556, 667.74469pt x 521.69907pt>
+File: ./figuras/appA3/finite_volume.png Graphic file (type png)
+
+<use ./figuras/appA3/finite_volume.png>
+pdftex: bookmark at 9: {A.7} {\numberline{A.7}{\ignorespaces Finite volume disc
+retization, reproduced from \cite {foamDev}.\relax }} {figure.caption.37}{0}{lo
+f}
+pdftex: define anchor at line 21: page.112
+[112
+
+
+
+
+
+
+ <./figuras/appA3/finite_volume.png (PNG copy)>]
+pdftex: define anchor at line 27: equation.A.3.15
+pdftex: define anchor at line 31: equation.A.3.16
+pdftex: define anchor at line 37: equation.A.3.17
+pdftex: define anchor at line 41: equation.A.3.18
+pdftex: define anchor at line 45: equation.A.3.19
+pdftex: define anchor at line 50: equation.A.3.20
+pdftex: define anchor at line 52: page.113
+[113
+
+]
+pdftex: define anchor at line 55: equation.A.3.21
+pdftex: define anchor at line 67: equation.A.3.22
+pdftex: define anchor at line 72: equation.A.3.23
+pdftex: define anchor at line 77: equation.A.3.24
+pdftex: define anchor at line 82: equation.A.3.25
+pdftex: define anchor at line 87: equation.A.3.26
+pdftex: define anchor at line 90: equation.A.3.27
+
+Overfull \hbox (9.95323pt too wide) in paragraph at lines 62--96
+[][]
+ []
+
+pdftex: define anchor at line 96: page.114
+[114]
+Overfull \vbox (9.4169pt too high) has occurred while \output is active []
+
+
+pdftex: define anchor at line 96: page.115
+[115]
+pdftex: define anchor at line 97: page.116
+[116]
+Overfull \hbox (32.02422pt too wide) in paragraph at lines 189--189
+[]\T1/aett/m/n/12 /*--------------------------------*- C++ -*------------------
+----------------*\[] 
+ []
+
+
+Overfull \hbox (32.02422pt too wide) in paragraph at lines 189--189
+[]\T1/aett/m/n/12 | =========                 |                                
+                 |[] 
+ []
+
+
+Overfull \hbox (32.02422pt too wide) in paragraph at lines 189--189
+[]\T1/aett/m/n/12 | \\      /  F ield         | OpenFOAM: The Open Source CFD T
+oolbox           |[] 
+ []
+
+
+Overfull \hbox (32.02422pt too wide) in paragraph at lines 189--189
+[]\T1/aett/m/n/12 |  \\    /   O peration     | Version:  1.7.1                
+                 |[] 
+ []
+
+
+Overfull \hbox (32.02422pt too wide) in paragraph at lines 189--189
+[]\T1/aett/m/n/12 |   \\  /    A nd           | Web:      www.OpenFOAM.com     
+                 |[] 
+ []
+
+
+Overfull \hbox (32.02422pt too wide) in paragraph at lines 189--189
+[]\T1/aett/m/n/12 |    \\/     M anipulation  |                                
+                 |[] 
+ []
+
+
+Overfull \hbox (32.02422pt too wide) in paragraph at lines 189--189
+[]\T1/aett/m/n/12 \*-----------------------------------------------------------
+----------------*/[] 
+ []
+
+
+Overfull \hbox (32.02422pt too wide) in paragraph at lines 189--189
+[]\T1/aett/m/n/12 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
+* * * * * * * * //[] 
+ []
+
+pdftex: define anchor at line 189: page.117
+[117
+
+]
+Overfull \hbox (32.02422pt too wide) in paragraph at lines 189--189
+[]\T1/aett/m/n/12 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
+* * * * * * * * //[] 
+ []
+
+)
+pdftex: define anchor at line 198: page.118
+[118]
+pdftex: define anchor at line 198: appendix.B
+pdftex: bookmark at 199: {B} {Glossary} {appendix.B}{0}{toc}
+No file thesis.gls
+\bottommargin=\skip77
+\rightmarginn=\skip78
+pdftex: define anchor at line 214: bla.0
+(./abstract.tex) (./abstract.tex) (./abstract.tex)
+Overfull \hbox (76.82236pt too wide) in paragraph at lines 214--214
+[][] 
+ []
+
+AED: lastpage setting LastPage
+pdftex: define anchor at line 216: page.119
+[119
+
+
+
+] (./thesis.aux)
+
+LaTeX Warning: There were multiply-defined labels.
+
+ ) 
+Here is how much of TeX's memory you used:
+ 9655 strings out of 495061
+ 143645 string characters out of 1182620
+ 229477 words of memory out of 3000000
+ 11986 multiletter control sequences out of 15000+50000
+ 55238 words of font info for 113 fonts, out of 3000000 for 9000
+ 28 hyphenation exceptions out of 8191
+ 45i,23n,45p,1289b,568s stack positions out of 5000i,500n,10000p,200000b,50000s
+</usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/sha
+re/texmf-texlive/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texmf-te
+xlive/fonts/type1/public/amsfonts/cm/cmbx8.pfb></usr/share/texmf-texlive/fonts/
+type1/public/amsfonts/cm/cmcsc10.pfb></usr/share/texmf-texlive/fonts/type1/publ
+ic/amsfonts/cm/cmex10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts
+/cm/cmmi12.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmmi6.p
+fb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/sha
+re/texmf-texlive/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texmf-tex
+live/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texmf-texlive/fonts/t
+ype1/public/amsfonts/cm/cmr12.pfb></usr/share/texmf-texlive/fonts/type1/public/
+amsfonts/cm/cmr6.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/c
+mr7.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr
+/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmssi12.pfb></usr/share/tex
+mf-texlive/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-texlive/
+fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/share/texmf-texlive/fonts/type1/
+public/amsfonts/cm/cmsy8.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfo
+nts/cm/cmti12.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmtt
+12.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/symbols/msbm10.pfb
+>
+Output written on thesis.pdf (119 pages, 2511167 bytes).
+PDF statistics:
+ 1767 PDF objects out of 2073 (max. 8388607)
+ 417 named destinations out of 1000 (max. 500000)
+ 848 words of extra memory for PDF output out of 10000 (max. 10000000)
+

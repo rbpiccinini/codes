@@ -1,0 +1,36 @@
+\begin{thebibliography}{1}
+
+\bibitem{chen}
+Y.C. Chen, S.H. St{\aa}rner, and A.R. Masri.
+\newblock A detailed experimental investigation of well-defined, turbulent
+  evaporating spray jets of acetone.
+\newblock {\em International journal of multiphase flow}, 32(4):389--412, 2006.
+
+\bibitem{ferziger}
+J.H. Ferziger and M.~Peri{\'c}.
+\newblock {\em Computational methods for fluid dynamics}, volume~2.
+\newblock Springer Berlin, 1999.
+
+\bibitem{jasak}
+H.~Jasak.
+\newblock {\em Error analysis and estimation for the finite volume method with
+  applications to fluid flows}.
+\newblock PhD thesis, Imperial College, London, June 1996.
+
+\bibitem{nordin}
+PA~Nordin.
+\newblock {\em Complex chemistry modeling of diesel spray combustion}.
+\newblock PhD thesis, Chalmers University of Technology, Goteborg, 2001.
+
+\bibitem{piccinini_msc}
+R.~B. Piccinini.
+\newblock Eulerian-lagrangian simulation of a turbulent evaporating spray.
+\newblock Master's thesis, ITA, 2011.
+
+\bibitem{weller}
+H.G. Weller, G.~Tabor, H.~Jasak, and C.~Fureby.
+\newblock A tensorial approach to computational continuum mechanics using
+  object-oriented techniques.
+\newblock {\em Computers in physics}, 12:620, 1998.
+
+\end{thebibliography}

@@ -1,0 +1,7232 @@
+/*---------------------------------------------------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  1.7.x                                 |
+|   \\  /    A nd           | Web:      www.OpenFOAM.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+Build  : 1.7.x-3776603e4c6c
+Exec   : myDieselFoam
+Date   : Dec 12 2010
+Time   : 17:53:02
+Host   : piccinini-laptop
+PID    : 3144
+Case   : /home/piccinini/master/icodieselspray/trunk/cases/2D/spray_4/ico_spray.coarseMesh
+nProcs : 1
+SigFpe : Enabling floating point exception trapping (FOAM_SIGFPE).
+
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+Create time
+
+Create mesh for time = 0
+
+// using new solver syntax:
+rho
+{
+    solver          PCG;
+    preconditioner  DIC;
+    tolerance       1e-06;
+    relTol          0;
+}
+
+// using new solver syntax:
+U
+{
+    solver          PBiCG;
+    preconditioner  DILU;
+    tolerance       1e-06;
+    relTol          0;
+}
+
+// using new solver syntax:
+p
+{
+    solver          PCG;
+    preconditioner  DIC;
+    tolerance       1e-09;
+    relTol          0;
+}
+
+// using new solver syntax:
+pFinal
+{
+    solver          PCG;
+    preconditioner  DIC;
+    tolerance       1e-09;
+    relTol          0;
+}
+
+// using new solver syntax:
+Yi
+{
+    solver          PBiCG;
+    preconditioner  DILU;
+    tolerance       1e-06;
+    relTol          0;
+}
+
+// using new solver syntax:
+T
+{
+    solver          PBiCG;
+    preconditioner  DILU;
+    tolerance       1e-08;
+    relTol          0;
+}
+
+// using new solver syntax:
+hs
+{
+    solver          PBiCG;
+    preconditioner  DILU;
+    tolerance       1e-06;
+    relTol          0;
+}
+
+// using new solver syntax:
+k
+{
+    solver          PBiCG;
+    preconditioner  DILU;
+    tolerance       1e-08;
+    relTol          0;
+}
+
+// using new solver syntax:
+epsilon
+{
+    solver          PBiCG;
+    preconditioner  DILU;
+    tolerance       1e-06;
+    relTol          0;
+}
+
+
+Reading g
+Reading field p
+
+Reading field U
+
+Reading field T
+
+Reading field rho
+
+Reading/calculating face flux field phi
+
+Selecting incompressible transport model Newtonian
+Selecting turbulence model type RASModel
+Selecting RAS turbulence model kEpsilon
+kEpsilonCoeffs
+{
+    Cmu             0.09;
+    C1              1.44;
+    C2              1.92;
+    alphaEps        0.76923;
+    sigmaEps        1.3;
+}
+
+
+Reading thermophysicalProperties
+Selecting psiChemistryModel ODEChemistryModel<gasThermoPhysics>
+Selecting thermodynamics package hsPsiMixtureThermo<reactingMixture<gasThermoPhysics>>
+Selecting chemistryReader chemkinReader
+Selecting chemistrySolver ode
+Selecting ODE solver SIBS
+ODEChemistryModel: Number of species = 5 and reactions = 1
+Constructing Spray
+Selecting injectorType definedInjector
+Selecting injectorType definedInjector
+Selecting injectorType definedInjector
+Selecting injectorType definedInjector
+Selecting injectorType definedInjector
+Selecting injectorType definedInjector
+Selecting injectorType definedInjector
+Selecting injectorType definedInjector
+Selecting injectorType definedInjector
+Selecting injectorType definedInjector
+Selecting dragModel standardDragModel
+Selecting evaporationModel standardEvaporationModel
+Selecting heatTransferModel RanzMarshall
+Selecting wallModel reflect
+Selecting dispersionModel off
+Selecting injectorModel hollowConeInjector
+Selecting pdfType lognormal
+Average Velocity for injector 0: -3.86 m/s, injection pressure = 1.0739 bar
+Average Velocity for injector 1: -3.48 m/s, injection pressure = 1.06006 bar
+Average Velocity for injector 2: -4.98 m/s, injection pressure = 1.12302 bar
+Average Velocity for injector 3: -7.69 m/s, injection pressure = 1.2934 bar
+Average Velocity for injector 4: -10 m/s, injection pressure = 1.49616 bar
+Average Velocity for injector 5: -11.43 m/s, injection pressure = 1.64822 bar
+Average Velocity for injector 6: -12.63 m/s, injection pressure = 1.79149 bar
+Average Velocity for injector 7: -11.17 m/s, injection pressure = 1.61907 bar
+Average Velocity for injector 8: -9.36 m/s, injection pressure = 1.43468 bar
+Average Velocity for injector 9: -7.96 m/s, injection pressure = 1.31436 bar
+Constructing two dimensional spray injection.Calculated angle of wedge is 5 deg.
+Courant Number mean: 4.32349e-05 max: 0.00341679
+rho dim[1 -3 0 0 0 0 0]
+p dim[0 2 -2 0 0 0 0]
+U dim[0 1 -1 0 0 0 0]
+T dim[0 0 0 1 0 0 0]
+
+Starting time loop
+
+--> FOAM Warning : 
+    From function SolverInfo::SolverInfo(const dictionary& dict,const objectRegistry &obr)
+    in file SolverInfo/SolverInfo.C at line 88
+    Neither LES nor RANS found. Assuming no turbulence
+Time = 1e-06
+
+Courant Number mean: 4.32349e-05 max: 0.00341679
+Evolving Spray
+dmomSpray min/max = 0 0
+DILUPBiCG:  Solving for Ux, Initial residual = 2.05352e-05, Final residual = 1.0549e-11, No Iterations 1
+DILUPBiCG:  Solving for Uy, Initial residual = 1.65372e-05, Final residual = 5.91108e-12, No Iterations 1
+DILUPBiCG:  Solving for Uz, Initial residual = 3.4238e-07, Final residual = 3.4238e-07, No Iterations 0
+DILUPBiCG:  Solving for iC3H8O, Initial residual = 0, Final residual = 0, No Iterations 0
+DILUPBiCG:  Solving for O2, Initial residual = 0.999997, Final residual = 4.54821e-07, No Iterations 1
+DILUPBiCG:  Solving for CO2, Initial residual = 0, Final residual = 0, No Iterations 0
+DILUPBiCG:  Solving for H2O, Initial residual = 0, Final residual = 0, No Iterations 0
+dqSpray min/max = 0 0
+kappaEff min/max = 1.11111e-05 0.0139561
+DILUPBiCG:  Solving for T, Initial residual = 1, Final residual = 8.53444e-14, No Iterations 2
+DICPCG:  Solving for p, Initial residual = 0.971843, Final residual = 8.91051e-10, No Iterations 190
+time step continuity errors : sum local = 1.8851e-16, global = -3.63806e-19, cumulative = -3.63806e-19
+DICPCG:  Solving for p, Initial residual = 0.000426293, Final residual = 8.11658e-10, No Iterations 165
+time step continuity errors : sum local = 1.84158e-16, global = 3.80284e-20, cumulative = -3.25777e-19
+DICPCG:  Solving for p, Initial residual = 1.30854e-06, Final residual = 9.53132e-10, No Iterations 137
+time step continuity errors : sum local = 1.72363e-16, global = 6.15088e-19, cumulative = 2.8931e-19
+DICPCG:  Solving for p, Initial residual = 1.9902e-08, Final residual = 8.95678e-10, No Iterations 20
+time step continuity errors : sum local = 8.67975e-17, global = -1.28386e-18, cumulative = -9.94554e-19
+DICPCG:  Solving for p, Initial residual = 1.94373e-09, Final residual = 5.48661e-10, No Iterations 1
+time step continuity errors : sum local = 4.62609e-17, global = -1.34195e-18, cumulative = -2.3365e-18
+DILUPBiCG:  Solving for epsilon, Initial residual = 5.0611e-07, Final residual = 5.0611e-07, No Iterations 0
+DILUPBiCG:  Solving for k, Initial residual = 6.20304e-07, Final residual = 2.47159e-13, No Iterations 1
+
+Number of parcels in system.... | 0
+Injected liquid mass........... | 0.000792487 mg
+Liquid Mass in system.......... | 0 mg
+SMD, Dmax, Dmin................ | 0 mu, 0 mu, 1e+12 mu
+Tmax, Tmin..................... | 0 K, 1e+06 K
+Added gas mass................. | 0 mg
+Evaporation Continuity Error... | -0.000792487 mg
+ExecutionTime = 0.76 s  ClockTime = 1 s
+rRHO max/min : 1.06045 1.06045
+T max/min : 373.088 303
+p max/min : 101069 99812.7
+
+ MassFlows:   inlet = -0.000319444  outlet = 0.000319444
+Time = 2e-06
+
+Courant Number mean: 4.32319e-05 max: 0.00341809
+Evolving Spray
+Tg = 373.013
+Tg = 373.01
+Tg = 373.014
+Tg = 373.013
+Tg = 373.011
+Tg = 373.011
+Tg = 373.01
+Tg = 373.01
+Tg = 373.01
+Tg = 373.009
+Tg = 373.008
+Tg = 373.007
+Tg = 373.004
+Tg = 373.001
+Tg = 373.012
+Tg = 373.008
+Tg = 373.004
+Tg = 373.078
+Tg = 373.078
+Tg = 373.078
+dmomSpray min/max = 0 6293.01
+DILUPBiCG:  Solving for Ux, Initial residual = 0.000112749, Final residual = 3.69962e-11, No Iterations 1
+DILUPBiCG:  Solving for Uy, Initial residual = 0.842065, Final residual = 2.49931e-08, No Iterations 1
+DILUPBiCG:  Solving for Uz, Initial residual = 2.2192e-05, Final residual = 1.3209e-12, No Iterations 1
+DILUPBiCG:  Solving for iC3H8O, Initial residual = 0, Final residual = 0, No Iterations 0
+DILUPBiCG:  Solving for O2, Initial residual = 0.000602164, Final residual = 5.24084e-10, No Iterations 1
+DILUPBiCG:  Solving for CO2, Initial residual = 0, Final residual = 0, No Iterations 0
+DILUPBiCG:  Solving for H2O, Initial residual = 1, Final residual = 5.78558e-08, No Iterations 1
+dqSpray min/max = -1.10066e+07 0
+kappaEff min/max = 1.11111e-05 0.0139558
+DILUPBiCG:  Solving for T, Initial residual = 0.169492, Final residual = 1.96546e-09, No Iterations 1
+DICPCG:  Solving for p, Initial residual = 0.679595, Final residual = 8.0669e-10, No Iterations 191
+time step continuity errors : sum local = 1.88422e-16, global = -3.26577e-19, cumulative = -2.66308e-18
+DICPCG:  Solving for p, Initial residual = 0.00111636, Final residual = 9.06419e-10, No Iterations 172
+time step continuity errors : sum local = 1.68281e-16, global = -6.92423e-19, cumulative = -3.3555e-18
+DICPCG:  Solving for p, Initial residual = 2.2922e-06, Final residual = 8.46275e-10, No Iterations 144
+time step continuity errors : sum local = 1.50893e-16, global = -1.81347e-19, cumulative = -3.53685e-18
+DICPCG:  Solving for p, Initial residual = 3.47527e-08, Final residual = 9.29893e-10, No Iterations 25
+time step continuity errors : sum local = 6.76648e-17, global = -9.6598e-19, cumulative = -4.50283e-18
+DICPCG:  Solving for p, Initial residual = 6.96601e-09, Final residual = 7.12039e-10, No Iterations 1
+time step continuity errors : sum local = 3.24732e-17, global = -8.89972e-19, cumulative = -5.3928e-18
+DILUPBiCG:  Solving for epsilon, Initial residual = 5.07235e-07, Final residual = 5.07235e-07, No Iterations 0
+DILUPBiCG:  Solving for k, Initial residual = 6.20363e-07, Final residual = 2.46921e-13, No Iterations 1
+
+Number of parcels in system.... | 5
+Injected liquid mass........... | 0.00158497 mg
+Liquid Mass in system.......... | 0.0015437 mg
+SMD, Dmax, Dmin................ | 11.2064 mu, 37.8007 mu, 6.2576 mu
+Tmax, Tmin..................... | 308.367 K, 308.014 K
+Added gas mass................. | 0 mg
+Evaporation Continuity Error... | -4.12771e-05 mg
+ExecutionTime = 1.2 s  ClockTime = 1 s
+rRHO max/min : 1.06045 1.06045
+T max/min : 373.088 303
+p max/min : 100036 99974.5
+
+ MassFlows:   inlet = -0.000319444  outlet = 0.000319444
+Time = 3e-06
+
+Courant Number mean: 4.3232e-05 max: 0.00341821
+Evolving Spray
+Tg = 372.978
+Tg = 372.978
+Tg = 373.006
+Tg = 373.005
+Tg = 372.998
+Tg = 372.997
+Tg = 373.001
+Tg = 372.999
+Tg = 373.077
+Tg = 373.077
+Tg = 371.998
+Tg = 372.327
+Tg = 372.034
+Tg = 370.219
+Tg = 362.05
+Tg = 372.978
+Tg = 372.977
+Tg = 372.977
+Tg = 373.005
+Tg = 373.005
+Tg = 373.005
+Tg = 372.997
+Tg = 372.996
+Tg = 372.995
+Tg = 372.999
+Tg = 372.999
+Tg = 372.999
+Tg = 373.077
+Tg = 373.077
+Tg = 373.077
+dmomSpray min/max = 0 3146.21
+DILUPBiCG:  Solving for Ux, Initial residual = 2.19971e-05, Final residual = 6.18972e-12, No Iterations 1
+DILUPBiCG:  Solving for Uy, Initial residual = 0.575986, Final residual = 1.72957e-08, No Iterations 1
+DILUPBiCG:  Solving for Uz, Initial residual = 6.56202e-07, Final residual = 6.56202e-07, No Iterations 0
+DILUPBiCG:  Solving for iC3H8O, Initial residual = 0, Final residual = 0, No Iterations 0
+DILUPBiCG:  Solving for O2, Initial residual = 0.000598844, Final residual = 5.18344e-10, No Iterations 1
+DILUPBiCG:  Solving for CO2, Initial residual = 0, Final residual = 0, No Iterations 0
+DILUPBiCG:  Solving for H2O, Initial residual = 0.00249987, Final residual = 1.45427e-10, No Iterations 1
+dqSpray min/max = -5.50329e+06 0
+kappaEff min/max = 1.11111e-05 0.0139555
+DILUPBiCG:  Solving for T, Initial residual = 0.0302819, Final residual = 2.51483e-10, No Iterations 1
+DICPCG:  Solving for p, Initial residual = 0.130414, Final residual = 6.43895e-10, No Iterations 188
+time step continuity errors : sum local = 1.79478e-16, global = -3.62559e-19, cumulative = -5.75536e-18
+DICPCG:  Solving for p, Initial residual = 0.000103482, Final residual = 9.20138e-10, No Iterations 162
+time step continuity errors : sum local = 1.68469e-16, global = 1.74184e-19, cumulative = -5.58118e-18
+DICPCG:  Solving for p, Initial residual = 4.64864e-07, Final residual = 7.47605e-10, No Iterations 146
+time step continuity errors : sum local = 1.53e-16, global = 8.46288e-19, cumulative = -4.73489e-18
+DICPCG:  Solving for p, Initial residual = 2.86241e-08, Final residual = 8.74647e-10, No Iterations 127
+time step continuity errors : sum local = 1.5042e-16, global = -8.94632e-19, cumulative = -5.62952e-18
+DICPCG:  Solving for p, Initial residual = 1.79077e-08, Final residual = 8.50457e-10, No Iterations 35
+time step continuity errors : sum local = 8.16458e-17, global = -9.59175e-19, cumulative = -6.58869e-18
+DILUPBiCG:  Solving for epsilon, Initial residual = 5.0795e-07, Final residual = 5.0795e-07, No Iterations 0
+DILUPBiCG:  Solving for k, Initial residual = 6.20404e-07, Final residual = 2.47061e-13, No Iterations 1
+
+Number of parcels in system.... | 10
+Injected liquid mass........... | 0.00237746 mg
+Liquid Mass in system.......... | 0.00231554 mg
+SMD, Dmax, Dmin................ | 11.6025 mu, 37.8007 mu, 6.25764 mu
+Tmax, Tmin..................... | 308.55 K, 308.013 K
+Added gas mass................. | 0 mg
+Evaporation Continuity Error... | -6.19224e-05 mg
+ExecutionTime = 1.67 s  ClockTime = 2 s
+rRHO max/min : 1.06045 1.06045
+T max/min : 373.087 303
+p max/min : 100021 99976.2
+
+ MassFlows:   inlet = -0.000319444  outlet = 0.000319444
+Time = 4e-06
+
+Courant Number mean: 4.32321e-05 max: 0.00341826
+Evolving Spray
+Tg = 372.93
+Tg = 372.93
+Tg = 373.004
+Tg = 373.003
+Tg = 372.992
+Tg = 372.991
+Tg = 372.996
+Tg = 372.994
+Tg = 373.075
+Tg = 373.075
+Tg = 372.929
+Tg = 372.929
+Tg = 373.003
+Tg = 373.003
+Tg = 372.99
+Tg = 372.989
+Tg = 372.993
+Tg = 372.993
+Tg = 373.075
+Tg = 373.075
+dmomSpray min/max = 0 1.24321
+DILUPBiCG:  Solving for Ux, Initial residual = 1.15661e-05, Final residual = 3.9301e-12, No Iterations 1
+DILUPBiCG:  Solving for Uy, Initial residual = 1.60136e-05, Final residual = 5.39932e-12, No Iterations 1
+DILUPBiCG:  Solving for Uz, Initial residual = 3.99103e-07, Final residual = 3.99103e-07, No Iterations 0
+DILUPBiCG:  Solving for iC3H8O, Initial residual = 0, Final residual = 0, No Iterations 0
+DILUPBiCG:  Solving for O2, Initial residual = 0.000595684, Final residual = 5.12595e-10, No Iterations 1
+DILUPBiCG:  Solving for CO2, Initial residual = 0, Final residual = 0, No Iterations 0
+DILUPBiCG:  Solving for H2O, Initial residual = 3.83969e-05, Final residual = 3.02676e-12, No Iterations 1
+dqSpray min/max = -4933.66 0
+kappaEff min/max = 1.11111e-05 0.0139552
+DILUPBiCG:  Solving for T, Initial residual = 0.0193322, Final residual = 9.15073e-11, No Iterations 1
+DICPCG:  Solving for p, Initial residual = 0.0982984, Final residual = 9.79934e-10, No Iterations 183
+time step continuity errors : sum local = 1.66563e-16, global = -1.15447e-18, cumulative = -7.74317e-18
+DICPCG:  Solving for p, Initial residual = 7.73412e-05, Final residual = 9.71707e-10, No Iterations 163
+time step continuity errors : sum local = 1.64403e-16, global = -5.97115e-19, cumulative = -8.34028e-18
+DICPCG:  Solving for p, Initial residual = 5.08561e-07, Final residual = 8.29014e-10, No Iterations 146
+time step continuity errors : sum local = 1.54118e-16, global = -4.89882e-19, cumulative = -8.83016e-18
+DICPCG:  Solving for p, Initial residual = 3.30845e-08, Final residual = 9.05155e-10, No Iterations 128
+time step continuity errors : sum local = 1.42229e-16, global = -2.9945e-19, cumulative = -9.12961e-18
+DICPCG:  Solving for p, Initial residual = 1.98122e-08, Final residual = 9.28926e-10, No Iterations 8
+time step continuity errors : sum local = 4.65077e-17, global = 1.59352e-20, cumulative = -9.11368e-18
+DILUPBiCG:  Solving for epsilon, Initial residual = 5.08414e-07, Final residual = 5.08414e-07, No Iterations 0
+DILUPBiCG:  Solving for k, Initial residual = 6.20427e-07, Final residual = 2.47228e-13, No Iterations 1
+
+Number of parcels in system.... | 10
+Injected liquid mass........... | 0.00316995 mg
+Liquid Mass in system.......... | 0.00231551 mg
+SMD, Dmax, Dmin................ | 11.6025 mu, 37.8007 mu, 6.25769 mu
+Tmax, Tmin..................... | 308.731 K, 308.025 K
+Added gas mass................. | 0 mg
+Evaporation Continuity Error... | -0.000854433 mg
+ExecutionTime = 2.15 s  ClockTime = 2 s
+rRHO max/min : 1.06045 1.06045
+T max/min : 373.087 303
+p max/min : 100011 99977.6
+
+ MassFlows:   inlet = -0.000319444  outlet = 0.000319444
+Time = 5e-06
+
+Courant Number mean: 4.32322e-05 max: 0.00341829
+Evolving Spray
+Tg = 372.882
+Tg = 372.882
+Tg = 373.001
+Tg = 373.001
+Tg = 372.987
+Tg = 372.985
+Tg = 372.99
+Tg = 372.988
+Tg = 373.074
+Tg = 373.074
+Tg = 372.881
+Tg = 372.881
+Tg = 373
+Tg = 373
+Tg = 372.984
+Tg = 372.984
+Tg = 372.987
+Tg = 372.987
+Tg = 373.073
+Tg = 373.073
+Tg = 371.492
+Tg = 371.987
+Tg = 371.544
+Tg = 368.841
+Tg = 356.681
+Tg = 372.881
+Tg = 372.881
+Tg = 372.881
+Tg = 373
+Tg = 373
+Tg = 373
+Tg = 372.984
+Tg = 372.983
+Tg = 372.982
+Tg = 372.987
+Tg = 372.986
+Tg = 372.985
+Tg = 373.073
+Tg = 373.073
+Tg = 373.072
+dmomSpray min/max = 0 6292.56
+DILUPBiCG:  Solving for Ux, Initial residual = 8.09091e-06, Final residual = 2.86591e-12, No Iterations 1
+DILUPBiCG:  Solving for Uy, Initial residual = 0.736803, Final residual = 3.04422e-08, No Iterations 1
+DILUPBiCG:  Solving for Uz, Initial residual = 3.38463e-07, Final residual = 3.38463e-07, No Iterations 0
+DILUPBiCG:  Solving for iC3H8O, Initial residual = 0, Final residual = 0, No Iterations 0
+DILUPBiCG:  Solving for O2, Initial residual = 0.00059271, Final residual = 5.0735e-10, No Iterations 1
+DILUPBiCG:  Solving for CO2, Initial residual = 0, Final residual = 0, No Iterations 0
+DILUPBiCG:  Solving for H2O, Initial residual = 0.00333059, Final residual = 1.93481e-10, No Iterations 1
+dqSpray min/max = -1.10066e+07 0
+kappaEff min/max = 1.11111e-05 0.0139549
+DILUPBiCG:  Solving for T, Initial residual = 0.0195253, Final residual = 2.27569e-10, No Iterations 1
+DICPCG:  Solving for p, Initial residual = 0.0628662, Final residual = 9.09967e-10, No Iterations 181
+time step continuity errors : sum local = 1.70101e-16, global = -6.79582e-19, cumulative = -9.79326e-18
+DICPCG:  Solving for p, Initial residual = 5.80268e-05, Final residual = 7.61539e-10, No Iterations 164
+time step continuity errors : sum local = 1.64154e-16, global = 4.82129e-19, cumulative = -9.31113e-18
+DICPCG:  Solving for p, Initial residual = 5.39489e-07, Final residual = 9.0954e-10, No Iterations 146
+time step continuity errors : sum local = 1.57628e-16, global = -2.57541e-19, cumulative = -9.56867e-18
+DICPCG:  Solving for p, Initial residual = 3.68694e-08, Final residual = 9.36794e-10, No Iterations 128
+time step continuity errors : sum local = 1.41342e-16, global = -7.57383e-19, cumulative = -1.03261e-17
+DICPCG:  Solving for p, Initial residual = 2.16973e-08, Final residual = 8.39644e-10, No Iterations 6
+time step continuity errors : sum local = 4.08966e-17, global = -7.13955e-19, cumulative = -1.104e-17
+DILUPBiCG:  Solving for epsilon, Initial residual = 5.08815e-07, Final residual = 5.08815e-07, No Iterations 0
+DILUPBiCG:  Solving for k, Initial residual = 6.20445e-07, Final residual = 2.47409e-13, No Iterations 1
+
+Number of parcels in system.... | 15
+Injected liquid mass........... | 0.00396243 mg
+Liquid Mass in system.......... | 0.00385921 mg
+SMD, Dmax, Dmin................ | 13.9214 mu, 59.9493 mu, 6.25773 mu
+Tmax, Tmin..................... | 308.912 K, 308.007 K
+Added gas mass................. | 0 mg
+Evaporation Continuity Error... | -0.000103226 mg
+ExecutionTime = 2.62 s  ClockTime = 3 s
+rRHO max/min : 1.06045 1.06045
+T max/min : 373.087 303
+p max/min : 100006 99978.8
+
+ MassFlows:   inlet = -0.000319444  outlet = 0.000319444
+Time = 6e-06
+
+Courant Number mean: 4.32322e-05 max: 0.00341831
+Evolving Spray
+Tg = 372.803
+Tg = 372.803
+Tg = 372.999
+Tg = 372.998
+Tg = 372.979
+Tg = 372.977
+Tg = 372.982
+Tg = 372.98
+Tg = 373.071
+Tg = 373.071
+Tg = 372.802
+Tg = 372.802
+Tg = 372.998
+Tg = 372.998
+Tg = 372.977
+Tg = 372.976
+Tg = 372.979
+Tg = 372.979
+Tg = 373.071
+Tg = 373.071
+Tg = 372.802
+Tg = 372.802
+Tg = 372.998
+Tg = 372.998
+Tg = 372.975
+Tg = 372.975
+Tg = 372.978
+Tg = 372.978
+Tg = 373.07
+Tg = 373.07
+dmomSpray min/max = 0 1.55924
+DILUPBiCG:  Solving for Ux, Initial residual = 6.69985e-06, Final residual = 2.41178e-12, No Iterations 1
+DILUPBiCG:  Solving for Uy, Initial residual = 1.61648e-05, Final residual = 5.4017e-12, No Iterations 1
+DILUPBiCG:  Solving for Uz, Initial residual = 3.15479e-07, Final residual = 3.15479e-07, No Iterations 0
+DILUPBiCG:  Solving for iC3H8O, Initial residual = 0, Final residual = 0, No Iterations 0
+DILUPBiCG:  Solving for O2, Initial residual = 0.000589889, Final residual = 5.02474e-10, No Iterations 1
+DILUPBiCG:  Solving for CO2, Initial residual = 0, Final residual = 0, No Iterations 0
+DILUPBiCG:  Solving for H2O, Initial residual = 3.77555e-05, Final residual = 2.98381e-12, No Iterations 1
+dqSpray min/max = -6151.98 0
+kappaEff min/max = 1.11111e-05 0.0139546
+DILUPBiCG:  Solving for T, Initial residual = 0.0117086, Final residual = 5.73049e-11, No Iterations 1
+DICPCG:  Solving for p, Initial residual = 0.046515, Final residual = 7.63844e-10, No Iterations 179
+time step continuity errors : sum local = 1.7261e-16, global = 1.12884e-18, cumulative = -9.91117e-18
+DICPCG:  Solving for p, Initial residual = 4.82928e-05, Final residual = 8.89624e-10, No Iterations 163
+time step continuity errors : sum local = 1.60602e-16, global = 4.44631e-19, cumulative = -9.46654e-18
+DICPCG:  Solving for p, Initial residual = 5.68758e-07, Final residual = 9.48911e-10, No Iterations 146
+time step continuity errors : sum local = 1.50476e-16, global = 2.77561e-19, cumulative = -9.18898e-18
+DICPCG:  Solving for p, Initial residual = 3.88484e-08, Final residual = 7.69739e-10, No Iterations 129
+time step continuity errors : sum local = 1.43777e-16, global = 5.81457e-20, cumulative = -9.13083e-18
+DICPCG:  Solving for p, Initial residual = 2.37339e-08, Final residual = 5.14029e-10, No Iterations 10
+time step continuity errors : sum local = 4.85966e-17, global = 2.72321e-19, cumulative = -8.85851e-18
+DILUPBiCG:  Solving for epsilon, Initial residual = 5.0919e-07, Final residual = 5.0919e-07, No Iterations 0
+DILUPBiCG:  Solving for k, Initial residual = 6.20462e-07, Final residual = 2.47595e-13, No Iterations 1
+
+Number of parcels in system.... | 15
+Injected liquid mass........... | 0.00475492 mg
+Liquid Mass in system.......... | 0.00385918 mg
+SMD, Dmax, Dmin................ | 13.9214 mu, 59.9493 mu, 6.25776 mu
+Tmax, Tmin..................... | 309.092 K, 308.011 K
+Added gas mass................. | 0 mg
+Evaporation Continuity Error... | -0.000895743 mg
+ExecutionTime = 3.1 s  ClockTime = 3 s
+rRHO max/min : 1.06045 1.06045
+T max/min : 373.086 303
+p max/min : 100004 99979.8
+
+ MassFlows:   inlet = -0.000319444  outlet = 0.000319444
+Time = 7e-06
+
+Courant Number mean: 4.32322e-05 max: 0.00341833
+Evolving Spray
+Tg = 372.725
+Tg = 372.724
+Tg = 372.996
+Tg = 372.995
+Tg = 372.972
+Tg = 372.971
+Tg = 372.975
+Tg = 372.973
+Tg = 373.069
+Tg = 373.069
+Tg = 372.724
+Tg = 372.724
+Tg = 372.995
+Tg = 372.995
+Tg = 372.97
+Tg = 372.969
+Tg = 372.972
+Tg = 372.972
+Tg = 373.069
+Tg = 373.068
+Tg = 372.724
+Tg = 372.724
+Tg = 372.995
+Tg = 372.995
+Tg = 372.969
+Tg = 372.968
+Tg = 372.971
+Tg = 372.971
+Tg = 373.068
+Tg = 373.068
+Tg = 370.482
+Tg = 371.307
+Tg = 370.565
+Tg = 366.08
+Tg = 345.899
+Tg = 372.724
+Tg = 372.723
+Tg = 372.722
+Tg = 372.995
+Tg = 372.994
+Tg = 372.994
+Tg = 372.968
+Tg = 372.968
+Tg = 372.968
+Tg = 372.971
+Tg = 372.97
+Tg = 372.969
+Tg = 373.068
+Tg = 373.068
+Tg = 373.068
+dmomSpray min/max = 0 6292.7
+DILUPBiCG:  Solving for Ux, Initial residual = 6.13533e-06, Final residual = 2.1846e-12, No Iterations 1
+DILUPBiCG:  Solving for Uy, Initial residual = 0.674287, Final residual = 2.11319e-08, No Iterations 1
+DILUPBiCG:  Solving for Uz, Initial residual = 3.1251e-07, Final residual = 3.1251e-07, No Iterations 0
+DILUPBiCG:  Solving for iC3H8O, Initial residual = 0, Final residual = 0, No Iterations 0
+DILUPBiCG:  Solving for O2, Initial residual = 0.000587201, Final residual = 4.98118e-10, No Iterations 1
+DILUPBiCG:  Solving for CO2, Initial residual = 0, Final residual = 0, No Iterations 0
+DILUPBiCG:  Solving for H2O, Initial residual = 0.00200177, Final residual = 1.16581e-10, No Iterations 1
+dqSpray min/max = -1.10066e+07 0
+kappaEff min/max = 1.11111e-05 0.0139543
+DILUPBiCG:  Solving for T, Initial residual = 0.0122768, Final residual = 1.4355e-10, No Iterations 1
+DICPCG:  Solving for p, Initial residual = 0.038356, Final residual = 7.42227e-10, No Iterations 176
+time step continuity errors : sum local = 1.62556e-16, global = -2.67398e-19, cumulative = -9.12591e-18
+DICPCG:  Solving for p, Initial residual = 4.55935e-05, Final residual = 8.82481e-10, No Iterations 163
+time step continuity errors : sum local = 1.62058e-16, global = -8.34686e-19, cumulative = -9.9606e-18
+DICPCG:  Solving for p, Initial residual = 6.006e-07, Final residual = 7.9401e-10, No Iterations 147
+time step continuity errors : sum local = 1.53594e-16, global = -7.74309e-20, cumulative = -1.0038e-17
+DICPCG:  Solving for p, Initial residual = 4.18e-08, Final residual = 7.31039e-10, No Iterations 129
+time step continuity errors : sum local = 1.46797e-16, global = 3.46403e-19, cumulative = -9.69162e-18
+DICPCG:  Solving for p, Initial residual = 2.59162e-08, Final residual = 9.47528e-10, No Iterations 33
+time step continuity errors : sum local = 7.80903e-17, global = -4.03736e-19, cumulative = -1.00954e-17
+DILUPBiCG:  Solving for epsilon, Initial residual = 5.09556e-07, Final residual = 5.09556e-07, No Iterations 0
+DILUPBiCG:  Solving for k, Initial residual = 6.20477e-07, Final residual = 2.47781e-13, No Iterations 1
+
+Number of parcels in system.... | 20
+Injected liquid mass........... | 0.00554741 mg
+Liquid Mass in system.......... | 0.00540287 mg
+SMD, Dmax, Dmin................ | 15.5561 mu, 59.9493 mu, 6.2578 mu
+Tmax, Tmin..................... | 309.271 K, 308.011 K
+Added gas mass................. | 0 mg
+Evaporation Continuity Error... | -0.00014454 mg
+ExecutionTime = 3.57 s  ClockTime = 4 s
+rRHO max/min : 1.06045 1.06045
+T max/min : 373.086 303
+p max/min : 100003 99980.5
+
+ MassFlows:   inlet = -0.000319444  outlet = 0.000319444
+Time = 8e-06
+
+Courant Number mean: 4.32323e-05 max: 0.00341834
+Evolving Spray
+Tg = 372.614
+Tg = 372.614
+Tg = 372.992
+Tg = 372.991
+Tg = 372.965
+Tg = 372.963
+Tg = 372.966
+Tg = 372.964
+Tg = 373.067
+Tg = 373.067
+Tg = 372.614
+Tg = 372.614
+Tg = 372.991
+Tg = 372.991
+Tg = 372.963
+Tg = 372.962
+Tg = 372.964
+Tg = 372.964
+Tg = 373.066
+Tg = 373.066
+Tg = 372.613
+Tg = 372.613
+Tg = 372.991
+Tg = 372.991
+Tg = 372.961
+Tg = 372.961
+Tg = 372.963
+Tg = 372.962
+Tg = 373.066
+Tg = 373.066
+Tg = 372.613
+Tg = 372.612
+Tg = 372.991
+Tg = 372.99
+Tg = 372.961
+Tg = 372.961
+Tg = 372.962
+Tg = 372.962
+Tg = 373.066
+Tg = 373.066
+Tg = 369.47
+Tg = 370.626
+Tg = 369.586
+Tg = 363.307
+Tg = 335.05
+Tg = 372.612
+Tg = 372.612
+Tg = 372.612
+Tg = 372.99
+Tg = 372.99
+Tg = 372.989
+Tg = 372.961
+Tg = 372.96
+Tg = 372.96
+Tg = 372.962
+Tg = 372.961
+Tg = 372.961
+Tg = 373.066
+Tg = 373.066
+Tg = 373.065
+dmomSpray min/max = 0 3146.32
+DILUPBiCG:  Solving for Ux, Initial residual = 5.72627e-06, Final residual = 2.0244e-12, No Iterations 1
+DILUPBiCG:  Solving for Uy, Initial residual = 0.653319, Final residual = 2.2307e-08, No Iterations 1
+DILUPBiCG:  Solving for Uz, Initial residual = 3.07831e-07, Final residual = 3.07831e-07, No Iterations 0
+DILUPBiCG:  Solving for iC3H8O, Initial residual = 0, Final residual = 0, No Iterations 0
+DILUPBiCG:  Solving for O2, Initial residual = 0.000584696, Final residual = 4.94059e-10, No Iterations 1
+DILUPBiCG:  Solving for CO2, Initial residual = 0, Final residual = 0, No Iterations 0
+DILUPBiCG:  Solving for H2O, Initial residual = 0.000716605, Final residual = 4.22463e-11, No Iterations 1
+dqSpray min/max = -5.50329e+06 0
+kappaEff min/max = 1.11111e-05 0.013954
+DILUPBiCG:  Solving for T, Initial residual = 0.00886329, Final residual = 7.46684e-11, No Iterations 1
+DICPCG:  Solving for p, Initial residual = 0.0336736, Final residual = 7.3185e-10, No Iterations 173
+time step continuity errors : sum local = 1.66503e-16, global = -4.6727e-19, cumulative = -1.05626e-17
+DICPCG:  Solving for p, Initial residual = 4.5592e-05, Final residual = 9.32698e-10, No Iterations 163
+time step continuity errors : sum local = 1.59039e-16, global = -3.39167e-19, cumulative = -1.09018e-17
+DICPCG:  Solving for p, Initial residual = 6.30954e-07, Final residual = 8.19187e-10, No Iterations 147
+time step continuity errors : sum local = 1.58171e-16, global = -3.26766e-19, cumulative = -1.12286e-17
+DICPCG:  Solving for p, Initial residual = 4.52348e-08, Final residual = 8.39076e-10, No Iterations 110
+time step continuity errors : sum local = 1.38999e-16, global = -8.75619e-19, cumulative = -1.21042e-17
+DICPCG:  Solving for p, Initial residual = 2.57853e-08, Final residual = 9.70628e-10, No Iterations 35
+time step continuity errors : sum local = 7.73144e-17, global = -9.3192e-19, cumulative = -1.30361e-17
+DILUPBiCG:  Solving for epsilon, Initial residual = 5.09938e-07, Final residual = 5.09938e-07, No Iterations 0
+DILUPBiCG:  Solving for k, Initial residual = 6.20492e-07, Final residual = 2.47964e-13, No Iterations 1
+
+Number of parcels in system.... | 25
+Injected liquid mass........... | 0.00633989 mg
+Liquid Mass in system.......... | 0.00617469 mg
+SMD, Dmax, Dmin................ | 15.3038 mu, 59.9493 mu, 6.25784 mu
+Tmax, Tmin..................... | 309.449 K, 308.016 K
+Added gas mass................. | 0 mg
+Evaporation Continuity Error... | -0.000165203 mg
+ExecutionTime = 4.04 s  ClockTime = 4 s
+rRHO max/min : 1.06045 1.06045
+T max/min : 373.086 303
+p max/min : 100003 99981
+
+ MassFlows:   inlet = -0.000319444  outlet = 0.000319444
+Time = 9e-06
+
+Courant Number mean: 4.32323e-05 max: 0.00341835
+Evolving Spray
+Tg = 372.49
+Tg = 372.49
+Tg = 372.987
+Tg = 372.987
+Tg = 372.957
+Tg = 372.956
+Tg = 372.958
+Tg = 372.956
+Tg = 373.064
+Tg = 373.064
+Tg = 372.49
+Tg = 372.489
+Tg = 372.987
+Tg = 372.987
+Tg = 372.955
+Tg = 372.954
+Tg = 372.956
+Tg = 372.955
+Tg = 373.064
+Tg = 373.064
+Tg = 372.489
+Tg = 372.489
+Tg = 372.987
+Tg = 372.987
+Tg = 372.954
+Tg = 372.953
+Tg = 372.955
+Tg = 372.954
+Tg = 373.063
+Tg = 373.063
+Tg = 372.489
+Tg = 372.488
+Tg = 372.986
+Tg = 372.986
+Tg = 372.953
+Tg = 372.953
+Tg = 372.954
+Tg = 372.953
+Tg = 373.063
+Tg = 373.063
+Tg = 372.488
+Tg = 372.488
+Tg = 372.985
+Tg = 372.985
+Tg = 372.952
+Tg = 372.952
+Tg = 372.953
+Tg = 372.953
+Tg = 373.063
+Tg = 373.063
+Tg = 368.967
+Tg = 370.288
+Tg = 369.098
+Tg = 361.938
+Tg = 329.726
+Tg = 372.488
+Tg = 372.487
+Tg = 372.486
+Tg = 372.985
+Tg = 372.984
+Tg = 372.983
+Tg = 372.952
+Tg = 372.952
+Tg = 372.952
+Tg = 372.953
+Tg = 372.953
+Tg = 372.953
+Tg = 373.063
+Tg = 373.063
+Tg = 373.063
+dmomSpray min/max = 0 3146.23
+DILUPBiCG:  Solving for Ux, Initial residual = 5.38334e-06, Final residual = 1.89551e-12, No Iterations 1
+DILUPBiCG:  Solving for Uy, Initial residual = 0.737344, Final residual = 2.45696e-08, No Iterations 1
+DILUPBiCG:  Solving for Uz, Initial residual = 3.0424e-07, Final residual = 3.0424e-07, No Iterations 0
+DILUPBiCG:  Solving for iC3H8O, Initial residual = 0, Final residual = 0, No Iterations 0
+DILUPBiCG:  Solving for O2, Initial residual = 0.000582312, Final residual = 4.90212e-10, No Iterations 1
+DILUPBiCG:  Solving for CO2, Initial residual = 0, Final residual = 0, No Iterations 0
+DILUPBiCG:  Solving for H2O, Initial residual = 0.000627383, Final residual = 3.70819e-11, No Iterations 1
+dqSpray min/max = -5.50329e+06 0
+kappaEff min/max = 1.11111e-05 0.0139537
+DILUPBiCG:  Solving for T, Initial residual = 0.00776447, Final residual = 6.56251e-11, No Iterations 1
+DICPCG:  Solving for p, Initial residual = 0.029878, Final residual = 9.10264e-10, No Iterations 172
+time step continuity errors : sum local = 1.70646e-16, global = -2.65799e-19, cumulative = -1.33019e-17
+DICPCG:  Solving for p, Initial residual = 4.62911e-05, Final residual = 8.59038e-10, No Iterations 163
+time step continuity errors : sum local = 1.59616e-16, global = -8.89638e-20, cumulative = -1.33909e-17
+DICPCG:  Solving for p, Initial residual = 6.59802e-07, Final residual = 8.98191e-10, No Iterations 147
+time step continuity errors : sum local = 1.47207e-16, global = -6.49152e-19, cumulative = -1.404e-17
+DICPCG:  Solving for p, Initial residual = 4.5547e-08, Final residual = 8.22591e-10, No Iterations 129
+time step continuity errors : sum local = 1.41517e-16, global = -2.09037e-19, cumulative = -1.42491e-17
+DICPCG:  Solving for p, Initial residual = 2.786e-08, Final residual = 9.13882e-10, No Iterations 12
+time step continuity errors : sum local = 5.18168e-17, global = -3.85227e-20, cumulative = -1.42876e-17
+DILUPBiCG:  Solving for epsilon, Initial residual = 5.10426e-07, Final residual = 5.10426e-07, No Iterations 0
+DILUPBiCG:  Solving for k, Initial residual = 6.20509e-07, Final residual = 2.48148e-13, No Iterations 1
+
+Number of parcels in system.... | 30
+Injected liquid mass........... | 0.00713238 mg
+Liquid Mass in system.......... | 0.00694651 mg
+SMD, Dmax, Dmin................ | 15.1971 mu, 59.9493 mu, 6.25787 mu
+Tmax, Tmin..................... | 309.627 K, 308.005 K
+Added gas mass................. | 0 mg
+Evaporation Continuity Error... | -0.000185872 mg
+ExecutionTime = 4.5 s  ClockTime = 5 s
+rRHO max/min : 1.06045 1.06045
+T max/min : 373.085 303
+p max/min : 100003 99981.5
+
+ MassFlows:   inlet = -0.000319444  outlet = 0.000319444
+Time = 1e-05
+
+Courant Number mean: 4.32323e-05 max: 0.00341836
+Evolving Spray
+Tg = 372.35
+Tg = 372.349
+Tg = 372.981
+Tg = 372.981
+Tg = 372.949
+Tg = 372.948
+Tg = 372.95
+Tg = 372.948
+Tg = 373.062
+Tg = 373.062
+Tg = 372.349
+Tg = 372.349
+Tg = 372.98
+Tg = 372.98
+Tg = 372.947
+Tg = 372.946
+Tg = 372.947
+Tg = 372.947
+Tg = 373.061
+Tg = 373.061
+Tg = 372.349
+Tg = 372.349
+Tg = 372.98
+Tg = 372.98
+Tg = 372.946
+Tg = 372.945
+Tg = 372.946
+Tg = 372.946
+Tg = 373.061
+Tg = 373.061
+Tg = 372.348
+Tg = 372.348
+Tg = 372.98
+Tg = 372.979
+Tg = 372.945
+Tg = 372.945
+Tg = 372.945
+Tg = 372.945
+Tg = 373.061
+Tg = 373.061
+Tg = 372.348
+Tg = 372.347
+Tg = 372.979
+Tg = 372.978
+Tg = 372.945
+Tg = 372.944
+Tg = 372.945
+Tg = 372.944
+Tg = 373.061
+Tg = 373.06
+Tg = 372.347
+Tg = 372.346
+Tg = 372.977
+Tg = 372.976
+Tg = 372.944
+Tg = 372.944
+Tg = 372.944
+Tg = 372.944
+Tg = 373.06
+Tg = 373.06
+Tg = 368.465
+Tg = 369.95
+Tg = 368.61
+Tg = 360.574
+Tg = 324.424
+Tg = 372.346
+Tg = 372.345
+Tg = 372.344
+Tg = 372.976
+Tg = 372.975
+Tg = 372.974
+Tg = 372.944
+Tg = 372.944
+Tg = 372.943
+Tg = 372.944
+Tg = 372.944
+Tg = 372.944
+Tg = 373.06
+Tg = 373.06
+Tg = 373.06
+dmomSpray min/max = 0 3146.76
+DILUPBiCG:  Solving for Ux, Initial residual = 5.09325e-06, Final residual = 1.80253e-12, No Iterations 1
+DILUPBiCG:  Solving for Uy, Initial residual = 0.735369, Final residual = 2.79729e-08, No Iterations 1
+DILUPBiCG:  Solving for Uz, Initial residual = 3.01076e-07, Final residual = 3.01076e-07, No Iterations 0
+DILUPBiCG:  Solving for iC3H8O, Initial residual = 0, Final residual = 0, No Iterations 0
+DILUPBiCG:  Solving for O2, Initial residual = 0.00058002, Final residual = 4.86552e-10, No Iterations 1
+DILUPBiCG:  Solving for CO2, Initial residual = 0, Final residual = 0, No Iterations 0
+DILUPBiCG:  Solving for H2O, Initial residual = 0.000558076, Final residual = 3.30751e-11, No Iterations 1
+dqSpray min/max = -5.50329e+06 0
+kappaEff min/max = 1.11111e-05 0.0139534
+DILUPBiCG:  Solving for T, Initial residual = 0.00690797, Final residual = 5.86054e-11, No Iterations 1
+DICPCG:  Solving for p, Initial residual = 0.0267327, Final residual = 8.78341e-10, No Iterations 168
+time step continuity errors : sum local = 1.62128e-16, global = -6.61944e-19, cumulative = -1.49495e-17
+DICPCG:  Solving for p, Initial residual = 4.70185e-05, Final residual = 9.60711e-10, No Iterations 163
+time step continuity errors : sum local = 1.60785e-16, global = -8.33879e-19, cumulative = -1.57834e-17
+DICPCG:  Solving for p, Initial residual = 6.884e-07, Final residual = 8.88269e-10, No Iterations 147
+time step continuity errors : sum local = 1.52078e-16, global = -1.38526e-19, cumulative = -1.59219e-17
+DICPCG:  Solving for p, Initial residual = 4.85854e-08, Final residual = 8.62189e-10, No Iterations 129
+time step continuity errors : sum local = 1.4002e-16, global = 9.86788e-20, cumulative = -1.58232e-17
+DICPCG:  Solving for p, Initial residual = 2.90421e-08, Final residual = 9.9392e-10, No Iterations 6
+time step continuity errors : sum local = 4.20523e-17, global = -4.17588e-20, cumulative = -1.5865e-17
+DILUPBiCG:  Solving for epsilon, Initial residual = 5.10894e-07, Final residual = 5.10894e-07, No Iterations 0
+DILUPBiCG:  Solving for k, Initial residual = 6.20527e-07, Final residual = 2.48331e-13, No Iterations 1
+
+Number of parcels in system.... | 35
+Injected liquid mass........... | 0.00792487 mg
+Liquid Mass in system.......... | 0.00771831 mg
+SMD, Dmax, Dmin................ | 14.4169 mu, 59.9493 mu, 6.2579 mu
+Tmax, Tmin..................... | 309.803 K, 308.009 K
+Added gas mass................. | 0 mg
+Evaporation Continuity Error... | -0.000206552 mg
+ExecutionTime = 5.1 s  ClockTime = 5 s
+rRHO max/min : 1.06045 1.06045
+T max/min : 373.085 303
+p max/min : 100003 99981.9
+
+ MassFlows:   inlet = -0.000319444  outlet = 0.000319444
+Time = 1.1e-05
+
+Courant Number mean: 4.32324e-05 max: 0.00341836
+Evolving Spray
+Tg = 372.193
+Tg = 372.193
+Tg = 372.972
+Tg = 372.972
+Tg = 372.941
+Tg = 372.939
+Tg = 372.941
+Tg = 372.939
+Tg = 373.058
+Tg = 373.058
+Tg = 372.193
+Tg = 372.192
+Tg = 372.972
+Tg = 372.971
+Tg = 372.938
+Tg = 372.938
+Tg = 372.938
+Tg = 372.938
+Tg = 373.058
+Tg = 373.058
+Tg = 372.192
+Tg = 372.192
+Tg = 372.971
+Tg = 372.971
+Tg = 372.937
+Tg = 372.937
+Tg = 372.937
+Tg = 372.937
+Tg = 373.058
+Tg = 373.058
+Tg = 372.192
+Tg = 372.191
+Tg = 372.971
+Tg = 372.971
+Tg = 372.936
+Tg = 372.936
+Tg = 372.936
+Tg = 372.936
+Tg = 373.057
+Tg = 373.057
+Tg = 372.191
+Tg = 372.191
+Tg = 372.97
+Tg = 372.969
+Tg = 372.936
+Tg = 372.935
+Tg = 372.936
+Tg = 372.935
+Tg = 373.057
+Tg = 373.057
+Tg = 372.19
+Tg = 372.189
+Tg = 372.969
+Tg = 372.968
+Tg = 372.935
+Tg = 372.935
+Tg = 372.935
+Tg = 372.935
+Tg = 373.057
+Tg = 373.057
+Tg = 372.188
+Tg = 372.188
+Tg = 372.966
+Tg = 372.965
+Tg = 372.935
+Tg = 372.934
+Tg = 372.935
+Tg = 372.935
+Tg = 373.057
+Tg = 373.057
+Tg = 367.964
+Tg = 369.613
+Tg = 368.122
+Tg = 359.214
+Tg = 319.144
+Tg = 372.188
+Tg = 372.187
+Tg = 372.187
+Tg = 372.965
+Tg = 372.964
+Tg = 372.963
+Tg = 372.934
+Tg = 372.934
+Tg = 372.934
+Tg = 372.935
+Tg = 372.934
+Tg = 372.933
+Tg = 373.057
+Tg = 373.056
+Tg = 373.056
+dmomSpray min/max = 0 3146.24
+DILUPBiCG:  Solving for Ux, Initial residual = 4.85316e-06, Final residual = 1.73605e-12, No Iterations 1
+DILUPBiCG:  Solving for Uy, Initial residual = 0.594697, Final residual = 1.91491e-08, No Iterations 1
+DILUPBiCG:  Solving for Uz, Initial residual = 2.98483e-07, Final residual = 2.98483e-07, No Iterations 0
+DILUPBiCG:  Solving for iC3H8O, Initial residual = 0, Final residual = 0, No Iterations 0
+DILUPBiCG:  Solving for O2, Initial residual = 0.000577811, Final residual = 4.83069e-10, No Iterations 1
+DILUPBiCG:  Solving for CO2, Initial residual = 0, Final residual = 0, No Iterations 0
+DILUPBiCG:  Solving for H2O, Initial residual = 0.000502595, Final residual = 2.98672e-11, No Iterations 1
+dqSpray min/max = -5.50329e+06 0
+kappaEff min/max = 1.11111e-05 0.0139531
+DILUPBiCG:  Solving for T, Initial residual = 0.00622133, Final residual = 5.29777e-11, No Iterations 1
+DICPCG:  Solving for p, Initial residual = 0.0240844, Final residual = 7.02276e-10, No Iterations 173
+time step continuity errors : sum local = 1.68325e-16, global = 4.14099e-19, cumulative = -1.54509e-17
+DICPCG:  Solving for p, Initial residual = 4.77033e-05, Final residual = 9.81108e-10, No Iterations 163
+time step continuity errors : sum local = 1.61859e-16, global = 1.75712e-19, cumulative = -1.52752e-17
+DICPCG:  Solving for p, Initial residual = 7.14776e-07, Final residual = 9.6428e-10, No Iterations 147
+time step continuity errors : sum local = 1.56835e-16, global = -1.10369e-18, cumulative = -1.63789e-17
+DICPCG:  Solving for p, Initial residual = 5.14814e-08, Final residual = 8.78838e-10, No Iterations 129
+time step continuity errors : sum local = 1.46118e-16, global = 6.98745e-20, cumulative = -1.6309e-17
+DICPCG:  Solving for p, Initial residual = 3.12012e-08, Final residual = 9.1799e-10, No Iterations 22
+time step continuity errors : sum local = 6.37546e-17, global = -1.90507e-19, cumulative = -1.64995e-17
+DILUPBiCG:  Solving for epsilon, Initial residual = 5.1135e-07, Final residual = 5.1135e-07, No Iterations 0
+DILUPBiCG:  Solving for k, Initial residual = 6.20546e-07, Final residual = 2.48516e-13, No Iterations 1
+
+Number of parcels in system.... | 40
+Injected liquid mass........... | 0.00871735 mg
+Liquid Mass in system.......... | 0.00849011 mg
+SMD, Dmax, Dmin................ | 13.8859 mu, 59.9493 mu, 6.25793 mu
+Tmax, Tmin..................... | 309.978 K, 308.014 K
+Added gas mass................. | 0 mg
+Evaporation Continuity Error... | -0.000227242 mg
+ExecutionTime = 5.57 s  ClockTime = 6 s
+rRHO max/min : 1.06045 1.06045
+T max/min : 373.085 303
+p max/min : 100003 99982.2
+
+ MassFlows:   inlet = -0.000319444  outlet = 0.000319444
+Time = 1.2e-05
+
+Courant Number mean: 4.32324e-05 max: 0.00341837
+Evolving Spray
+Tg = 372.022
+Tg = 372.022
+Tg = 372.961
+Tg = 372.96
+Tg = 372.931
+Tg = 372.929
+Tg = 372.931
+Tg = 372.928
+Tg = 373.055
+Tg = 373.055
+Tg = 372.022
+Tg = 372.021
+Tg = 372.96
+Tg = 372.96
+Tg = 372.929
+Tg = 372.928
+Tg = 372.928
+Tg = 372.928
+Tg = 373.055
+Tg = 373.054
+Tg = 372.021
+Tg = 372.021
+Tg = 372.96
+Tg = 372.96
+Tg = 372.927
+Tg = 372.927
+Tg = 372.927
+Tg = 372.926
+Tg = 373.054
+Tg = 373.054
+Tg = 372.021
+Tg = 372.02
+Tg = 372.96
+Tg = 372.959
+Tg = 372.927
+Tg = 372.927
+Tg = 372.926
+Tg = 372.926
+Tg = 373.054
+Tg = 373.054
+Tg = 372.02
+Tg = 372.02
+Tg = 372.959
+Tg = 372.958
+Tg = 372.926
+Tg = 372.926
+Tg = 372.925
+Tg = 372.925
+Tg = 373.054
+Tg = 373.054
+Tg = 372.019
+Tg = 372.018
+Tg = 372.957
+Tg = 372.956
+Tg = 372.926
+Tg = 372.926
+Tg = 372.925
+Tg = 372.925
+Tg = 373.054
+Tg = 373.054
+Tg = 372.017
+Tg = 372.017
+Tg = 372.955
+Tg = 372.954
+Tg = 372.925
+Tg = 372.925
+Tg = 372.925
+Tg = 372.924
+Tg = 373.053
+Tg = 373.053
+Tg = 372.016
+Tg = 372.016
+Tg = 372.952
+Tg = 372.951
+Tg = 372.924
+Tg = 372.924
+Tg = 372.924
+Tg = 372.923
+Tg = 373.053
+Tg = 373.052
+Tg = 367.463
+Tg = 369.276
+Tg = 367.634
+Tg = 357.858
+Tg = 313.885
+Tg = 372.016
+Tg = 372.016
+Tg = 372.016
+Tg = 372.951
+Tg = 372.95
+Tg = 372.949
+Tg = 372.924
+Tg = 372.924
+Tg = 372.924
+Tg = 372.923
+Tg = 372.923
+Tg = 372.922
+Tg = 373.052
+Tg = 373.052
+Tg = 373.052
+dmomSpray min/max = 0 3146.61
+DILUPBiCG:  Solving for Ux, Initial residual = 4.65063e-06, Final residual = 1.68703e-12, No Iterations 1
+DILUPBiCG:  Solving for Uy, Initial residual = 0.766352, Final residual = 2.9223e-08, No Iterations 1
+DILUPBiCG:  Solving for Uz, Initial residual = 2.96353e-07, Final residual = 2.96353e-07, No Iterations 0
+DILUPBiCG:  Solving for iC3H8O, Initial residual = 0, Final residual = 0, No Iterations 0
+DILUPBiCG:  Solving for O2, Initial residual = 0.000575679, Final residual = 4.79749e-10, No Iterations 1
+DILUPBiCG:  Solving for CO2, Initial residual = 0, Final residual = 0, No Iterations 0
+DILUPBiCG:  Solving for H2O, Initial residual = 0.000457172, Final residual = 2.72371e-11, No Iterations 1
+dqSpray min/max = -5.50329e+06 0
+kappaEff min/max = 1.11111e-05 0.0139528
+DILUPBiCG:  Solving for T, Initial residual = 0.00565858, Final residual = 4.83618e-11, No Iterations 1
+DICPCG:  Solving for p, Initial residual = 0.021917, Final residual = 8.70679e-10, No Iterations 173
+time step continuity errors : sum local = 1.64916e-16, global = 2.53407e-19, cumulative = -1.62461e-17
+DICPCG:  Solving for p, Initial residual = 4.83833e-05, Final residual = 8.01225e-10, No Iterations 164
+time step continuity errors : sum local = 1.64714e-16, global = 1.17366e-20, cumulative = -1.62344e-17
+DICPCG:  Solving for p, Initial residual = 7.39574e-07, Final residual = 9.91296e-10, No Iterations 147
+time step continuity errors : sum local = 1.53703e-16, global = -2.53104e-19, cumulative = -1.64875e-17
+DICPCG:  Solving for p, Initial residual = 5.28495e-08, Final residual = 8.77149e-10, No Iterations 129
+time step continuity errors : sum local = 1.45094e-16, global = -3.17128e-19, cumulative = -1.68046e-17
+DICPCG:  Solving for p, Initial residual = 3.19306e-08, Final residual = 8.40672e-10, No Iterations 10
+time step continuity errors : sum local = 4.67525e-17, global = -4.20755e-19, cumulative = -1.72254e-17
+DILUPBiCG:  Solving for epsilon, Initial residual = 5.11795e-07, Final residual = 5.11795e-07, No Iterations 0
+DILUPBiCG:  Solving for k, Initial residual = 6.20566e-07, Final residual = 2.487e-13, No Iterations 1
+
+Number of parcels in system.... | 45
+Injected liquid mass........... | 0.00950984 mg
+Liquid Mass in system.......... | 0.0092619 mg
+SMD, Dmax, Dmin................ | 13.6957 mu, 59.9493 mu, 6.25796 mu
+Tmax, Tmin..................... | 310.153 K, 308.006 K
+Added gas mass................. | 0 mg
+Evaporation Continuity Error... | -0.000247941 mg
+ExecutionTime = 6.03 s  ClockTime = 6 s
+rRHO max/min : 1.06045 1.06045
+T max/min : 373.084 303
+p max/min : 100003 99982.5
+
+ MassFlows:   inlet = -0.000319444  outlet = 0.000319444
+Time = 1.3e-05
+
+Courant Number mean: 4.32324e-05 max: 0.00341838
+Evolving Spray
+Tg = 371.836
+Tg = 371.836
+Tg = 372.948
+Tg = 372.983
+Tg = 372.983
+Tg = 372.921
+Tg = 372.92
+Tg = 372.919
+Tg = 372.917
+Tg = 373.051
+Tg = 373.051
+Tg = 371.836
+Tg = 371.836
+Tg = 372.947
+Tg = 372.947
+Tg = 372.919
+Tg = 372.918
+Tg = 372.917
+Tg = 372.916
+Tg = 373.051
+Tg = 373.051
+Tg = 371.835
+Tg = 371.835
+Tg = 372.947
+Tg = 372.947
+Tg = 372.918
+Tg = 372.917
+Tg = 372.916
+Tg = 372.915
+Tg = 373.05
+Tg = 373.05
+Tg = 371.835
+Tg = 371.834
+Tg = 372.947
+Tg = 372.946
+Tg = 372.917
+Tg = 372.917
+Tg = 372.915
+Tg = 372.914
+Tg = 373.05
+Tg = 373.05
+Tg = 371.834
+Tg = 371.834
+Tg = 372.946
+Tg = 372.945
+Tg = 372.916
+Tg = 372.916
+Tg = 372.914
+Tg = 372.914
+Tg = 373.05
+Tg = 373.05
+Tg = 371.833
+Tg = 371.832
+Tg = 372.944
+Tg = 372.943
+Tg = 372.916
+Tg = 372.916
+Tg = 372.914
+Tg = 372.914
+Tg = 373.05
+Tg = 373.05
+Tg = 371.832
+Tg = 371.831
+Tg = 372.942
+Tg = 372.941
+Tg = 372.915
+Tg = 372.915
+Tg = 372.913
+Tg = 372.913
+Tg = 373.05
+Tg = 373.049
+Tg = 371.831
+Tg = 371.83
+Tg = 372.94
+Tg = 372.938
+Tg = 372.915
+Tg = 372.914
+Tg = 372.913
+Tg = 372.912
+Tg = 373.049
+Tg = 373.049
+Tg = 371.83
+Tg = 371.83
+Tg = 372.937
+Tg = 372.936
+Tg = 372.914
+Tg = 372.914
+Tg = 372.911
+Tg = 372.911
+Tg = 373.049
+Tg = 373.049
+Tg = 366.963
+Tg = 368.94
+Tg = 367.147
+Tg = 356.506
+Tg = 308.648
+Tg = 371.83
+Tg = 371.829
+Tg = 371.828
+Tg = 372.936
+Tg = 372.935
+Tg = 372.935
+Tg = 372.914
+Tg = 372.914
+Tg = 372.914
+Tg = 372.911
+Tg = 372.911
+Tg = 372.911
+Tg = 373.049
+Tg = 373.049
+Tg = 373.049
+dmomSpray min/max = 0 3146.32
+DILUPBiCG:  Solving for Ux, Initial residual = 4.47451e-06, Final residual = 1.64766e-12, No Iterations 1
+DILUPBiCG:  Solving for Uy, Initial residual = 0.526824, Final residual = 1.87974e-08, No Iterations 1
+DILUPBiCG:  Solving for Uz, Initial residual = 2.94629e-07, Final residual = 2.94629e-07, No Iterations 0
+DILUPBiCG:  Solving for iC3H8O, Initial residual = 0, Final residual = 0, No Iterations 0
+DILUPBiCG:  Solving for O2, Initial residual = 0.000573616, Final residual = 4.7658e-10, No Iterations 1
+DILUPBiCG:  Solving for CO2, Initial residual = 0, Final residual = 0, No Iterations 0
+DILUPBiCG:  Solving for H2O, Initial residual = 0.000419227, Final residual = 2.50402e-11, No Iterations 1
+dqSpray min/max = -5.50329e+06 0
+kappaEff min/max = 1.11111e-05 0.0139525
+DILUPBiCG:  Solving for T, Initial residual = 0.00518886, Final residual = 4.45062e-11, No Iterations 1
+DICPCG:  Solving for p, Initial residual = 0.0200796, Final residual = 8.49894e-10, No Iterations 173
+time step continuity errors : sum local = 1.62996e-16, global = -3.16619e-19, cumulative = -1.7542e-17
+DICPCG:  Solving for p, Initial residual = 4.90795e-05, Final residual = 8.31713e-10, No Iterations 164
+time step continuity errors : sum local = 1.66387e-16, global = 2.38683e-19, cumulative = -1.73033e-17
+DICPCG:  Solving for p, Initial residual = 7.63898e-07, Final residual = 8.9299e-10, No Iterations 148
+time step continuity errors : sum local = 1.52572e-16, global = -1.34496e-19, cumulative = -1.74378e-17
+DICPCG:  Solving for p, Initial residual = 5.42039e-08, Final residual = 9.95201e-10, No Iterations 129
+time step continuity errors : sum local = 1.44393e-16, global = -2.80851e-19, cumulative = -1.77187e-17
+DICPCG:  Solving for p, Initial residual = 3.30046e-08, Final residual = 9.61254e-10, No Iterations 14
+time step continuity errors : sum local = 5.46215e-17, global = -1.89297e-19, cumulative = -1.79079e-17
+DILUPBiCG:  Solving for epsilon, Initial residual = 5.12232e-07, Final residual = 5.12232e-07, No Iterations 0
+DILUPBiCG:  Solving for k, Initial residual = 6.20586e-07, Final residual = 2.48884e-13, No Iterations 1
+
+Number of parcels in system.... | 50
+Injected liquid mass........... | 0.0103023 mg
+Liquid Mass in system.......... | 0.0100337 mg
+SMD, Dmax, Dmin................ | 13.9893 mu, 59.9493 mu, 6.25799 mu
+Tmax, Tmin..................... | 310.327 K, 308.004 K
+Added gas mass................. | 0 mg
+Evaporation Continuity Error... | -0.000268645 mg
+ExecutionTime = 6.5 s  ClockTime = 7 s
+rRHO max/min : 1.06045 1.06045
+T max/min : 373.084 303
+p max/min : 100003 99982.7
+
+ MassFlows:   inlet = -0.000319444  outlet = 0.000319444
+Time = 1.4e-05
+
+Courant Number mean: 4.32325e-05 max: 0.00341839
+Evolving Spray
+Tg = 371.635
+Tg = 371.635
+Tg = 372.977
+Tg = 372.976
+Tg = 372.911
+Tg = 372.91
+Tg = 372.908
+Tg = 372.906
+Tg = 373.047
+Tg = 373.047
+Tg = 371.634
+Tg = 371.634
+Tg = 372.934
+Tg = 372.934
+Tg = 372.909
+Tg = 372.908
+Tg = 372.905
+Tg = 372.905
+Tg = 373.047
+Tg = 373.047
+Tg = 371.634
+Tg = 371.634
+Tg = 372.934
+Tg = 372.934
+Tg = 372.908
+Tg = 372.907
+Tg = 372.904
+Tg = 372.904
+Tg = 373.047
+Tg = 373.046
+Tg = 371.633
+Tg = 371.633
+Tg = 372.933
+Tg = 372.933
+Tg = 372.907
+Tg = 372.907
+Tg = 372.903
+Tg = 372.903
+Tg = 373.046
+Tg = 373.046
+Tg = 371.633
+Tg = 371.633
+Tg = 372.932
+Tg = 372.932
+Tg = 372.906
+Tg = 372.906
+Tg = 372.903
+Tg = 372.902
+Tg = 373.046
+Tg = 373.046
+Tg = 371.632
+Tg = 371.631
+Tg = 372.931
+Tg = 372.93
+Tg = 372.906
+Tg = 372.906
+Tg = 372.902
+Tg = 372.902
+Tg = 373.046
+Tg = 373.046
+Tg = 371.63
+Tg = 371.629
+Tg = 372.929
+Tg = 372.927
+Tg = 372.906
+Tg = 372.905
+Tg = 372.902
+Tg = 372.902
+Tg = 373.046
+Tg = 373.045
+Tg = 371.629
+Tg = 371.629
+Tg = 372.926
+Tg = 372.925
+Tg = 372.905
+Tg = 372.904
+Tg = 372.901
+Tg = 372.901
+Tg = 373.045
+Tg = 373.045
+Tg = 371.629
+Tg = 371.628
+Tg = 372.923
+Tg = 372.922
+Tg = 372.904
+Tg = 372.904
+Tg = 372.9
+Tg = 372.899
+Tg = 373.045
+Tg = 373.045
+Tg = 371.627
+Tg = 371.627
+Tg = 372.922
+Tg = 372.921
+Tg = 372.904
+Tg = 372.904
+Tg = 372.899
+Tg = 372.899
+Tg = 373.045
+Tg = 373.045
+Tg = 366.464
+Tg = 368.605
+Tg = 366.66
+Tg = 355.158
+Tg = 303.433
+Tg = 371.627
+Tg = 371.626
+Tg = 371.626
+Tg = 372.921
+Tg = 372.921
+Tg = 372.921
+Tg = 372.904
+Tg = 372.904
+Tg = 372.904
+Tg = 372.899
+Tg = 372.899
+Tg = 372.899
+Tg = 373.045
+Tg = 373.045
+Tg = 373.045
+dmomSpray min/max = 0 3146.61
+DILUPBiCG:  Solving for Ux, Initial residual = 4.318e-06, Final residual = 1.61217e-12, No Iterations 1
+DILUPBiCG:  Solving for Uy, Initial residual = 0.314626, Final residual = 1.15858e-08, No Iterations 1
+DILUPBiCG:  Solving for Uz, Initial residual = 2.93143e-07, Final residual = 2.93143e-07, No Iterations 0
+DILUPBiCG:  Solving for iC3H8O, Initial residual = 0, Final residual = 0, No Iterations 0
+DILUPBiCG:  Solving for O2, Initial residual = 0.00057162, Final residual = 4.7355e-10, No Iterations 1
+DILUPBiCG:  Solving for CO2, Initial residual = 0, Final residual = 0, No Iterations 0
+DILUPBiCG:  Solving for H2O, Initial residual = 0.000387089, Final residual = 2.31795e-11, No Iterations 1
+dqSpray min/max = -5.50329e+06 0
+kappaEff min/max = 1.11111e-05 0.0139522
+DILUPBiCG:  Solving for T, Initial residual = 0.00479099, Final residual = 4.12403e-11, No Iterations 1
+DICPCG:  Solving for p, Initial residual = 0.0184995, Final residual = 8.86213e-10, No Iterations 173
+time step continuity errors : sum local = 1.64433e-16, global = -1.84444e-19, cumulative = -1.80924e-17
+DICPCG:  Solving for p, Initial residual = 4.98199e-05, Final residual = 8.64697e-10, No Iterations 164
+time step continuity errors : sum local = 1.64069e-16, global = -7.49141e-19, cumulative = -1.88415e-17
+DICPCG:  Solving for p, Initial residual = 7.85589e-07, Final residual = 9.52511e-10, No Iterations 148
+time step continuity errors : sum local = 1.55926e-16, global = -2.89169e-19, cumulative = -1.91307e-17
+DICPCG:  Solving for p, Initial residual = 5.66324e-08, Final residual = 9.6015e-10, No Iterations 129
+time step continuity errors : sum local = 1.45072e-16, global = -1.07992e-18, cumulative = -2.02106e-17
+DICPCG:  Solving for p, Initial residual = 3.43175e-08, Final residual = 8.76261e-10, No Iterations 31
+time step continuity errors : sum local = 7.32398e-17, global = -1.12558e-18, cumulative = -2.13362e-17
+DILUPBiCG:  Solving for epsilon, Initial residual = 5.12662e-07, Final residual = 5.12662e-07, No Iterations 0
+DILUPBiCG:  Solving for k, Initial residual = 6.20608e-07, Final residual = 2.49071e-13, No Iterations 1
+
+Number of parcels in system.... | 55
+Injected liquid mass........... | 0.0110948 mg
+Liquid Mass in system.......... | 0.0108055 mg
+SMD, Dmax, Dmin................ | 14.4169 mu, 59.9494 mu, 6.25801 mu
+Tmax, Tmin..................... | 310.5 K, 308.008 K
+Added gas mass................. | 0 mg
+Evaporation Continuity Error... | -0.000289353 mg
+ExecutionTime = 6.98 s  ClockTime = 7 s
+rRHO max/min : 1.06045 1.06045
+T max/min : 373.083 298.239
+p max/min : 100003 99982.9
+
+ MassFlows:   inlet = -0.000319444  outlet = 0.000319444
+Time = 1.5e-05
+
+Courant Number mean: 4.32325e-05 max: 0.00341839
+Evolving Spray
+Tg = 371.419
+Tg = 371.419
+Tg = 372.97
+Tg = 372.969
+Tg = 372.901
+Tg = 372.9
+Tg = 372.896
+Tg = 372.894
+Tg = 373.043
+Tg = 373.043
+Tg = 371.418
+Tg = 371.418
+Tg = 372.92
+Tg = 372.92
+Tg = 372.899
+Tg = 372.898
+Tg = 372.894
+Tg = 372.893
+Tg = 373.043
+Tg = 373.043
+Tg = 371.418
+Tg = 371.418
+Tg = 372.92
+Tg = 372.92
+Tg = 372.898
+Tg = 372.897
+Tg = 372.893
+Tg = 372.892
+Tg = 373.043
+Tg = 373.043
+Tg = 371.417
+Tg = 371.417
+Tg = 372.919
+Tg = 372.919
+Tg = 372.897
+Tg = 372.897
+Tg = 372.892
+Tg = 372.891
+Tg = 373.042
+Tg = 373.042
+Tg = 371.417
+Tg = 371.417
+Tg = 372.919
+Tg = 372.918
+Tg = 372.896
+Tg = 372.896
+Tg = 372.891
+Tg = 372.891
+Tg = 373.042
+Tg = 373.042
+Tg = 371.416
+Tg = 371.415
+Tg = 372.917
+Tg = 372.916
+Tg = 372.896
+Tg = 372.896
+Tg = 372.891
+Tg = 372.89
+Tg = 373.042
+Tg = 373.042
+Tg = 371.414
+Tg = 371.413
+Tg = 372.915
+Tg = 372.913
+Tg = 372.895
+Tg = 372.895
+Tg = 372.89
+Tg = 372.89
+Tg = 373.042
+Tg = 373.042
+Tg = 371.413
+Tg = 371.413
+Tg = 372.912
+Tg = 372.911
+Tg = 372.895
+Tg = 372.894
+Tg = 372.889
+Tg = 372.889
+Tg = 373.041
+Tg = 373.041
+Tg = 371.412
+Tg = 371.412
+Tg = 372.91
+Tg = 372.908
+Tg = 372.894
+Tg = 372.894
+Tg = 372.888
+Tg = 372.888
+Tg = 373.041
+Tg = 373.041
+Tg = 371.411
+Tg = 371.411
+Tg = 372.908
+Tg = 372.907
+Tg = 372.894
+Tg = 372.894
+Tg = 372.888
+Tg = 372.887
+Tg = 373.041
+Tg = 373.041
+Tg = 371.41
+Tg = 371.41
+Tg = 372.907
+Tg = 372.907
+Tg = 372.894
+Tg = 372.894
+Tg = 372.887
+Tg = 372.887
+Tg = 373.041
+Tg = 373.041
+Tg = 365.966
+Tg = 368.269
+Tg = 366.173
+Tg = 353.814
+Tg = 298.239
+Tg = 371.41
+Tg = 371.409
+Tg = 371.409
+Tg = 372.907
+Tg = 372.907
+Tg = 372.907
+Tg = 372.894
+Tg = 372.893
+Tg = 372.893
+Tg = 372.887
+Tg = 372.887
+Tg = 372.886
+Tg = 373.041
+Tg = 373.041
+Tg = 373.041
+dmomSpray min/max = 0 3146.22
+DILUPBiCG:  Solving for Ux, Initial residual = 4.18553e-06, Final residual = 1.57922e-12, No Iterations 1
+DILUPBiCG:  Solving for Uy, Initial residual = 0.619856, Final residual = 2.18305e-08, No Iterations 1
+DILUPBiCG:  Solving for Uz, Initial residual = 2.91834e-07, Final residual = 2.91834e-07, No Iterations 0
+DILUPBiCG:  Solving for iC3H8O, Initial residual = 0, Final residual = 0, No Iterations 0
+DILUPBiCG:  Solving for O2, Initial residual = 0.00056969, Final residual = 4.70646e-10, No Iterations 1
+DILUPBiCG:  Solving for CO2, Initial residual = 0, Final residual = 0, No Iterations 0
+DILUPBiCG:  Solving for H2O, Initial residual = 0.000359618, Final residual = 2.15912e-11, No Iterations 1
+dqSpray min/max = -5.50329e+06 0
+kappaEff min/max = 1.11111e-05 0.0139519
+DILUPBiCG:  Solving for T, Initial residual = 0.00444985, Final residual = 3.84589e-11, No Iterations 1
+DICPCG:  Solving for p, Initial residual = 0.0171351, Final residual = 9.14331e-10, No Iterations 167
+time step continuity errors : sum local = 1.57424e-16, global = 3.27665e-19, cumulative = -2.10085e-17
+DICPCG:  Solving for p, Initial residual = 5.04828e-05, Final residual = 7.94442e-10, No Iterations 164
+time step continuity errors : sum local = 1.66554e-16, global = 6.94866e-19, cumulative = -2.03137e-17
+DICPCG:  Solving for p, Initial residual = 8.08195e-07, Final residual = 9.40035e-10, No Iterations 148
+time step continuity errors : sum local = 1.53328e-16, global = 1.00844e-18, cumulative = -1.93052e-17
+DICPCG:  Solving for p, Initial residual = 5.75965e-08, Final residual = 9.5539e-10, No Iterations 130
+time step continuity errors : sum local = 1.4628e-16, global = 9.18863e-19, cumulative = -1.83864e-17
+DICPCG:  Solving for p, Initial residual = 3.52661e-08, Final residual = 9.58441e-10, No Iterations 37
+time step continuity errors : sum local = 8.1094e-17, global = 1.21737e-19, cumulative = -1.82646e-17
+DILUPBiCG:  Solving for epsilon, Initial residual = 5.13087e-07, Final residual = 5.13087e-07, No Iterations 0
+DILUPBiCG:  Solving for k, Initial residual = 6.20631e-07, Final residual = 2.49259e-13, No Iterations 1
+
+Number of parcels in system.... | 60
+Injected liquid mass........... | 0.0118873 mg
+Liquid Mass in system.......... | 0.0115772 mg
+SMD, Dmax, Dmin................ | 14.2467 mu, 59.9494 mu, 6.25803 mu
+Tmax, Tmin..................... | 310.672 K, 308.011 K
+Added gas mass................. | 0 mg
+Evaporation Continuity Error... | -0.000310068 mg
+ExecutionTime = 7.44 s  ClockTime = 8 s
+rRHO max/min : 1.06045 1.06045
+T max/min : 373.083 293.065
+p max/min : 100003 99983.2
+
+ MassFlows:   inlet = -0.000319444  outlet = 0.000319444
+Time = 1.6e-05
+
+Courant Number mean: 4.32325e-05 max: 0.0034184
+Evolving Spray
+Tg = 371.188
+Tg = 371.188
+Tg = 372.962
+Tg = 372.961
+Tg = 372.89
+Tg = 372.888
+Tg = 372.884
+Tg = 372.881
+Tg = 373.039
+Tg = 373.039
+Tg = 371.187
+Tg = 371.187
+Tg = 372.906
+Tg = 372.906
+Tg = 372.888
+Tg = 372.887
+Tg = 372.881
+Tg = 372.88
+Tg = 373.039
+Tg = 373.039
+Tg = 371.187
+Tg = 371.187
+Tg = 372.906
+Tg = 372.906
+Tg = 372.886
+Tg = 372.886
+Tg = 372.88
+Tg = 372.879
+Tg = 373.038
+Tg = 373.038
+Tg = 371.186
+Tg = 371.186
+Tg = 372.905
+Tg = 372.905
+Tg = 372.886
+Tg = 372.886
+Tg = 372.879
+Tg = 372.879
+Tg = 373.038
+Tg = 373.038
+Tg = 371.186
+Tg = 371.186
+Tg = 372.904
+Tg = 372.904
+Tg = 372.885
+Tg = 372.885
+Tg = 372.878
+Tg = 372.878
+Tg = 373.038
+Tg = 373.038
+Tg = 371.185
+Tg = 371.184
+Tg = 372.903
+Tg = 372.902
+Tg = 372.885
+Tg = 372.885
+Tg = 372.878
+Tg = 372.878
+Tg = 373.038
+Tg = 373.038
+Tg = 371.183
+Tg = 371.182
+Tg = 372.901
+Tg = 372.899
+Tg = 372.884
+Tg = 372.884
+Tg = 372.877
+Tg = 372.877
+Tg = 373.038
+Tg = 373.037
+Tg = 371.182
+Tg = 371.182
+Tg = 372.898
+Tg = 372.897
+Tg = 372.883
+Tg = 372.883
+Tg = 372.877
+Tg = 372.876
+Tg = 373.037
+Tg = 373.037
+Tg = 371.182
+Tg = 371.181
+Tg = 372.896
+Tg = 372.894
+Tg = 372.883
+Tg = 372.883
+Tg = 372.876
+Tg = 372.875
+Tg = 373.037
+Tg = 373.037
+Tg = 371.18
+Tg = 371.18
+Tg = 372.894
+Tg = 372.893
+Tg = 372.883
+Tg = 372.883
+Tg = 372.875
+Tg = 372.875
+Tg = 373.037
+Tg = 373.037
+Tg = 371.179
+Tg = 371.179
+Tg = 372.893
+Tg = 372.893
+Tg = 372.883
+Tg = 372.883
+Tg = 372.875
+Tg = 372.875
+Tg = 373.037
+Tg = 373.037
+Tg = 371.178
+Tg = 371.178
+Tg = 372.893
+Tg = 372.893
+Tg = 372.882
+Tg = 372.882
+Tg = 372.874
+Tg = 372.874
+Tg = 373.036
+Tg = 373.036
+dmomSpray min/max = 0 4.0997
+DILUPBiCG:  Solving for Ux, Initial residual = 4.06943e-06, Final residual = 1.5487e-12, No Iterations 1
+DILUPBiCG:  Solving for Uy, Initial residual = 1.54896e-05, Final residual = 5.30479e-12, No Iterations 1
+DILUPBiCG:  Solving for Uz, Initial residual = 2.89701e-07, Final residual = 2.89701e-07, No Iterations 0
+DILUPBiCG:  Solving for iC3H8O, Initial residual = 0, Final residual = 0, No Iterations 0
+DILUPBiCG:  Solving for O2, Initial residual = 0.000567822, Final residual = 4.67951e-10, No Iterations 1
+DILUPBiCG:  Solving for CO2, Initial residual = 0, Final residual = 0, No Iterations 0
+DILUPBiCG:  Solving for H2O, Initial residual = 3.68514e-05, Final residual = 2.92144e-12, No Iterations 1
+dqSpray min/max = -13316.5 0
+kappaEff min/max = 1.11111e-05 0.0139516
+DILUPBiCG:  Solving for T, Initial residual = 0.00394881, Final residual = 2.41687e-11, No Iterations 1
+DICPCG:  Solving for p, Initial residual = 0.0159541, Final residual = 7.969e-10, No Iterations 173
+time step continuity errors : sum local = 1.64477e-16, global = 7.17212e-19, cumulative = -1.75474e-17
+DICPCG:  Solving for p, Initial residual = 5.11745e-05, Final residual = 8.37628e-10, No Iterations 164
+time step continuity errors : sum local = 1.59481e-16, global = 6.19091e-20, cumulative = -1.74855e-17
+DICPCG:  Solving for p, Initial residual = 8.27088e-07, Final residual = 9.73381e-10, No Iterations 148
+time step continuity errors : sum local = 1.54776e-16, global = -2.69051e-19, cumulative = -1.77546e-17
+DICPCG:  Solving for p, Initial residual = 5.95429e-08, Final residual = 7.24919e-10, No Iterations 131
+time step continuity errors : sum local = 1.46961e-16, global = -1.65072e-19, cumulative = -1.79196e-17
+DICPCG:  Solving for p, Initial residual = 3.65641e-08, Final residual = 9.04153e-10, No Iterations 31
+time step continuity errors : sum local = 7.46433e-17, global = -4.15945e-19, cumulative = -1.83356e-17
+DILUPBiCG:  Solving for epsilon, Initial residual = 5.13508e-07, Final residual = 5.13508e-07, No Iterations 0
+DILUPBiCG:  Solving for k, Initial residual = 6.20655e-07, Final residual = 2.49452e-13, No Iterations 1
+
+Number of parcels in system.... | 60
+Injected liquid mass........... | 0.0126798 mg
+Liquid Mass in system.......... | 0.0115771 mg
+SMD, Dmax, Dmin................ | 14.2467 mu, 59.9494 mu, 6.25806 mu
+Tmax, Tmin..................... | 310.843 K, 308.015 K
+Added gas mass................. | 0 mg
+Evaporation Continuity Error... | -0.00110265 mg
+ExecutionTime = 7.93 s  ClockTime = 8 s
+rRHO max/min : 1.06045 1.06045
+T max/min : 373.083 293.394
+p max/min : 100003 99983.3
+
+ MassFlows:   inlet = -0.000319444  outlet = 0.000319444
+Time = 1.7e-05
+
+Courant Number mean: 4.32326e-05 max: 0.00341841
+Evolving Spray
+Tg = 370.959
+Tg = 370.959
+Tg = 372.954
+Tg = 372.953
+Tg = 372.879
+Tg = 372.877
+Tg = 372.871
+Tg = 372.869
+Tg = 373.035
+Tg = 373.035
+Tg = 370.958
+Tg = 370.958
+Tg = 372.892
+Tg = 372.892
+Tg = 372.877
+Tg = 372.876
+Tg = 372.868
+Tg = 372.868
+Tg = 373.035
+Tg = 373.034
+Tg = 370.958
+Tg = 370.958
+Tg = 372.892
+Tg = 372.892
+Tg = 372.875
+Tg = 372.875
+Tg = 372.867
+Tg = 372.867
+Tg = 373.034
+Tg = 373.034
+Tg = 370.957
+Tg = 370.957
+Tg = 372.891
+Tg = 372.891
+Tg = 372.875
+Tg = 372.874
+Tg = 372.866
+Tg = 372.866
+Tg = 373.034
+Tg = 373.034
+Tg = 370.957
+Tg = 370.957
+Tg = 372.89
+Tg = 372.89
+Tg = 372.874
+Tg = 372.874
+Tg = 372.866
+Tg = 372.865
+Tg = 373.034
+Tg = 373.034
+Tg = 370.956
+Tg = 370.955
+Tg = 372.889
+Tg = 372.888
+Tg = 372.874
+Tg = 372.874
+Tg = 372.865
+Tg = 372.865
+Tg = 373.034
+Tg = 373.034
+Tg = 370.954
+Tg = 370.953
+Tg = 372.887
+Tg = 372.885
+Tg = 372.873
+Tg = 372.873
+Tg = 372.865
+Tg = 372.865
+Tg = 373.033
+Tg = 373.033
+Tg = 370.953
+Tg = 370.953
+Tg = 372.884
+Tg = 372.883
+Tg = 372.872
+Tg = 372.872
+Tg = 372.864
+Tg = 372.863
+Tg = 373.033
+Tg = 373.032
+Tg = 370.953
+Tg = 370.952
+Tg = 372.881
+Tg = 372.88
+Tg = 372.872
+Tg = 372.872
+Tg = 372.863
+Tg = 372.862
+Tg = 373.032
+Tg = 373.032
+Tg = 370.951
+Tg = 370.951
+Tg = 372.88
+Tg = 372.879
+Tg = 372.872
+Tg = 372.872
+Tg = 372.862
+Tg = 372.862
+Tg = 373.032
+Tg = 373.032
+Tg = 370.95
+Tg = 370.95
+Tg = 372.879
+Tg = 372.879
+Tg = 372.871
+Tg = 372.871
+Tg = 372.862
+Tg = 372.862
+Tg = 373.032
+Tg = 373.032
+Tg = 370.949
+Tg = 370.949
+Tg = 372.879
+Tg = 372.879
+Tg = 372.871
+Tg = 372.87
+Tg = 372.861
+Tg = 372.861
+Tg = 373.032
+Tg = 373.032
+Tg = 365.479
+Tg = 367.942
+Tg = 365.69
+Tg = 352.534
+Tg = 293.394
+Tg = 370.949
+Tg = 370.948
+Tg = 370.948
+Tg = 372.879
+Tg = 372.878
+Tg = 372.878
+Tg = 372.87
+Tg = 372.863
+Tg = 372.855
+Tg = 372.861
+Tg = 372.861
+Tg = 372.861
+Tg = 373.032
+Tg = 373.032
+Tg = 373.031
+dmomSpray min/max = 0 6292.53
+DILUPBiCG:  Solving for Ux, Initial residual = 3.96646e-06, Final residual = 1.51996e-12, No Iterations 1
+DILUPBiCG:  Solving for Uy, Initial residual = 0.812462, Final residual = 2.89672e-08, No Iterations 1
+DILUPBiCG:  Solving for Uz, Initial residual = 2.9059e-07, Final residual = 2.9059e-07, No Iterations 0
+DILUPBiCG:  Solving for iC3H8O, Initial residual = 0, Final residual = 0, No Iterations 0
+DILUPBiCG:  Solving for O2, Initial residual = 0.000566012, Final residual = 4.65365e-10, No Iterations 1
+DILUPBiCG:  Solving for CO2, Initial residual = 0, Final residual = 0, No Iterations 0
+DILUPBiCG:  Solving for H2O, Initial residual = 0.000670332, Final residual = 3.95455e-11, No Iterations 1
+dqSpray min/max = -1.10066e+07 0
+kappaEff min/max = 1.11111e-05 0.0139513
+DILUPBiCG:  Solving for T, Initial residual = 0.00429477, Final residual = 5.12398e-11, No Iterations 1
+DICPCG:  Solving for p, Initial residual = 0.0149173, Final residual = 7.767e-10, No Iterations 173
+time step continuity errors : sum local = 1.60002e-16, global = -3.19426e-19, cumulative = -1.8655e-17
+DICPCG:  Solving for p, Initial residual = 5.18209e-05, Final residual = 9.38136e-10, No Iterations 164
+time step continuity errors : sum local = 1.63693e-16, global = 1.32474e-18, cumulative = -1.73303e-17
+DICPCG:  Solving for p, Initial residual = 8.47964e-07, Final residual = 9.79134e-10, No Iterations 148
+time step continuity errors : sum local = 1.45645e-16, global = -5.55033e-19, cumulative = -1.78853e-17
+DICPCG:  Solving for p, Initial residual = 5.85024e-08, Final residual = 7.92737e-10, No Iterations 131
+time step continuity errors : sum local = 1.45738e-16, global = -5.93844e-19, cumulative = -1.84791e-17
+DICPCG:  Solving for p, Initial residual = 3.74614e-08, Final residual = 9.50421e-10, No Iterations 99
+time step continuity errors : sum local = 1.26295e-16, global = 3.96252e-19, cumulative = -1.80829e-17
+DILUPBiCG:  Solving for epsilon, Initial residual = 5.13924e-07, Final residual = 5.13924e-07, No Iterations 0
+DILUPBiCG:  Solving for k, Initial residual = 6.20679e-07, Final residual = 2.49649e-13, No Iterations 1
+
+Number of parcels in system.... | 65
+Injected liquid mass........... | 0.0134723 mg
+Liquid Mass in system.......... | 0.0131207 mg
+SMD, Dmax, Dmin................ | 13.989 mu, 59.9494 mu, 6.25807 mu
+Tmax, Tmin..................... | 311.013 K, 308.014 K
+Added gas mass................. | 0 mg
+Evaporation Continuity Error... | -0.000351534 mg
+ExecutionTime = 8.44 s  ClockTime = 9 s
+rRHO max/min : 1.06045 1.06045
+T max/min : 373.082 282.76
+p max/min : 100003 99983.5
+
+ MassFlows:   inlet = -0.000319444  outlet = 0.000319444
+Time = 1.8e-05
+
+Courant Number mean: 4.32326e-05 max: 0.00341841
+Evolving Spray
+Tg = 370.7
+Tg = 370.699
+Tg = 372.945
+Tg = 372.944
+Tg = 372.852
+Tg = 372.851
+Tg = 372.858
+Tg = 372.856
+Tg = 373.03
+Tg = 373.03
+Tg = 370.699
+Tg = 370.699
+Tg = 372.877
+Tg = 372.877
+Tg = 372.85
+Tg = 372.849
+Tg = 372.855
+Tg = 372.855
+Tg = 373.03
+Tg = 373.029
+Tg = 370.699
+Tg = 370.699
+Tg = 372.877
+Tg = 372.876
+Tg = 372.849
+Tg = 372.848
+Tg = 372.854
+Tg = 372.854
+Tg = 373.029
+Tg = 373.029
+Tg = 370.698
+Tg = 370.698
+Tg = 372.876
+Tg = 372.876
+Tg = 372.848
+Tg = 372.848
+Tg = 372.853
+Tg = 372.853
+Tg = 373.029
+Tg = 373.029
+Tg = 370.698
+Tg = 370.697
+Tg = 372.875
+Tg = 372.875
+Tg = 372.847
+Tg = 372.847
+Tg = 372.853
+Tg = 372.852
+Tg = 373.029
+Tg = 373.029
+Tg = 370.697
+Tg = 370.696
+Tg = 372.874
+Tg = 372.873
+Tg = 372.847
+Tg = 372.847
+Tg = 372.852
+Tg = 372.852
+Tg = 373.029
+Tg = 373.029
+Tg = 370.695
+Tg = 370.694
+Tg = 372.871
+Tg = 372.87
+Tg = 372.847
+Tg = 372.846
+Tg = 372.852
+Tg = 372.852
+Tg = 373.028
+Tg = 373.028
+Tg = 370.694
+Tg = 370.694
+Tg = 372.869
+Tg = 372.867
+Tg = 372.846
+Tg = 372.845
+Tg = 372.851
+Tg = 372.85
+Tg = 373.028
+Tg = 373.027
+Tg = 370.693
+Tg = 370.693
+Tg = 372.866
+Tg = 372.865
+Tg = 372.845
+Tg = 372.845
+Tg = 372.85
+Tg = 372.849
+Tg = 373.027
+Tg = 373.027
+Tg = 370.692
+Tg = 370.692
+Tg = 372.864
+Tg = 372.864
+Tg = 372.845
+Tg = 372.845
+Tg = 372.849
+Tg = 372.849
+Tg = 373.027
+Tg = 373.027
+Tg = 370.691
+Tg = 370.691
+Tg = 372.864
+Tg = 372.864
+Tg = 372.845
+Tg = 372.845
+Tg = 372.849
+Tg = 372.849
+Tg = 373.027
+Tg = 373.027
+Tg = 370.69
+Tg = 370.69
+Tg = 372.864
+Tg = 372.863
+Tg = 372.844
+Tg = 372.844
+Tg = 372.848
+Tg = 372.848
+Tg = 373.027
+Tg = 373.027
+Tg = 370.689
+Tg = 370.689
+Tg = 372.863
+Tg = 372.863
+Tg = 372.84
+Tg = 372.836
+Tg = 372.848
+Tg = 372.848
+Tg = 373.027
+Tg = 373.027
+Tg = 364.475
+Tg = 367.267
+Tg = 364.714
+Tg = 349.801
+Tg = 282.76
+Tg = 370.689
+Tg = 370.689
+Tg = 370.688
+Tg = 372.863
+Tg = 372.863
+Tg = 372.863
+Tg = 372.836
+Tg = 372.835
+Tg = 372.833
+Tg = 372.848
+Tg = 372.848
+Tg = 372.848
+Tg = 373.027
+Tg = 373.026
+Tg = 373.026
+dmomSpray min/max = 0 3146.58
+DILUPBiCG:  Solving for Ux, Initial residual = 3.87761e-06, Final residual = 1.49307e-12, No Iterations 1
+DILUPBiCG:  Solving for Uy, Initial residual = 0.504961, Final residual = 1.6162e-08, No Iterations 1
+DILUPBiCG:  Solving for Uz, Initial residual = 2.88833e-07, Final residual = 2.88833e-07, No Iterations 0
+DILUPBiCG:  Solving for iC3H8O, Initial residual = 0, Final residual = 0, No Iterations 0
+DILUPBiCG:  Solving for O2, Initial residual = 0.000564254, Final residual = 4.62874e-10, No Iterations 1
+DILUPBiCG:  Solving for CO2, Initial residual = 0, Final residual = 0, No Iterations 0
+DILUPBiCG:  Solving for H2O, Initial residual = 0.000296638, Final residual = 1.79432e-11, No Iterations 1
+dqSpray min/max = -5.50329e+06 0
+kappaEff min/max = 1.11111e-05 0.013951
+DILUPBiCG:  Solving for T, Initial residual = 0.00366611, Final residual = 3.20828e-11, No Iterations 1
+DICPCG:  Solving for p, Initial residual = 0.0140056, Final residual = 9.65007e-10, No Iterations 172
+time step continuity errors : sum local = 1.6094e-16, global = -2.58336e-20, cumulative = -1.81087e-17
+DICPCG:  Solving for p, Initial residual = 5.2533e-05, Final residual = 8.53127e-10, No Iterations 164
+time step continuity errors : sum local = 1.61092e-16, global = 2.2232e-19, cumulative = -1.78864e-17
+DICPCG:  Solving for p, Initial residual = 8.67195e-07, Final residual = 8.57518e-10, No Iterations 149
+time step continuity errors : sum local = 1.54991e-16, global = -6.89939e-19, cumulative = -1.85763e-17
+DICPCG:  Solving for p, Initial residual = 6.25576e-08, Final residual = 7.50678e-10, No Iterations 131
+time step continuity errors : sum local = 1.46928e-16, global = 4.57538e-19, cumulative = -1.81188e-17
+DICPCG:  Solving for p, Initial residual = 3.84919e-08, Final residual = 9.27827e-10, No Iterations 31
+time step continuity errors : sum local = 7.27725e-17, global = 3.24446e-19, cumulative = -1.77944e-17
+DILUPBiCG:  Solving for epsilon, Initial residual = 5.14336e-07, Final residual = 5.14336e-07, No Iterations 0
+DILUPBiCG:  Solving for k, Initial residual = 6.20703e-07, Final residual = 2.49847e-13, No Iterations 1
+
+Number of parcels in system.... | 70
+Injected liquid mass........... | 0.0142648 mg
+Liquid Mass in system.......... | 0.0138925 mg
+SMD, Dmax, Dmin................ | 13.9463 mu, 64.2953 mu, 6.25809 mu
+Tmax, Tmin..................... | 311.182 K, 308.003 K
+Added gas mass................. | 0 mg
+Evaporation Continuity Error... | -0.000372277 mg
+ExecutionTime = 8.92 s  ClockTime = 9 s
+rRHO max/min : 1.06045 1.06045
+T max/min : 373.082 277.65
+p max/min : 100003 99983.7
+
+ MassFlows:   inlet = -0.000319444  outlet = 0.000319444
+Time = 1.9e-05
+
+Courant Number mean: 4.32327e-05 max: 0.00341842
+Evolving Spray
+Tg = 370.426
+Tg = 370.426
+Tg = 372.935
+Tg = 372.934
+Tg = 372.831
+Tg = 372.829
+Tg = 372.845
+Tg = 372.843
+Tg = 373.025
+Tg = 373.025
+Tg = 370.426
+Tg = 370.426
+Tg = 372.862
+Tg = 372.862
+Tg = 372.828
+Tg = 372.828
+Tg = 372.842
+Tg = 372.842
+Tg = 373.025
+Tg = 373.024
+Tg = 370.426
+Tg = 370.425
+Tg = 372.862
+Tg = 372.862
+Tg = 372.827
+Tg = 372.827
+Tg = 372.841
+Tg = 372.841
+Tg = 373.024
+Tg = 373.024
+Tg = 370.425
+Tg = 370.425
+Tg = 372.861
+Tg = 372.861
+Tg = 372.826
+Tg = 372.826
+Tg = 372.84
+Tg = 372.84
+Tg = 373.024
+Tg = 373.024
+Tg = 370.424
+Tg = 370.424
+Tg = 372.86
+Tg = 372.86
+Tg = 372.826
+Tg = 372.826
+Tg = 372.84
+Tg = 372.839
+Tg = 373.024
+Tg = 373.024
+Tg = 370.423
+Tg = 370.423
+Tg = 372.859
+Tg = 372.858
+Tg = 372.825
+Tg = 372.825
+Tg = 372.839
+Tg = 372.839
+Tg = 373.024
+Tg = 373.024
+Tg = 370.422
+Tg = 370.421
+Tg = 372.856
+Tg = 372.855
+Tg = 372.825
+Tg = 372.825
+Tg = 372.839
+Tg = 372.839
+Tg = 373.023
+Tg = 373.023
+Tg = 370.421
+Tg = 370.421
+Tg = 372.854
+Tg = 372.853
+Tg = 372.824
+Tg = 372.824
+Tg = 372.838
+Tg = 372.838
+Tg = 373.023
+Tg = 373.023
+Tg = 370.42
+Tg = 370.42
+Tg = 372.851
+Tg = 372.85
+Tg = 372.824
+Tg = 372.823
+Tg = 372.837
+Tg = 372.836
+Tg = 373.023
+Tg = 373.023
+Tg = 370.419
+Tg = 370.418
+Tg = 372.849
+Tg = 372.849
+Tg = 372.823
+Tg = 372.823
+Tg = 372.836
+Tg = 372.836
+Tg = 373.023
+Tg = 373.022
+Tg = 370.418
+Tg = 370.417
+Tg = 372.849
+Tg = 372.849
+Tg = 372.823
+Tg = 372.823
+Tg = 372.836
+Tg = 372.836
+Tg = 373.022
+Tg = 373.022
+Tg = 370.417
+Tg = 370.416
+Tg = 372.849
+Tg = 372.849
+Tg = 372.823
+Tg = 372.822
+Tg = 372.835
+Tg = 372.835
+Tg = 373.022
+Tg = 373.022
+Tg = 370.416
+Tg = 370.416
+Tg = 372.848
+Tg = 372.848
+Tg = 372.818
+Tg = 372.814
+Tg = 372.835
+Tg = 372.835
+Tg = 373.022
+Tg = 373.022
+Tg = 370.415
+Tg = 370.415
+Tg = 372.848
+Tg = 372.848
+Tg = 372.813
+Tg = 372.812
+Tg = 372.835
+Tg = 372.835
+Tg = 373.022
+Tg = 373.021
+Tg = 363.98
+Tg = 366.934
+Tg = 364.229
+Tg = 348.473
+Tg = 277.65
+Tg = 370.415
+Tg = 370.415
+Tg = 370.415
+Tg = 372.848
+Tg = 372.848
+Tg = 372.848
+Tg = 372.812
+Tg = 372.811
+Tg = 372.811
+Tg = 372.835
+Tg = 372.835
+Tg = 372.834
+Tg = 373.021
+Tg = 373.021
+Tg = 373.021
+dmomSpray min/max = 0 3146.48
+DILUPBiCG:  Solving for Ux, Initial residual = 3.79613e-06, Final residual = 1.46796e-12, No Iterations 1
+DILUPBiCG:  Solving for Uy, Initial residual = 0.623695, Final residual = 2.24913e-08, No Iterations 1
+DILUPBiCG:  Solving for Uz, Initial residual = 2.88098e-07, Final residual = 2.88098e-07, No Iterations 0
+DILUPBiCG:  Solving for iC3H8O, Initial residual = 0, Final residual = 0, No Iterations 0
+DILUPBiCG:  Solving for O2, Initial residual = 0.000562542, Final residual = 4.60483e-10, No Iterations 1
+DILUPBiCG:  Solving for CO2, Initial residual = 0, Final residual = 0, No Iterations 0
+DILUPBiCG:  Solving for H2O, Initial residual = 0.000280251, Final residual = 1.69947e-11, No Iterations 1
+dqSpray min/max = -5.50329e+06 0
+kappaEff min/max = 1.11111e-05 0.0139507
+DILUPBiCG:  Solving for T, Initial residual = 0.0034626, Final residual = 3.04295e-11, No Iterations 1
+DICPCG:  Solving for p, Initial residual = 0.0132115, Final residual = 9.06605e-10, No Iterations 172
+time step continuity errors : sum local = 1.62507e-16, global = 1.59278e-18, cumulative = -1.62016e-17
+DICPCG:  Solving for p, Initial residual = 5.31525e-05, Final residual = 8.2738e-10, No Iterations 164
+time step continuity errors : sum local = 1.61805e-16, global = 2.33801e-18, cumulative = -1.38636e-17
+DICPCG:  Solving for p, Initial residual = 8.86769e-07, Final residual = 9.09971e-10, No Iterations 149
+time step continuity errors : sum local = 1.51288e-16, global = 1.98632e-18, cumulative = -1.18773e-17
+DICPCG:  Solving for p, Initial residual = 6.31084e-08, Final residual = 7.07114e-10, No Iterations 131
+time step continuity errors : sum local = 1.43758e-16, global = 1.03319e-18, cumulative = -1.08441e-17
+DICPCG:  Solving for p, Initial residual = 3.85456e-08, Final residual = 8.52569e-10, No Iterations 20
+time step continuity errors : sum local = 6.10052e-17, global = 1.04236e-18, cumulative = -9.80171e-18
+DILUPBiCG:  Solving for epsilon, Initial residual = 5.14745e-07, Final residual = 5.14745e-07, No Iterations 0
+DILUPBiCG:  Solving for k, Initial residual = 6.20728e-07, Final residual = 2.50052e-13, No Iterations 1
+
+Number of parcels in system.... | 75
+Injected liquid mass........... | 0.0150572 mg
+Liquid Mass in system.......... | 0.0146642 mg
+SMD, Dmax, Dmin................ | 14.1083 mu, 64.2953 mu, 6.25811 mu
+Tmax, Tmin..................... | 311.35 K, 308.006 K
+Added gas mass................. | 0 mg
+Evaporation Continuity Error... | -0.000393024 mg
+ExecutionTime = 9.39 s  ClockTime = 10 s
+rRHO max/min : 1.06045 1.06045
+T max/min : 373.081 272.56
+p max/min : 100003 99983.8
+
+ MassFlows:   inlet = -0.000319444  outlet = 0.000319444
+Time = 2e-05
+
+Courant Number mean: 4.32327e-05 max: 0.00341843
+Evolving Spray
+Tg = 370.14
+Tg = 370.14
+Tg = 372.924
+Tg = 372.923
+Tg = 372.809
+Tg = 372.807
+Tg = 372.832
+Tg = 372.829
+Tg = 373.02
+Tg = 373.02
+Tg = 370.139
+Tg = 370.139
+Tg = 372.847
+Tg = 372.847
+Tg = 372.806
+Tg = 372.805
+Tg = 372.829
+Tg = 372.829
+Tg = 373.02
+Tg = 373.019
+Tg = 370.139
+Tg = 370.139
+Tg = 372.846
+Tg = 372.846
+Tg = 372.923
+Tg = 372.805
+Tg = 372.804
+Tg = 372.828
+Tg = 372.827
+Tg = 373.019
+Tg = 373.019
+Tg = 370.138
+Tg = 370.138
+Tg = 372.846
+Tg = 372.846
+Tg = 372.804
+Tg = 372.804
+Tg = 372.827
+Tg = 372.827
+Tg = 373.019
+Tg = 373.019
+Tg = 370.138
+Tg = 370.138
+Tg = 372.845
+Tg = 372.845
+Tg = 372.804
+Tg = 372.803
+Tg = 372.826
+Tg = 372.826
+Tg = 373.019
+Tg = 373.019
+Tg = 370.137
+Tg = 370.136
+Tg = 372.844
+Tg = 372.843
+Tg = 372.922
+Tg = 372.803
+Tg = 372.803
+Tg = 372.826
+Tg = 372.826
+Tg = 373.019
+Tg = 373.019
+Tg = 370.135
+Tg = 370.134
+Tg = 372.842
+Tg = 372.841
+Tg = 372.803
+Tg = 372.802
+Tg = 372.825
+Tg = 372.825
+Tg = 373.018
+Tg = 373.018
+Tg = 370.134
+Tg = 370.134
+Tg = 372.839
+Tg = 372.838
+Tg = 372.802
+Tg = 372.801
+Tg = 372.825
+Tg = 372.824
+Tg = 373.018
+Tg = 373.017
+Tg = 370.134
+Tg = 370.133
+Tg = 372.837
+Tg = 372.835
+Tg = 372.801
+Tg = 372.801
+Tg = 372.824
+Tg = 372.823
+Tg = 373.017
+Tg = 373.017
+Tg = 370.132
+Tg = 370.132
+Tg = 372.835
+Tg = 372.834
+Tg = 372.801
+Tg = 372.801
+Tg = 372.823
+Tg = 372.823
+Tg = 373.017
+Tg = 373.017
+Tg = 370.131
+Tg = 370.131
+Tg = 372.834
+Tg = 372.834
+Tg = 372.801
+Tg = 372.801
+Tg = 372.823
+Tg = 372.823
+Tg = 373.017
+Tg = 373.017
+Tg = 370.13
+Tg = 370.13
+Tg = 372.834
+Tg = 372.834
+Tg = 372.8
+Tg = 372.8
+Tg = 372.822
+Tg = 372.822
+Tg = 373.017
+Tg = 373.017
+Tg = 370.13
+Tg = 370.129
+Tg = 372.834
+Tg = 372.833
+Tg = 372.796
+Tg = 372.792
+Tg = 372.821
+Tg = 372.821
+Tg = 373.017
+Tg = 373.017
+Tg = 370.129
+Tg = 370.128
+Tg = 372.833
+Tg = 372.833
+Tg = 372.791
+Tg = 372.789
+Tg = 372.821
+Tg = 372.821
+Tg = 373.016
+Tg = 373.016
+Tg = 370.128
+Tg = 370.128
+Tg = 372.833
+Tg = 372.833
+Tg = 372.789
+Tg = 372.789
+Tg = 372.821
+Tg = 372.821
+Tg = 373.016
+Tg = 373.016
+Tg = 363.485
+Tg = 366.601
+Tg = 363.744
+Tg = 347.148
+Tg = 272.56
+Tg = 370.128
+Tg = 370.128
+Tg = 370.128
+Tg = 372.833
+Tg = 372.833
+Tg = 372.833
+Tg = 372.789
+Tg = 372.788
+Tg = 372.788
+Tg = 372.821
+Tg = 372.821
+Tg = 372.821
+Tg = 373.016
+Tg = 373.016
+Tg = 373.016
+dmomSpray min/max = 0 3146.37
+DILUPBiCG:  Solving for Ux, Initial residual = 3.72217e-06, Final residual = 1.44466e-12, No Iterations 1
+DILUPBiCG:  Solving for Uy, Initial residual = 0.709233, Final residual = 2.25427e-08, No Iterations 1
+DILUPBiCG:  Solving for Uz, Initial residual = 2.8742e-07, Final residual = 2.8742e-07, No Iterations 0
+DILUPBiCG:  Solving for iC3H8O, Initial residual = 0, Final residual = 0, No Iterations 0
+DILUPBiCG:  Solving for O2, Initial residual = 0.000560868, Final residual = 4.58187e-10, No Iterations 1
+DILUPBiCG:  Solving for CO2, Initial residual = 0, Final residual = 0, No Iterations 0
+DILUPBiCG:  Solving for H2O, Initial residual = 0.000265589, Final residual = 1.61472e-11, No Iterations 1
+dqSpray min/max = -5.50329e+06 0
+kappaEff min/max = 1.11111e-05 0.0139504
+DILUPBiCG:  Solving for T, Initial residual = 0.00328045, Final residual = 2.89558e-11, No Iterations 1
+DICPCG:  Solving for p, Initial residual = 0.0125084, Final residual = 9.20037e-10, No Iterations 170
+time step continuity errors : sum local = 1.65371e-16, global = -4.14075e-19, cumulative = -1.02158e-17
+DICPCG:  Solving for p, Initial residual = 5.379e-05, Final residual = 9.39939e-10, No Iterations 164
+time step continuity errors : sum local = 1.58248e-16, global = 3.00297e-19, cumulative = -9.91549e-18
+DICPCG:  Solving for p, Initial residual = 9.03834e-07, Final residual = 8.99101e-10, No Iterations 149
+time step continuity errors : sum local = 1.52853e-16, global = 2.92184e-19, cumulative = -9.6233e-18
+DICPCG:  Solving for p, Initial residual = 6.46126e-08, Final residual = 7.73369e-10, No Iterations 131
+time step continuity errors : sum local = 1.43318e-16, global = -7.23949e-19, cumulative = -1.03473e-17
+DICPCG:  Solving for p, Initial residual = 3.94503e-08, Final residual = 8.10218e-10, No Iterations 39
+time step continuity errors : sum local = 8.04251e-17, global = -1.99145e-19, cumulative = -1.05464e-17
+DILUPBiCG:  Solving for epsilon, Initial residual = 5.15151e-07, Final residual = 5.15151e-07, No Iterations 0
+DILUPBiCG:  Solving for k, Initial residual = 6.20752e-07, Final residual = 2.50257e-13, No Iterations 1
+
+Number of parcels in system.... | 80
+Injected liquid mass........... | 0.0158497 mg
+Liquid Mass in system.......... | 0.015436 mg
+SMD, Dmax, Dmin................ | 14.2948 mu, 64.2953 mu, 6.25812 mu
+Tmax, Tmin..................... | 311.517 K, 308.003 K
+Added gas mass................. | 0 mg
+Evaporation Continuity Error... | -0.000413776 mg
+ExecutionTime = 10.02 s  ClockTime = 10 s
+rRHO max/min : 1.06045 1.06045
+T max/min : 373.081 267.491
+p max/min : 100003 99984
+
+ MassFlows:   inlet = -0.000319444  outlet = 0.000319444
+Time = 2.1e-05
+
+Courant Number mean: 4.32327e-05 max: 0.00341843
+Evolving Spray
+Tg = 369.84
+Tg = 369.84
+Tg = 372.911
+Tg = 372.911
+Tg = 372.786
+Tg = 372.784
+Tg = 372.818
+Tg = 372.816
+Tg = 373.014
+Tg = 373.014
+Tg = 369.84
+Tg = 369.839
+Tg = 372.832
+Tg = 372.832
+Tg = 372.783
+Tg = 372.782
+Tg = 372.815
+Tg = 372.815
+Tg = 373.014
+Tg = 373.014
+Tg = 369.839
+Tg = 369.839
+Tg = 372.911
+Tg = 372.911
+Tg = 372.782
+Tg = 372.781
+Tg = 372.814
+Tg = 372.814
+Tg = 373.013
+Tg = 373.013
+Tg = 369.839
+Tg = 369.838
+Tg = 372.831
+Tg = 372.831
+Tg = 372.781
+Tg = 372.781
+Tg = 372.813
+Tg = 372.813
+Tg = 373.013
+Tg = 373.013
+Tg = 369.838
+Tg = 369.838
+Tg = 372.831
+Tg = 372.83
+Tg = 372.781
+Tg = 372.78
+Tg = 372.813
+Tg = 372.812
+Tg = 373.013
+Tg = 373.013
+Tg = 369.837
+Tg = 369.836
+Tg = 372.91
+Tg = 372.908
+Tg = 372.78
+Tg = 372.78
+Tg = 372.812
+Tg = 372.812
+Tg = 373.013
+Tg = 373.013
+Tg = 369.835
+Tg = 369.834
+Tg = 372.829
+Tg = 372.827
+Tg = 372.78
+Tg = 372.779
+Tg = 372.812
+Tg = 372.811
+Tg = 373.013
+Tg = 373.012
+Tg = 369.834
+Tg = 369.834
+Tg = 372.826
+Tg = 372.825
+Tg = 372.779
+Tg = 372.778
+Tg = 372.811
+Tg = 372.81
+Tg = 373.012
+Tg = 373.012
+Tg = 369.834
+Tg = 369.833
+Tg = 372.823
+Tg = 372.822
+Tg = 372.778
+Tg = 372.778
+Tg = 372.81
+Tg = 372.809
+Tg = 373.012
+Tg = 373.012
+Tg = 369.833
+Tg = 369.832
+Tg = 372.822
+Tg = 372.821
+Tg = 372.778
+Tg = 372.778
+Tg = 372.809
+Tg = 372.809
+Tg = 373.012
+Tg = 373.012
+Tg = 369.831
+Tg = 369.831
+Tg = 372.821
+Tg = 372.821
+Tg = 372.778
+Tg = 372.778
+Tg = 372.809
+Tg = 372.809
+Tg = 373.012
+Tg = 373.012
+Tg = 369.83
+Tg = 369.83
+Tg = 372.821
+Tg = 372.821
+Tg = 372.777
+Tg = 372.777
+Tg = 372.808
+Tg = 372.808
+Tg = 373.011
+Tg = 373.011
+Tg = 369.83
+Tg = 369.829
+Tg = 372.82
+Tg = 372.82
+Tg = 372.773
+Tg = 372.769
+Tg = 372.808
+Tg = 372.808
+Tg = 373.011
+Tg = 373.011
+Tg = 369.829
+Tg = 369.828
+Tg = 372.82
+Tg = 372.82
+Tg = 372.768
+Tg = 372.766
+Tg = 372.808
+Tg = 372.808
+Tg = 373.011
+Tg = 373.011
+Tg = 369.828
+Tg = 369.828
+Tg = 372.82
+Tg = 372.82
+Tg = 372.766
+Tg = 372.766
+Tg = 372.807
+Tg = 372.807
+Tg = 373.011
+Tg = 373.011
+Tg = 369.828
+Tg = 369.828
+Tg = 372.82
+Tg = 372.82
+Tg = 372.765
+Tg = 372.765
+Tg = 372.807
+Tg = 372.807
+Tg = 373.01
+Tg = 373.01
+Tg = 362.991
+Tg = 366.269
+Tg = 363.259
+Tg = 345.828
+Tg = 267.491
+Tg = 369.828
+Tg = 369.828
+Tg = 369.828
+Tg = 372.82
+Tg = 372.819
+Tg = 372.819
+Tg = 372.765
+Tg = 372.765
+Tg = 372.765
+Tg = 372.807
+Tg = 372.806
+Tg = 372.806
+Tg = 373.01
+Tg = 373.01
+Tg = 373.01
+dmomSpray min/max = 0 3146.42
+DILUPBiCG:  Solving for Ux, Initial residual = 3.65373e-06, Final residual = 1.42282e-12, No Iterations 1
+DILUPBiCG:  Solving for Uy, Initial residual = 0.746126, Final residual = 2.08993e-08, No Iterations 1
+DILUPBiCG:  Solving for Uz, Initial residual = 2.86798e-07, Final residual = 2.86798e-07, No Iterations 0
+DILUPBiCG:  Solving for iC3H8O, Initial residual = 0, Final residual = 0, No Iterations 0
+DILUPBiCG:  Solving for O2, Initial residual = 0.000559232, Final residual = 4.55968e-10, No Iterations 1
+DILUPBiCG:  Solving for CO2, Initial residual = 0, Final residual = 0, No Iterations 0
+DILUPBiCG:  Solving for H2O, Initial residual = 0.000252388, Final residual = 1.53823e-11, No Iterations 1
+dqSpray min/max = -5.50329e+06 0
+kappaEff min/max = 1.11111e-05 0.0139501
+DILUPBiCG:  Solving for T, Initial residual = 0.00311646, Final residual = 2.76296e-11, No Iterations 1
+DICPCG:  Solving for p, Initial residual = 0.011879, Final residual = 8.28319e-10, No Iterations 172
+time step continuity errors : sum local = 1.68526e-16, global = -4.85105e-19, cumulative = -1.10315e-17
+DICPCG:  Solving for p, Initial residual = 5.44502e-05, Final residual = 8.71661e-10, No Iterations 164
+time step continuity errors : sum local = 1.57188e-16, global = -3.72793e-19, cumulative = -1.14043e-17
+DICPCG:  Solving for p, Initial residual = 9.21386e-07, Final residual = 9.21739e-10, No Iterations 149
+time step continuity errors : sum local = 1.57262e-16, global = -1.0603e-18, cumulative = -1.24646e-17
+DICPCG:  Solving for p, Initial residual = 6.74844e-08, Final residual = 8.32432e-10, No Iterations 131
+time step continuity errors : sum local = 1.40323e-16, global = -9.40166e-19, cumulative = -1.34048e-17
+DICPCG:  Solving for p, Initial residual = 3.92276e-08, Final residual = 8.50409e-10, No Iterations 45
+time step continuity errors : sum local = 8.80061e-17, global = -7.48885e-19, cumulative = -1.41536e-17
+DILUPBiCG:  Solving for epsilon, Initial residual = 5.15555e-07, Final residual = 5.15555e-07, No Iterations 0
+DILUPBiCG:  Solving for k, Initial residual = 6.20777e-07, Final residual = 2.50465e-13, No Iterations 1
+
+Number of parcels in system.... | 85
+Injected liquid mass........... | 0.0166422 mg
+Liquid Mass in system.......... | 0.0162077 mg
+SMD, Dmax, Dmin................ | 14.493 mu, 64.2953 mu, 6.25813 mu
+Tmax, Tmin..................... | 311.684 K, 308.006 K
+Added gas mass................. | 0 mg
+Evaporation Continuity Error... | -0.000434532 mg
+ExecutionTime = 10.51 s  ClockTime = 11 s
+rRHO max/min : 1.06045 1.06045
+T max/min : 373.081 262.443
+p max/min : 100004 99984.1
+
+ MassFlows:   inlet = -0.000319444  outlet = 0.000319444
+Time = 2.2e-05
+
+Courant Number mean: 4.32328e-05 max: 0.00341844
+Evolving Spray
+Tg = 369.527
+Tg = 369.527
+Tg = 372.897
+Tg = 372.896
+Tg = 372.762
+Tg = 372.761
+Tg = 372.804
+Tg = 372.801
+Tg = 373.009
+Tg = 373.008
+Tg = 369.526
+Tg = 369.526
+Tg = 372.818
+Tg = 372.818
+Tg = 372.76
+Tg = 372.759
+Tg = 372.801
+Tg = 372.8
+Tg = 373.008
+Tg = 373.008
+Tg = 369.526
+Tg = 369.526
+Tg = 372.896
+Tg = 372.896
+Tg = 372.759
+Tg = 372.758
+Tg = 372.8
+Tg = 372.799
+Tg = 373.008
+Tg = 373.008
+Tg = 369.525
+Tg = 369.525
+Tg = 372.818
+Tg = 372.817
+Tg = 372.758
+Tg = 372.758
+Tg = 372.799
+Tg = 372.799
+Tg = 373.008
+Tg = 373.008
+Tg = 369.525
+Tg = 369.525
+Tg = 372.817
+Tg = 372.816
+Tg = 372.757
+Tg = 372.757
+Tg = 372.798
+Tg = 372.798
+Tg = 373.007
+Tg = 373.007
+Tg = 369.524
+Tg = 369.523
+Tg = 372.895
+Tg = 372.894
+Tg = 372.757
+Tg = 372.757
+Tg = 372.798
+Tg = 372.798
+Tg = 373.007
+Tg = 373.007
+Tg = 369.522
+Tg = 369.521
+Tg = 372.815
+Tg = 372.814
+Tg = 372.757
+Tg = 372.756
+Tg = 372.797
+Tg = 372.797
+Tg = 373.007
+Tg = 373.007
+Tg = 369.521
+Tg = 369.521
+Tg = 372.812
+Tg = 372.811
+Tg = 372.756
+Tg = 372.755
+Tg = 372.797
+Tg = 372.796
+Tg = 373.006
+Tg = 373.006
+Tg = 369.521
+Tg = 369.52
+Tg = 372.81
+Tg = 372.808
+Tg = 372.755
+Tg = 372.755
+Tg = 372.795
+Tg = 372.795
+Tg = 373.006
+Tg = 373.006
+Tg = 369.519
+Tg = 369.519
+Tg = 372.808
+Tg = 372.807
+Tg = 372.755
+Tg = 372.755
+Tg = 372.795
+Tg = 372.795
+Tg = 373.006
+Tg = 373.006
+Tg = 369.518
+Tg = 369.518
+Tg = 372.807
+Tg = 372.807
+Tg = 372.755
+Tg = 372.755
+Tg = 372.795
+Tg = 372.795
+Tg = 373.006
+Tg = 373.006
+Tg = 369.517
+Tg = 369.517
+Tg = 372.807
+Tg = 372.807
+Tg = 372.754
+Tg = 372.754
+Tg = 372.794
+Tg = 372.793
+Tg = 373.006
+Tg = 373.006
+Tg = 369.517
+Tg = 369.516
+Tg = 372.807
+Tg = 372.806
+Tg = 372.75
+Tg = 372.746
+Tg = 372.793
+Tg = 372.793
+Tg = 373.005
+Tg = 373.005
+Tg = 369.516
+Tg = 369.515
+Tg = 372.806
+Tg = 372.806
+Tg = 372.745
+Tg = 372.743
+Tg = 372.793
+Tg = 372.793
+Tg = 373.005
+Tg = 373.005
+Tg = 369.515
+Tg = 369.515
+Tg = 372.806
+Tg = 372.806
+Tg = 372.743
+Tg = 372.742
+Tg = 372.793
+Tg = 372.793
+Tg = 373.005
+Tg = 373.005
+Tg = 369.515
+Tg = 369.515
+Tg = 372.806
+Tg = 372.806
+Tg = 372.742
+Tg = 372.742
+Tg = 372.793
+Tg = 372.792
+Tg = 373.005
+Tg = 373.004
+Tg = 369.515
+Tg = 369.515
+Tg = 372.806
+Tg = 372.805
+Tg = 372.742
+Tg = 372.742
+Tg = 372.792
+Tg = 372.792
+Tg = 373.004
+Tg = 373.004
+Tg = 362.498
+Tg = 365.938
+Tg = 362.774
+Tg = 344.511
+Tg = 262.443
+Tg = 369.515
+Tg = 369.515
+Tg = 369.515
+Tg = 372.805
+Tg = 372.804
+Tg = 372.803
+Tg = 372.742
+Tg = 372.741
+Tg = 372.74
+Tg = 372.792
+Tg = 372.792
+Tg = 372.791
+Tg = 373.004
+Tg = 373.004
+Tg = 373.004
+dmomSpray min/max = 0 3146.22
+DILUPBiCG:  Solving for Ux, Initial residual = 3.59218e-06, Final residual = 1.40307e-12, No Iterations 1
+DILUPBiCG:  Solving for Uy, Initial residual = 0.523456, Final residual = 2.14362e-08, No Iterations 1
+DILUPBiCG:  Solving for Uz, Initial residual = 2.8621e-07, Final residual = 2.8621e-07, No Iterations 0
+DILUPBiCG:  Solving for iC3H8O, Initial residual = 0, Final residual = 0, No Iterations 0
+DILUPBiCG:  Solving for O2, Initial residual = 0.000557627, Final residual = 4.53817e-10, No Iterations 1
+DILUPBiCG:  Solving for CO2, Initial residual = 0, Final residual = 0, No Iterations 0
+DILUPBiCG:  Solving for H2O, Initial residual = 0.000240518, Final residual = 1.46937e-11, No Iterations 1
+dqSpray min/max = -5.50329e+06 0
+kappaEff min/max = 1.11111e-05 0.0139498
+DILUPBiCG:  Solving for T, Initial residual = 0.0029682, Final residual = 2.64408e-11, No Iterations 1
+DICPCG:  Solving for p, Initial residual = 0.0113067, Final residual = 7.56905e-10, No Iterations 172
+time step continuity errors : sum local = 1.60006e-16, global = 3.13456e-19, cumulative = -1.38402e-17
+DICPCG:  Solving for p, Initial residual = 5.51401e-05, Final residual = 6.64415e-10, No Iterations 165
+time step continuity errors : sum local = 1.63044e-16, global = 7.27331e-19, cumulative = -1.31129e-17
+DICPCG:  Solving for p, Initial residual = 9.39992e-07, Final residual = 9.69598e-10, No Iterations 149
+time step continuity errors : sum local = 1.51037e-16, global = 1.15609e-19, cumulative = -1.29973e-17
+DICPCG:  Solving for p, Initial residual = 6.67585e-08, Final residual = 8.12755e-10, No Iterations 131
+time step continuity errors : sum local = 1.41552e-16, global = -7.30445e-19, cumulative = -1.37277e-17
+DICPCG:  Solving for p, Initial residual = 4.04623e-08, Final residual = 9.29535e-10, No Iterations 45
+time step continuity errors : sum local = 8.5517e-17, global = -4.0136e-19, cumulative = -1.41291e-17
+DILUPBiCG:  Solving for epsilon, Initial residual = 5.15957e-07, Final residual = 5.15957e-07, No Iterations 0
+DILUPBiCG:  Solving for k, Initial residual = 6.20801e-07, Final residual = 2.50673e-13, No Iterations 1
+
+Number of parcels in system.... | 90
+Injected liquid mass........... | 0.0174347 mg
+Liquid Mass in system.......... | 0.0169794 mg
+SMD, Dmax, Dmin................ | 14.2586 mu, 64.2953 mu, 6.25814 mu
+Tmax, Tmin..................... | 311.849 K, 308.008 K
+Added gas mass................. | 0 mg
+Evaporation Continuity Error... | -0.000455299 mg
+ExecutionTime = 10.99 s  ClockTime = 11 s
+rRHO max/min : 1.06045 1.06045
+T max/min : 373.08 257.415
+p max/min : 100004 99984.2
+
+ MassFlows:   inlet = -0.000319444  outlet = 0.000319444
+Time = 2.3e-05
+
+Courant Number mean: 4.32328e-05 max: 0.00341845
+Evolving Spray
+Tg = 369.201
+Tg = 369.2
+Tg = 372.881
+Tg = 372.88
+Tg = 372.737
+Tg = 372.736
+Tg = 372.789
+Tg = 372.787
+Tg = 373.003
+Tg = 373.003
+Tg = 369.2
+Tg = 369.2
+Tg = 372.802
+Tg = 372.802
+Tg = 372.735
+Tg = 372.734
+Tg = 372.786
+Tg = 372.786
+Tg = 373.003
+Tg = 373.002
+Tg = 369.2
+Tg = 369.2
+Tg = 372.88
+Tg = 372.88
+Tg = 372.734
+Tg = 372.733
+Tg = 372.785
+Tg = 372.785
+Tg = 373.002
+Tg = 373.002
+Tg = 369.199
+Tg = 369.199
+Tg = 372.801
+Tg = 372.801
+Tg = 372.733
+Tg = 372.733
+Tg = 372.784
+Tg = 372.784
+Tg = 373.002
+Tg = 373.002
+Tg = 369.198
+Tg = 369.198
+Tg = 372.8
+Tg = 372.8
+Tg = 372.733
+Tg = 372.732
+Tg = 372.784
+Tg = 372.783
+Tg = 373.002
+Tg = 373.002
+Tg = 369.198
+Tg = 369.197
+Tg = 372.879
+Tg = 372.878
+Tg = 372.732
+Tg = 372.732
+Tg = 372.783
+Tg = 372.783
+Tg = 373.002
+Tg = 373.002
+Tg = 369.196
+Tg = 369.195
+Tg = 372.798
+Tg = 372.797
+Tg = 372.732
+Tg = 372.731
+Tg = 372.783
+Tg = 372.782
+Tg = 373.001
+Tg = 373.001
+Tg = 369.195
+Tg = 369.195
+Tg = 372.796
+Tg = 372.794
+Tg = 372.731
+Tg = 372.73
+Tg = 372.782
+Tg = 372.781
+Tg = 373.001
+Tg = 373
+Tg = 369.194
+Tg = 369.194
+Tg = 372.794
+Tg = 372.876
+Tg = 372.876
+Tg = 372.73
+Tg = 372.73
+Tg = 372.781
+Tg = 372.78
+Tg = 373
+Tg = 373
+Tg = 369.193
+Tg = 369.192
+Tg = 372.793
+Tg = 372.875
+Tg = 372.875
+Tg = 372.73
+Tg = 372.73
+Tg = 372.78
+Tg = 372.78
+Tg = 373
+Tg = 373
+Tg = 369.192
+Tg = 369.192
+Tg = 372.793
+Tg = 372.793
+Tg = 372.73
+Tg = 372.73
+Tg = 372.78
+Tg = 372.78
+Tg = 373
+Tg = 373
+Tg = 369.191
+Tg = 369.191
+Tg = 372.793
+Tg = 372.793
+Tg = 372.729
+Tg = 372.729
+Tg = 372.779
+Tg = 372.779
+Tg = 373
+Tg = 373
+Tg = 369.19
+Tg = 369.19
+Tg = 372.792
+Tg = 372.792
+Tg = 372.725
+Tg = 372.721
+Tg = 372.779
+Tg = 372.779
+Tg = 373
+Tg = 373
+Tg = 369.189
+Tg = 369.189
+Tg = 372.792
+Tg = 372.792
+Tg = 372.72
+Tg = 372.718
+Tg = 372.779
+Tg = 372.779
+Tg = 372.999
+Tg = 372.999
+Tg = 369.189
+Tg = 369.189
+Tg = 372.792
+Tg = 372.792
+Tg = 372.718
+Tg = 372.717
+Tg = 372.778
+Tg = 372.778
+Tg = 372.999
+Tg = 372.999
+Tg = 369.189
+Tg = 369.189
+Tg = 372.792
+Tg = 372.792
+Tg = 372.717
+Tg = 372.717
+Tg = 372.778
+Tg = 372.778
+Tg = 372.999
+Tg = 372.999
+Tg = 369.189
+Tg = 369.188
+Tg = 372.791
+Tg = 372.791
+Tg = 372.717
+Tg = 372.717
+Tg = 372.777
+Tg = 372.777
+Tg = 372.999
+Tg = 372.999
+Tg = 369.188
+Tg = 369.188
+Tg = 372.79
+Tg = 372.788
+Tg = 372.716
+Tg = 372.715
+Tg = 372.777
+Tg = 372.777
+Tg = 372.999
+Tg = 372.999
+Tg = 362.006
+Tg = 365.607
+Tg = 362.29
+Tg = 343.198
+Tg = 257.415
+Tg = 369.188
+Tg = 369.188
+Tg = 369.188
+Tg = 372.788
+Tg = 372.788
+Tg = 372.787
+Tg = 372.715
+Tg = 372.715
+Tg = 372.715
+Tg = 372.777
+Tg = 372.777
+Tg = 372.777
+Tg = 372.999
+Tg = 372.998
+Tg = 372.998
+dmomSpray min/max = 0 3146.53
+DILUPBiCG:  Solving for Ux, Initial residual = 3.53771e-06, Final residual = 1.38533e-12, No Iterations 1
+DILUPBiCG:  Solving for Uy, Initial residual = 0.62557, Final residual = 2.58506e-08, No Iterations 1
+DILUPBiCG:  Solving for Uz, Initial residual = 2.85655e-07, Final residual = 2.85655e-07, No Iterations 0
+DILUPBiCG:  Solving for iC3H8O, Initial residual = 0, Final residual = 0, No Iterations 0
+DILUPBiCG:  Solving for O2, Initial residual = 0.000556053, Final residual = 4.5173e-10, No Iterations 1
+DILUPBiCG:  Solving for CO2, Initial residual = 0, Final residual = 0, No Iterations 0
+DILUPBiCG:  Solving for H2O, Initial residual = 0.000229669, Final residual = 1.40655e-11, No Iterations 1
+dqSpray min/max = -5.50329e+06 0
+kappaEff min/max = 1.11111e-05 0.0139495
+DILUPBiCG:  Solving for T, Initial residual = 0.00283324, Final residual = 2.53592e-11, No Iterations 1
+DICPCG:  Solving for p, Initial residual = 0.010784, Final residual = 9.34363e-10, No Iterations 171
+time step continuity errors : sum local = 1.61135e-16, global = -3.83584e-19, cumulative = -1.45126e-17
+DICPCG:  Solving for p, Initial residual = 5.58542e-05, Final residual = 9.81993e-10, No Iterations 164
+time step continuity errors : sum local = 1.63301e-16, global = 5.28431e-20, cumulative = -1.44598e-17
+DICPCG:  Solving for p, Initial residual = 9.56777e-07, Final residual = 9.50562e-10, No Iterations 149
+time step continuity errors : sum local = 1.55752e-16, global = 6.70641e-19, cumulative = -1.37892e-17
+DICPCG:  Solving for p, Initial residual = 6.95386e-08, Final residual = 8.82208e-10, No Iterations 116
+time step continuity errors : sum local = 1.37649e-16, global = -2.00342e-19, cumulative = -1.39895e-17
+DICPCG:  Solving for p, Initial residual = 4.01327e-08, Final residual = 9.01803e-10, No Iterations 37
+time step continuity errors : sum local = 8.10294e-17, global = -2.18723e-19, cumulative = -1.42082e-17
+DILUPBiCG:  Solving for epsilon, Initial residual = 5.16357e-07, Final residual = 5.16357e-07, No Iterations 0
+DILUPBiCG:  Solving for k, Initial residual = 6.20826e-07, Final residual = 2.50882e-13, No Iterations 1
+
+Number of parcels in system.... | 95
+Injected liquid mass........... | 0.0182272 mg
+Liquid Mass in system.......... | 0.0177511 mg
+SMD, Dmax, Dmin................ | 14.388 mu, 64.2953 mu, 6.25814 mu
+Tmax, Tmin..................... | 312.014 K, 308.009 K
+Added gas mass................. | 0 mg
+Evaporation Continuity Error... | -0.000476071 mg
+ExecutionTime = 11.46 s  ClockTime = 12 s
+rRHO max/min : 1.06045 1.06045
+T max/min : 373.08 252.408
+p max/min : 100004 99984.3
+
+ MassFlows:   inlet = -0.000319444  outlet = 0.000319444
+Time = 2.4e-05
+
+Courant Number mean: 4.32329e-05 max: 0.00341846
+Evolving Spray
+Tg = 368.861
+Tg = 368.861
+Tg = 372.861
+Tg = 372.861
+Tg = 372.712
+Tg = 372.711
+Tg = 372.774
+Tg = 372.772
+Tg = 372.997
+Tg = 372.997
+Tg = 368.861
+Tg = 368.861
+Tg = 372.786
+Tg = 372.786
+Tg = 372.71
+Tg = 372.709
+Tg = 372.771
+Tg = 372.771
+Tg = 372.997
+Tg = 372.996
+Tg = 368.86
+Tg = 368.86
+Tg = 372.861
+Tg = 372.861
+Tg = 372.708
+Tg = 372.708
+Tg = 372.77
+Tg = 372.77
+Tg = 372.996
+Tg = 372.996
+Tg = 368.86
+Tg = 368.859
+Tg = 372.785
+Tg = 372.785
+Tg = 372.708
+Tg = 372.708
+Tg = 372.769
+Tg = 372.769
+Tg = 372.996
+Tg = 372.996
+Tg = 368.859
+Tg = 368.859
+Tg = 372.784
+Tg = 372.784
+Tg = 372.707
+Tg = 372.707
+Tg = 372.769
+Tg = 372.768
+Tg = 372.996
+Tg = 372.996
+Tg = 368.858
+Tg = 368.857
+Tg = 372.859
+Tg = 372.858
+Tg = 372.707
+Tg = 372.707
+Tg = 372.768
+Tg = 372.768
+Tg = 372.996
+Tg = 372.996
+Tg = 368.857
+Tg = 368.856
+Tg = 372.782
+Tg = 372.781
+Tg = 372.706
+Tg = 372.706
+Tg = 372.768
+Tg = 372.768
+Tg = 372.995
+Tg = 372.995
+Tg = 368.856
+Tg = 368.855
+Tg = 372.78
+Tg = 372.778
+Tg = 372.705
+Tg = 372.705
+Tg = 372.767
+Tg = 372.766
+Tg = 372.995
+Tg = 372.994
+Tg = 368.855
+Tg = 368.855
+Tg = 372.857
+Tg = 372.855
+Tg = 372.705
+Tg = 372.705
+Tg = 372.766
+Tg = 372.765
+Tg = 372.994
+Tg = 372.994
+Tg = 368.854
+Tg = 368.853
+Tg = 372.855
+Tg = 372.854
+Tg = 372.705
+Tg = 372.705
+Tg = 372.765
+Tg = 372.765
+Tg = 372.994
+Tg = 372.994
+Tg = 368.853
+Tg = 368.852
+Tg = 372.778
+Tg = 372.778
+Tg = 372.705
+Tg = 372.705
+Tg = 372.765
+Tg = 372.765
+Tg = 372.994
+Tg = 372.994
+Tg = 368.852
+Tg = 368.851
+Tg = 372.778
+Tg = 372.778
+Tg = 372.704
+Tg = 372.704
+Tg = 372.764
+Tg = 372.764
+Tg = 372.994
+Tg = 372.994
+Tg = 368.851
+Tg = 368.851
+Tg = 372.778
+Tg = 372.777
+Tg = 372.7
+Tg = 372.696
+Tg = 372.764
+Tg = 372.764
+Tg = 372.994
+Tg = 372.994
+Tg = 368.85
+Tg = 368.85
+Tg = 372.777
+Tg = 372.777
+Tg = 372.694
+Tg = 372.693
+Tg = 372.764
+Tg = 372.764
+Tg = 372.993
+Tg = 372.993
+Tg = 368.85
+Tg = 368.85
+Tg = 372.777
+Tg = 372.777
+Tg = 372.692
+Tg = 372.692
+Tg = 372.763
+Tg = 372.763
+Tg = 372.993
+Tg = 372.993
+Tg = 368.849
+Tg = 368.849
+Tg = 372.777
+Tg = 372.777
+Tg = 372.692
+Tg = 372.692
+Tg = 372.763
+Tg = 372.763
+Tg = 372.993
+Tg = 372.993
+Tg = 368.849
+Tg = 368.849
+Tg = 372.777
+Tg = 372.777
+Tg = 372.691
+Tg = 372.691
+Tg = 372.763
+Tg = 372.762
+Tg = 372.993
+Tg = 372.993
+Tg = 368.849
+Tg = 368.849
+Tg = 372.775
+Tg = 372.774
+Tg = 372.69
+Tg = 372.69
+Tg = 372.762
+Tg = 372.762
+Tg = 372.993
+Tg = 372.993
+Tg = 368.849
+Tg = 368.849
+Tg = 372.773
+Tg = 372.772
+Tg = 372.689
+Tg = 372.689
+Tg = 372.762
+Tg = 372.762
+Tg = 372.992
+Tg = 372.992
+Tg = 361.514
+Tg = 365.276
+Tg = 361.806
+Tg = 341.889
+Tg = 252.408
+Tg = 368.849
+Tg = 368.849
+Tg = 368.849
+Tg = 372.772
+Tg = 372.771
+Tg = 372.77
+Tg = 372.689
+Tg = 372.688
+Tg = 372.687
+Tg = 372.762
+Tg = 372.762
+Tg = 372.761
+Tg = 372.992
+Tg = 372.992
+Tg = 372.992
+dmomSpray min/max = 0 3146.31
+DILUPBiCG:  Solving for Ux, Initial residual = 3.48865e-06, Final residual = 1.36886e-12, No Iterations 1
+DILUPBiCG:  Solving for Uy, Initial residual = 0.724335, Final residual = 3.03526e-08, No Iterations 1
+DILUPBiCG:  Solving for Uz, Initial residual = 2.85139e-07, Final residual = 2.85139e-07, No Iterations 0
+DILUPBiCG:  Solving for iC3H8O, Initial residual = 0, Final residual = 0, No Iterations 0
+DILUPBiCG:  Solving for O2, Initial residual = 0.000554508, Final residual = 4.49711e-10, No Iterations 1
+DILUPBiCG:  Solving for CO2, Initial residual = 0, Final residual = 0, No Iterations 0
+DILUPBiCG:  Solving for H2O, Initial residual = 0.00021982, Final residual = 1.34951e-11, No Iterations 1
+dqSpray min/max = -5.50329e+06 0
+kappaEff min/max = 1.11111e-05 0.0139492
+DILUPBiCG:  Solving for T, Initial residual = 0.00271009, Final residual = 2.43833e-11, No Iterations 1
+DICPCG:  Solving for p, Initial residual = 0.0103045, Final residual = 8.4808e-10, No Iterations 171
+time step continuity errors : sum local = 1.63217e-16, global = 1.23351e-18, cumulative = -1.29747e-17
+DICPCG:  Solving for p, Initial residual = 5.65337e-05, Final residual = 6.68691e-10, No Iterations 165
+time step continuity errors : sum local = 1.62619e-16, global = 8.23942e-19, cumulative = -1.21508e-17
+DICPCG:  Solving for p, Initial residual = 9.73157e-07, Final residual = 9.62332e-10, No Iterations 149
+time step continuity errors : sum local = 1.55053e-16, global = 1.48368e-18, cumulative = -1.06671e-17
+DICPCG:  Solving for p, Initial residual = 7.05011e-08, Final residual = 7.50198e-10, No Iterations 116
+time step continuity errors : sum local = 1.35485e-16, global = 1.2199e-18, cumulative = -9.44719e-18
+DICPCG:  Solving for p, Initial residual = 4.01793e-08, Final residual = 7.8196e-10, No Iterations 35
+time step continuity errors : sum local = 7.74122e-17, global = 1.04452e-18, cumulative = -8.40268e-18
+DILUPBiCG:  Solving for epsilon, Initial residual = 5.16756e-07, Final residual = 5.16756e-07, No Iterations 0
+DILUPBiCG:  Solving for k, Initial residual = 6.20851e-07, Final residual = 2.51093e-13, No Iterations 1
+
+Number of parcels in system.... | 100
+Injected liquid mass........... | 0.0190197 mg
+Liquid Mass in system.......... | 0.0185228 mg
+SMD, Dmax, Dmin................ | 14.1422 mu, 64.2953 mu, 6.25815 mu
+Tmax, Tmin..................... | 312.177 K, 308.016 K
+Added gas mass................. | 0 mg
+Evaporation Continuity Error... | -0.000496854 mg
+ExecutionTime = 11.93 s  ClockTime = 12 s
+rRHO max/min : 1.06045 1.06045
+T max/min : 373.079 247.42
+p max/min : 100004 99984.4
+
+ MassFlows:   inlet = -0.000319444  outlet = 0.000319444
+Time = 2.5e-05
+
+Courant Number mean: 4.32329e-05 max: 0.00341846
+Evolving Spray
+Tg = 368.509
+Tg = 368.509
+Tg = 372.84
+Tg = 372.839
+Tg = 372.685
+Tg = 372.683
+Tg = 372.759
+Tg = 372.756
+Tg = 372.99
+Tg = 372.99
+Tg = 368.509
+Tg = 368.508
+Tg = 372.769
+Tg = 372.769
+Tg = 372.682
+Tg = 372.681
+Tg = 372.756
+Tg = 372.756
+Tg = 372.99
+Tg = 372.99
+Tg = 368.508
+Tg = 368.508
+Tg = 372.839
+Tg = 372.839
+Tg = 372.681
+Tg = 372.68
+Tg = 372.755
+Tg = 372.754
+Tg = 372.99
+Tg = 372.99
+Tg = 368.508
+Tg = 368.507
+Tg = 372.769
+Tg = 372.769
+Tg = 372.68
+Tg = 372.68
+Tg = 372.754
+Tg = 372.754
+Tg = 372.989
+Tg = 372.989
+Tg = 368.507
+Tg = 368.507
+Tg = 372.768
+Tg = 372.767
+Tg = 372.68
+Tg = 372.679
+Tg = 372.753
+Tg = 372.753
+Tg = 372.989
+Tg = 372.989
+Tg = 368.506
+Tg = 368.505
+Tg = 372.838
+Tg = 372.837
+Tg = 372.679
+Tg = 372.679
+Tg = 372.753
+Tg = 372.753
+Tg = 372.989
+Tg = 372.989
+Tg = 368.504
+Tg = 368.503
+Tg = 372.766
+Tg = 372.765
+Tg = 372.679
+Tg = 372.678
+Tg = 372.753
+Tg = 372.752
+Tg = 372.989
+Tg = 372.989
+Tg = 368.503
+Tg = 368.503
+Tg = 372.763
+Tg = 372.762
+Tg = 372.678
+Tg = 372.677
+Tg = 372.752
+Tg = 372.751
+Tg = 372.988
+Tg = 372.988
+Tg = 368.503
+Tg = 368.502
+Tg = 372.835
+Tg = 372.833
+Tg = 372.677
+Tg = 372.677
+Tg = 372.751
+Tg = 372.75
+Tg = 372.988
+Tg = 372.988
+Tg = 368.502
+Tg = 368.501
+Tg = 372.833
+Tg = 372.833
+Tg = 372.677
+Tg = 372.677
+Tg = 372.75
+Tg = 372.75
+Tg = 372.988
+Tg = 372.988
+Tg = 368.5
+Tg = 368.5
+Tg = 372.762
+Tg = 372.762
+Tg = 372.677
+Tg = 372.677
+Tg = 372.75
+Tg = 372.75
+Tg = 372.988
+Tg = 372.988
+Tg = 368.5
+Tg = 368.499
+Tg = 372.762
+Tg = 372.762
+Tg = 372.676
+Tg = 372.676
+Tg = 372.749
+Tg = 372.749
+Tg = 372.988
+Tg = 372.987
+Tg = 368.499
+Tg = 368.498
+Tg = 372.761
+Tg = 372.761
+Tg = 372.672
+Tg = 372.668
+Tg = 372.748
+Tg = 372.748
+Tg = 372.987
+Tg = 372.987
+Tg = 368.498
+Tg = 368.497
+Tg = 372.761
+Tg = 372.761
+Tg = 372.666
+Tg = 372.665
+Tg = 372.748
+Tg = 372.748
+Tg = 372.987
+Tg = 372.987
+Tg = 368.497
+Tg = 368.497
+Tg = 372.761
+Tg = 372.761
+Tg = 372.665
+Tg = 372.664
+Tg = 372.748
+Tg = 372.748
+Tg = 372.987
+Tg = 372.987
+Tg = 368.497
+Tg = 368.497
+Tg = 372.761
+Tg = 372.761
+Tg = 372.664
+Tg = 372.664
+Tg = 372.748
+Tg = 372.747
+Tg = 372.987
+Tg = 372.986
+Tg = 368.497
+Tg = 368.497
+Tg = 372.76
+Tg = 372.76
+Tg = 372.664
+Tg = 372.664
+Tg = 372.747
+Tg = 372.747
+Tg = 372.986
+Tg = 372.986
+Tg = 368.497
+Tg = 368.497
+Tg = 372.759
+Tg = 372.757
+Tg = 372.663
+Tg = 372.662
+Tg = 372.747
+Tg = 372.747
+Tg = 372.986
+Tg = 372.986
+Tg = 368.497
+Tg = 368.497
+Tg = 372.756
+Tg = 372.756
+Tg = 372.662
+Tg = 372.662
+Tg = 372.746
+Tg = 372.746
+Tg = 372.986
+Tg = 372.986
+Tg = 368.497
+Tg = 368.496
+Tg = 372.755
+Tg = 372.754
+Tg = 372.66
+Tg = 372.659
+Tg = 372.746
+Tg = 372.746
+Tg = 372.986
+Tg = 372.986
+Tg = 361.023
+Tg = 364.946
+Tg = 361.323
+Tg = 340.584
+Tg = 247.42
+Tg = 368.496
+Tg = 368.496
+Tg = 368.496
+Tg = 372.754
+Tg = 372.754
+Tg = 372.754
+Tg = 372.659
+Tg = 372.658
+Tg = 372.657
+Tg = 372.746
+Tg = 372.745
+Tg = 372.744
+Tg = 372.986
+Tg = 372.985
+Tg = 372.985
+dmomSpray min/max = 0 3146.82
+DILUPBiCG:  Solving for Ux, Initial residual = 3.44166e-06, Final residual = 1.3542e-12, No Iterations 1
+DILUPBiCG:  Solving for Uy, Initial residual = 0.636428, Final residual = 2.61952e-08, No Iterations 1
+DILUPBiCG:  Solving for Uz, Initial residual = 2.84668e-07, Final residual = 2.84668e-07, No Iterations 0
+DILUPBiCG:  Solving for iC3H8O, Initial residual = 0, Final residual = 0, No Iterations 0
+DILUPBiCG:  Solving for O2, Initial residual = 0.000552991, Final residual = 4.47746e-10, No Iterations 1
+DILUPBiCG:  Solving for CO2, Initial residual = 0, Final residual = 0, No Iterations 0
+DILUPBiCG:  Solving for H2O, Initial residual = 0.000210793, Final residual = 1.29743e-11, No Iterations 1
+dqSpray min/max = -5.50329e+06 0
+kappaEff min/max = 1.11111e-05 0.0139489
+DILUPBiCG:  Solving for T, Initial residual = 0.00259716, Final residual = 2.34979e-11, No Iterations 1
+DICPCG:  Solving for p, Initial residual = 0.00994952, Final residual = 7.4551e-10, No Iterations 171
+time step continuity errors : sum local = 1.59258e-16, global = -1.22695e-19, cumulative = -8.52537e-18
+DICPCG:  Solving for p, Initial residual = 5.72632e-05, Final residual = 6.71621e-10, No Iterations 165
+time step continuity errors : sum local = 1.59179e-16, global = 5.24798e-20, cumulative = -8.47289e-18
+DICPCG:  Solving for p, Initial residual = 9.88445e-07, Final residual = 9.97054e-10, No Iterations 149
+time step continuity errors : sum local = 1.47454e-16, global = 4.50045e-20, cumulative = -8.42789e-18
+DICPCG:  Solving for p, Initial residual = 6.94702e-08, Final residual = 8.30747e-10, No Iterations 131
+time step continuity errors : sum local = 1.38557e-16, global = -1.57391e-19, cumulative = -8.58528e-18
+DICPCG:  Solving for p, Initial residual = 4.14731e-08, Final residual = 9.25207e-10, No Iterations 37
+time step continuity errors : sum local = 7.86563e-17, global = -7.25592e-20, cumulative = -8.65784e-18
+DILUPBiCG:  Solving for epsilon, Initial residual = 5.17153e-07, Final residual = 5.17153e-07, No Iterations 0
+DILUPBiCG:  Solving for k, Initial residual = 6.20876e-07, Final residual = 2.51303e-13, No Iterations 1
+
+Number of parcels in system.... | 105
+Injected liquid mass........... | 0.0198122 mg
+Liquid Mass in system.......... | 0.0192945 mg
+SMD, Dmax, Dmin................ | 13.987 mu, 64.2954 mu, 6.25815 mu
+Tmax, Tmin..................... | 312.34 K, 308.003 K
+Added gas mass................. | 0 mg
+Evaporation Continuity Error... | -0.000517648 mg
+ExecutionTime = 12.4 s  ClockTime = 13 s
+rRHO max/min : 1.06045 1.06045
+T max/min : 373.079 242.453
+p max/min : 100004 99984.5
+
+ MassFlows:   inlet = -0.000319444  outlet = 0.000319444
+Time = 2.6e-05
+
+Courant Number mean: 4.32329e-05 max: 0.00341847
+Evolving Spray
+Tg = 368.144
+Tg = 368.144
+Tg = 372.817
+Tg = 372.816
+Tg = 372.655
+Tg = 372.654
+Tg = 372.742
+Tg = 372.739
+Tg = 372.983
+Tg = 372.983
+Tg = 368.144
+Tg = 368.143
+Tg = 372.753
+Tg = 372.753
+Tg = 372.653
+Tg = 372.652
+Tg = 372.739
+Tg = 372.738
+Tg = 372.983
+Tg = 372.983
+Tg = 368.143
+Tg = 368.143
+Tg = 372.816
+Tg = 372.816
+Tg = 372.651
+Tg = 372.651
+Tg = 372.738
+Tg = 372.737
+Tg = 372.983
+Tg = 372.982
+Tg = 368.142
+Tg = 368.142
+Tg = 372.752
+Tg = 372.752
+Tg = 372.651
+Tg = 372.651
+Tg = 372.737
+Tg = 372.736
+Tg = 372.982
+Tg = 372.982
+Tg = 368.142
+Tg = 368.142
+Tg = 372.751
+Tg = 372.751
+Tg = 372.65
+Tg = 372.65
+Tg = 372.736
+Tg = 372.736
+Tg = 372.982
+Tg = 372.982
+Tg = 368.141
+Tg = 368.14
+Tg = 372.815
+Tg = 372.814
+Tg = 372.65
+Tg = 372.65
+Tg = 372.736
+Tg = 372.736
+Tg = 372.982
+Tg = 372.982
+Tg = 368.139
+Tg = 368.138
+Tg = 372.75
+Tg = 372.748
+Tg = 372.649
+Tg = 372.649
+Tg = 372.735
+Tg = 372.735
+Tg = 372.982
+Tg = 372.982
+Tg = 368.138
+Tg = 368.138
+Tg = 372.747
+Tg = 372.746
+Tg = 372.648
+Tg = 372.648
+Tg = 372.735
+Tg = 372.734
+Tg = 372.981
+Tg = 372.981
+Tg = 368.138
+Tg = 368.137
+Tg = 372.812
+Tg = 372.811
+Tg = 372.648
+Tg = 372.648
+Tg = 372.733
+Tg = 372.733
+Tg = 372.981
+Tg = 372.981
+Tg = 368.136
+Tg = 368.136
+Tg = 372.81
+Tg = 372.81
+Tg = 372.648
+Tg = 372.648
+Tg = 372.733
+Tg = 372.733
+Tg = 372.981
+Tg = 372.981
+Tg = 368.135
+Tg = 368.135
+Tg = 372.745
+Tg = 372.745
+Tg = 372.648
+Tg = 372.647
+Tg = 372.732
+Tg = 372.732
+Tg = 372.981
+Tg = 372.981
+Tg = 368.134
+Tg = 368.134
+Tg = 372.745
+Tg = 372.745
+Tg = 372.647
+Tg = 372.647
+Tg = 372.732
+Tg = 372.731
+Tg = 372.981
+Tg = 372.98
+Tg = 368.134
+Tg = 368.133
+Tg = 372.745
+Tg = 372.745
+Tg = 372.642
+Tg = 372.638
+Tg = 372.731
+Tg = 372.731
+Tg = 372.98
+Tg = 372.98
+Tg = 368.133
+Tg = 368.132
+Tg = 372.744
+Tg = 372.744
+Tg = 372.637
+Tg = 372.636
+Tg = 372.731
+Tg = 372.731
+Tg = 372.98
+Tg = 372.98
+Tg = 368.132
+Tg = 368.132
+Tg = 372.744
+Tg = 372.744
+Tg = 372.635
+Tg = 372.635
+Tg = 372.731
+Tg = 372.731
+Tg = 372.98
+Tg = 372.98
+Tg = 368.132
+Tg = 368.132
+Tg = 372.744
+Tg = 372.744
+Tg = 372.635
+Tg = 372.634
+Tg = 372.731
+Tg = 372.73
+Tg = 372.979
+Tg = 372.979
+Tg = 368.132
+Tg = 368.132
+Tg = 372.744
+Tg = 372.744
+Tg = 372.634
+Tg = 372.634
+Tg = 372.73
+Tg = 372.73
+Tg = 372.979
+Tg = 372.979
+Tg = 368.132
+Tg = 368.132
+Tg = 372.742
+Tg = 372.741
+Tg = 372.633
+Tg = 372.632
+Tg = 372.73
+Tg = 372.729
+Tg = 372.979
+Tg = 372.979
+Tg = 368.132
+Tg = 368.132
+Tg = 372.74
+Tg = 372.739
+Tg = 372.632
+Tg = 372.632
+Tg = 372.729
+Tg = 372.729
+Tg = 372.979
+Tg = 372.979
+Tg = 368.131
+Tg = 368.131
+Tg = 372.738
+Tg = 372.737
+Tg = 372.631
+Tg = 372.63
+Tg = 372.729
+Tg = 372.729
+Tg = 372.979
+Tg = 372.979
+Tg = 368.131
+Tg = 368.131
+Tg = 372.737
+Tg = 372.737
+Tg = 372.629
+Tg = 372.628
+Tg = 372.728
+Tg = 372.727
+Tg = 372.978
+Tg = 372.978
+Tg = 360.533
+Tg = 364.617
+Tg = 360.84
+Tg = 339.282
+Tg = 242.453
+Tg = 368.131
+Tg = 368.131
+Tg = 368.131
+Tg = 372.737
+Tg = 372.737
+Tg = 372.737
+Tg = 372.628
+Tg = 372.628
+Tg = 372.627
+Tg = 372.727
+Tg = 372.727
+Tg = 372.726
+Tg = 372.978
+Tg = 372.978
+Tg = 372.978
+dmomSpray min/max = 0 3146.26
+DILUPBiCG:  Solving for Ux, Initial residual = 3.39983e-06, Final residual = 1.34063e-12, No Iterations 1
+DILUPBiCG:  Solving for Uy, Initial residual = 0.636037, Final residual = 1.9543e-08, No Iterations 1
+DILUPBiCG:  Solving for Uz, Initial residual = 2.84276e-07, Final residual = 2.84276e-07, No Iterations 0
+DILUPBiCG:  Solving for iC3H8O, Initial residual = 0, Final residual = 0, No Iterations 0
+DILUPBiCG:  Solving for O2, Initial residual = 0.000551498, Final residual = 4.45838e-10, No Iterations 1
+DILUPBiCG:  Solving for CO2, Initial residual = 0, Final residual = 0, No Iterations 0
+DILUPBiCG:  Solving for H2O, Initial residual = 0.000202436, Final residual = 1.24895e-11, No Iterations 1
+dqSpray min/max = -5.50329e+06 0
+kappaEff min/max = 1.11111e-05 0.0139486
+DILUPBiCG:  Solving for T, Initial residual = 0.00249312, Final residual = 2.26734e-11, No Iterations 1
+DICPCG:  Solving for p, Initial residual = 0.0095566, Final residual = 7.11445e-10, No Iterations 171
+time step continuity errors : sum local = 1.68911e-16, global = 3.28015e-19, cumulative = -8.32982e-18
+DICPCG:  Solving for p, Initial residual = 5.78826e-05, Final residual = 6.82446e-10, No Iterations 165
+time step continuity errors : sum local = 1.61321e-16, global = 3.83081e-20, cumulative = -8.29151e-18
+DICPCG:  Solving for p, Initial residual = 1.00441e-06, Final residual = 9.18865e-10, No Iterations 150
+time step continuity errors : sum local = 1.51655e-16, global = -4.22764e-19, cumulative = -8.71428e-18
+DICPCG:  Solving for p, Initial residual = 7.17776e-08, Final residual = 8.89026e-10, No Iterations 131
+time step continuity errors : sum local = 1.42471e-16, global = 3.74841e-19, cumulative = -8.33944e-18
+DICPCG:  Solving for p, Initial residual = 4.35936e-08, Final residual = 9.12468e-10, No Iterations 8
+time step continuity errors : sum local = 4.56054e-17, global = 2.24503e-19, cumulative = -8.11493e-18
+DILUPBiCG:  Solving for epsilon, Initial residual = 5.17548e-07, Final residual = 5.17548e-07, No Iterations 0
+DILUPBiCG:  Solving for k, Initial residual = 6.20901e-07, Final residual = 2.51514e-13, No Iterations 1
+
+Number of parcels in system.... | 110
+Injected liquid mass........... | 0.0206046 mg
+Liquid Mass in system.......... | 0.0200662 mg
+SMD, Dmax, Dmin................ | 14.0702 mu, 64.2954 mu, 6.25815 mu
+Tmax, Tmin..................... | 312.502 K, 308.007 K
+Added gas mass................. | 0 mg
+Evaporation Continuity Error... | -0.000538448 mg
+ExecutionTime = 12.87 s  ClockTime = 13 s
+rRHO max/min : 1.06045 1.06045
+T max/min : 373.078 237.505
+p max/min : 100004 99984.6
+
+ MassFlows:   inlet = -0.000319444  outlet = 0.000319444
+Time = 2.7e-05
+
+Courant Number mean: 4.3233e-05 max: 0.00341848
+Evolving Spray
+Tg = 367.766
+Tg = 367.766
+Tg = 372.793
+Tg = 372.792
+Tg = 372.625
+Tg = 372.623
+Tg = 372.724
+Tg = 372.722
+Tg = 372.976
+Tg = 372.976
+Tg = 367.766
+Tg = 367.766
+Tg = 372.736
+Tg = 372.735
+Tg = 372.623
+Tg = 372.622
+Tg = 372.721
+Tg = 372.721
+Tg = 372.976
+Tg = 372.976
+Tg = 367.765
+Tg = 367.765
+Tg = 372.792
+Tg = 372.792
+Tg = 372.621
+Tg = 372.621
+Tg = 372.72
+Tg = 372.72
+Tg = 372.976
+Tg = 372.975
+Tg = 367.765
+Tg = 367.764
+Tg = 372.735
+Tg = 372.735
+Tg = 372.621
+Tg = 372.62
+Tg = 372.719
+Tg = 372.719
+Tg = 372.975
+Tg = 372.975
+Tg = 367.764
+Tg = 367.764
+Tg = 372.734
+Tg = 372.734
+Tg = 372.62
+Tg = 372.62
+Tg = 372.719
+Tg = 372.718
+Tg = 372.975
+Tg = 372.975
+Tg = 367.763
+Tg = 367.762
+Tg = 372.791
+Tg = 372.79
+Tg = 372.62
+Tg = 372.62
+Tg = 372.718
+Tg = 372.718
+Tg = 372.975
+Tg = 372.975
+Tg = 367.762
+Tg = 367.761
+Tg = 372.732
+Tg = 372.731
+Tg = 372.619
+Tg = 372.619
+Tg = 372.718
+Tg = 372.717
+Tg = 372.975
+Tg = 372.974
+Tg = 367.76
+Tg = 367.76
+Tg = 372.729
+Tg = 372.728
+Tg = 372.618
+Tg = 372.618
+Tg = 372.717
+Tg = 372.716
+Tg = 372.974
+Tg = 372.974
+Tg = 367.76
+Tg = 367.76
+Tg = 372.788
+Tg = 372.787
+Tg = 372.618
+Tg = 372.618
+Tg = 372.716
+Tg = 372.715
+Tg = 372.974
+Tg = 372.974
+Tg = 367.759
+Tg = 367.758
+Tg = 372.786
+Tg = 372.786
+Tg = 372.618
+Tg = 372.618
+Tg = 372.715
+Tg = 372.715
+Tg = 372.974
+Tg = 372.974
+Tg = 367.758
+Tg = 367.757
+Tg = 372.728
+Tg = 372.728
+Tg = 372.617
+Tg = 372.617
+Tg = 372.715
+Tg = 372.715
+Tg = 372.974
+Tg = 372.974
+Tg = 367.757
+Tg = 367.756
+Tg = 372.728
+Tg = 372.728
+Tg = 372.617
+Tg = 372.616
+Tg = 372.714
+Tg = 372.714
+Tg = 372.973
+Tg = 372.973
+Tg = 367.756
+Tg = 367.756
+Tg = 372.727
+Tg = 372.727
+Tg = 372.612
+Tg = 372.608
+Tg = 372.714
+Tg = 372.714
+Tg = 372.973
+Tg = 372.973
+Tg = 367.755
+Tg = 367.755
+Tg = 372.727
+Tg = 372.727
+Tg = 372.607
+Tg = 372.606
+Tg = 372.713
+Tg = 372.713
+Tg = 372.973
+Tg = 372.973
+Tg = 367.755
+Tg = 367.754
+Tg = 372.727
+Tg = 372.727
+Tg = 372.605
+Tg = 372.605
+Tg = 372.713
+Tg = 372.713
+Tg = 372.973
+Tg = 372.973
+Tg = 367.754
+Tg = 367.754
+Tg = 372.727
+Tg = 372.727
+Tg = 372.604
+Tg = 372.604
+Tg = 372.713
+Tg = 372.713
+Tg = 372.972
+Tg = 372.972
+Tg = 367.754
+Tg = 367.754
+Tg = 372.726
+Tg = 372.726
+Tg = 372.604
+Tg = 372.604
+Tg = 372.712
+Tg = 372.712
+Tg = 372.972
+Tg = 372.972
+Tg = 367.754
+Tg = 367.754
+Tg = 372.725
+Tg = 372.723
+Tg = 372.603
+Tg = 372.602
+Tg = 372.712
+Tg = 372.712
+Tg = 372.972
+Tg = 372.972
+Tg = 367.754
+Tg = 367.754
+Tg = 372.722
+Tg = 372.722
+Tg = 372.602
+Tg = 372.602
+Tg = 372.712
+Tg = 372.712
+Tg = 372.972
+Tg = 372.972
+Tg = 367.754
+Tg = 367.754
+Tg = 372.721
+Tg = 372.72
+Tg = 372.601
+Tg = 372.599
+Tg = 372.711
+Tg = 372.711
+Tg = 372.972
+Tg = 372.971
+Tg = 367.753
+Tg = 367.753
+Tg = 372.72
+Tg = 372.72
+Tg = 372.599
+Tg = 372.598
+Tg = 372.71
+Tg = 372.709
+Tg = 372.971
+Tg = 372.971
+Tg = 367.753
+Tg = 367.753
+Tg = 372.72
+Tg = 372.719
+Tg = 372.597
+Tg = 372.597
+Tg = 372.709
+Tg = 372.709
+Tg = 372.971
+Tg = 372.971
+Tg = 360.044
+Tg = 364.288
+Tg = 360.357
+Tg = 337.984
+Tg = 237.505
+Tg = 367.753
+Tg = 367.753
+Tg = 367.753
+Tg = 372.719
+Tg = 372.719
+Tg = 372.719
+Tg = 372.597
+Tg = 372.596
+Tg = 372.595
+Tg = 372.709
+Tg = 372.706
+Tg = 372.702
+Tg = 372.971
+Tg = 372.971
+Tg = 372.971
+dmomSpray min/max = 0 3146.91
+DILUPBiCG:  Solving for Ux, Initial residual = 3.35769e-06, Final residual = 1.32814e-12, No Iterations 1
+DILUPBiCG:  Solving for Uy, Initial residual = 0.753476, Final residual = 3.16073e-08, No Iterations 1
+DILUPBiCG:  Solving for Uz, Initial residual = 2.83918e-07, Final residual = 2.83918e-07, No Iterations 0
+DILUPBiCG:  Solving for iC3H8O, Initial residual = 0, Final residual = 0, No Iterations 0
+DILUPBiCG:  Solving for O2, Initial residual = 0.000550031, Final residual = 4.43978e-10, No Iterations 1
+DILUPBiCG:  Solving for CO2, Initial residual = 0, Final residual = 0, No Iterations 0
+DILUPBiCG:  Solving for H2O, Initial residual = 0.000194869, Final residual = 1.20517e-11, No Iterations 1
+dqSpray min/max = -5.50329e+06 0
+kappaEff min/max = 1.11111e-05 0.0139483
+DILUPBiCG:  Solving for T, Initial residual = 0.00239735, Final residual = 2.19365e-11, No Iterations 1
+DICPCG:  Solving for p, Initial residual = 0.00910038, Final residual = 8.11453e-10, No Iterations 171
+time step continuity errors : sum local = 1.67687e-16, global = 3.85153e-19, cumulative = -7.72978e-18
+DICPCG:  Solving for p, Initial residual = 5.85504e-05, Final residual = 6.81525e-10, No Iterations 165
+time step continuity errors : sum local = 1.62325e-16, global = -1.13349e-18, cumulative = -8.86327e-18
+DICPCG:  Solving for p, Initial residual = 1.01942e-06, Final residual = 9.54093e-10, No Iterations 150
+time step continuity errors : sum local = 1.55661e-16, global = 6.36686e-20, cumulative = -8.7996e-18
+DICPCG:  Solving for p, Initial residual = 7.4363e-08, Final residual = 8.98744e-10, No Iterations 131
+time step continuity errors : sum local = 1.45242e-16, global = -2.59416e-19, cumulative = -9.05902e-18
+DICPCG:  Solving for p, Initial residual = 4.4963e-08, Final residual = 9.3612e-10, No Iterations 31
+time step continuity errors : sum local = 7.35865e-17, global = -6.66616e-19, cumulative = -9.72564e-18
+DILUPBiCG:  Solving for epsilon, Initial residual = 5.17942e-07, Final residual = 5.17942e-07, No Iterations 0
+DILUPBiCG:  Solving for k, Initial residual = 6.20926e-07, Final residual = 2.51726e-13, No Iterations 1
+
+Number of parcels in system.... | 115
+Injected liquid mass........... | 0.0213971 mg
+Liquid Mass in system.......... | 0.0208379 mg
+SMD, Dmax, Dmin................ | 13.6917 mu, 64.2954 mu, 3.41533 mu
+Tmax, Tmin..................... | 312.662 K, 308.01 K
+Added gas mass................. | 0 mg
+Evaporation Continuity Error... | -0.00055927 mg
+ExecutionTime = 13.34 s  ClockTime = 14 s
+rRHO max/min : 1.06045 1.06045
+T max/min : 373.078 232.577
+p max/min : 100004 99984.7
+
+ MassFlows:   inlet = -0.000319444  outlet = 0.000319444
+Time = 2.8e-05
+
+Courant Number mean: 4.3233e-05 max: 0.00341848
+Evolving Spray
+Tg = 367.376
+Tg = 367.376
+Tg = 372.768
+Tg = 372.767
+Tg = 372.592
+Tg = 372.591
+Tg = 372.7
+Tg = 372.698
+Tg = 372.969
+Tg = 372.969
+Tg = 367.375
+Tg = 367.375
+Tg = 372.718
+Tg = 372.718
+Tg = 372.59
+Tg = 372.589
+Tg = 372.697
+Tg = 372.697
+Tg = 372.969
+Tg = 372.968
+Tg = 367.375
+Tg = 367.375
+Tg = 372.767
+Tg = 372.767
+Tg = 372.589
+Tg = 372.588
+Tg = 372.696
+Tg = 372.696
+Tg = 372.968
+Tg = 372.968
+Tg = 367.374
+Tg = 367.374
+Tg = 372.717
+Tg = 372.717
+Tg = 372.588
+Tg = 372.588
+Tg = 372.695
+Tg = 372.695
+Tg = 372.968
+Tg = 372.968
+Tg = 367.374
+Tg = 367.374
+Tg = 372.716
+Tg = 372.716
+Tg = 372.587
+Tg = 372.587
+Tg = 372.695
+Tg = 372.694
+Tg = 372.968
+Tg = 372.968
+Tg = 367.373
+Tg = 367.372
+Tg = 372.766
+Tg = 372.765
+Tg = 372.587
+Tg = 372.587
+Tg = 372.694
+Tg = 372.694
+Tg = 372.968
+Tg = 372.968
+Tg = 367.371
+Tg = 367.37
+Tg = 372.714
+Tg = 372.713
+Tg = 372.587
+Tg = 372.586
+Tg = 372.694
+Tg = 372.693
+Tg = 372.97
+Tg = 372.967
+Tg = 372.967
+Tg = 367.37
+Tg = 367.37
+Tg = 372.712
+Tg = 372.71
+Tg = 372.586
+Tg = 372.585
+Tg = 372.693
+Tg = 372.692
+Tg = 372.967
+Tg = 372.967
+Tg = 367.369
+Tg = 367.369
+Tg = 372.763
+Tg = 372.762
+Tg = 372.585
+Tg = 372.585
+Tg = 372.692
+Tg = 372.691
+Tg = 372.967
+Tg = 372.967
+Tg = 367.368
+Tg = 367.368
+Tg = 372.761
+Tg = 372.761
+Tg = 372.585
+Tg = 372.585
+Tg = 372.691
+Tg = 372.691
+Tg = 372.967
+Tg = 372.966
+Tg = 367.367
+Tg = 367.367
+Tg = 372.71
+Tg = 372.71
+Tg = 372.585
+Tg = 372.585
+Tg = 372.691
+Tg = 372.691
+Tg = 372.966
+Tg = 372.966
+Tg = 367.366
+Tg = 367.366
+Tg = 372.71
+Tg = 372.71
+Tg = 372.584
+Tg = 372.584
+Tg = 372.69
+Tg = 372.69
+Tg = 372.966
+Tg = 372.966
+Tg = 367.365
+Tg = 367.365
+Tg = 372.71
+Tg = 372.709
+Tg = 372.58
+Tg = 372.576
+Tg = 372.69
+Tg = 372.69
+Tg = 372.966
+Tg = 372.966
+Tg = 367.365
+Tg = 367.364
+Tg = 372.709
+Tg = 372.709
+Tg = 372.574
+Tg = 372.573
+Tg = 372.689
+Tg = 372.689
+Tg = 372.966
+Tg = 372.965
+Tg = 367.364
+Tg = 367.364
+Tg = 372.709
+Tg = 372.709
+Tg = 372.572
+Tg = 372.572
+Tg = 372.689
+Tg = 372.689
+Tg = 372.965
+Tg = 372.965
+Tg = 367.364
+Tg = 367.364
+Tg = 372.709
+Tg = 372.709
+Tg = 372.572
+Tg = 372.572
+Tg = 372.689
+Tg = 372.689
+Tg = 372.965
+Tg = 372.965
+Tg = 367.364
+Tg = 367.364
+Tg = 372.709
+Tg = 372.708
+Tg = 372.571
+Tg = 372.571
+Tg = 372.688
+Tg = 372.688
+Tg = 372.965
+Tg = 372.965
+Tg = 367.364
+Tg = 367.363
+Tg = 372.707
+Tg = 372.706
+Tg = 372.57
+Tg = 372.57
+Tg = 372.688
+Tg = 372.688
+Tg = 372.965
+Tg = 372.965
+Tg = 367.363
+Tg = 367.363
+Tg = 372.705
+Tg = 372.704
+Tg = 372.569
+Tg = 372.569
+Tg = 372.688
+Tg = 372.688
+Tg = 372.965
+Tg = 372.964
+Tg = 367.363
+Tg = 367.363
+Tg = 372.703
+Tg = 372.702
+Tg = 372.568
+Tg = 372.567
+Tg = 372.687
+Tg = 372.687
+Tg = 372.964
+Tg = 372.964
+Tg = 367.363
+Tg = 367.363
+Tg = 372.702
+Tg = 372.702
+Tg = 372.566
+Tg = 372.565
+Tg = 372.686
+Tg = 372.685
+Tg = 372.964
+Tg = 372.963
+Tg = 367.363
+Tg = 367.363
+Tg = 372.702
+Tg = 372.701
+Tg = 372.565
+Tg = 372.564
+Tg = 372.685
+Tg = 372.685
+Tg = 372.963
+Tg = 372.963
+Tg = 367.363
+Tg = 367.362
+Tg = 372.701
+Tg = 372.701
+Tg = 372.563
+Tg = 372.562
+Tg = 372.682
+Tg = 372.678
+Tg = 372.963
+Tg = 372.963
+Tg = 359.555
+Tg = 363.959
+Tg = 359.874
+Tg = 336.69
+Tg = 232.577
+Tg = 367.362
+Tg = 367.362
+Tg = 367.362
+Tg = 372.701
+Tg = 372.701
+Tg = 372.701
+Tg = 372.562
+Tg = 372.562
+Tg = 372.561
+Tg = 372.678
+Tg = 372.678
+Tg = 372.678
+Tg = 372.963
+Tg = 372.963
+Tg = 372.963
+dmomSpray min/max = 0 3146.55
+DILUPBiCG:  Solving for Ux, Initial residual = 3.31879e-06, Final residual = 1.3168e-12, No Iterations 1
+DILUPBiCG:  Solving for Uy, Initial residual = 0.754647, Final residual = 2.55668e-08, No Iterations 1
+DILUPBiCG:  Solving for Uz, Initial residual = 2.83591e-07, Final residual = 2.83591e-07, No Iterations 0
+DILUPBiCG:  Solving for iC3H8O, Initial residual = 0, Final residual = 0, No Iterations 0
+DILUPBiCG:  Solving for O2, Initial residual = 0.000548584, Final residual = 4.42164e-10, No Iterations 1
+DILUPBiCG:  Solving for CO2, Initial residual = 0, Final residual = 0, No Iterations 0
+DILUPBiCG:  Solving for H2O, Initial residual = 0.000187734, Final residual = 1.16389e-11, No Iterations 1
+dqSpray min/max = -5.50329e+06 0
+kappaEff min/max = 1.11111e-05 0.013948
+DILUPBiCG:  Solving for T, Initial residual = 0.00230836, Final residual = 2.12397e-11, No Iterations 1
+DICPCG:  Solving for p, Initial residual = 0.00879983, Final residual = 7.38847e-10, No Iterations 171
+time step continuity errors : sum local = 1.68409e-16, global = -6.16466e-20, cumulative = -9.78728e-18
+DICPCG:  Solving for p, Initial residual = 5.91257e-05, Final residual = 9.78649e-10, No Iterations 164
+time step continuity errors : sum local = 1.59486e-16, global = -6.44254e-19, cumulative = -1.04315e-17
+DICPCG:  Solving for p, Initial residual = 1.03319e-06, Final residual = 9.68819e-10, No Iterations 150
+time step continuity errors : sum local = 1.5063e-16, global = 3.69623e-19, cumulative = -1.00619e-17
+DICPCG:  Solving for p, Initial residual = 7.38888e-08, Final residual = 7.4804e-10, No Iterations 116
+time step continuity errors : sum local = 1.32958e-16, global = -1.051e-18, cumulative = -1.11129e-17
+DICPCG:  Solving for p, Initial residual = 4.19284e-08, Final residual = 9.00273e-10, No Iterations 43
+time step continuity errors : sum local = 8.4824e-17, global = -5.89538e-19, cumulative = -1.17025e-17
+DILUPBiCG:  Solving for epsilon, Initial residual = 5.18336e-07, Final residual = 5.18336e-07, No Iterations 0
+DILUPBiCG:  Solving for k, Initial residual = 6.20951e-07, Final residual = 2.51939e-13, No Iterations 1
+
+Number of parcels in system.... | 120
+Injected liquid mass........... | 0.0221896 mg
+Liquid Mass in system.......... | 0.0216095 mg
+SMD, Dmax, Dmin................ | 13.7323 mu, 64.2954 mu, 3.41539 mu
+Tmax, Tmin..................... | 312.822 K, 308.014 K
+Added gas mass................. | 0 mg
+Evaporation Continuity Error... | -0.000580099 mg
+ExecutionTime = 13.82 s  ClockTime = 14 s
+rRHO max/min : 1.06045 1.06045
+T max/min : 373.077 227.669
+p max/min : 100004 99984.8
+
+ MassFlows:   inlet = -0.000319444  outlet = 0.000319444
+Time = 2.9e-05
+
+Courant Number mean: 4.3233e-05 max: 0.00341849
+Evolving Spray
+Tg = 366.973
+Tg = 366.972
+Tg = 372.742
+Tg = 372.741
+Tg = 372.559
+Tg = 372.557
+Tg = 372.675
+Tg = 372.673
+Tg = 372.961
+Tg = 372.961
+Tg = 366.972
+Tg = 366.972
+Tg = 372.7
+Tg = 372.7
+Tg = 372.557
+Tg = 372.556
+Tg = 372.673
+Tg = 372.672
+Tg = 372.961
+Tg = 372.961
+Tg = 366.972
+Tg = 366.972
+Tg = 372.741
+Tg = 372.741
+Tg = 372.555
+Tg = 372.555
+Tg = 372.672
+Tg = 372.671
+Tg = 372.961
+Tg = 372.96
+Tg = 366.971
+Tg = 366.971
+Tg = 372.699
+Tg = 372.699
+Tg = 372.555
+Tg = 372.554
+Tg = 372.671
+Tg = 372.67
+Tg = 372.96
+Tg = 372.96
+Tg = 366.971
+Tg = 366.97
+Tg = 372.698
+Tg = 372.698
+Tg = 372.554
+Tg = 372.554
+Tg = 372.67
+Tg = 372.67
+Tg = 372.96
+Tg = 372.96
+Tg = 366.97
+Tg = 366.969
+Tg = 372.74
+Tg = 372.739
+Tg = 372.554
+Tg = 372.554
+Tg = 372.67
+Tg = 372.669
+Tg = 372.96
+Tg = 372.96
+Tg = 366.968
+Tg = 366.967
+Tg = 372.696
+Tg = 372.695
+Tg = 372.553
+Tg = 372.553
+Tg = 372.968
+Tg = 372.967
+Tg = 372.96
+Tg = 372.959
+Tg = 366.967
+Tg = 366.967
+Tg = 372.695
+Tg = 372.737
+Tg = 372.736
+Tg = 372.552
+Tg = 372.552
+Tg = 372.669
+Tg = 372.668
+Tg = 372.959
+Tg = 372.959
+Tg = 366.966
+Tg = 366.966
+Tg = 372.734
+Tg = 372.733
+Tg = 372.552
+Tg = 372.552
+Tg = 372.668
+Tg = 372.667
+Tg = 372.959
+Tg = 372.959
+Tg = 366.965
+Tg = 366.964
+Tg = 372.732
+Tg = 372.732
+Tg = 372.552
+Tg = 372.551
+Tg = 372.667
+Tg = 372.667
+Tg = 372.959
+Tg = 372.959
+Tg = 366.964
+Tg = 366.964
+Tg = 372.695
+Tg = 372.695
+Tg = 372.551
+Tg = 372.551
+Tg = 372.667
+Tg = 372.667
+Tg = 372.959
+Tg = 372.959
+Tg = 366.963
+Tg = 366.963
+Tg = 372.694
+Tg = 372.694
+Tg = 372.551
+Tg = 372.55
+Tg = 372.666
+Tg = 372.665
+Tg = 372.958
+Tg = 372.958
+Tg = 366.962
+Tg = 366.962
+Tg = 372.694
+Tg = 372.694
+Tg = 372.546
+Tg = 372.542
+Tg = 372.665
+Tg = 372.665
+Tg = 372.958
+Tg = 372.958
+Tg = 366.961
+Tg = 366.961
+Tg = 372.694
+Tg = 372.694
+Tg = 372.541
+Tg = 372.539
+Tg = 372.665
+Tg = 372.665
+Tg = 372.958
+Tg = 372.958
+Tg = 366.961
+Tg = 366.961
+Tg = 372.693
+Tg = 372.693
+Tg = 372.539
+Tg = 372.539
+Tg = 372.665
+Tg = 372.665
+Tg = 372.958
+Tg = 372.958
+Tg = 366.961
+Tg = 366.961
+Tg = 372.693
+Tg = 372.693
+Tg = 372.538
+Tg = 372.538
+Tg = 372.665
+Tg = 372.664
+Tg = 372.957
+Tg = 372.957
+Tg = 366.961
+Tg = 366.961
+Tg = 372.693
+Tg = 372.693
+Tg = 372.538
+Tg = 372.538
+Tg = 372.664
+Tg = 372.664
+Tg = 372.957
+Tg = 372.957
+Tg = 366.96
+Tg = 366.96
+Tg = 372.691
+Tg = 372.69
+Tg = 372.537
+Tg = 372.536
+Tg = 372.664
+Tg = 372.663
+Tg = 372.957
+Tg = 372.957
+Tg = 366.96
+Tg = 366.96
+Tg = 372.689
+Tg = 372.688
+Tg = 372.536
+Tg = 372.536
+Tg = 372.663
+Tg = 372.663
+Tg = 372.957
+Tg = 372.957
+Tg = 366.96
+Tg = 366.96
+Tg = 372.688
+Tg = 372.687
+Tg = 372.534
+Tg = 372.533
+Tg = 372.663
+Tg = 372.663
+Tg = 372.957
+Tg = 372.956
+Tg = 366.96
+Tg = 366.96
+Tg = 372.687
+Tg = 372.687
+Tg = 372.532
+Tg = 372.532
+Tg = 372.662
+Tg = 372.661
+Tg = 372.956
+Tg = 372.956
+Tg = 366.96
+Tg = 366.96
+Tg = 372.686
+Tg = 372.686
+Tg = 372.531
+Tg = 372.531
+Tg = 372.661
+Tg = 372.661
+Tg = 372.956
+Tg = 372.956
+Tg = 366.959
+Tg = 366.959
+Tg = 372.686
+Tg = 372.686
+Tg = 372.53
+Tg = 372.528
+Tg = 372.657
+Tg = 372.654
+Tg = 372.956
+Tg = 372.956
+Tg = 366.959
+Tg = 366.959
+Tg = 372.685
+Tg = 372.685
+Tg = 372.528
+Tg = 372.528
+Tg = 372.654
+Tg = 372.654
+Tg = 372.955
+Tg = 372.955
+Tg = 359.068
+Tg = 363.631
+Tg = 359.392
+Tg = 335.399
+Tg = 227.669
+Tg = 366.959
+Tg = 366.959
+Tg = 366.958
+Tg = 372.685
+Tg = 372.685
+Tg = 372.685
+Tg = 372.528
+Tg = 372.526
+Tg = 372.525
+Tg = 372.654
+Tg = 372.654
+Tg = 372.653
+Tg = 372.955
+Tg = 372.955
+Tg = 372.955
+dmomSpray min/max = 0 3146.29
+DILUPBiCG:  Solving for Ux, Initial residual = 3.28223e-06, Final residual = 1.30725e-12, No Iterations 1
+DILUPBiCG:  Solving for Uy, Initial residual = 0.742777, Final residual = 2.92209e-08, No Iterations 1
+DILUPBiCG:  Solving for Uz, Initial residual = 2.83275e-07, Final residual = 2.83275e-07, No Iterations 0
+DILUPBiCG:  Solving for iC3H8O, Initial residual = 0, Final residual = 0, No Iterations 0
+DILUPBiCG:  Solving for O2, Initial residual = 0.000547157, Final residual = 4.40414e-10, No Iterations 1
+DILUPBiCG:  Solving for CO2, Initial residual = 0, Final residual = 0, No Iterations 0
+DILUPBiCG:  Solving for H2O, Initial residual = 0.000181134, Final residual = 1.12559e-11, No Iterations 1
+dqSpray min/max = -5.50329e+06 0
+kappaEff min/max = 1.11111e-05 0.0139477
+DILUPBiCG:  Solving for T, Initial residual = 0.00222577, Final residual = 2.05973e-11, No Iterations 1
+DICPCG:  Solving for p, Initial residual = 0.00848434, Final residual = 9.5105e-10, No Iterations 170
+time step continuity errors : sum local = 1.56767e-16, global = 2.10808e-19, cumulative = -1.14916e-17
+DICPCG:  Solving for p, Initial residual = 5.97225e-05, Final residual = 6.93561e-10, No Iterations 165
+time step continuity errors : sum local = 1.6034e-16, global = -5.41051e-19, cumulative = -1.20327e-17
+DICPCG:  Solving for p, Initial residual = 1.04737e-06, Final residual = 9.78117e-10, No Iterations 150
+time step continuity errors : sum local = 1.53683e-16, global = -9.42296e-19, cumulative = -1.2975e-17
+DICPCG:  Solving for p, Initial residual = 7.55094e-08, Final residual = 8.80758e-10, No Iterations 131
+time step continuity errors : sum local = 1.4425e-16, global = -3.93712e-19, cumulative = -1.33687e-17
+DICPCG:  Solving for p, Initial residual = 4.60856e-08, Final residual = 9.09778e-10, No Iterations 35
+time step continuity errors : sum local = 7.61278e-17, global = -2.185e-19, cumulative = -1.35872e-17
+DILUPBiCG:  Solving for epsilon, Initial residual = 5.18729e-07, Final residual = 5.18729e-07, No Iterations 0
+DILUPBiCG:  Solving for k, Initial residual = 6.20976e-07, Final residual = 2.52151e-13, No Iterations 1
+
+Number of parcels in system.... | 125
+Injected liquid mass........... | 0.0229821 mg
+Liquid Mass in system.......... | 0.0223812 mg
+SMD, Dmax, Dmin................ | 13.6905 mu, 64.2954 mu, 3.41545 mu
+Tmax, Tmin..................... | 312.981 K, 308.012 K
+Added gas mass................. | 0 mg
+Evaporation Continuity Error... | -0.000600939 mg
+ExecutionTime = 14.3 s  ClockTime = 15 s
+rRHO max/min : 1.06045 1.06045
+T max/min : 373.077 222.781
+p max/min : 100004 99984.8
+
+ MassFlows:   inlet = -0.000319444  outlet = 0.000319444
+Time = 3e-05
+
+Courant Number mean: 4.32331e-05 max: 0.0034185
+Evolving Spray
+Tg = 366.556
+Tg = 366.556
+Tg = 372.712
+Tg = 372.711
+Tg = 372.523
+Tg = 372.521
+Tg = 372.651
+Tg = 372.649
+Tg = 372.953
+Tg = 372.953
+Tg = 366.556
+Tg = 366.556
+Tg = 372.684
+Tg = 372.684
+Tg = 372.52
+Tg = 372.519
+Tg = 372.648
+Tg = 372.648
+Tg = 372.953
+Tg = 372.953
+Tg = 366.556
+Tg = 366.556
+Tg = 372.711
+Tg = 372.711
+Tg = 372.519
+Tg = 372.518
+Tg = 372.647
+Tg = 372.647
+Tg = 372.953
+Tg = 372.952
+Tg = 366.555
+Tg = 366.555
+Tg = 372.683
+Tg = 372.683
+Tg = 372.518
+Tg = 372.518
+Tg = 372.646
+Tg = 372.646
+Tg = 372.952
+Tg = 372.952
+Tg = 366.555
+Tg = 366.554
+Tg = 372.682
+Tg = 372.682
+Tg = 372.518
+Tg = 372.517
+Tg = 372.646
+Tg = 372.645
+Tg = 372.952
+Tg = 372.952
+Tg = 366.554
+Tg = 366.553
+Tg = 372.71
+Tg = 372.708
+Tg = 372.517
+Tg = 372.517
+Tg = 372.645
+Tg = 372.645
+Tg = 372.952
+Tg = 372.952
+Tg = 366.552
+Tg = 366.551
+Tg = 372.68
+Tg = 372.679
+Tg = 372.517
+Tg = 372.516
+Tg = 372.965
+Tg = 372.965
+Tg = 372.952
+Tg = 372.951
+Tg = 366.551
+Tg = 366.551
+Tg = 372.707
+Tg = 372.705
+Tg = 372.516
+Tg = 372.515
+Tg = 372.644
+Tg = 372.644
+Tg = 372.951
+Tg = 372.951
+Tg = 366.55
+Tg = 366.55
+Tg = 372.704
+Tg = 372.702
+Tg = 372.515
+Tg = 372.515
+Tg = 372.643
+Tg = 372.643
+Tg = 372.951
+Tg = 372.951
+Tg = 366.549
+Tg = 366.548
+Tg = 372.702
+Tg = 372.701
+Tg = 372.515
+Tg = 372.515
+Tg = 372.642
+Tg = 372.642
+Tg = 372.951
+Tg = 372.951
+Tg = 366.548
+Tg = 366.547
+Tg = 372.679
+Tg = 372.679
+Tg = 372.515
+Tg = 372.515
+Tg = 372.642
+Tg = 372.642
+Tg = 372.951
+Tg = 372.951
+Tg = 366.547
+Tg = 366.546
+Tg = 372.679
+Tg = 372.679
+Tg = 372.514
+Tg = 372.514
+Tg = 372.642
+Tg = 372.641
+Tg = 372.951
+Tg = 372.95
+Tg = 366.546
+Tg = 366.546
+Tg = 372.678
+Tg = 372.678
+Tg = 372.51
+Tg = 372.506
+Tg = 372.641
+Tg = 372.641
+Tg = 372.95
+Tg = 372.95
+Tg = 366.545
+Tg = 366.545
+Tg = 372.678
+Tg = 372.678
+Tg = 372.504
+Tg = 372.503
+Tg = 372.641
+Tg = 372.641
+Tg = 372.95
+Tg = 372.95
+Tg = 366.545
+Tg = 366.545
+Tg = 372.678
+Tg = 372.678
+Tg = 372.701
+Tg = 372.503
+Tg = 372.502
+Tg = 372.641
+Tg = 372.641
+Tg = 372.95
+Tg = 372.95
+Tg = 366.545
+Tg = 366.545
+Tg = 372.678
+Tg = 372.678
+Tg = 372.502
+Tg = 372.502
+Tg = 372.64
+Tg = 372.64
+Tg = 372.949
+Tg = 372.949
+Tg = 366.545
+Tg = 366.544
+Tg = 372.677
+Tg = 372.677
+Tg = 372.501
+Tg = 372.501
+Tg = 372.64
+Tg = 372.64
+Tg = 372.949
+Tg = 372.949
+Tg = 366.544
+Tg = 366.544
+Tg = 372.676
+Tg = 372.674
+Tg = 372.5
+Tg = 372.5
+Tg = 372.639
+Tg = 372.639
+Tg = 372.949
+Tg = 372.949
+Tg = 366.544
+Tg = 366.544
+Tg = 372.673
+Tg = 372.673
+Tg = 372.499
+Tg = 372.499
+Tg = 372.639
+Tg = 372.639
+Tg = 372.949
+Tg = 372.949
+Tg = 366.544
+Tg = 366.544
+Tg = 372.672
+Tg = 372.671
+Tg = 372.498
+Tg = 372.497
+Tg = 372.639
+Tg = 372.639
+Tg = 372.949
+Tg = 372.948
+Tg = 366.544
+Tg = 366.544
+Tg = 372.671
+Tg = 372.671
+Tg = 372.496
+Tg = 372.495
+Tg = 372.638
+Tg = 372.637
+Tg = 372.948
+Tg = 372.948
+Tg = 366.544
+Tg = 366.544
+Tg = 372.67
+Tg = 372.67
+Tg = 372.495
+Tg = 372.494
+Tg = 372.636
+Tg = 372.636
+Tg = 372.948
+Tg = 372.948
+Tg = 366.543
+Tg = 366.543
+Tg = 372.67
+Tg = 372.67
+Tg = 372.493
+Tg = 372.492
+Tg = 372.633
+Tg = 372.63
+Tg = 372.948
+Tg = 372.948
+Tg = 366.543
+Tg = 366.543
+Tg = 372.67
+Tg = 372.669
+Tg = 372.492
+Tg = 372.491
+Tg = 372.629
+Tg = 372.629
+Tg = 372.947
+Tg = 372.947
+Tg = 366.542
+Tg = 366.542
+Tg = 372.669
+Tg = 372.669
+Tg = 372.49
+Tg = 372.488
+Tg = 372.629
+Tg = 372.629
+Tg = 372.947
+Tg = 372.947
+Tg = 358.58
+Tg = 363.304
+Tg = 358.91
+Tg = 334.112
+Tg = 222.781
+Tg = 366.542
+Tg = 366.541
+Tg = 366.541
+Tg = 372.669
+Tg = 372.669
+Tg = 372.669
+Tg = 372.488
+Tg = 372.488
+Tg = 372.487
+Tg = 372.629
+Tg = 372.628
+Tg = 372.627
+Tg = 372.947
+Tg = 372.947
+Tg = 372.947
+dmomSpray min/max = 0 3146.37
+DILUPBiCG:  Solving for Ux, Initial residual = 3.24775e-06, Final residual = 1.2993e-12, No Iterations 1
+DILUPBiCG:  Solving for Uy, Initial residual = 0.749088, Final residual = 2.35374e-08, No Iterations 1
+DILUPBiCG:  Solving for Uz, Initial residual = 2.82977e-07, Final residual = 2.82977e-07, No Iterations 0
+DILUPBiCG:  Solving for iC3H8O, Initial residual = 0, Final residual = 0, No Iterations 0
+DILUPBiCG:  Solving for O2, Initial residual = 0.000545748, Final residual = 4.38694e-10, No Iterations 1
+DILUPBiCG:  Solving for CO2, Initial residual = 0, Final residual = 0, No Iterations 0
+DILUPBiCG:  Solving for H2O, Initial residual = 0.000175008, Final residual = 1.09008e-11, No Iterations 1
+dqSpray min/max = -5.50329e+06 0
+kappaEff min/max = 1.11111e-05 0.0139474
+DILUPBiCG:  Solving for T, Initial residual = 0.00214889, Final residual = 2.00061e-11, No Iterations 1
+DICPCG:  Solving for p, Initial residual = 0.00819973, Final residual = 8.87852e-10, No Iterations 170
+time step continuity errors : sum local = 1.62364e-16, global = 1.04423e-19, cumulative = -1.34828e-17
+DICPCG:  Solving for p, Initial residual = 6.03052e-05, Final residual = 7.07753e-10, No Iterations 165
+time step continuity errors : sum local = 1.64627e-16, global = 1.14192e-18, cumulative = -1.23409e-17
+DICPCG:  Solving for p, Initial residual = 1.06238e-06, Final residual = 9.83539e-10, No Iterations 150
+time step continuity errors : sum local = 1.53697e-16, global = 8.75311e-19, cumulative = -1.14655e-17
+DICPCG:  Solving for p, Initial residual = 7.67843e-08, Final residual = 8.67072e-10, No Iterations 131
+time step continuity errors : sum local = 1.41938e-16, global = 4.53635e-20, cumulative = -1.14202e-17
+DICPCG:  Solving for p, Initial residual = 4.58855e-08, Final residual = 7.17941e-10, No Iterations 22
+time step continuity errors : sum local = 6.47389e-17, global = 2.53868e-19, cumulative = -1.11663e-17
+DILUPBiCG:  Solving for epsilon, Initial residual = 5.19121e-07, Final residual = 5.19121e-07, No Iterations 0
+DILUPBiCG:  Solving for k, Initial residual = 6.21002e-07, Final residual = 2.52368e-13, No Iterations 1
+
+Number of parcels in system.... | 130
+Injected liquid mass........... | 0.0237746 mg
+Liquid Mass in system.......... | 0.0231528 mg
+SMD, Dmax, Dmin................ | 13.563 mu, 64.2954 mu, 3.4155 mu
+Tmax, Tmin..................... | 313.139 K, 308.012 K
+Added gas mass................. | 0 mg
+Evaporation Continuity Error... | -0.000621791 mg
+ExecutionTime = 14.92 s  ClockTime = 15 s
+rRHO max/min : 1.06045 1.06045
+T max/min : 373.076 217.912
+p max/min : 100004 99984.9
+
+ MassFlows:   inlet = -0.000319444  outlet = 0.000319444
+Time = 3.1e-05
+
+Courant Number mean: 4.32331e-05 max: 0.00341851
+Evolving Spray
+Tg = 366.127
+Tg = 366.127
+Tg = 372.68
+Tg = 372.679
+Tg = 372.485
+Tg = 372.483
+Tg = 372.625
+Tg = 372.622
+Tg = 372.945
+Tg = 372.945
+Tg = 366.126
+Tg = 366.126
+Tg = 372.668
+Tg = 372.668
+Tg = 372.482
+Tg = 372.482
+Tg = 372.622
+Tg = 372.621
+Tg = 372.945
+Tg = 372.945
+Tg = 366.126
+Tg = 366.126
+Tg = 372.679
+Tg = 372.679
+Tg = 372.481
+Tg = 372.481
+Tg = 372.621
+Tg = 372.62
+Tg = 372.944
+Tg = 372.944
+Tg = 366.125
+Tg = 366.125
+Tg = 372.667
+Tg = 372.667
+Tg = 372.48
+Tg = 372.48
+Tg = 372.62
+Tg = 372.619
+Tg = 372.944
+Tg = 372.944
+Tg = 366.125
+Tg = 366.125
+Tg = 372.666
+Tg = 372.666
+Tg = 372.48
+Tg = 372.48
+Tg = 372.619
+Tg = 372.619
+Tg = 372.944
+Tg = 372.944
+Tg = 366.124
+Tg = 366.123
+Tg = 372.678
+Tg = 372.677
+Tg = 372.479
+Tg = 372.479
+Tg = 372.619
+Tg = 372.619
+Tg = 372.944
+Tg = 372.944
+Tg = 366.122
+Tg = 366.121
+Tg = 372.664
+Tg = 372.663
+Tg = 372.479
+Tg = 372.479
+Tg = 372.962
+Tg = 372.961
+Tg = 372.944
+Tg = 372.943
+Tg = 366.121
+Tg = 366.121
+Tg = 372.675
+Tg = 372.674
+Tg = 372.478
+Tg = 372.478
+Tg = 372.618
+Tg = 372.617
+Tg = 372.943
+Tg = 372.943
+Tg = 366.121
+Tg = 366.12
+Tg = 372.672
+Tg = 372.671
+Tg = 372.478
+Tg = 372.477
+Tg = 372.617
+Tg = 372.616
+Tg = 372.943
+Tg = 372.943
+Tg = 366.119
+Tg = 366.119
+Tg = 372.67
+Tg = 372.67
+Tg = 372.477
+Tg = 372.477
+Tg = 372.616
+Tg = 372.616
+Tg = 372.943
+Tg = 372.943
+Tg = 366.118
+Tg = 366.118
+Tg = 372.663
+Tg = 372.663
+Tg = 372.477
+Tg = 372.477
+Tg = 372.616
+Tg = 372.616
+Tg = 372.943
+Tg = 372.943
+Tg = 366.117
+Tg = 366.117
+Tg = 372.663
+Tg = 372.662
+Tg = 372.477
+Tg = 372.476
+Tg = 372.615
+Tg = 372.615
+Tg = 372.942
+Tg = 372.942
+Tg = 366.117
+Tg = 366.116
+Tg = 372.662
+Tg = 372.662
+Tg = 372.472
+Tg = 372.468
+Tg = 372.615
+Tg = 372.615
+Tg = 372.942
+Tg = 372.942
+Tg = 366.116
+Tg = 366.115
+Tg = 372.662
+Tg = 372.662
+Tg = 372.467
+Tg = 372.465
+Tg = 372.615
+Tg = 372.615
+Tg = 372.942
+Tg = 372.942
+Tg = 366.115
+Tg = 366.115
+Tg = 372.67
+Tg = 372.67
+Tg = 372.465
+Tg = 372.464
+Tg = 372.614
+Tg = 372.614
+Tg = 372.942
+Tg = 372.941
+Tg = 366.115
+Tg = 366.115
+Tg = 372.662
+Tg = 372.662
+Tg = 372.464
+Tg = 372.464
+Tg = 372.614
+Tg = 372.614
+Tg = 372.941
+Tg = 372.941
+Tg = 366.115
+Tg = 366.115
+Tg = 372.661
+Tg = 372.661
+Tg = 372.464
+Tg = 372.464
+Tg = 372.613
+Tg = 372.613
+Tg = 372.941
+Tg = 372.941
+Tg = 366.115
+Tg = 366.115
+Tg = 372.66
+Tg = 372.658
+Tg = 372.463
+Tg = 372.462
+Tg = 372.613
+Tg = 372.613
+Tg = 372.941
+Tg = 372.941
+Tg = 366.115
+Tg = 366.115
+Tg = 372.657
+Tg = 372.657
+Tg = 372.462
+Tg = 372.461
+Tg = 372.613
+Tg = 372.613
+Tg = 372.941
+Tg = 372.941
+Tg = 366.114
+Tg = 366.114
+Tg = 372.656
+Tg = 372.655
+Tg = 372.46
+Tg = 372.459
+Tg = 372.612
+Tg = 372.612
+Tg = 372.941
+Tg = 372.94
+Tg = 366.114
+Tg = 366.114
+Tg = 372.655
+Tg = 372.655
+Tg = 372.458
+Tg = 372.457
+Tg = 372.611
+Tg = 372.61
+Tg = 372.94
+Tg = 372.94
+Tg = 366.114
+Tg = 366.114
+Tg = 372.654
+Tg = 372.654
+Tg = 372.457
+Tg = 372.457
+Tg = 372.61
+Tg = 372.61
+Tg = 372.94
+Tg = 372.94
+Tg = 366.114
+Tg = 366.114
+Tg = 372.654
+Tg = 372.654
+Tg = 372.455
+Tg = 372.454
+Tg = 372.606
+Tg = 372.603
+Tg = 372.94
+Tg = 372.94
+Tg = 366.113
+Tg = 366.113
+Tg = 372.654
+Tg = 372.654
+Tg = 372.454
+Tg = 372.453
+Tg = 372.603
+Tg = 372.603
+Tg = 372.939
+Tg = 372.939
+Tg = 366.113
+Tg = 366.112
+Tg = 372.653
+Tg = 372.653
+Tg = 372.452
+Tg = 372.45
+Tg = 372.602
+Tg = 372.602
+Tg = 372.939
+Tg = 372.939
+Tg = 366.112
+Tg = 366.111
+Tg = 372.653
+Tg = 372.653
+Tg = 372.45
+Tg = 372.449
+Tg = 372.601
+Tg = 372.601
+Tg = 372.939
+Tg = 372.939
+dmomSpray min/max = 0 11.0297
+DILUPBiCG:  Solving for Ux, Initial residual = 3.21661e-06, Final residual = 1.29197e-12, No Iterations 1
+DILUPBiCG:  Solving for Uy, Initial residual = 1.47465e-05, Final residual = 5.05875e-12, No Iterations 1
+DILUPBiCG:  Solving for Uz, Initial residual = 2.81722e-07, Final residual = 2.81722e-07, No Iterations 0
+DILUPBiCG:  Solving for iC3H8O, Initial residual = 0, Final residual = 0, No Iterations 0
+DILUPBiCG:  Solving for O2, Initial residual = 0.000544356, Final residual = 4.37006e-10, No Iterations 1
+DILUPBiCG:  Solving for CO2, Initial residual = 0, Final residual = 0, No Iterations 0
+DILUPBiCG:  Solving for H2O, Initial residual = 3.59248e-05, Final residual = 2.86553e-12, No Iterations 1
+dqSpray min/max = -37952.2 0
+kappaEff min/max = 1.11111e-05 0.0139472
+DILUPBiCG:  Solving for T, Initial residual = 0.00198571, Final residual = 1.65504e-11, No Iterations 1
+DICPCG:  Solving for p, Initial residual = 0.00792511, Final residual = 8.24512e-10, No Iterations 170
+time step continuity errors : sum local = 1.64646e-16, global = -1.51848e-19, cumulative = -1.13182e-17
+DICPCG:  Solving for p, Initial residual = 6.08785e-05, Final residual = 6.81049e-10, No Iterations 165
+time step continuity errors : sum local = 1.67498e-16, global = 3.30826e-19, cumulative = -1.09873e-17
+DICPCG:  Solving for p, Initial residual = 1.07641e-06, Final residual = 9.51783e-10, No Iterations 150
+time step continuity errors : sum local = 1.55565e-16, global = -6.16876e-19, cumulative = -1.16042e-17
+DICPCG:  Solving for p, Initial residual = 7.87056e-08, Final residual = 8.8522e-10, No Iterations 131
+time step continuity errors : sum local = 1.41619e-16, global = -4.99083e-19, cumulative = -1.21033e-17
+DICPCG:  Solving for p, Initial residual = 4.66775e-08, Final residual = 8.14389e-10, No Iterations 24
+time step continuity errors : sum local = 6.62209e-17, global = -7.20352e-19, cumulative = -1.28236e-17
+DILUPBiCG:  Solving for epsilon, Initial residual = 5.19511e-07, Final residual = 5.19511e-07, No Iterations 0
+DILUPBiCG:  Solving for k, Initial residual = 6.21029e-07, Final residual = 2.52586e-13, No Iterations 1
+
+Number of parcels in system.... | 130
+Injected liquid mass........... | 0.0245671 mg
+Liquid Mass in system.......... | 0.0231526 mg
+SMD, Dmax, Dmin................ | 13.563 mu, 64.2954 mu, 3.41554 mu
+Tmax, Tmin..................... | 313.295 K, 308.024 K
+Added gas mass................. | 0 mg
+Evaporation Continuity Error... | -0.00141451 mg
+ExecutionTime = 15.39 s  ClockTime = 16 s
+rRHO max/min : 1.06045 1.06045
+T max/min : 373.076 218.542
+p max/min : 100004 99985
+
+ MassFlows:   inlet = -0.000319444  outlet = 0.000319444
+Time = 3.2e-05
+
+Courant Number mean: 4.32332e-05 max: 0.00341851
+Evolving Spray
+Tg = 365.701
+Tg = 365.701
+Tg = 372.647
+Tg = 372.646
+Tg = 372.447
+Tg = 372.446
+Tg = 372.598
+Tg = 372.596
+Tg = 372.937
+Tg = 372.937
+Tg = 365.7
+Tg = 365.7
+Tg = 372.652
+Tg = 372.652
+Tg = 372.445
+Tg = 372.444
+Tg = 372.595
+Tg = 372.595
+Tg = 372.937
+Tg = 372.937
+Tg = 365.7
+Tg = 365.7
+Tg = 372.646
+Tg = 372.646
+Tg = 372.443
+Tg = 372.443
+Tg = 372.594
+Tg = 372.594
+Tg = 372.936
+Tg = 372.936
+Tg = 365.699
+Tg = 365.699
+Tg = 372.651
+Tg = 372.651
+Tg = 372.443
+Tg = 372.443
+Tg = 372.593
+Tg = 372.593
+Tg = 372.936
+Tg = 372.936
+Tg = 365.699
+Tg = 365.699
+Tg = 372.65
+Tg = 372.65
+Tg = 372.442
+Tg = 372.442
+Tg = 372.593
+Tg = 372.592
+Tg = 372.936
+Tg = 372.936
+Tg = 365.698
+Tg = 365.697
+Tg = 372.645
+Tg = 372.644
+Tg = 372.442
+Tg = 372.442
+Tg = 372.592
+Tg = 372.592
+Tg = 372.936
+Tg = 372.936
+Tg = 365.696
+Tg = 365.695
+Tg = 372.648
+Tg = 372.647
+Tg = 372.441
+Tg = 372.441
+Tg = 372.958
+Tg = 372.958
+Tg = 372.935
+Tg = 372.935
+Tg = 365.695
+Tg = 365.695
+Tg = 372.642
+Tg = 372.641
+Tg = 372.44
+Tg = 372.44
+Tg = 372.591
+Tg = 372.591
+Tg = 372.935
+Tg = 372.935
+Tg = 365.694
+Tg = 365.694
+Tg = 372.639
+Tg = 372.638
+Tg = 372.44
+Tg = 372.44
+Tg = 372.59
+Tg = 372.59
+Tg = 372.935
+Tg = 372.935
+Tg = 365.693
+Tg = 365.693
+Tg = 372.637
+Tg = 372.637
+Tg = 372.44
+Tg = 372.44
+Tg = 372.59
+Tg = 372.589
+Tg = 372.935
+Tg = 372.935
+Tg = 365.692
+Tg = 365.692
+Tg = 372.647
+Tg = 372.647
+Tg = 372.44
+Tg = 372.439
+Tg = 372.589
+Tg = 372.589
+Tg = 372.934
+Tg = 372.934
+Tg = 365.691
+Tg = 365.691
+Tg = 372.647
+Tg = 372.646
+Tg = 372.439
+Tg = 372.438
+Tg = 372.589
+Tg = 372.588
+Tg = 372.934
+Tg = 372.934
+Tg = 365.69
+Tg = 365.69
+Tg = 372.646
+Tg = 372.646
+Tg = 372.434
+Tg = 372.43
+Tg = 372.588
+Tg = 372.588
+Tg = 372.934
+Tg = 372.934
+Tg = 365.69
+Tg = 365.689
+Tg = 372.646
+Tg = 372.646
+Tg = 372.429
+Tg = 372.427
+Tg = 372.588
+Tg = 372.588
+Tg = 372.934
+Tg = 372.934
+Tg = 365.689
+Tg = 365.689
+Tg = 372.637
+Tg = 372.637
+Tg = 372.427
+Tg = 372.427
+Tg = 372.588
+Tg = 372.588
+Tg = 372.933
+Tg = 372.933
+Tg = 365.689
+Tg = 365.689
+Tg = 372.646
+Tg = 372.646
+Tg = 372.426
+Tg = 372.426
+Tg = 372.587
+Tg = 372.587
+Tg = 372.933
+Tg = 372.933
+Tg = 365.689
+Tg = 365.689
+Tg = 372.645
+Tg = 372.645
+Tg = 372.426
+Tg = 372.426
+Tg = 372.587
+Tg = 372.587
+Tg = 372.933
+Tg = 372.933
+Tg = 365.689
+Tg = 365.689
+Tg = 372.644
+Tg = 372.642
+Tg = 372.425
+Tg = 372.424
+Tg = 372.586
+Tg = 372.586
+Tg = 372.933
+Tg = 372.933
+Tg = 365.688
+Tg = 365.688
+Tg = 372.641
+Tg = 372.641
+Tg = 372.424
+Tg = 372.424
+Tg = 372.586
+Tg = 372.586
+Tg = 372.933
+Tg = 372.933
+Tg = 365.688
+Tg = 365.688
+Tg = 372.64
+Tg = 372.639
+Tg = 372.422
+Tg = 372.421
+Tg = 372.586
+Tg = 372.586
+Tg = 372.932
+Tg = 372.932
+Tg = 365.688
+Tg = 365.688
+Tg = 372.639
+Tg = 372.639
+Tg = 372.42
+Tg = 372.42
+Tg = 372.585
+Tg = 372.584
+Tg = 372.932
+Tg = 372.931
+Tg = 365.688
+Tg = 365.688
+Tg = 372.638
+Tg = 372.638
+Tg = 372.419
+Tg = 372.419
+Tg = 372.583
+Tg = 372.583
+Tg = 372.931
+Tg = 372.931
+Tg = 365.688
+Tg = 365.687
+Tg = 372.638
+Tg = 372.638
+Tg = 372.418
+Tg = 372.416
+Tg = 372.58
+Tg = 372.576
+Tg = 372.931
+Tg = 372.931
+Tg = 365.687
+Tg = 365.687
+Tg = 372.638
+Tg = 372.637
+Tg = 372.416
+Tg = 372.415
+Tg = 372.576
+Tg = 372.576
+Tg = 372.931
+Tg = 372.931
+Tg = 365.687
+Tg = 365.686
+Tg = 372.637
+Tg = 372.637
+Tg = 372.414
+Tg = 372.413
+Tg = 372.576
+Tg = 372.576
+Tg = 372.931
+Tg = 372.931
+Tg = 365.686
+Tg = 365.685
+Tg = 372.637
+Tg = 372.637
+Tg = 372.412
+Tg = 372.411
+Tg = 372.575
+Tg = 372.574
+Tg = 372.931
+Tg = 372.931
+Tg = 358.116
+Tg = 362.992
+Tg = 358.437
+Tg = 332.946
+Tg = 218.542
+Tg = 365.685
+Tg = 365.685
+Tg = 365.684
+Tg = 372.637
+Tg = 372.634
+Tg = 372.631
+Tg = 372.411
+Tg = 372.409
+Tg = 372.407
+Tg = 372.574
+Tg = 372.573
+Tg = 372.573
+Tg = 372.931
+Tg = 372.93
+Tg = 372.929
+dmomSpray min/max = 0 6292.47
+DILUPBiCG:  Solving for Ux, Initial residual = 3.18518e-06, Final residual = 1.2873e-12, No Iterations 1
+DILUPBiCG:  Solving for Uy, Initial residual = 0.822396, Final residual = 2.78115e-08, No Iterations 1
+DILUPBiCG:  Solving for Uz, Initial residual = 2.8333e-07, Final residual = 2.8333e-07, No Iterations 0
+DILUPBiCG:  Solving for iC3H8O, Initial residual = 0, Final residual = 0, No Iterations 0
+DILUPBiCG:  Solving for O2, Initial residual = 0.000542981, Final residual = 4.35346e-10, No Iterations 1
+DILUPBiCG:  Solving for CO2, Initial residual = 0, Final residual = 0, No Iterations 0
+DILUPBiCG:  Solving for H2O, Initial residual = 0.000336741, Final residual = 2.02426e-11, No Iterations 1
+dqSpray min/max = -1.10066e+07 0
+kappaEff min/max = 1.11111e-05 0.0139469
+DILUPBiCG:  Solving for T, Initial residual = 0.00217005, Final residual = 2.67509e-11, No Iterations 1
+DICPCG:  Solving for p, Initial residual = 0.00766815, Final residual = 7.63029e-10, No Iterations 170
+time step continuity errors : sum local = 1.61642e-16, global = 1.16556e-18, cumulative = -1.16581e-17
+DICPCG:  Solving for p, Initial residual = 6.14377e-05, Final residual = 7.21922e-10, No Iterations 165
+time step continuity errors : sum local = 1.60694e-16, global = 2.86248e-20, cumulative = -1.16295e-17
+DICPCG:  Solving for p, Initial residual = 1.08831e-06, Final residual = 9.92526e-10, No Iterations 150
+time step continuity errors : sum local = 1.52889e-16, global = 3.70706e-19, cumulative = -1.12588e-17
+DICPCG:  Solving for p, Initial residual = 7.89307e-08, Final residual = 8.86511e-10, No Iterations 132
+time step continuity errors : sum local = 1.44214e-16, global = 1.01055e-18, cumulative = -1.02482e-17
+DICPCG:  Solving for p, Initial residual = 4.7676e-08, Final residual = 9.82794e-10, No Iterations 39
+time step continuity errors : sum local = 8.10618e-17, global = 9.12487e-19, cumulative = -9.33572e-18
+DILUPBiCG:  Solving for epsilon, Initial residual = 5.19902e-07, Final residual = 5.19902e-07, No Iterations 0
+DILUPBiCG:  Solving for k, Initial residual = 6.21055e-07, Final residual = 2.52805e-13, No Iterations 1
+
+Number of parcels in system.... | 135
+Injected liquid mass........... | 0.0253596 mg
+Liquid Mass in system.......... | 0.024696 mg
+SMD, Dmax, Dmin................ | 13.5524 mu, 64.2954 mu, 3.41556 mu
+Tmax, Tmin..................... | 313.451 K, 308.017 K
+Added gas mass................. | 0 mg
+Evaporation Continuity Error... | -0.00066353 mg
+ExecutionTime = 15.87 s  ClockTime = 16 s
+rRHO max/min : 1.06045 1.06045
+T max/min : 373.075 208.209
+p max/min : 100004 99985
+
+ MassFlows:   inlet = -0.000319444  outlet = 0.000319444
+Time = 3.3e-05
+
+Courant Number mean: 4.32332e-05 max: 0.00341852
+Evolving Spray
+Tg = 365.247
+Tg = 365.247
+Tg = 372.613
+Tg = 372.612
+Tg = 372.406
+Tg = 372.404
+Tg = 372.571
+Tg = 372.568
+Tg = 372.927
+Tg = 372.927
+Tg = 365.246
+Tg = 365.246
+Tg = 372.63
+Tg = 372.63
+Tg = 372.403
+Tg = 372.402
+Tg = 372.568
+Tg = 372.568
+Tg = 372.926
+Tg = 372.926
+Tg = 365.246
+Tg = 365.246
+Tg = 372.612
+Tg = 372.612
+Tg = 372.402
+Tg = 372.401
+Tg = 372.567
+Tg = 372.566
+Tg = 372.926
+Tg = 372.926
+Tg = 365.245
+Tg = 365.245
+Tg = 372.629
+Tg = 372.629
+Tg = 372.401
+Tg = 372.401
+Tg = 372.566
+Tg = 372.566
+Tg = 372.926
+Tg = 372.926
+Tg = 365.245
+Tg = 365.245
+Tg = 372.628
+Tg = 372.628
+Tg = 372.612
+Tg = 372.401
+Tg = 372.4
+Tg = 372.565
+Tg = 372.565
+Tg = 372.926
+Tg = 372.925
+Tg = 365.244
+Tg = 365.243
+Tg = 372.611
+Tg = 372.61
+Tg = 372.4
+Tg = 372.4
+Tg = 372.565
+Tg = 372.565
+Tg = 372.925
+Tg = 372.925
+Tg = 365.242
+Tg = 365.241
+Tg = 372.626
+Tg = 372.625
+Tg = 372.4
+Tg = 372.399
+Tg = 372.955
+Tg = 372.955
+Tg = 372.925
+Tg = 372.925
+Tg = 365.241
+Tg = 365.241
+Tg = 372.608
+Tg = 372.607
+Tg = 372.399
+Tg = 372.398
+Tg = 372.564
+Tg = 372.563
+Tg = 372.925
+Tg = 372.924
+Tg = 365.24
+Tg = 365.24
+Tg = 372.605
+Tg = 372.603
+Tg = 372.398
+Tg = 372.398
+Tg = 372.563
+Tg = 372.562
+Tg = 372.924
+Tg = 372.924
+Tg = 365.239
+Tg = 365.239
+Tg = 372.603
+Tg = 372.602
+Tg = 372.398
+Tg = 372.398
+Tg = 372.562
+Tg = 372.562
+Tg = 372.924
+Tg = 372.924
+Tg = 365.238
+Tg = 365.238
+Tg = 372.625
+Tg = 372.625
+Tg = 372.398
+Tg = 372.398
+Tg = 372.562
+Tg = 372.562
+Tg = 372.924
+Tg = 372.924
+Tg = 365.237
+Tg = 365.237
+Tg = 372.625
+Tg = 372.625
+Tg = 372.397
+Tg = 372.397
+Tg = 372.561
+Tg = 372.561
+Tg = 372.924
+Tg = 372.924
+Tg = 365.236
+Tg = 365.236
+Tg = 372.624
+Tg = 372.624
+Tg = 372.393
+Tg = 372.389
+Tg = 372.561
+Tg = 372.561
+Tg = 372.924
+Tg = 372.923
+Tg = 365.236
+Tg = 365.235
+Tg = 372.624
+Tg = 372.624
+Tg = 372.387
+Tg = 372.386
+Tg = 372.561
+Tg = 372.561
+Tg = 372.923
+Tg = 372.923
+Tg = 365.235
+Tg = 365.235
+Tg = 372.602
+Tg = 372.602
+Tg = 372.385
+Tg = 372.385
+Tg = 372.56
+Tg = 372.56
+Tg = 372.923
+Tg = 372.923
+Tg = 365.235
+Tg = 365.235
+Tg = 372.624
+Tg = 372.624
+Tg = 372.385
+Tg = 372.384
+Tg = 372.56
+Tg = 372.56
+Tg = 372.923
+Tg = 372.922
+Tg = 365.235
+Tg = 365.235
+Tg = 372.623
+Tg = 372.623
+Tg = 372.384
+Tg = 372.384
+Tg = 372.559
+Tg = 372.559
+Tg = 372.922
+Tg = 372.922
+Tg = 365.235
+Tg = 365.235
+Tg = 372.622
+Tg = 372.62
+Tg = 372.383
+Tg = 372.382
+Tg = 372.559
+Tg = 372.559
+Tg = 372.922
+Tg = 372.922
+Tg = 365.235
+Tg = 365.234
+Tg = 372.619
+Tg = 372.619
+Tg = 372.382
+Tg = 372.382
+Tg = 372.559
+Tg = 372.559
+Tg = 372.922
+Tg = 372.922
+Tg = 365.234
+Tg = 365.234
+Tg = 372.618
+Tg = 372.617
+Tg = 372.381
+Tg = 372.38
+Tg = 372.558
+Tg = 372.558
+Tg = 372.922
+Tg = 372.922
+Tg = 365.234
+Tg = 365.234
+Tg = 372.617
+Tg = 372.617
+Tg = 372.379
+Tg = 372.378
+Tg = 372.557
+Tg = 372.556
+Tg = 372.922
+Tg = 372.921
+Tg = 365.234
+Tg = 365.234
+Tg = 372.616
+Tg = 372.616
+Tg = 372.378
+Tg = 372.377
+Tg = 372.556
+Tg = 372.556
+Tg = 372.921
+Tg = 372.921
+Tg = 365.234
+Tg = 365.233
+Tg = 372.616
+Tg = 372.616
+Tg = 372.376
+Tg = 372.375
+Tg = 372.552
+Tg = 372.549
+Tg = 372.921
+Tg = 372.921
+Tg = 365.233
+Tg = 365.233
+Tg = 372.616
+Tg = 372.616
+Tg = 372.374
+Tg = 372.374
+Tg = 372.549
+Tg = 372.548
+Tg = 372.921
+Tg = 372.921
+Tg = 365.233
+Tg = 365.232
+Tg = 372.615
+Tg = 372.615
+Tg = 372.372
+Tg = 372.371
+Tg = 372.548
+Tg = 372.548
+Tg = 372.921
+Tg = 372.92
+Tg = 365.232
+Tg = 365.231
+Tg = 372.615
+Tg = 372.615
+Tg = 372.37
+Tg = 372.37
+Tg = 372.547
+Tg = 372.546
+Tg = 372.92
+Tg = 372.92
+Tg = 365.231
+Tg = 365.231
+Tg = 372.614
+Tg = 372.612
+Tg = 372.369
+Tg = 372.368
+Tg = 372.546
+Tg = 372.546
+Tg = 372.92
+Tg = 372.919
+dmomSpray min/max = 0 11.7746
+DILUPBiCG:  Solving for Ux, Initial residual = 3.15621e-06, Final residual = 1.28351e-12, No Iterations 1
+DILUPBiCG:  Solving for Uy, Initial residual = 1.47448e-05, Final residual = 5.15349e-12, No Iterations 1
+DILUPBiCG:  Solving for Uz, Initial residual = 2.81135e-07, Final residual = 2.81135e-07, No Iterations 0
+DILUPBiCG:  Solving for iC3H8O, Initial residual = 0, Final residual = 0, No Iterations 0
+DILUPBiCG:  Solving for O2, Initial residual = 0.000541627, Final residual = 4.33752e-10, No Iterations 1
+DILUPBiCG:  Solving for CO2, Initial residual = 0, Final residual = 0, No Iterations 0
+DILUPBiCG:  Solving for H2O, Initial residual = 3.57894e-05, Final residual = 2.85947e-12, No Iterations 1
+dqSpray min/max = -40045.5 0
+kappaEff min/max = 1.11111e-05 0.0139466
+DILUPBiCG:  Solving for T, Initial residual = 0.00186256, Final residual = 1.60369e-11, No Iterations 1
+DICPCG:  Solving for p, Initial residual = 0.00742239, Final residual = 8.96463e-10, No Iterations 167
+time step continuity errors : sum local = 1.61425e-16, global = -1.93324e-19, cumulative = -9.52904e-18
+DICPCG:  Solving for p, Initial residual = 6.19897e-05, Final residual = 7.26921e-10, No Iterations 165
+time step continuity errors : sum local = 1.59437e-16, global = -1.54165e-20, cumulative = -9.54446e-18
+DICPCG:  Solving for p, Initial residual = 1.10083e-06, Final residual = 8.32084e-10, No Iterations 151
+time step continuity errors : sum local = 1.53407e-16, global = -1.80079e-19, cumulative = -9.72454e-18
+DICPCG:  Solving for p, Initial residual = 7.95516e-08, Final residual = 9.94169e-10, No Iterations 131
+time step continuity errors : sum local = 1.46196e-16, global = -2.68618e-19, cumulative = -9.99315e-18
+DICPCG:  Solving for p, Initial residual = 4.92897e-08, Final residual = 9.99047e-10, No Iterations 106
+time step continuity errors : sum local = 1.29464e-16, global = 5.42645e-19, cumulative = -9.45051e-18
+DILUPBiCG:  Solving for epsilon, Initial residual = 5.20291e-07, Final residual = 5.20291e-07, No Iterations 0
+DILUPBiCG:  Solving for k, Initial residual = 6.21082e-07, Final residual = 2.53023e-13, No Iterations 1
+
+Number of parcels in system.... | 135
+Injected liquid mass........... | 0.0261521 mg
+Liquid Mass in system.......... | 0.0246958 mg
+SMD, Dmax, Dmin................ | 13.5524 mu, 64.2954 mu, 3.41558 mu
+Tmax, Tmin..................... | 313.606 K, 308.026 K
+Added gas mass................. | 0 mg
+Evaporation Continuity Error... | -0.00145627 mg
+ExecutionTime = 16.37 s  ClockTime = 17 s
+rRHO max/min : 1.06045 1.06045
+T max/min : 373.075 208.878
+p max/min : 100004 99985.1
+
+ MassFlows:   inlet = -0.000319444  outlet = 0.000319444
+Time = 3.4e-05
+
+Courant Number mean: 4.32332e-05 max: 0.00341853
+Evolving Spray
+Tg = 364.797
+Tg = 364.797
+Tg = 372.577
+Tg = 372.577
+Tg = 372.366
+Tg = 372.364
+Tg = 372.544
+Tg = 372.541
+Tg = 372.917
+Tg = 372.917
+Tg = 364.796
+Tg = 364.796
+Tg = 372.611
+Tg = 372.611
+Tg = 372.364
+Tg = 372.363
+Tg = 372.541
+Tg = 372.54
+Tg = 372.917
+Tg = 372.917
+Tg = 364.796
+Tg = 364.796
+Tg = 372.576
+Tg = 372.576
+Tg = 372.362
+Tg = 372.362
+Tg = 372.54
+Tg = 372.539
+Tg = 372.917
+Tg = 372.916
+Tg = 364.795
+Tg = 364.795
+Tg = 372.61
+Tg = 372.61
+Tg = 372.362
+Tg = 372.361
+Tg = 372.539
+Tg = 372.538
+Tg = 372.916
+Tg = 372.916
+Tg = 364.795
+Tg = 364.795
+Tg = 372.576
+Tg = 372.575
+Tg = 372.361
+Tg = 372.361
+Tg = 372.538
+Tg = 372.538
+Tg = 372.916
+Tg = 372.916
+Tg = 364.794
+Tg = 364.793
+Tg = 372.574
+Tg = 372.573
+Tg = 372.361
+Tg = 372.361
+Tg = 372.538
+Tg = 372.537
+Tg = 372.916
+Tg = 372.916
+Tg = 364.792
+Tg = 364.791
+Tg = 372.608
+Tg = 372.607
+Tg = 372.36
+Tg = 372.36
+Tg = 372.952
+Tg = 372.951
+Tg = 372.916
+Tg = 372.915
+Tg = 364.791
+Tg = 364.791
+Tg = 372.571
+Tg = 372.57
+Tg = 372.359
+Tg = 372.359
+Tg = 372.537
+Tg = 372.536
+Tg = 372.915
+Tg = 372.915
+Tg = 364.79
+Tg = 364.79
+Tg = 372.568
+Tg = 372.567
+Tg = 372.359
+Tg = 372.359
+Tg = 372.536
+Tg = 372.535
+Tg = 372.915
+Tg = 372.915
+Tg = 364.789
+Tg = 364.789
+Tg = 372.566
+Tg = 372.566
+Tg = 372.359
+Tg = 372.358
+Tg = 372.535
+Tg = 372.535
+Tg = 372.915
+Tg = 372.915
+Tg = 364.788
+Tg = 364.788
+Tg = 372.607
+Tg = 372.607
+Tg = 372.358
+Tg = 372.358
+Tg = 372.535
+Tg = 372.535
+Tg = 372.915
+Tg = 372.915
+Tg = 364.787
+Tg = 364.787
+Tg = 372.607
+Tg = 372.606
+Tg = 372.358
+Tg = 372.357
+Tg = 372.534
+Tg = 372.534
+Tg = 372.915
+Tg = 372.914
+Tg = 364.787
+Tg = 364.786
+Tg = 372.606
+Tg = 372.565
+Tg = 372.565
+Tg = 372.353
+Tg = 372.349
+Tg = 372.534
+Tg = 372.533
+Tg = 372.914
+Tg = 372.914
+Tg = 364.786
+Tg = 364.785
+Tg = 372.606
+Tg = 372.606
+Tg = 372.347
+Tg = 372.346
+Tg = 372.533
+Tg = 372.533
+Tg = 372.914
+Tg = 372.914
+Tg = 364.785
+Tg = 364.785
+Tg = 372.565
+Tg = 372.565
+Tg = 372.346
+Tg = 372.345
+Tg = 372.533
+Tg = 372.533
+Tg = 372.914
+Tg = 372.914
+Tg = 364.785
+Tg = 364.785
+Tg = 372.606
+Tg = 372.606
+Tg = 372.345
+Tg = 372.345
+Tg = 372.533
+Tg = 372.533
+Tg = 372.913
+Tg = 372.913
+Tg = 364.785
+Tg = 364.785
+Tg = 372.606
+Tg = 372.606
+Tg = 372.345
+Tg = 372.344
+Tg = 372.532
+Tg = 372.532
+Tg = 372.913
+Tg = 372.913
+Tg = 364.785
+Tg = 364.785
+Tg = 372.604
+Tg = 372.603
+Tg = 372.344
+Tg = 372.343
+Tg = 372.532
+Tg = 372.532
+Tg = 372.913
+Tg = 372.913
+Tg = 364.785
+Tg = 364.784
+Tg = 372.602
+Tg = 372.601
+Tg = 372.343
+Tg = 372.342
+Tg = 372.532
+Tg = 372.531
+Tg = 372.913
+Tg = 372.913
+Tg = 364.784
+Tg = 364.784
+Tg = 372.6
+Tg = 372.599
+Tg = 372.341
+Tg = 372.34
+Tg = 372.531
+Tg = 372.531
+Tg = 372.913
+Tg = 372.913
+Tg = 364.784
+Tg = 364.784
+Tg = 372.599
+Tg = 372.599
+Tg = 372.339
+Tg = 372.338
+Tg = 372.53
+Tg = 372.529
+Tg = 372.912
+Tg = 372.912
+Tg = 364.784
+Tg = 364.784
+Tg = 372.599
+Tg = 372.598
+Tg = 372.338
+Tg = 372.338
+Tg = 372.529
+Tg = 372.529
+Tg = 372.912
+Tg = 372.912
+Tg = 364.784
+Tg = 364.783
+Tg = 372.598
+Tg = 372.598
+Tg = 372.336
+Tg = 372.335
+Tg = 372.525
+Tg = 372.521
+Tg = 372.912
+Tg = 372.912
+Tg = 364.783
+Tg = 364.783
+Tg = 372.598
+Tg = 372.598
+Tg = 372.335
+Tg = 372.334
+Tg = 372.521
+Tg = 372.521
+Tg = 372.911
+Tg = 372.911
+Tg = 364.783
+Tg = 364.782
+Tg = 372.598
+Tg = 372.598
+Tg = 372.333
+Tg = 372.331
+Tg = 372.521
+Tg = 372.521
+Tg = 372.911
+Tg = 372.911
+Tg = 364.782
+Tg = 364.781
+Tg = 372.598
+Tg = 372.598
+Tg = 372.331
+Tg = 372.33
+Tg = 372.52
+Tg = 372.519
+Tg = 372.911
+Tg = 372.911
+Tg = 364.781
+Tg = 364.781
+Tg = 372.596
+Tg = 372.595
+Tg = 372.329
+Tg = 372.328
+Tg = 372.519
+Tg = 372.519
+Tg = 372.91
+Tg = 372.91
+Tg = 357.146
+Tg = 362.34
+Tg = 357.475
+Tg = 330.393
+Tg = 208.878
+Tg = 364.781
+Tg = 364.778
+Tg = 364.776
+Tg = 372.595
+Tg = 372.592
+Tg = 372.589
+Tg = 372.328
+Tg = 372.324
+Tg = 372.321
+Tg = 372.519
+Tg = 372.518
+Tg = 372.517
+Tg = 372.91
+Tg = 372.91
+Tg = 372.909
+dmomSpray min/max = 0 6292.65
+DILUPBiCG:  Solving for Ux, Initial residual = 3.1261e-06, Final residual = 1.2821e-12, No Iterations 1
+DILUPBiCG:  Solving for Uy, Initial residual = 0.865853, Final residual = 2.80807e-08, No Iterations 1
+DILUPBiCG:  Solving for Uz, Initial residual = 2.82753e-07, Final residual = 2.82753e-07, No Iterations 0
+DILUPBiCG:  Solving for iC3H8O, Initial residual = 0, Final residual = 0, No Iterations 0
+DILUPBiCG:  Solving for O2, Initial residual = 0.000540296, Final residual = 4.3218e-10, No Iterations 1
+DILUPBiCG:  Solving for CO2, Initial residual = 0, Final residual = 0, No Iterations 0
+DILUPBiCG:  Solving for H2O, Initial residual = 0.000315964, Final residual = 1.90367e-11, No Iterations 1
+dqSpray min/max = -1.10066e+07 0
+kappaEff min/max = 1.11111e-05 0.0139463
+DILUPBiCG:  Solving for T, Initial residual = 0.0020355, Final residual = 2.52109e-11, No Iterations 1
+DICPCG:  Solving for p, Initial residual = 0.0071898, Final residual = 8.78334e-10, No Iterations 168
+time step continuity errors : sum local = 1.61675e-16, global = -2.5267e-19, cumulative = -9.70318e-18
+DICPCG:  Solving for p, Initial residual = 6.25323e-05, Final residual = 6.92944e-10, No Iterations 165
+time step continuity errors : sum local = 1.57752e-16, global = 2.12672e-19, cumulative = -9.49051e-18
+DICPCG:  Solving for p, Initial residual = 1.11341e-06, Final residual = 8.33519e-10, No Iterations 151
+time step continuity errors : sum local = 1.52283e-16, global = 4.07985e-19, cumulative = -9.08252e-18
+DICPCG:  Solving for p, Initial residual = 8.01561e-08, Final residual = 5.65923e-10, No Iterations 116
+time step continuity errors : sum local = 1.36436e-16, global = 1.70275e-19, cumulative = -8.91225e-18
+DICPCG:  Solving for p, Initial residual = 4.63373e-08, Final residual = 9.88523e-10, No Iterations 24
+time step continuity errors : sum local = 6.75233e-17, global = -4.20789e-19, cumulative = -9.33304e-18
+DILUPBiCG:  Solving for epsilon, Initial residual = 5.2068e-07, Final residual = 5.2068e-07, No Iterations 0
+DILUPBiCG:  Solving for k, Initial residual = 6.21109e-07, Final residual = 2.53243e-13, No Iterations 1
+
+Number of parcels in system.... | 140
+Injected liquid mass........... | 0.0269445 mg
+Liquid Mass in system.......... | 0.0262392 mg
+SMD, Dmax, Dmin................ | 13.3315 mu, 64.2954 mu, 3.41559 mu
+Tmax, Tmin..................... | 313.76 K, 308.034 K
+Added gas mass................. | 0 mg
+Evaporation Continuity Error... | -0.000705318 mg
+ExecutionTime = 16.84 s  ClockTime = 17 s
+rRHO max/min : 1.06045 1.06045
+T max/min : 373.074 198.583
+p max/min : 100004 99985.1
+
+ MassFlows:   inlet = -0.000319444  outlet = 0.000319444
+Time = 3.5e-05
+
+Courant Number mean: 4.32333e-05 max: 0.00341853
+Evolving Spray
+Tg = 364.314
+Tg = 364.314
+Tg = 372.539
+Tg = 372.538
+Tg = 372.319
+Tg = 372.317
+Tg = 372.515
+Tg = 372.512
+Tg = 372.907
+Tg = 372.907
+Tg = 364.314
+Tg = 364.314
+Tg = 372.588
+Tg = 372.588
+Tg = 372.316
+Tg = 372.316
+Tg = 372.512
+Tg = 372.512
+Tg = 372.907
+Tg = 372.907
+Tg = 364.314
+Tg = 364.313
+Tg = 372.538
+Tg = 372.538
+Tg = 372.315
+Tg = 372.315
+Tg = 372.511
+Tg = 372.51
+Tg = 372.907
+Tg = 372.906
+Tg = 364.313
+Tg = 364.312
+Tg = 372.587
+Tg = 372.587
+Tg = 372.314
+Tg = 372.314
+Tg = 372.51
+Tg = 372.51
+Tg = 372.906
+Tg = 372.906
+Tg = 364.312
+Tg = 364.312
+Tg = 372.537
+Tg = 372.536
+Tg = 372.314
+Tg = 372.314
+Tg = 372.509
+Tg = 372.509
+Tg = 372.906
+Tg = 372.906
+Tg = 364.311
+Tg = 364.311
+Tg = 372.535
+Tg = 372.534
+Tg = 372.314
+Tg = 372.313
+Tg = 372.509
+Tg = 372.509
+Tg = 372.906
+Tg = 372.906
+Tg = 364.31
+Tg = 364.309
+Tg = 372.586
+Tg = 372.584
+Tg = 372.313
+Tg = 372.313
+Tg = 372.948
+Tg = 372.948
+Tg = 372.906
+Tg = 372.905
+Tg = 364.309
+Tg = 364.308
+Tg = 372.533
+Tg = 372.531
+Tg = 372.312
+Tg = 372.312
+Tg = 372.508
+Tg = 372.508
+Tg = 372.905
+Tg = 372.905
+Tg = 364.308
+Tg = 364.308
+Tg = 372.529
+Tg = 372.528
+Tg = 372.312
+Tg = 372.311
+Tg = 372.507
+Tg = 372.506
+Tg = 372.905
+Tg = 372.905
+Tg = 364.307
+Tg = 364.306
+Tg = 372.527
+Tg = 372.527
+Tg = 372.311
+Tg = 372.311
+Tg = 372.506
+Tg = 372.506
+Tg = 372.905
+Tg = 372.905
+Tg = 364.306
+Tg = 364.305
+Tg = 372.584
+Tg = 372.584
+Tg = 372.311
+Tg = 372.311
+Tg = 372.506
+Tg = 372.506
+Tg = 372.905
+Tg = 372.905
+Tg = 364.305
+Tg = 364.304
+Tg = 372.584
+Tg = 372.584
+Tg = 372.311
+Tg = 372.31
+Tg = 372.505
+Tg = 372.505
+Tg = 372.904
+Tg = 372.904
+Tg = 364.304
+Tg = 364.304
+Tg = 372.527
+Tg = 372.526
+Tg = 372.306
+Tg = 372.302
+Tg = 372.505
+Tg = 372.505
+Tg = 372.904
+Tg = 372.904
+Tg = 364.303
+Tg = 364.303
+Tg = 372.583
+Tg = 372.583
+Tg = 372.3
+Tg = 372.299
+Tg = 372.505
+Tg = 372.505
+Tg = 372.904
+Tg = 372.904
+Tg = 364.303
+Tg = 364.303
+Tg = 372.526
+Tg = 372.526
+Tg = 372.299
+Tg = 372.298
+Tg = 372.504
+Tg = 372.504
+Tg = 372.904
+Tg = 372.904
+Tg = 364.303
+Tg = 364.303
+Tg = 372.583
+Tg = 372.583
+Tg = 372.298
+Tg = 372.298
+Tg = 372.504
+Tg = 372.504
+Tg = 372.903
+Tg = 372.903
+Tg = 364.302
+Tg = 364.302
+Tg = 372.583
+Tg = 372.583
+Tg = 372.297
+Tg = 372.297
+Tg = 372.504
+Tg = 372.503
+Tg = 372.903
+Tg = 372.903
+Tg = 364.302
+Tg = 364.302
+Tg = 372.581
+Tg = 372.58
+Tg = 372.296
+Tg = 372.296
+Tg = 372.503
+Tg = 372.503
+Tg = 372.903
+Tg = 372.903
+Tg = 364.302
+Tg = 364.302
+Tg = 372.579
+Tg = 372.578
+Tg = 372.295
+Tg = 372.295
+Tg = 372.503
+Tg = 372.503
+Tg = 372.903
+Tg = 372.903
+Tg = 364.302
+Tg = 364.302
+Tg = 372.577
+Tg = 372.576
+Tg = 372.294
+Tg = 372.293
+Tg = 372.503
+Tg = 372.502
+Tg = 372.903
+Tg = 372.902
+Tg = 364.302
+Tg = 364.302
+Tg = 372.576
+Tg = 372.576
+Tg = 372.292
+Tg = 372.291
+Tg = 372.501
+Tg = 372.5
+Tg = 372.902
+Tg = 372.902
+Tg = 364.302
+Tg = 364.302
+Tg = 372.576
+Tg = 372.576
+Tg = 372.291
+Tg = 372.29
+Tg = 372.5
+Tg = 372.5
+Tg = 372.902
+Tg = 372.902
+Tg = 364.301
+Tg = 364.301
+Tg = 372.576
+Tg = 372.575
+Tg = 372.289
+Tg = 372.288
+Tg = 372.496
+Tg = 372.493
+Tg = 372.902
+Tg = 372.902
+Tg = 364.301
+Tg = 364.301
+Tg = 372.575
+Tg = 372.575
+Tg = 372.287
+Tg = 372.287
+Tg = 372.492
+Tg = 372.492
+Tg = 372.901
+Tg = 372.901
+Tg = 364.3
+Tg = 364.3
+Tg = 372.575
+Tg = 372.575
+Tg = 372.286
+Tg = 372.284
+Tg = 372.492
+Tg = 372.492
+Tg = 372.901
+Tg = 372.901
+Tg = 364.299
+Tg = 364.298
+Tg = 372.575
+Tg = 372.575
+Tg = 372.283
+Tg = 372.283
+Tg = 372.491
+Tg = 372.49
+Tg = 372.901
+Tg = 372.901
+Tg = 364.298
+Tg = 364.298
+Tg = 372.573
+Tg = 372.572
+Tg = 372.282
+Tg = 372.281
+Tg = 372.49
+Tg = 372.49
+Tg = 372.9
+Tg = 372.9
+Tg = 364.297
+Tg = 364.296
+Tg = 372.57
+Tg = 372.569
+Tg = 372.279
+Tg = 372.277
+Tg = 372.489
+Tg = 372.489
+Tg = 372.9
+Tg = 372.899
+dmomSpray min/max = 0 12.9825
+DILUPBiCG:  Solving for Ux, Initial residual = 3.10001e-06, Final residual = 1.2805e-12, No Iterations 1
+DILUPBiCG:  Solving for Uy, Initial residual = 1.45153e-05, Final residual = 4.99365e-12, No Iterations 1
+DILUPBiCG:  Solving for Uz, Initial residual = 2.80566e-07, Final residual = 2.80566e-07, No Iterations 0
+DILUPBiCG:  Solving for iC3H8O, Initial residual = 0, Final residual = 0, No Iterations 0
+DILUPBiCG:  Solving for O2, Initial residual = 0.000538979, Final residual = 4.30633e-10, No Iterations 1
+DILUPBiCG:  Solving for CO2, Initial residual = 0, Final residual = 0, No Iterations 0
+DILUPBiCG:  Solving for H2O, Initial residual = 3.5693e-05, Final residual = 2.85297e-12, No Iterations 1
+dqSpray min/max = -44010.6 0
+kappaEff min/max = 1.11111e-05 0.013946
+DILUPBiCG:  Solving for T, Initial residual = 0.0017539, Final residual = 1.56141e-11, No Iterations 1
+DICPCG:  Solving for p, Initial residual = 0.00696705, Final residual = 7.58923e-10, No Iterations 170
+time step continuity errors : sum local = 1.61704e-16, global = -3.82785e-19, cumulative = -9.71582e-18
+DICPCG:  Solving for p, Initial residual = 6.30596e-05, Final residual = 7.41061e-10, No Iterations 165
+time step continuity errors : sum local = 1.60707e-16, global = -1.45515e-19, cumulative = -9.86134e-18
+DICPCG:  Solving for p, Initial residual = 1.12571e-06, Final residual = 9.60888e-10, No Iterations 150
+time step continuity errors : sum local = 1.57673e-16, global = 2.59543e-19, cumulative = -9.60179e-18
+DICPCG:  Solving for p, Initial residual = 8.28029e-08, Final residual = 9.25497e-10, No Iterations 115
+time step continuity errors : sum local = 1.34912e-16, global = -2.55754e-19, cumulative = -9.85755e-18
+DICPCG:  Solving for p, Initial residual = 4.63165e-08, Final residual = 9.41199e-10, No Iterations 24
+time step continuity errors : sum local = 6.61565e-17, global = -1.33447e-19, cumulative = -9.99099e-18
+DILUPBiCG:  Solving for epsilon, Initial residual = 5.21068e-07, Final residual = 5.21068e-07, No Iterations 0
+DILUPBiCG:  Solving for k, Initial residual = 6.21137e-07, Final residual = 2.53466e-13, No Iterations 1
+
+Number of parcels in system.... | 140
+Injected liquid mass........... | 0.027737 mg
+Liquid Mass in system.......... | 0.0262389 mg
+SMD, Dmax, Dmin................ | 13.3315 mu, 64.2954 mu, 3.41558 mu
+Tmax, Tmin..................... | 313.912 K, 308.037 K
+Added gas mass................. | 0 mg
+Evaporation Continuity Error... | -0.00149808 mg
+ExecutionTime = 17.31 s  ClockTime = 18 s
+rRHO max/min : 1.06045 1.06045
+T max/min : 373.074 199.291
+p max/min : 100004 99985.1
+
+ MassFlows:   inlet = -0.000319444  outlet = 0.000319444
+Time = 3.6e-05
+
+Courant Number mean: 4.32333e-05 max: 0.00341854
+Evolving Spray
+Tg = 363.838
+Tg = 363.838
+Tg = 372.498
+Tg = 372.498
+Tg = 372.276
+Tg = 372.274
+Tg = 372.487
+Tg = 372.484
+Tg = 372.897
+Tg = 372.897
+Tg = 363.838
+Tg = 363.838
+Tg = 372.568
+Tg = 372.567
+Tg = 372.273
+Tg = 372.272
+Tg = 372.484
+Tg = 372.483
+Tg = 372.897
+Tg = 372.897
+Tg = 363.838
+Tg = 363.837
+Tg = 372.498
+Tg = 372.498
+Tg = 372.272
+Tg = 372.271
+Tg = 372.483
+Tg = 372.482
+Tg = 372.897
+Tg = 372.897
+Tg = 363.837
+Tg = 363.837
+Tg = 372.567
+Tg = 372.567
+Tg = 372.271
+Tg = 372.271
+Tg = 372.482
+Tg = 372.481
+Tg = 372.897
+Tg = 372.896
+Tg = 363.837
+Tg = 363.836
+Tg = 372.497
+Tg = 372.496
+Tg = 372.271
+Tg = 372.27
+Tg = 372.481
+Tg = 372.481
+Tg = 372.896
+Tg = 372.896
+Tg = 363.836
+Tg = 363.835
+Tg = 372.495
+Tg = 372.494
+Tg = 372.27
+Tg = 372.27
+Tg = 372.481
+Tg = 372.481
+Tg = 372.896
+Tg = 372.896
+Tg = 363.834
+Tg = 363.833
+Tg = 372.565
+Tg = 372.564
+Tg = 372.27
+Tg = 372.269
+Tg = 372.944
+Tg = 372.944
+Tg = 372.896
+Tg = 372.896
+Tg = 363.833
+Tg = 363.833
+Tg = 372.493
+Tg = 372.491
+Tg = 372.269
+Tg = 372.268
+Tg = 372.48
+Tg = 372.479
+Tg = 372.895
+Tg = 372.895
+Tg = 363.832
+Tg = 363.832
+Tg = 372.489
+Tg = 372.488
+Tg = 372.268
+Tg = 372.268
+Tg = 372.479
+Tg = 372.478
+Tg = 372.895
+Tg = 372.895
+Tg = 363.831
+Tg = 363.83
+Tg = 372.487
+Tg = 372.487
+Tg = 372.268
+Tg = 372.268
+Tg = 372.478
+Tg = 372.478
+Tg = 372.895
+Tg = 372.895
+Tg = 363.83
+Tg = 363.83
+Tg = 372.564
+Tg = 372.564
+Tg = 372.268
+Tg = 372.268
+Tg = 372.478
+Tg = 372.478
+Tg = 372.895
+Tg = 372.895
+Tg = 363.829
+Tg = 363.829
+Tg = 372.563
+Tg = 372.563
+Tg = 372.267
+Tg = 372.267
+Tg = 372.477
+Tg = 372.477
+Tg = 372.895
+Tg = 372.894
+Tg = 363.828
+Tg = 363.828
+Tg = 372.486
+Tg = 372.486
+Tg = 372.263
+Tg = 372.258
+Tg = 372.477
+Tg = 372.477
+Tg = 372.894
+Tg = 372.894
+Tg = 363.827
+Tg = 363.827
+Tg = 372.563
+Tg = 372.563
+Tg = 372.257
+Tg = 372.255
+Tg = 372.476
+Tg = 372.476
+Tg = 372.894
+Tg = 372.894
+Tg = 363.827
+Tg = 363.827
+Tg = 372.486
+Tg = 372.486
+Tg = 372.255
+Tg = 372.255
+Tg = 372.476
+Tg = 372.476
+Tg = 372.894
+Tg = 372.894
+Tg = 363.827
+Tg = 363.827
+Tg = 372.563
+Tg = 372.563
+Tg = 372.254
+Tg = 372.254
+Tg = 372.476
+Tg = 372.476
+Tg = 372.893
+Tg = 372.893
+Tg = 363.827
+Tg = 363.827
+Tg = 372.563
+Tg = 372.562
+Tg = 372.254
+Tg = 372.254
+Tg = 372.475
+Tg = 372.475
+Tg = 372.893
+Tg = 372.893
+Tg = 363.826
+Tg = 363.826
+Tg = 372.561
+Tg = 372.559
+Tg = 372.253
+Tg = 372.252
+Tg = 372.475
+Tg = 372.475
+Tg = 372.893
+Tg = 372.893
+Tg = 363.826
+Tg = 363.826
+Tg = 372.559
+Tg = 372.558
+Tg = 372.252
+Tg = 372.252
+Tg = 372.475
+Tg = 372.475
+Tg = 372.893
+Tg = 372.893
+Tg = 363.826
+Tg = 363.826
+Tg = 372.557
+Tg = 372.485
+Tg = 372.485
+Tg = 372.251
+Tg = 372.249
+Tg = 372.474
+Tg = 372.474
+Tg = 372.893
+Tg = 372.893
+Tg = 363.826
+Tg = 363.826
+Tg = 372.557
+Tg = 372.557
+Tg = 372.485
+Tg = 372.248
+Tg = 372.248
+Tg = 372.473
+Tg = 372.472
+Tg = 372.892
+Tg = 372.892
+Tg = 363.826
+Tg = 363.826
+Tg = 372.557
+Tg = 372.557
+Tg = 372.485
+Tg = 372.247
+Tg = 372.247
+Tg = 372.472
+Tg = 372.472
+Tg = 372.892
+Tg = 372.892
+Tg = 363.825
+Tg = 363.825
+Tg = 372.556
+Tg = 372.556
+Tg = 372.246
+Tg = 372.244
+Tg = 372.468
+Tg = 372.464
+Tg = 372.892
+Tg = 372.892
+Tg = 363.825
+Tg = 363.825
+Tg = 372.556
+Tg = 372.556
+Tg = 372.244
+Tg = 372.244
+Tg = 372.464
+Tg = 372.464
+Tg = 372.892
+Tg = 372.891
+Tg = 363.825
+Tg = 363.824
+Tg = 372.556
+Tg = 372.556
+Tg = 372.242
+Tg = 372.241
+Tg = 372.464
+Tg = 372.464
+Tg = 372.891
+Tg = 372.891
+Tg = 363.823
+Tg = 363.823
+Tg = 372.556
+Tg = 372.556
+Tg = 372.24
+Tg = 372.239
+Tg = 372.463
+Tg = 372.462
+Tg = 372.891
+Tg = 372.891
+Tg = 363.823
+Tg = 363.823
+Tg = 372.554
+Tg = 372.553
+Tg = 372.238
+Tg = 372.237
+Tg = 372.461
+Tg = 372.461
+Tg = 372.891
+Tg = 372.89
+Tg = 363.821
+Tg = 363.82
+Tg = 372.551
+Tg = 372.55
+Tg = 372.235
+Tg = 372.234
+Tg = 372.461
+Tg = 372.461
+Tg = 372.89
+Tg = 372.89
+Tg = 356.179
+Tg = 361.69
+Tg = 356.515
+Tg = 327.855

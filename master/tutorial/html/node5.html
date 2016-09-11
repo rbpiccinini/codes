@@ -1,0 +1,358 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2008 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Test Case</TITLE>
+<META NAME="description" CONTENT="Test Case">
+<META NAME="keywords" CONTENT="tutorial">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2008">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="tutorial.css">
+
+<LINK REL="next" HREF="node6.html">
+<LINK REL="previous" HREF="node4.html">
+<LINK REL="up" HREF="tutorial.html">
+<LINK REL="next" HREF="node6.html">
+</HEAD>
+
+<BODY >
+
+<DIV CLASS="navigation"><!--Navigation Panel-->
+<A NAME="tex2html80"
+  HREF="node6.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="/usr/share/latex2html/icons/next.png"></A> 
+<A NAME="tex2html78"
+  HREF="tutorial.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="/usr/share/latex2html/icons/up.png"></A> 
+<A NAME="tex2html72"
+  HREF="node4.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="/usr/share/latex2html/icons/prev.png"></A>   
+<BR>
+<B> Next:</B> <A NAME="tex2html81"
+  HREF="node6.html">Links</A>
+<B> Up:</B> <A NAME="tex2html79"
+  HREF="tutorial.html">lowmachSolver: a low Mach</A>
+<B> Previous:</B> <A NAME="tex2html73"
+  HREF="node4.html">Running</A>
+<BR>
+<BR></DIV>
+<!--End of Navigation Panel-->
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+
+<UL CLASS="ChildLinks">
+<LI><UL>
+<LI><UL>
+<LI><A NAME="tex2html82"
+  HREF="node5.html#SECTION00050010000000000000">./case/0/</A>
+<LI><A NAME="tex2html83"
+  HREF="node5.html#SECTION00050020000000000000">./case/chemkin/</A>
+<LI><A NAME="tex2html84"
+  HREF="node5.html#SECTION00050030000000000000">./case/constant/</A>
+</UL>
+</UL>
+<BR>
+<LI><A NAME="tex2html85"
+  HREF="node5.html#SECTION00051000000000000000">Solver Output</A>
+<LI><A NAME="tex2html86"
+  HREF="node5.html#SECTION00052000000000000000">Some Results</A>
+</UL>
+<!--End of Table of Child-Links-->
+<HR>
+
+<H1><A NAME="SECTION00050000000000000000"></A><A NAME="sydney"></A>
+<BR>
+Test Case
+</H1>
+
+<P>
+This is the test case used to provide results for the thesis. It consists of the numerical simulation of the experiment performed by [<A
+ HREF="node7.html#chen">1</A>] in Sydney University.
+
+<P>
+<A NAME="tex2html6"
+  HREF="http://dx.doi.org/10.1016/j.ijmultiphaseflow.2005.09.002">http://dx.doi.org/10.1016/j.ijmultiphaseflow.2005.09.002</A>
+<P>
+Case folder structure
+<PRE>
+--- case
+    +-- 0			initial and boundary conditions
+    +-- chemkin			chemkin files
+    +-- constant		mesh and physical properties
+    +-- system			solution parameters
+</PRE>
+
+<P>
+
+<H4><A NAME="SECTION00050010000000000000">
+./case/0/</A>
+</H4>
+Folder <SPAN  CLASS="textbf">case/0/</SPAN> contains initial and boundary conditions. The type of each boundary conditions is presented in the thesis [<A
+ HREF="node7.html#piccinini_msc">5</A>] and may be directly read in the files as well.
+
+<P>
+Iinitial conditions of the gaseous flow were obtained by simulating only the gas flow in <A NAME="tex2html7"
+  HREF="../cases/sydney/ic.fine/">../cases/sydney/ic.fine/</A>
+and <A NAME="tex2html8"
+  HREF="../cases/sydney/ic.coarse/">../cases/sydney/ic.coarse/</A>.
+
+<P>
+
+<H4><A NAME="SECTION00050020000000000000">
+./case/chemkin/</A>
+</H4>
+Chemkin folder contains chemical kinetic and thermodynamic data of all present species in gas phase. No chemical reaction is present. Thermodynamic and transport properties of acetone in liquid phase are computed "inside" the code.
+
+<P>
+
+<H4><A NAME="SECTION00050030000000000000">
+./case/constant/</A>
+</H4>
+<DL>
+<DT><STRONG>turbulenceProperties</STRONG></DT>
+<DD>informs that the simulation is turbulent and it is using RANS modeling.
+
+<P>
+</DD>
+<DT><STRONG>RASProperties</STRONG></DT>
+<DD>selects the turbulence model: standard k-epsilon.
+
+<P>
+</DD>
+<DT><STRONG>g</STRONG></DT>
+<DD>defines the gravity vector field.
+
+<P>
+</DD>
+<DT><STRONG>thermophysicalProperties</STRONG></DT>
+<DD>defines the thermodynamic and transport models for gas and liquid phases.
+<PRE>
+thermoType      hsPsiMixtureThermo&lt;reactingMixture&lt;gasThermoPhysics&gt;&gt;;
+</PRE>
+
+<P>
+hsPsiMixtureThermo computes enthalpy for combustion mixture based on sensible enthalpy <SPAN CLASS="MATH"><IMG
+ WIDTH="22" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img3.png"
+ ALT="$ h_s$"></SPAN> and compressibility <SPAN CLASS="MATH"><IMG
+ WIDTH="18" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img1.png"
+ ALT="$ \Psi$"></SPAN>.
+reactingMixture  is a combustion mixture using thermodynamics and reaction schemes.
+gasThermoPhysics is a type definition for <code>sutherlandTransport&lt;specieThermo&lt;janafThermo&lt;perfectGas&gt;&gt;&gt;</code>. 
+
+<P>
+</DD>
+<DT><STRONG>combustionProperties</STRONG></DT>
+<DD>no combustion is present, so the important information is <code>ignite off;</code>.
+
+<P>
+</DD>
+<DT><STRONG>chemistryProperties</STRONG></DT>
+<DD>chemical reactions are not solved. Just like before, <code>chemistry off;</code> is what matters.
+
+<P>
+</DD>
+<DT><STRONG>injectorProperties</STRONG></DT>
+<DD>defines almost all droplet properties in the injector exit: position, temperature, velocity magnitude and direction, mass flow rate and parcels per second (nParcels). Droplet diameter is specified in next file.
+
+<P>
+</DD>
+<DT><STRONG>sprayProperties</STRONG></DT>
+<DD>defines all droplet modeling and the diameter probability density function (pdf).
+
+<P>
+The time step for integrating droplet equations is the minimum between momentum and heat transfer characteristic times divided by <code>subCycles</code>. <code>dtInjection</code> was added to limit the number of parcels in the domain: only one parcel is added during the specified time interval.
+<PRE>
+subCycles          2;
+dtInjection		1e-9;
+</PRE> 
+
+<P>
+Atomization is modeled statistically by the pdf function and no physical modeling is used.
+<PRE>
+atomizationModel        off;
+</PRE> 
+
+<P>
+Since acetone is a highly volatile fuel, droplets are more likely to evaporate before undergo secondary break-up instabilities.
+<PRE>
+includeOscillation      off;
+//breakupModel    TAB;
+//breakupModel    ETAB;
+//breakupModel    ReitzDiwakar;
+breakupModel    off;
+</PRE>
+
+<P>
+The injector type is set.
+<PRE>
+injectorModel           hollowConeInjector;
+</PRE> 
+
+<P>
+Collision model is not used since the spray is dilute.  Evaporation, heat transfer, drag and droplet dispersion is modeled as discussed in [<A
+ HREF="node7.html#piccinini_msc">5</A>].
+<PRE>
+collisionModel  off;
+evaporationModel standardEvaporationModel;
+heatTransferModel RanzMarshall;
+dispersionModel stochasticDispersionRAS;
+dragModel       standardDragModel;
+</PRE> 
+
+<P>
+Added the lognormal pdf to the available pdfs. It is used to sample droplet diameter for injection.
+<PRE>
+hollowConeInjectorCoeffs
+{
+    dropletPDF
+    {
+			pdfType         lognormal;
+    }
+}
+</PRE> 
+
+<P>
+</DD>
+</DL>
+
+<P>
+
+<H2><A NAME="SECTION00051000000000000000">
+Solver Output</A>
+</H2>
+
+<P>
+Basic information about the spray and execution timing followed by extremal values of temperature, density and dynamic pressure.
+<PRE>
+Number of parcels in system.... | 29921
+Injected liquid mass........... | 6.05092 mg
+Liquid Mass in system.......... | 0.522468 mg
+SMD, Dmax...................... | 16.0027 mu, 42.7612 mu
+ExecutionTime = 102.28 s  ClockTime = 104 s
+T max/min : 298 275.949
+rho max/min : 1.28461 1.1644
+pd max/min : 100000 99966.9
+</PRE>
+
+<P>
+Mass flow rates trough defined patches (walls are being called as such, but they are actually the far boundary).
+<PRE>
+Courant Number mean: 0.00232359 max: 0.242796
+MassFlows:   nozzle = -3.43682e-05  coflow = -0.000852618  outlet = 0.00100765  walls = -0.00012141
+Time = 0.330113
+</PRE>
+
+<P>
+The following lines show the sequence equations are solved: first spray is updated, then all transport equations are solved. "<code>Solving for rho</code>" presents zero residual and iterations because it is being explicitly solved.
+<PRE>
+Evolving Spray
+Solving chemistry
+diagonal:  Solving for rho, Initial residual = 0, Final residual = 0, No Iterations 0
+DILUPBiCG:  Solving for Ux, Initial residual = 5.77748e-07, Final residual = 5.2592e-09, No Iterations 1
+DILUPBiCG:  Solving for Uy, Initial residual = 2.6999e-05, Final residual = 7.62742e-11, No Iterations 2
+DILUPBiCG:  Solving for Uz, Initial residual = 5.88654e-05, Final residual = 7.16722e-08, No Iterations 1
+DILUPBiCG:  Solving for aC3H6O, Initial residual = 3.79856e-07, Final residual = 8.03328e-10, No Iterations 1
+DILUPBiCG:  Solving for O2, Initial residual = 3.88094e-07, Final residual = 3.96676e-10, No Iterations 1
+DILUPBiCG:  Solving for CO2, Initial residual = 0, Final residual = 0, No Iterations 0
+DILUPBiCG:  Solving for H2O, Initial residual = 0, Final residual = 0, No Iterations 0
+DILUPBiCG:  Solving for hs, Initial residual = 5.01197e-07, Final residual = 1.08758e-09, No Iterations 1
+</PRE>
+
+<P>
+The following step is the PISO loop, which might be repeated more than once (I used 3 to 5 loops).
+<PRE>
+DICPCG:  Solving for pd, Initial residual = 0.0447168, Final residual = 9.75726e-10, No Iterations 185
+diagonal:  Solving for rho, Initial residual = 0, Final residual = 0, No Iterations 0
+time step continuity errors : sum local = 3.66451e-16, global = -2.59971e-18, cumulative = -7.82325e-16
+</PRE>
+
+<P>
+For last, solution of k-epsilon equations.
+<PRE>
+DILUPBiCG:  Solving for epsilon, Initial residual = 5.26145e-07, Final residual = 5.43398e-10, No Iterations 1
+DILUPBiCG:  Solving for k, Initial residual = 1.22238e-07, Final residual = 1.64783e-10, No Iterations 1
+</PRE>
+
+<P>
+
+<H2><A NAME="SECTION00052000000000000000">
+Some Results</A>
+</H2>
+
+<P>
+
+<DIV ALIGN="CENTER"><A NAME="fig:_dropU"></A><A NAME="115"></A>
+<TABLE>
+<CAPTION ALIGN="BOTTOM"><STRONG>Figure 1:</STRONG>
+Magnitude of droplet velocities. The computational domain is only half of the shown above, it is here mirrored for visualization purpose.</CAPTION>
+<TR><TD>
+<DIV ALIGN="CENTER">
+
+</DIV> <IMG
+  WIDTH="1024" HEIGHT="757" ALIGN="BOTTOM" BORDER="0"
+ SRC="IGimg1.png"
+ ALT="Image visit_U"></TD></TR>
+</TABLE>
+</DIV>
+
+<P>
+
+<DIV ALIGN="CENTER"><A NAME="fig:_field_k"></A><A NAME="122"></A>
+<TABLE>
+<CAPTION ALIGN="BOTTOM"><STRONG>Figure 2:</STRONG>
+Gas mean turbulent kinetic energy. The computational domain is only half of the shown above, it is here mirrored for visualization purpose.</CAPTION>
+<TR><TD>
+<DIV ALIGN="CENTER">
+<IMG
+  WIDTH="1024" HEIGHT="757" ALIGN="BOTTOM" BORDER="0"
+ SRC="IGimg2.png"
+ ALT="Image visit_k">
+ 
+</DIV></TD></TR>
+</TABLE>
+</DIV>
+
+<P>
+
+<DIV CLASS="navigation"><HR>
+<!--Navigation Panel-->
+<A NAME="tex2html80"
+  HREF="node6.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="/usr/share/latex2html/icons/next.png"></A> 
+<A NAME="tex2html78"
+  HREF="tutorial.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="/usr/share/latex2html/icons/up.png"></A> 
+<A NAME="tex2html72"
+  HREF="node4.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="/usr/share/latex2html/icons/prev.png"></A>   
+<BR>
+<B> Next:</B> <A NAME="tex2html81"
+  HREF="node6.html">Links</A>
+<B> Up:</B> <A NAME="tex2html79"
+  HREF="tutorial.html">lowmachSolver: a low Mach</A>
+<B> Previous:</B> <A NAME="tex2html73"
+  HREF="node4.html">Running</A></DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+Rodrigo
+2011-12-25
+</ADDRESS>
+</BODY>
+</HTML>

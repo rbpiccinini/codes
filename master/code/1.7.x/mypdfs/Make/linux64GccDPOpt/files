@@ -1,0 +1,17 @@
+# 1 "files"
+# 1 "<built-in>"
+# 1 "<command-line>"
+# 1 "files"
+pdf/pdf.C
+pdf/pdfNew.C
+
+exponential/exponential.C
+fixedValue/fixedValue.C
+general/general.C
+multiNormal/multiNormal.C
+normal/normal.C
+RosinRammler/RosinRammler.C
+uniform/uniform.C
+lognormal/lognormal.C
+
+LIB = $(FOAM_USER_LIBBIN)/libmypdf

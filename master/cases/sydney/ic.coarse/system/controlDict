@@ -1,0 +1,102 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  1.5                                   |
+|   \\  /    A nd           | Web:      http://www.OpenFOAM.org               |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      controlDict;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+application dieselFoam;
+
+startFrom       latestTime;
+
+startTime       0;
+
+stopAt          endTime;
+
+endTime         7000;
+
+deltaT          1;
+
+writeControl    adjustableRunTime;
+
+writeInterval   100;
+
+purgeWrite      2;
+
+writeFormat     ascii;
+
+writePrecision  6;
+
+writeCompression uncompressed;
+
+timeFormat      general;
+
+timePrecision   6;
+
+runTimeModifiable yes;
+
+adjustTimeStep   off;
+
+maxCo            0.05;
+
+maxDeltaT	1.0e-6;
+
+functions 
+(
+   massFlow
+   {
+      type patchMassFlow;
+      functionObjectLibs
+       (
+         "libsimpleFunctionObjects.so"
+       );
+     verbose true;
+     patches
+       (
+         nozzle
+         coflow
+         outlet
+	 walls
+       );
+     factor 1.0;
+   }
+
+
+/*
+    fieldAverage1
+    {
+        type            fieldAverage;
+        functionObjectLibs ( "libfieldFunctionObjects.so" );
+        enabled         true;
+        outputControl   outputTime;
+        fields
+        (
+            U
+            {
+                mean        on;
+                prime2Mean  on;
+                base        time;
+            }
+
+            p
+            {
+                mean        on;
+                prime2Mean  on;
+                base        time;
+            }
+        );
+    }
+*/
+);
+
+
+// ************************************************************************* //

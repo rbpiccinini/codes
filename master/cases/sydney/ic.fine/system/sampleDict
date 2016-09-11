@@ -1,0 +1,120 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  1.6                                   |
+|   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    location    "system";
+    object      sampleDict;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+interpolationScheme cellPointFace;
+
+setFormat     raw;
+
+sets
+(  
+    centerline
+    {
+        type    uniform;
+        axis    x;
+        start   ( 0.001 1e-4 0 );
+        end     ( 0.45 1e-4 0 );
+        nPoints 50;
+    }
+    
+    Profiles0
+    {
+        type    uniform;
+        axis    y;
+        start   ( 0.05 0 0 );
+        end     ( 0.05 0.075 0 );
+        nPoints 100;
+    }
+    Profiles5
+    {
+        type    uniform;
+        axis    y;
+        start   ( 0.05 0 0 );
+        end     ( 0.05 0.075 0 );
+        nPoints 100;
+    }
+    Profiles10
+    {
+        type    uniform;
+        axis    y;
+        start   ( 0.10 0 0 );
+        end     ( 0.10 0.075 0 );
+        nPoints 100;
+    }
+    Profiles15
+    {
+        type    uniform;
+        axis    y;
+        start   ( 0.15 0 0 );
+        end     ( 0.15 0.075 0 );
+        nPoints 100;
+    }
+    Profiles20
+    {
+        type    uniform;
+        axis    y;
+        start   ( 0.20 0 0 );
+        end     ( 0.20 0.075 0 );
+        nPoints 100;
+    }
+    Profiles25
+    {
+        type    uniform;
+        axis    y;
+        start   ( 0.25 0 0 );
+        end     ( 0.25 0.075 0 );
+        nPoints 100;
+    }
+    Profiles30
+    {
+        type    uniform;
+        axis    y;
+        start   ( 0.30 0 0 );
+        end     ( 0.30 0.075 0 );
+        nPoints 100;
+    }
+    Profiles35
+    {
+        type    uniform;
+        axis    y;
+        start   ( 0.35 0 0 );
+        end     ( 0.35 0.075 0 );
+        nPoints 100;
+    }
+    Profiles40
+    {
+        type    uniform;
+        axis    y;
+        start   ( 0.40 0 0 );
+        end     ( 0.40 0.075 0 );
+        nPoints 100;
+    }
+    Profiles45
+    {
+        type    uniform;
+        axis    y;
+        start   ( 0.45 0 0 );
+        end     ( 0.45 0.075 0 );
+        nPoints 100;
+    }
+);
+
+surfaces ();
+
+fields          ( U k );
+
+
+// ************************************************************************* //

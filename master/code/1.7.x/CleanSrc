@@ -1,0 +1,7 @@
+#!/bin/sh
+
+wclean lowmachLib
+wclean lowmachSolver
+wclean mypdfs
+wclean myLiquids/myFunctions
+wclean myLiquids/aC3H6O

@@ -1,0 +1,8 @@
+# 1 "options"
+# 1 "<built-in>"
+# 1 "<command-line>"
+# 1 "options"
+EXE_INC =     -I$(LIB_SRC)/finiteVolume/lnInclude     -I$(LIB_SRC)/turbulenceModels/compressible/turbulenceModel     -I$(LIB_SRC)/lagrangian/basic/lnInclude     -I../lowmachLib/lnInclude     -I$(LIB_SRC)/thermophysicalModels/liquids/lnInclude     -I$(LIB_SRC)/thermophysicalModels/liquidMixture/lnInclude     -I$(LIB_SRC)/thermophysicalModels/specie/lnInclude     -I$(LIB_SRC)/thermophysicalModels/thermophysicalFunctions/lnInclude     -I$(LIB_SRC)/thermophysicalModels/reactionThermo/lnInclude     -I$(LIB_SRC)/thermophysicalModels/basic/lnInclude     -I$(LIB_SRC)/thermophysicalModels/laminarFlameSpeed/lnInclude     -I$(LIB_SRC)/../applications/solvers/reactionThermo/XiFoam     -I$(LIB_SRC)/thermophysicalModels/chemistryModel/lnInclude     -I$(LIB_SRC)/ODE/lnInclude
+# 16 "options"
+
+EXE_LIBS =     -lcompressibleTurbulenceModel     -lcompressibleRASModels     -lcompressibleLESModels     -lreactionThermophysicalModels     -llagrangian     -lliquids     -lliquidMixture     -lthermophysicalFunctions     -lspecie     -lbasicThermophysicalModels     -llaminarFlameSpeedModels     -lchemistryModel     -lODE     -lfiniteVolume     -L$(FOAM_USER_LIBBIN) -lmypdf -llowmachLib

@@ -1,0 +1,36 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  1.5                                   |
+|   \\  /    A nd           | Web:      http://www.OpenFOAM.org               |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      thermodynamicProperties;
+}
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+
+//thermoType hMixtureThermo<reactingMixture>;
+
+thermoType      hsPsiMixtureThermo<reactingMixture<gasThermoPhysics>>;
+
+CHEMKINFile         "$FOAM_CASE/chemkin/chem.inp";
+CHEMKINThermoFile   "$FOAM_CASE/chemkin/therm.dat";
+
+inertSpecie     N2;
+
+liquidComponents
+(
+  aC3H6O 
+);
+
+liquidProperties
+{
+    aC3H6O  aC3H6O  defaultCoeffs;
+}
+
+/*********************************************************************/

@@ -1,0 +1,11 @@
+LOCAL_OBJECTS = \
+pdf.o\
+pdfNew.o\
+exponential.o\
+fixedValue.o\
+general.o\
+multiNormal.o\
+normal.o\
+RosinRammler.o\
+uniform.o\
+lognormal.o

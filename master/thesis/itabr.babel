@@ -1,0 +1,126 @@
+%%% by
+%%%   Fabio Fagundes Silveira   -  ffs [at] ita [dot] br
+%%%   $Id: itabr.babel 41 2006-07-20 14:30:26Z ffs $
+%%%
+
+%--------------------------------------------------------
+% Mestrado
+%--------------------------------------------------------
+\gdef\itaoptioncoursemscbabel{Mestrado}
+\gdef\itaworklevelmscbabel{Tese}
+\gdef\itaauthortitlemscbabel{Mestre}
+
+%--------------------------------------------------------
+% Doutorado
+%--------------------------------------------------------
+\gdef\itaoptioncoursedscbabel{Doutorado}
+\gdef\itaworkleveldscbabel{Tese}
+\gdef\itaauthortitledscbabel{Doutor}
+\gdef\itaauthortitledscfembabel{Doutora}
+
+%--------------------------------------------------------
+%Exame de Qualificacao
+%--------------------------------------------------------
+\gdef\itaworklevelqualibabel{Exame de Qualifica{\c{c}}{\~a}o}
+\gdef\itaqualifictextbabel{{\nh{\itaworklevel\ submetido {\`a} avalia{\c{c}}{\~a}o, 
+          como requisito parcial para a obten{\c{c}}{\~a}o do t{\'\i}tulo de Doutor em 
+	  Ci{\^e}ncia no Curso de \itaworkcourse, {\'A}rea de \itaworkarea.}}}
+
+\gdef\itanametitlequalibabel{ITA -- \textsc{Instituto Tecnol{\'o}gico de Aeron{\'a}utica}}
+\gdef\itaposnametitlequalibabel{\textsc{P{\'o}s-Gradua{\c{c}}{\~a}o em \itaworkcourse}}
+\gdef\itaarenametitlequalibabel{\textsc{{\'A}rea de \itaworkarea}}
+
+%--------------------------------------------------------
+%Tese
+%--------------------------------------------------------
+\gdef\itatitletextbabel{\nh{\itaworklevel\ apresentada {\`a} Pr{\'o}-Reitoria de 
+          P{\'o}s-Gradua{\c{c}}{\~a}o e Pesquisa do Instituto Tecnol{\'o}gico de Aeron{\'a}utica, como parte dos requisitos para obten{\c{c}}{\~a}o do 
+	  t{\'\i}tulo de \itaauthortitle\ em Ci{\^e}ncias no Curso de \itaworkcourse, 
+	  {\'A}rea de \itaworkarea}}
+	  
+\gdef\itathesisapprovedmembersbabel{Tese aprovada em sua vers\~{a}o final 
+          pelos abaixo assinados:}
+\gdef\itacountrybabel{Brasil}
+
+%--------------------------------------------------------
+%Glossario
+%--------------------------------------------------------
+\gdef\itaglossarynamebabel{Gloss\'ario}
+
+%--------------------------------------------------------
+%Titulos Diversos
+%--------------------------------------------------------
+\gdef\listofabbreviationsname{Lista de Abreviaturas e Siglas}
+\gdef\listofsymbolsname{Lista de S{\'\i}mbolos}
+\gdef\nameepigraphe{Ep{\'\i}grafe}
+\gdef\namededicatory{Dedicat{\'o}ria}
+\gdef\nameacknowledgment{Agradecimentos}
+\gdef\nameabstract{Resumo}
+\gdef\nameengabstract{Abstract}
+\gdef\nametitlepage{Folha de Rosto}
+\gdef\namecip{Verso da Folha de Rosto}
+\gdef\namepageexaminersbookmark{Folha da Banca}
+\gdef\namepageexaminers{Composi{\c{c}}{\~a}o da Banca Examinadora:}
+\gdef\namecontents{Sum{\'a}rio}
+\gdef\nameannex{Anexo}
+\gdef\itafigurenamebabel{FIGURA}
+\gdef\itatablenamebabel{TABELA}
+\gdef\itadvnamebabel{Vers{\~a}o Preliminar:}
+\gdef\itapagedocregbabel{Folha de Registro do Documento}
+
+%--------------------------------------------------------
+%Defaults
+%--------------------------------------------------------
+\gdef\@titlebabel{T\'{i}tulo do Trabalho}                         %{Titulo do Trabalho}
+\gdef\@authorbabel{Nome do Autor}                                 %{Nome do Autor}
+\gdef\itaauthoraddressbabel{Rua Tal, xxx}                         %{Rua Tal, xxx}
+
+\gdef\itaadvisornamebabel{Nome do Orientador}                     %{Nome do Orientador}
+\gdef\itaadvisortitlebabel{Prof.~Dr.}                             %{Prof.~Dr.}
+\gdef\itaadvisorwordbabel{Orientador}                             %{Orientador}
+
+\gdef\itacoadvisornamebabel{Nome do Co-orientador}                %{Nome do Co-orientador}
+\gdef\itacoadvisortitlebabel{Prof.~Dr.}                           %{Prof.~Dr.}
+\gdef\itacoadvisorwordbabel{Co-orientador}                        %{Co-orientador}
+
+\gdef\itabossnamebabel{Nome do Pr{\'o}-Reitor de P{\'o}s-Gradua{\c{c}}{\~a}o e Pesquisa} 
+                                                                  %{Nome do Pro-Reitor de Pos-Graduacao e Pesquisa}
+\gdef\itabosstitle{Prof.~Dr.}                                     %{Prof.~Dr.}
+\gdef\itabosswordbabel{Pr{\'o}-Reitor de P{\'o}s-Gradua{\c{c}}{\~a}o e Pesquisa}
+                                                                  %{Pro-Reitor de Pos-Graduacao e Pesquisa}
+
+\gdef\itaworklevelbabel{(Documento)}                               %{(Documento)}
+\gdef\itaworkcoursebabel{(Curso)}                                  %{(Curso)}
+\gdef\itaworkdeptbabel{(Divisao)}                                  %{(Divisao)}
+\gdef\itaworkareababel{(Area)}                                     %{(Area)}
+\gdef\itaauthortitlebabel{(Titulo)}                                %{(Titulo)}
+
+
+%--------------------------------------------------------
+%Pagina CIP
+%--------------------------------------------------------
+\gdef\itaciptitlebabel{Dados Internacionais de Cataloga{\c{c}}{\~a}o-na-Publica{\c{c}}{\~a}o (CIP)}
+\gdef\itacipbibbabel{Divis{\~a}o Biblioteca Central do ITA/CTA}
+
+\gdef\itacipdata1babel {\itaworklevel\ de \itaoptioncourse\ -- Curso de \itaworkcourse. 
+\'{A}rea de \itaworkarea\ -- Instituto Tecnol\'{o}gico de Aeron\'{a}utica,
+	\@publyear. Orientador: \itaadvisortitle\ \itaadvisorname. \@ifundefined{@coadvisor}{}{Co-orientador:
+	\@itacoadvisortitle\ \@itacoadvisorname}.\par
+	\vspace{\baselineskip}
+	\@cipkw\ I. Centro T\'{e}cnico Aeroespacial. Instituto Tecnol\'{o}gico de Aeron\'{a}utica. Divis\~{a}o de
+	\itaworkdept. II.~T\'{\i}tulo.\par}
+
+\gdef\itarefbibnamecipbabel{REFER\^{E}NCIA BIBLIOGR\'{A}FICA}
+
+\gdef\itacip2babel {\itaworklevel\ de \itaoptioncourse\ -- Instituto Tecnol\'{o}gico de Aeron\'{a}utica, 
+        S\~{a}o Jos\'{e} dos Campos.}
+
+\gdef\itacedirnamebabel{CESS\~{A}O DE DIREITOS}
+\gdef\itacipauthorname{NOME DO AUTOR:}
+\gdef\itacipworktitlebabel{TITULO DO TRABALHO:}
+\gdef\itacipworktype{TIPO DO TRABALHO/ANO:}
+
+\gdef\itacesdirtextbabel{{\'E} concedida ao Instituto Tecnol{\'o}gico de Aeron{\'a}utica permiss{\~a}o 
+        para reproduzir c{\'o}pias desta tese e para emprestar ou vender c{\'o}pias somente para prop{\'o}sitos 
+	acad{\^e}micos e cient{\'\i}ficos. O autor reserva outros direitos de  publica{\c{c}}{\~a}o e nenhuma 
+	parte desta tese pode ser reproduzida sem a autoriza{\c{c}}{\~a}o do autor.}

@@ -1,0 +1,17 @@
+%\section{Considerações finais}
+
+This work presented a set of equations to model the evolution of a spray jet and its numerical solution. Computations were compared to available measurements indicating a good general prediction of flow quantities with some disagreements susceptible to improvements in the droplet velocity and evaporation rate.
+
+Velocity of both gas and liquid phases were underpredicted due to the high turbulent viscosity computed by the turbulence model. It is suggested in the literature that the discrepancies for a round jet may be diminished by changing the model coefficients and reducing the turbulent length scale in jet inlet boundary conditions.
+
+Evaporation rate was underpredicted after the jet developing region. Turbulence effects on Nusselt and Sherwood numbers were not modeled and this is believed to decrease evaporation, specially in the jet core, as reported by \cite{bini}.
+
+Further, disagreements in the prediction of gas velocity may also have contributed to differences in the evaporation rate. The maximum error in liquid mass flow rate at some axial location was about $20\%$.
+
+The shape of radial profile of vapor mass fluxes was well predicted. The same can be said to the SMD radial profiles.
+
+Future work could explore improvements in the round jet turbulence modeling and new heating and evaporation models for RANS simulations accounting for fluctuations of flow properties. Something similar to what was done in \cite{bini} could serve as a starting point.
+
+The hypothesis of unity Prandtl and Schmidt numbers was also not tested.
+
+Finally, the OpenFOAM source code offers powerful and flexible libraries that may be adapted to user needs. It consists of a great platform for collaborative code development in fluid dynamics. It is also an alternative for industry in the development of in-house solutions. 

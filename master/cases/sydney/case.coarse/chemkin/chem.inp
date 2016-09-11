@@ -1,0 +1,11 @@
+ELEMENTS
+ H   O    C   N
+END
+SPECIE 
+aC3H6O O2 N2 CO2 H2O 
+END
+REACTIONS
+ aC3H6O + 4O2            => 3CO2 + 3H2O        5.00E+8  0.0   15780.0! 1
+	FORD	/ aC3H6O 0.25 /
+	FORD	/ O2 1.5 /
+END

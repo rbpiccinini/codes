@@ -1,0 +1,229 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2008 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Introduction</TITLE>
+<META NAME="description" CONTENT="Introduction">
+<META NAME="keywords" CONTENT="tutorial">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2008">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="tutorial.css">
+
+<LINK REL="next" HREF="node2.html">
+<LINK REL="previous" HREF="tutorial.html">
+<LINK REL="up" HREF="tutorial.html">
+<LINK REL="next" HREF="node2.html">
+</HEAD>
+
+<BODY >
+
+<DIV CLASS="navigation"><!--Navigation Panel-->
+<A NAME="tex2html39"
+  HREF="node2.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="/usr/share/latex2html/icons/next.png"></A> 
+<A NAME="tex2html37"
+  HREF="tutorial.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="/usr/share/latex2html/icons/up.png"></A> 
+<A NAME="tex2html31"
+  HREF="tutorial.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="/usr/share/latex2html/icons/prev.png"></A>   
+<BR>
+<B> Next:</B> <A NAME="tex2html40"
+  HREF="node2.html">Folder Structure</A>
+<B> Up:</B> <A NAME="tex2html38"
+  HREF="tutorial.html">lowmachSolver: a low Mach</A>
+<B> Previous:</B> <A NAME="tex2html32"
+  HREF="tutorial.html">lowmachSolver: a low Mach</A>
+<BR>
+<BR></DIV>
+<!--End of Navigation Panel-->
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+
+<UL CLASS="ChildLinks">
+<LI><A NAME="tex2html41"
+  HREF="node1.html#SECTION00011000000000000000">OpenFOAM Code</A>
+</UL>
+<!--End of Table of Child-Links-->
+<HR>
+
+<H1><A NAME="SECTION00010000000000000000">
+Introduction</A>
+</H1>
+<SPAN  CLASS="textit">lowmachSolver</SPAN> is an OpenFOAM solver that deals with two-phase flows composed of a continuous gaseous phase and a liquid dispersed phase. It is mainly based on <SPAN  CLASS="textit">dieselFOAM</SPAN> and it was written only for purpose of my master thesis.
+
+<P>
+
+<H2><A NAME="SECTION00011000000000000000">
+OpenFOAM Code</A>
+</H2>
+
+<P>
+By <A NAME="tex2html1"
+  HREF="http://www.openfoam.com/features/">OpenCFD own words</A>:
+
+<P>
+<BLOCKQUOTE>
+The OpenFOAM  (Open Field Operation and Manipulation) CFD Toolbox is a free, open source CFD software package produced by OpenCFD Ltd. It has a large user base across most areas of engineering and science, from both commercial and academic organisations. OpenFOAM has an extensive range of features to solve anything from complex fluid flows involving chemical reactions, turbulence and heat transfer, to solid dynamics and electromagnetics. It includes tools for meshing, notably snappyHexMesh, a parallelised mesher for complex CAD geometries, and for pre- and post-processing. Almost everything (including meshing, and pre- and post-processing) runs in parallel as standard, enabling users to take full advantage of computer hardware at their disposal.
+</BLOCKQUOTE>
+<P>
+<BLOCKQUOTE>By being open, OpenFOAM offers users complete freedom to customise and extend its existing functionality, either by themselves or through support from OpenCFD. It follows a highly modular code design in which collections of functionality (e.g. numerical methods, meshing, physical models, …) are each compiled into their own shared library. Executable applications are then created that are simply linked to the library functionality. OpenFOAM includes over 80 solver applications that simulate specific problems in engineering mechanics and over 170 utility applications that perform pre- and post-processing tasks, e.g. meshing, data visualisation, etc. 
+</BLOCKQUOTE> 
+
+<P>
+Details of OpenFOAM formulation are explained in [<A
+ HREF="node7.html#jasak">3</A>] and [<A
+ HREF="node7.html#weller">6</A>].  From all the set of available solvers and libraries in OpenFOAM, the dieselFOAM solver and dieselSpray class (as implemented in version 1.7.1 of OpenCFD release) were the major pieces of code used in this work. To my knowledge, both were written by Niklas Nordin, [<A
+ HREF="node7.html#nordin">4</A>].
+
+<P>
+The dieselSpray class handles the modeling of lagrangian particles and their submodels. Minor modifications were made in order to have more flexibility in boundary conditions and to adapt them to the experimental conditions.
+
+<P>
+The dieselFOAM solver couples the modeling of the lagrangian particles and the gas flow solution. The spray sources are explicitly treated and the coupling among variables is solved with PISO algorithm, see [<A
+ HREF="node7.html#jasak">3</A>] and [<A
+ HREF="node7.html#ferziger">2</A>].
+
+<P>
+Minor modifications were added to the solution of low Mach number equations instead of the fully compressible formulation. They are briefly explained here, but the understanding requires from the reader some familiarity with OpenFOAM programming.
+
+<P>
+The thermodynamic pressure retained its original name <code>p</code> and is the pressure used in the state equation:
+<PRE>
+&lt;createFields.H&gt;
+volScalarField&amp; p = thermo.p();
+</PRE> 
+and in the lagrangian models:
+<PRE>
+&lt;createSpray.H&gt;
+spray dieselSpray
+(
+    U,
+    rho,
+    p,
+    T,
+    composition,
+    gasProperties,
+    thermo,
+    g
+);
+</PRE> 
+
+<P>
+A new scalar field was assigned to the dynamic pressure, <code>volumeScalarField pd</code>:
+<PRE>
+&lt;createFields.H&gt;
+ volScalarField pd
+(
+    IOobject
+    (
+        "pd",
+        runTime.timeName(),
+        mesh,
+        IOobject::MUST_READ,
+        IOobject::AUTO_WRITE
+    ),
+    mesh
+);
+</PRE> 
+
+<P>
+The momentum equation was modified to be computed using the gradient of <code>pd</code> instead of <code>p</code> in the momentum predictor:
+<PRE>
+&lt;UEqn.H&gt;
+     fvVectorMatrix UEqn
+    (
+        fvm::ddt(rho, U)
+      + fvm::div(phi, U)
+      + turbulence-&gt;divDevRhoReff(U)
+     ==
+        rho*g
+      + dieselSpray.momentumSource()
+    );
+
+    if (momentumPredictor)
+    {
+        solve(UEqn == -fvc::grad(pd));
+    }
+</PRE> 
+
+<P>
+Finally, the the pressure equation is now a Poisson equation for the dynamic pressure and it uses the thermodynamic pressure for computing the density.
+<PRE>
+&lt;pEqn.H&gt;
+
+  fvScalarMatrix pdEqn
+  (
+      fvc::ddt(psi,p)
+      + fvc::div(phi)
+      - fvm::laplacian(rho*rUA, pd)
+      ==
+      Sevap
+  );
+</PRE> 
+where <code>psi</code> or <SPAN CLASS="MATH"><IMG
+ WIDTH="18" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img1.png"
+ ALT="$ \Psi$"></SPAN> is the isothermal compressibility. For an ideal gas:
+<P></P>
+<DIV ALIGN="CENTER" CLASS="mathdisplay"><!-- MATH
+ \begin{equation}
+\rho=p\Psi=\frac{p}{RWT} \, .
+\end{equation}
+ -->
+<TABLE CLASS="equation" CELLPADDING="0" WIDTH="100%" ALIGN="CENTER">
+<TR VALIGN="MIDDLE">
+<TD NOWRAP ALIGN="CENTER"><SPAN CLASS="MATH"><IMG
+ WIDTH="139" HEIGHT="47" ALIGN="MIDDLE" BORDER="0"
+ SRC="img2.png"
+ ALT="$\displaystyle \rho=p\Psi=\frac{p}{RWT}   .$"></SPAN></TD>
+<TD NOWRAP CLASS="eqno" WIDTH="10" ALIGN="RIGHT">
+(<SPAN CLASS="arabic">1</SPAN>)</TD></TR>
+</TABLE></DIV>
+<BR CLEAR="ALL"><P></P>
+
+<P>
+The time-dependence of the thermodynamic pressure was neglected (valid for open domains) and the therm <code>fvc::ddt(psi,p)</code> vanishes.
+
+<P>
+
+<DIV CLASS="navigation"><HR>
+<!--Navigation Panel-->
+<A NAME="tex2html39"
+  HREF="node2.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="/usr/share/latex2html/icons/next.png"></A> 
+<A NAME="tex2html37"
+  HREF="tutorial.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="/usr/share/latex2html/icons/up.png"></A> 
+<A NAME="tex2html31"
+  HREF="tutorial.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="/usr/share/latex2html/icons/prev.png"></A>   
+<BR>
+<B> Next:</B> <A NAME="tex2html40"
+  HREF="node2.html">Folder Structure</A>
+<B> Up:</B> <A NAME="tex2html38"
+  HREF="tutorial.html">lowmachSolver: a low Mach</A>
+<B> Previous:</B> <A NAME="tex2html32"
+  HREF="tutorial.html">lowmachSolver: a low Mach</A></DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+Rodrigo
+2011-12-25
+</ADDRESS>
+</BODY>
+</HTML>

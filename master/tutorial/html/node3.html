@@ -1,0 +1,106 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2008 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Compiling</TITLE>
+<META NAME="description" CONTENT="Compiling">
+<META NAME="keywords" CONTENT="tutorial">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2008">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="tutorial.css">
+
+<LINK REL="next" HREF="node4.html">
+<LINK REL="previous" HREF="node2.html">
+<LINK REL="up" HREF="tutorial.html">
+<LINK REL="next" HREF="node4.html">
+</HEAD>
+
+<BODY >
+
+<DIV CLASS="navigation"><!--Navigation Panel-->
+<A NAME="tex2html60"
+  HREF="node4.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="/usr/share/latex2html/icons/next.png"></A> 
+<A NAME="tex2html58"
+  HREF="tutorial.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="/usr/share/latex2html/icons/up.png"></A> 
+<A NAME="tex2html52"
+  HREF="node2.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="/usr/share/latex2html/icons/prev.png"></A>   
+<BR>
+<B> Next:</B> <A NAME="tex2html61"
+  HREF="node4.html">Running</A>
+<B> Up:</B> <A NAME="tex2html59"
+  HREF="tutorial.html">lowmachSolver: a low Mach</A>
+<B> Previous:</B> <A NAME="tex2html53"
+  HREF="node2.html">Folder Structure</A>
+<BR>
+<BR></DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION00030000000000000000">
+Compiling</A>
+</H1>
+
+<P>
+Compiling was tested with Ubuntu Natty (numbered 11.04) and .deb package of OpenFOAM 1.7.1 released by OpenCFD.
+
+<P>
+<A NAME="tex2html3"
+  HREF="http://www.openfoam.org/archive/1.7.1/download/">http://www.openfoam.org/archive/1.7.1/download/</A>
+<P>
+Development tools for Ubuntu must be present. They can be installed by:
+<PRE>
+ sudo apt-get install build-essential flex bison cmake zlib1g-dev qt4-dev-tools libqt4-dev gnuplot libreadline-dev libxt-dev
+</PRE>
+For parallel runs, installation of the following libraries is also required:
+<PRE>
+sudo apt-get install libscotch-dev libopenmpi-dev
+</PRE>
+
+<P>
+Code is located in <A NAME="tex2html4"
+  HREF="../../code/1.7.x">./trunk/code/1.7.x/</A>
+<PRE>
+--- trunk
+    +-- code
+        +-- 1.7.x			code based on 1.7.1 release from OpenCFD
+            +-- lowmachLib			lagrangian spray lib.
+            +-- lowmachSolver			low Mach number solver coupled with lowmachLib.
+            +-- myLiquids			acetone liquid and vapor properties
+            +-- mypdfs				spray probability density functions
+</PRE>
+
+<P>
+Inside <A NAME="tex2html5"
+  HREF="../../code/1.7.x">./trunk/code/1.7.x/</A>, the following scripts may be issued to:
+
+<PRE>
+# ./Allwmake			compile the solver and all needed libraries.
+# ./CleanSrc			clean the source files for a new compiling.
+# ./CleanAll			clean both source and binary files for a new compiling.
+</PRE>
+
+<P>
+<SPAN  CLASS="textbf">Allwmake</SPAN> script will make a user installation after compiling the code.
+
+<P>
+<BR><HR>
+<ADDRESS>
+Rodrigo
+2011-12-25
+</ADDRESS>
+</BODY>
+</HTML>

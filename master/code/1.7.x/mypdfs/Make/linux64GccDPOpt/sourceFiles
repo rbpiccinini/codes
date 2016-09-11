@@ -1,0 +1,11 @@
+SOURCE = \
+pdf/pdf.C\
+pdf/pdfNew.C\
+exponential/exponential.C\
+fixedValue/fixedValue.C\
+general/general.C\
+multiNormal/multiNormal.C\
+normal/normal.C\
+RosinRammler/RosinRammler.C\
+uniform/uniform.C\
+lognormal/lognormal.C
