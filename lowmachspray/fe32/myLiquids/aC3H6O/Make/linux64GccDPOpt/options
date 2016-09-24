@@ -1,0 +1,63 @@
+# 1 "options"
+# 1 "<built-in>"
+# 1 "<command-line>"
+
+
+# 1 "/usr/include/stdc-predef.h" 1 3 4
+
+# 17 "/usr/include/stdc-predef.h" 3 4
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# 2 "<command-line>" 2
+# 1 "options"
+EXE_INC = -I$(LIB_SRC)/thermophysicalModels/liquids/lnInclude -I$(LIB_SRC)/thermophysicalModels/thermophysicalFunctions/lnInclude -I../myFunctions/lnInclude
+
+
+
+
+LIB_LIBS = -lliquids -lthermophysicalFunctions -L$(FOAM_USER_LIBBIN) -lmyThermophysicalFunctions
+
+
+
+
+

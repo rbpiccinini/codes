@@ -1,0 +1,10 @@
+include pdf/pdf.dep
+include pdf/pdfNew.dep
+include exponential/exponential.dep
+include fixedValue/fixedValue.dep
+include general/general.dep
+include multiNormal/multiNormal.dep
+include normal/normal.dep
+include RosinRammler/RosinRammler.dep
+include uniform/uniform.dep
+include lognormal/lognormal.dep

@@ -1,0 +1,127 @@
+% LaTeX .sty style for the proceedings of
+% ENCIT2010 - XIII BRAZILIAN CONGRESS OF THERMAL SCIENCES AND ENGINEERING
+% November, 15-20, 2009 - Gramado, RS, Brazil
+%
+% Created by: Henrique M. Gaspar to COBEM2007
+% Date: February, 12th, 2007
+%
+% Updated by: Sócrates Duarte - SWGE Sistemas Ltda.
+%
+% Based on Proceedings of ENCIT2010 - Copyrighted by ABCM
+% www.abcm.org.br/encit2010
+%
+
+
+%Packages
+\usepackage{ccaption}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\usepackage{helvet}
+\usepackage{float}
+\usepackage{colortbl}
+\usepackage{fancyvrb}
+\usepackage{wrapfig}
+
+%Default Fonts
+\renewcommand{\rmdefault}{ptm}
+\fontfamily{arial}
+
+%No Header Line
+\renewcommand{\headrulewidth}{0pt}
+
+%Standart of ENCIT margins
+\setlength{\voffset}{-2.54cm}
+\setlength{\hoffset}{-2.54cm}
+\setlength{\oddsidemargin}{2cm}
+\setlength{\textheight}{24,7cm}
+\setlength{\textwidth}{17cm}
+\setlength{\headwidth}{17cm}
+\setlength{\parindent}{0.5cm}
+\setlength{\headsep}{1cm}
+\setlength{\topmargin}{1.5cm}
+\setlength{\headheight}{0.5cm}
+\setlength{\parskip}{0pt}
+
+%Indent in equations
+\mathindent 0.5cm
+
+%Standart of ENCIT black line border
+\arrayrulecolor{black}
+\doublerulesep 1.4pt
+\doublerulesepcolor{black}
+
+%Standart of ENCIT Header
+\pagestyle{fancy}
+\lhead{\footnotesize{\textsf{Proceedings of ENCIT 2010 \\ Copyright \copyright {} 2010 by ABCM}}}
+\rhead{\footnotesize{\textsf{13th Brazilian Congress of Thermal Sciences and Engineering \\ December 05-10, 2010, Uberlândia, MG, Brazil}}}
+\cfoot{}
+
+%Definitions of ENCIT commands
+\def\authors{\bf}
+\def\institution{\small}
+\def\email{\small}
+\def\title{\Large \bf \centering}
+\def\abstract{\it}
+\def\keywords{\it}
+
+%Standart of ENCIT Sections
+\makeatletter
+\def\section{\@startsection{section}{1}
+          {\z@}{10pt minus 0pt}{10pt minus 0pt}{\bf}}
+\def\subsection{\@startsection{subsection}{2}
+          {\z@}{10pt minus 0pt}{10pt minus 0pt}{\bf}}
+\def\subsubsection{\@startsection{subsubsection}{3}
+          {\z@}{10pt minus 0pt}{10pt minus 0pt}{\bf}}
+\def\thesection{\arabic{section}.\hskip -1ex}	
+\def\thesubsection {\thesection\hskip 1.1ex \arabic{subsection}\hskip -1ex}
+\def\thesubsubsection {\thesubsection\hskip 1.1ex .\arabic{subsubsection}\hskip -1ex}
+\makeatother
+
+%Standart of ENCIT Tables and Figures - Space and Captions
+\abovecaptionskip 0pt
+\belowcaptionskip 0pt
+
+\makeatletter
+\newcommand{\@ldtable}{}
+\let\@ldtable\table
+\renewcommand{\table}{%
+\setlength{\abovecaptionskip}{\belowcaptionskip}%
+\setlength{\belowcaptionskip}{10pt}%
+\@ldtable}
+\makeatother
+\captiondelim{. }
+\captionstyle{\centering\centerlastline}
+
+%Standart of ENCIT Bibliography
+\renewcommand\refname{}
+\makeatletter
+\renewcommand\@biblabel[1]{}
+\newcommand*\clinbiblabel[1]{\hspace\labelsep
+                             \normalfont #1}
+\renewenvironment{thebibliography}[1]
+     {\section*{\refname
+        \@mkboth{\MakeUppercase\refname}{\MakeUppercase\refname}}%
+      \list{\@biblabel{\@arabic\c@enumiv}}%
+           {\settowidth\labelwidth{\@biblabel{#1}}%
+            \leftmargin\labelwidth
+            \advance\leftmargin\labelsep
+	    \vspace{-21pt}
+	    \leftmargin 0.5cm
+	    \labelwidth\z@
+	    \labelsep\z@
+	    \itemsep\z@
+	    \parsep\z@
+	    \itemindent-\leftmargin	
+	    \let\makelabel\clinbiblabel
+            \usecounter{enumiv}%
+            \let\p@enumiv\@empty
+            \renewcommand\theenumiv{\@arabic\c@enumiv}}%
+        \renewcommand\newblock{\hskip .11em \@plus.33em \@minus.07em}%
+      \sloppy\clubpenalty4000\widowpenalty4000%
+      \sfcode`\.=\@m}
+     {\def\@noitemerr
+       {\@latex@warning{Empty `thebibliography' environment}}%
+      \endlist}
+\makeatother
+
