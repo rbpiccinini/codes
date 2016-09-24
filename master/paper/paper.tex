@@ -124,7 +124,7 @@ $^{*}$\textit{\textbf{Corresponding author} E-mail: \underline{delemos@ita.br}}}
 
 
 \begin{abstract}
-RANS simulation is applied to a turbulent and evaporating spray of acetone in an air co-flow stream. The air is a continuous phase in an Eulerian description and the liquid is a dispersed phase of point-particles in a Lagragian description. An  approximation of zero Mach number was applied to the governing equations of the continuous phase. Turbulence was modeled using k-epsilon model. Submodels were used for heat and mass inter-phase transfers and Nusselt and Sherwood numbers are given by empirical correlations for convective droplet heating and evaporation. The spray interaction with turbulence is only accounted for in droplet motion using the random walk procedure. The numerical results were compared to measurements and a reasonable prediction was found for droplet and gas velocities and liquid evaporation, although underestimated.
+RANS simulation was applied to a turbulent and evaporating spray of acetone in an air co-flowing stream. An Eulerian-Lagrangian description was used with a liquid phase of point-particles dispersed in a gaseous continuous phase. Governing equations of the continuous phase were simplified with a low Mach number approximation. Turbulence was modeled using k-epsilon model. Submodels for heat and mass inter-phase transfers and Nusselt and Sherwood numbers were given by empirical correlations for convective droplet heating and evaporation. Spray interaction with turbulence was modeled using a random walk procedure. Numerical results were compared to measurements and a reasonable prediction was found for droplet and gas velocities and liquid evaporation.
 \end{abstract}
 
 \begin{keyword}
@@ -232,14 +232,14 @@ $\mathcal{D}_k$ & binary diffusion coefficient of species k [$m^2/s$]
 %% main text
 \section{Introduction}
 \label{intro}
-A spray jet is a particular case of a dispersed multiphase flow originated by the instabilization of a liquid jet emerging in a gaseous atmosphere.  The spray is composed by the continuous gaseous phase and the dispersed phase of liquid droplets.
-Depending on the liquid volumetric fraction, the spray may be classified as dense ($\phi_l > 10^{-3}$) or dilute ($\phi_l \le 10^{-3}$). The dilute sprays are commonly modeled using the so called two-way coupling, where interaction between gas and liquid droplets is modeled, but interaction among droplets is neglected.
+A spray jet is a particular case of a dispersed multiphase flow produced by an unstable liquid jet emerging in a gaseous atmosphere. 
+Depending on liquid volumetric fraction, a spray may be classified as dense ($\phi_l > 10^{-3}$) or dilute ($\phi_l \le 10^{-3}$). Dilute sprays are commonly modeled using the so called two-way coupling.  In this coupling approach, interactions among gas and liquid droplets are modeled, but interactions among droplets are neglected.
 
 RANS modeling has been extensively used to spray jets simulations, see \citet{baumgarten2006mixture}, and, more recently, large-eddy (LES) and direct simulations (DNS) have also been applied. Independently on the turbulence modeling, droplet heating and evaporation are often similarly modeled with empirical correlations for Nusselt and Sherwood numbers, such as those of Ranz and Marshall's \citet{ranzmarshall}. This indicates that much of the improvement obtained in LES simulations in the prediction of droplet velocity and evaporation rate, e.g. \citet{bini} and \citet{moin},  was due to the best modeling of turbulent motion and the allowance of gas properties such as temperature ($T$) and species mass fractions ($Y_k$) to deviate from mean values. It certainly provides a more accurate description of droplet environment in a turbulent spray jet. Actually, \citet{bini} has also shown that subgrid modeling of Sherwood number in LES further improved predictions of droplet evaporation.
 
 This scenario suggests the possibility of improving RANS simulations with stochastic submodeling of not only droplet dispersion, but of heat and mass transfers as well. Also, the proposition of RANS submodels would certainly benefit from the results coming from LES and DNS.
 
-This paper presents results of applying RANS modeling to the experiment developed by \citet{chen}. It has found overestimation of jet spread rate using the usual coefficients of k-epsilon model and underprediction of droplet velocity and evaporation rate, specially after the the jet core. It suggests that future modification of turbulence model coefficients and stochastic submodels for heat and mass transfers could improve predictions.
+This paper presents results of applying RANS modeling to the experiment developed by \citet{chen}. It has found overestimation of jet spread rate using the usual coefficients of k-epsilon model and underprediction of droplet velocity and evaporation rate, specially after the jet core. It suggests that future modification of turbulence model coefficients and stochastic submodels for heat and mass transfers could improve predictions.
 
 \section{Governing Equations}
 \label{equations}
