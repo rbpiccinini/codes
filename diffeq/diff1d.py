@@ -25,25 +25,26 @@ def eigCalc(n, L, k):
         A[i,i] = -kph[i]-kmh[i]
         A[i,i+1] = kph[i] 
     
-    A[0,0] =-kph[0]-k[0]
+    A[0,0] =-kph[0]
     A[0,1] = kph[0]
 
     A[n-1,n-2] = kmh[n-1]
-    A[n-1,n-1] =  -k[n-1]-kmh[n-1] #-A[n-1,n-2]
+    A[n-1,n-1] =  -kmh[n-1] #-A[n-1,n-2]
     
     A = -A/dx**2
     w, v = eigh(A)
     k = argsort(w)
     
+    
 #     reconstructing k(x)
     nest=10
     s = zeros(n)
     for i in range(1,nest):
-        s = s - w[i]*v[:,i]
+        s = s + w[i]*v[:,i]
     s = integrate.cumtrapz(s, dx=dx, initial=0.)
     kest = s*dx/gradient(sum(v[:,1:],axis=1))
     
-    return w[0:20:1], -v[:,0:20:1], kest
+    return w[0:20:1], v[:,0:20:1], kest
 
 #print(eigs[1:10:1]/(pi*arange(1,10,1)/L)**2)
 
@@ -66,8 +67,7 @@ print('kmax = ',max(khe))
 print('kest = ',mean(kest))
 
 figure()
-for i in range(3):
-    plot(x,v[:,i])
+plot(x,v[:,1])
       
 figure()
 plot(x,kest)
