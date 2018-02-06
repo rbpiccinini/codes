@@ -5,6 +5,27 @@ import numpy as np
 from scipy import stats
 from scipy import integrate
 
+params = {
+'backend': 'ps',
+#'text.latex.preamble': ['\usepackage[latin1]{inputenc}'],
+'axes.labelsize': 8, # fontsize for x and y labels (was 10)
+'axes.titlesize': 8,
+'axes.grid': False,
+'font.size': 8, # was 10
+'legend.fontsize': 8, # was 10
+'xtick.labelsize': 8,
+'ytick.labelsize': 8,
+'text.usetex': True,
+#'figure.figsize': [6.9,8.0],
+'figure.figsize': [3.3, 2.04],
+'font.family': 'sans-serif',
+'font.sans-serif': 'Helvetica',
+'lines.linewidth': 1,
+'lines.markersize': 3
+}
+
+rcParams.update(params)
+
 def householder(A):
 	n = len(A)
 	for k in range(n-2):
@@ -138,29 +159,37 @@ f=1.0
 n = 500
 m = 200
 x = linspace(0.,L,n) 
-khe=(1.0 + 0.7*sin(wn*pi*x))*1e-2 #np.random.random(n)
-kho = L/trapz(1.0/khe,x)
-w, v, kest, A = eigCalc(n,L=L, k=khe)
+khe1=(1.0 + 0.7*sin(wn*pi*x))*1e-2 #np.random.random(n)
+kho = L/trapz(1.0/khe1,x)
+khe2=array(349*[1.]+[35.]+[70.]+149*[100.])
+khe2=0.01+(100-0.01)/(1.0+np.exp(-100.0*(x-0.7)))
+khe2=khe2/(1.0/trapz(1.0/khe2,x))*kho
+
+print('kho = ', kho, 1.0/trapz(1.0/khe2,x))
+
+w1, v1, kest1, A1 = eigCalc(n,L=L, k=khe1)
+w2, v2, kest2, A2 = eigCalc(n,L=L, k=khe2)
 who, vho, kestho, Aho = eigCalc(n,L=L, k=kho*ones(n))
 
-Arec = Aho #zeros([n,n])
-nest = 100
-for i in range(nest):
-	Arec = Arec + (w[i]-who[i])*outer(vho[:,i],vho[:,i])
-Arec = householder(Arec)
-wrec, vrec = eigsh(Arec, k=10, which='SM')
-krec = recK(Arec, L/n)
+#Arec = Aho #zeros([n,n])
+#nest = 100
+#for i in range(nest):
+#	Arec = Arec + (w[i]-who[i])*outer(vho[:,i],vho[:,i])
+#Arec = householder(Arec)
+#wrec, vrec = eigsh(Arec, k=10, which='SM')
+#krec = recK(Arec, L/n)
 
-intveta=ones(len(w)-1)
-for i in range(1,len(w)):
-	intveta[i-1] = trapz(khe*gradient(v[:,i])**2/i**2.,x=x)/kho
-	
-keff=zeros(len(w))
-
-keff[1:]= w[1:]*L**2/(pi*arange(1,len(w)))**2
-for i in range(len(keff)):
-	print('{:2d} \t keff = {:8.5f} \t w = {:8.5e}'.format(i+1, keff[i], w[i]))
-#    print(i+1,'k = ',keff[i], '\t\tw = ',w[i])
+figure()
+plot(x,kho*gradient(vho[:,5])**2/gradient(x)**2,'k-')
+fill(x,khe1*gradient(v1[:,5])**2/gradient(x)**2, color='black', alpha=0.25)
+fill(x,khe2*gradient(v2[:,5])**2/gradient(x)**2, color='black', alpha=0.50)
+xlim([0.,1.])
+xlabel('Position ($m$)')
+ylabel('$\eta(x)(dPsi/dx)^2$ ($kPa^2/s$)')
+legend(('homogeneous', 'weakly heterogeneous', 'strongly heterogeneous'), loc='upper right')
+tight_layout()
+savefig('localization.jpg', dpi=300, additional_artists=[], bbox_inches="tight")
+show()
 
 
 
