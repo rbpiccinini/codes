@@ -9,35 +9,75 @@ class classPVT:
     ----------
     pvt_table : string
         Excel xlsx file with PVT properties table.
-    Pb0 : float
-        Initial bubble-point pressure (kgf/cm2).
+    Pb : float
+        Bubble-point pressure (kgf/cm2).
     co : float
-        Undersaturated oil compressbility (cm2/kgf).
+        Undersaturated oil compressibility (cm2/kgf).
     T : float
         Reservoir fluid temperature (K).
 
     Attributes
     -------
-    calcWe : float
-        Returns aquifer influx for a given final pressure.
-
+    Bo : float
+        Returns Bo for given oil phase pressure and bubble-point
+        pressure (m3/sm3).
+    Bg : float
+        Returns Bg for given gas phase pressure (m3/sm3).
+    Bw : float
+        Returns Bw for given water phase pressure (m3/sm3).
+    Rs : float
+        Returns gas-oil solubility ratio (sm3/sm3).
     """
-    pe=[]
-    Boe=[]
-    Bge=[]
-    Bwe=[]
-    Rse=[]
-    Pb=0.
-    co=0.
-    T=0.
 
-    def Bo(self,p,Pb):
+    def __init__(self, pvt_table, co, T):
+        # reading pvt table
+        self.pe = pvt['P']
+        self.Boe = pvt['BO']
+        self.Rse = pvt['RS']
+        self.Bge = pvt['BG']
+        self.Bwe = pvt['BW']
+
+        # reading other properties
+        self.co = co
+        self.T = T
+
+    def Bo(self, p, Pb):
+        """Returns Bo for given bubble-point and oil phase pressure.
+
+        Parameters
+        ----------
+        p : float
+            Oil phase pressure (kgf/cm2).
+        Pb : float
+            Oil phase bubble-point pressure (kgf/cm2).
+
+        Returns
+        -------
+        Bo : float
+            Formation-volume factor of oil phase (m3/sm3).
+
+        """
+
         if p >= Pb:
-            return interp(Pb,self.pe[::-1],self.Boe[::-1])*(1.-self.co*(p-Pb))
+            return interp(Pb, self.pe[::-1], self.Boe[::-1]) \
+                    * (1.-self.co*(p-Pb))
         else:
-            return interp(p,self.pe[::-1],self.Boe[::-1])
+            return interp(p, self.pe[::-1], self.Boe[::-1])
 
-    def Bg(self,p):
+    def Bg(self, p):
+        """Returns Bg for given gas phase pressure.
+
+        Parameters
+        ----------
+        p : float
+            Gas phase pressure (kgf/cm2).
+
+        Returns
+        -------
+        Bg : float
+            Formation-volume factor of gas phase (m3/sm3).
+
+        """
         if type(self.Ze)==type(1.0):
             Bgi=1.033/self.pe*(self.T)/293.
             self.Ze=self.Bge/Bgi
@@ -46,9 +86,37 @@ class classPVT:
         return 1.033/p*(self.T)/293.*Z
 
     def Bw(self,p):
+        """Returns Bw for given gas phase pressure.
+
+        Parameters
+        ----------
+        p : float
+            Water phase pressure (kgf/cm2).
+
+        Returns
+        -------
+        Bw : float
+            Formation-volume factor of water phase (m3/sm3).
+
+        """
         return interp(p,self.pe[::-1],self.Bwe[::-1])
 
     def Rs(self,p,Pb):
+        """Returns Rs for given oil-phase pressure.
+
+        Parameters
+        ----------
+        p : float
+            Water phase pressure (kgf/cm2).
+        Pb : float
+            Oil phase bubble-point pressure (kgf/cm2).
+
+        Returns
+        -------
+        Rs: float
+            Gas-oil solubility ratio (m3/m3).
+
+        """
         if p >= Pb:
             return interp(Pb,self.pe[::-1],self.Rse[::-1])
         else:
@@ -100,91 +168,104 @@ class classAquifer:
 
         """
         ct=self.cr+self.cw
-        We=ct*self.size*(self.p0-p)
+        We=ct*self.WW*(self.p0-p)
         return We
 
-class classPressData:
-    p=0.
-    Np=0.
-    Wp=0.
-    Wi=0.
-    Gi=0.
-    Gp=0.
-
 class classRes:
-    cr=0.
-    Sw0=0.
-    Swi=0.
-    Sg0=0.
-    Sgi=0.
-    Sor=0.
+    """Class for reservoir properties.
 
-    kh=0.
-    kv=0.
-    phi=0.
+    Parameters
+    ----------
+    N : float
+        Stock-tank original oil in place - STOOIP (sm3).
+    p0 : float
+        Initial reservoir pressure (kgf/cm2).
+    Pb0 : float
+        Initial bubble-point pressure of oil phase (kgf/cm2).
+    cr : float
+        Pore volume compressibility (cm2/kgf).
+    Swcon : float
+        Connate water saturation.
+    m : float
+        Ratio of initial gas-cap volume to initial oil zone volume
 
-    p0=0.
-    Pb0=0.
-    m=0.
-    Vp0=0.
+    Attributes
+    -------
+    Vp : float
+        Returns reservoir pore volume.
 
-    T=0.
+    """
+    def __init__(self, N, p0, Pb0, cr, Swcon, m, pvt):
+        self.N = N
+        self.p0 = p0
+        self.Pb0 = Pb0
+        self.cr = 0.
+        self.Swcon = 0.
+        self.m = 0.
+        self.pvt = pvt
+        # Pore volume of HC zone
+        self.Vp0 = (1.+m)*N*pvt.Bo(p0, Pb0)/(1.-Swcon)
 
-    teste=classPressData()
+    def Vp(self, p):
+        """Returns reservoir pore volume.
 
-    def Vp(self,p):
+        Parameters
+        ----------
+        p : float
+            Reservoir pressure (kgf/cm2).
+
+        Returns
+        -------
+        Vp : float
+            Reservoir pore volume (m3).
+
+        """
         return self.Vp0*(1.-self.cr*(self.p0-p))
 
 class classHist:
-    p=[]
-    Bo=[]
-    Rs=[]
-    Bg=[]
-    px=[]
-    Sw=[]
-    Sg=[]
-    So=[]
-    Eo=[]
-    Eo_p1=[]
-    Eo_p2=[]
-    Eg=[]
-    Efw=[]
-    Vp=[]
-    We=[]
-    AqX=[]
-    AqY=[]
-    fw=[]
-    fwrc=[]
-    residual=[]
-    Pb=[]
-    Pa=[]
-    Fp=[]
-    iter=[]
-    def reset(self):
-        self.p=[]
-        self.Sw=[]
-        self.Sg=[]
-        self.So=[]
-        self.Eo=[]
-        self.Eg=[]
-        self.Efw=[]
-        self.Vp=[]
-        self.We=[]
-        self.AqX=[]
-        self.AqY=[]
-        self.fw=[]
-        self.fwrc=[]
-        self.residual=[]
-        self.Pb=[]
-        self.Pa=[]
+"""Class for loading production, injection and pressure history.
 
-class classGuess:
-    N=[]
-    AqX=[]
-    AqY=[]
+    Parameters
+    ----------
+    hist : string
+       Excel xlsx file with production, injection and pressure history.
+
+    Attributes
+    -------
+    Vp : float
+        Returns reservoir pore volume.
+
+    """
+    def __init__(self, file):
+        self.data = pd.read_excel(file)
+        self.data =
 
 
-class classEBM:
+class classMBE:
+"""Class for defining material balance equation.
+
+    Parameters
+    ----------
+    N : float
+        Stock-tank original oil in place - STOOIP (sm3).
+    p0 : float
+        Initial reservoir pressure (kgf/cm2).
+    Pb0 : float
+        Initial bubble-point pressure of oil phase (kgf/cm2).
+    cr : float
+        Pore volume compressibility (cm2/kgf).
+    Swcon : float
+        Connate water saturation.
+    m : float
+        Ratio of initial gas-cap volume to initial oil zone volume
+
+    Attributes
+    -------
+    Vp : float
+        Returns reservoir pore volume.
+
+    """
+
     p=0.
     pold=0.
 
