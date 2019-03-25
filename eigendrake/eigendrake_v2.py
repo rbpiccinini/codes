@@ -42,10 +42,11 @@ Kx = fd.Function(V).interpolate(1.0+x)
 Ky = fd.Function(V).interpolate(1.0+y)
 Kz = fd.Function(V).interpolate(1.0+z)
 
-Kx = fd.Constant(1.0)
-Ky = fd.Constant(1.0)
-Kz = fd.Constant(1.0)
+#Kx = fd.Constant(1.0)
+#Ky = fd.Constant(1.0)
+#Kz = fd.Constant(1.0)
 
+# Permeability field harmonic interpolation to facets
 Kx_facet = fd.conditional(fd.gt(fd.avg(Kx), 0.0), Kx('+')*Kx('-') / fd.avg(Kx), 0.0)
 Ky_facet = fd.conditional(fd.gt(fd.avg(Ky), 0.0), Ky('+')*Ky('-') / fd.avg(Ky), 0.0)
 Kz_facet = fd.conditional(fd.gt(fd.avg(Kz), 0.0), Kz('+')*Kz('-') / fd.avg(Kz), 0.0)
@@ -54,7 +55,6 @@ Kz_facet = fd.conditional(fd.gt(fd.avg(Kz), 0.0), Kz('+')*Kz('-') / fd.avg(Kz), 
 por = fd.Constant(1.0)
 
 # We can now define the bilinear and linear forms for the left and right
-# hand sides of our equation respectively::
 dx = fd.dx
 KdivU = fd.as_vector((Kx_facet*u.dx(0), Ky_facet*u.dx(1), Kz_facet*u.dx(2)))
 a = (fd.dot(KdivU, fd.grad(v))) * dx
