@@ -3,20 +3,43 @@ import numpy as np
 from slepc4py import SLEPc
 from firedrake.petsc import PETSc
 
-Lx = 1.
-Ly = Lx/2.
-Lz = Lx/3.
-mesh = fd.utility_meshes.RectangleMesh(nx=30, ny=15, Lx=Lx, Ly=Ly,
+
+def coords2ijk(x, y, z, Delta, data_array):
+    i = np.floor(x / Delta[0]).astype(int)
+    j = np.floor(y / Delta[1]).astype(int)
+    k = np.floor(z / Delta[2]).astype(int)
+    if i == 60:
+        i = i-1
+    if j == 220:
+        j = i-1
+    if k == 85:
+        k = k-1
+
+    return data_array[i, j, k]
+
+# Define mesh
+Delta_x = 20
+Delta_y = 10
+Delta_z = 2
+
+Nx = 60
+Ny = 220
+Nz = 85
+
+Lx = Nx*Delta_x
+Ly = Ny*Delta_y
+Lz = Nz*Delta_z
+
+mesh = fd.utility_meshes.RectangleMesh(nx=Nx, ny=Ny, Lx=Lx, Ly=Ly,
                                        quadrilateral=True)
-nz = 10
-mesh = fd.ExtrudedMesh(mesh, layers=nz, layer_height=Lz/nz)
+mesh = fd.ExtrudedMesh(mesh, layers=Nz, layer_height=Delta_z)
 
 # We need to decide on the function space in which we'd like to solve the
 # problem. Let's use piecewise linear functions continuous between
 # elements::
 
 V = fd.FunctionSpace(mesh, "CG", 1)
-W = fd.TensorFunctionSpace(mesh, "CG", 1)
+Vvec = fd.VectorFunctionSpace(mesh, "CG", 1)
 
 # We'll also need the test and trial functions corresponding to this
 # function space::
@@ -27,49 +50,57 @@ v = fd.TestFunction(V)
 # We declare a function over our function space and give it the
 # value of our right hand side function::
 
-
 # Permeability tensor
-# Homogeneous
-one = fd.Constant(1.0)
-zero = fd.Constant(0.0)
-Khom = fd.interpolate(one, V)
-Khom.rename('K', 'Permeability')
+print("START: Read in reservoir fields")
+Delta = np.array([Delta_x, Delta_y, Delta_z])
 
-# Heterogeneous
-x, y, z = fd.SpatialCoordinate(W.mesh()) 
+coords = fd.project(mesh.coordinates, Vvec).dat.data
+kx_array = np.load('./spe10/spe10_kx.npy')
+ky_array = np.load('./spe10/spe10_ky.npy')
+kz_array = np.load('./spe10/spe10_kz.npy')
+phi_array = np.load('./spe10/spe10_po.npy')
 
-Kx = fd.Function(V).interpolate(1.0+y)
-Ky = fd.Function(V).interpolate(1.0+0.25*fd.sin(fd.pi/Ly*y/2))
-Kz = fd.Function(V).interpolate(z)
+Kx = fd.Function(V)
+Ky = fd.Function(V)
+Kz = fd.Function(V)
+phi = fd.Function(V)
 
-Kx.rename('Kx', 'Permeability in x direction.')
-Ky.rename('Ky', 'Permeability in y direction.')
-Kz.rename('Kz', 'Permeability in z direction.')
+Kx.rename('Kx')
+Ky.rename('Ky')
+Kz.rename('Kz')
+phi.rename('phi')
 
-#Kx = fd.Constant(1.0)
-#Ky = fd.Constant(1.0)
-#Kz = fd.Constant(1.0)
+coords2ijk = np.vectorize(coords2ijk, excluded=['data_array', 'Delta'])
+
+Kx.dat.data[...] = coords2ijk(coords[:, 0], coords[:, 1],
+                                    coords[:, 2], Delta=Delta, data_array=kx_array)
+Ky.dat.data[...] = coords2ijk(coords[:, 0], coords[:, 1],
+                                    coords[:, 2], Delta=Delta, data_array=ky_array)
+Kz.dat.data[...] = coords2ijk(coords[:, 0], coords[:, 1],
+                                    coords[:, 2], Delta=Delta, data_array=kz_array)
+phi.dat.data[...] = coords2ijk(coords[:, 0], coords[:, 1],
+                                       coords[:, 2], Delta=Delta, data_array=phi_array)
+print("END: Read in reservoir fields")
+
+fd.File("spe10.pvd").write(Kx, Ky, Kz, phi)
 
 # Permeability field harmonic interpolation to facets
 Kx_facet = fd.conditional(fd.gt(fd.avg(Kx), 0.0), Kx('+')*Kx('-') / fd.avg(Kx), 0.0)
 Ky_facet = fd.conditional(fd.gt(fd.avg(Ky), 0.0), Ky('+')*Ky('-') / fd.avg(Ky), 0.0)
 Kz_facet = fd.conditional(fd.gt(fd.avg(Kz), 0.0), Kz('+')*Kz('-') / fd.avg(Kz), 0.0)
 
-# Porosity
-por = fd.Constant(1.0)
-
 # We can now define the bilinear and linear forms for the left and right
 dx = fd.dx
 KdivU = fd.as_vector((Kx_facet*u.dx(0), Ky_facet*u.dx(1), Kz_facet*u.dx(2)))
 a = (fd.dot(KdivU, fd.grad(v))) * dx
-m = u * v * por * dx
+m = u * v * phi * dx
 
 # Defining the eigenvalue problem
 
 petsc_a = fd.assemble(a).M.handle
 petsc_m = fd.assemble(m).M.handle
 
-num_eigenvalues = 20
+num_eigenvalues = 2
 
 # Set solver options
 opts = PETSc.Options()
@@ -77,14 +108,18 @@ opts.setValue("eps_gen_hermitian", None)
 opts.setValue("st_pc_factor_shift_type", "NONZERO")
 opts.setValue("eps_type", "krylovschur")
 opts.setValue("eps_smallest_real", None)
-opts.setValue("eps_tol", 1e-10)
-
+opts.setValue("eps_tol", 1e-5)
 
 # Solve for eigenvalues
-es = SLEPc.EPS().create()
-es.setDimensions(num_eigenvalues)
+print('Computing eigenvalues...')
+es = SLEPc.EPS().create().create(comm=SLEPc.COMM_WORLD)
+es.setDimensions(nev=2, ncv=4)
 es.setOperators(petsc_a, petsc_m)
 es.setFromOptions()
+print(es.getDimensions())
+
+ERROR
+
 es.solve()
 
 # Number of converged eigenvalues

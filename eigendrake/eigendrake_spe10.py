@@ -65,6 +65,11 @@ Ky = fd.Function(V)
 Kz = fd.Function(V)
 phi = fd.Function(V)
 
+Kx.rename('Kx')
+Ky.rename('Ky')
+Kz.rename('Kz')
+phi.rename('phi')
+
 coords2ijk = np.vectorize(coords2ijk, excluded=['data_array', 'Delta'])
 
 Kx.dat.data[...] = coords2ijk(coords[:, 0], coords[:, 1],
@@ -76,6 +81,9 @@ Kz.dat.data[...] = coords2ijk(coords[:, 0], coords[:, 1],
 phi.dat.data[...] = coords2ijk(coords[:, 0], coords[:, 1],
                                        coords[:, 2], Delta=Delta, data_array=phi_array)
 print("END: Read in reservoir fields")
+
+fd.File("helmholtz.pvd").write(Kx, Ky, Kz, phi)
+aaa
 
 # Permeability field harmonic interpolation to facets
 Kx_facet = fd.conditional(fd.gt(fd.avg(Kx), 0.0), Kx('+')*Kx('-') / fd.avg(Kx), 0.0)
@@ -98,7 +106,7 @@ num_eigenvalues = 3
 # Set solver options
 opts = PETSc.Options()
 opts.setValue("eps_gen_hermitian", None)
-#opts.setValue("st_pc_factor_shift_type", "NONZERO")
+opts.setValue("st_pc_factor_shift_type", "NONZERO")
 opts.setValue("eps_type", "krylovschur")
 #opts.setValue("eps_smallest_magnitude", None)
 opts.setValue("eps_target_magnitude", None)
@@ -107,7 +115,7 @@ opts.setValue("eps_tol", 1e-10)
 
 # Solve for eigenvalues
 print('Computing eigenvalues...')
-es = SLEPc.EPS().create()
+es = SLEPc.EPS().create().create(comm=SLEPc.COMM_WORLD)
 es.setDimensions(num_eigenvalues)
 es.setOperators(petsc_a, petsc_m)
 es.setFromOptions()
