@@ -18,7 +18,7 @@ class classPVT:
     cw : float
         Water compressibility (cm2/kgf).
     Bwi : float
-        Bw at reference pressure (sm3/m3)
+        Bw at reference pressure (rm3/sm3)
     pw : float
         Reference pressure for Bwi (kgf/cm2)
     T : float
@@ -28,11 +28,11 @@ class classPVT:
     -------
     Bo : float
         Returns Bo for given oil phase pressure and bubble-point
-        pressure (m3/sm3).
+        pressure (rm3/sm3).
     Bg : float
-        Returns Bg for given gas phase pressure (m3/sm3).
+        Returns Bg for given gas phase pressure (rm3/sm3).
     Bw : float
-        Returns Bw for given water phase pressure (m3/sm3).
+        Returns Bw for given water phase pressure (rm3/sm3).
     Rs : float
         Returns gas-oil solubility ratio (sm3/sm3).
     """
@@ -40,7 +40,7 @@ class classPVT:
     def __init__(self, pvt_table, co, cw, Bwi, pw, T):
         # reading pvt table
         self.pvt_table = pd.read_excel(pvt_table).sort_values(by='p',
-                                      ascending=False)
+                                      ascending=True).reset_index(drop=True)
         self.pe = self.pvt_table['p']
         self.Boe = self.pvt_table['Bo']
         self.Rse = self.pvt_table['Rs']
@@ -69,15 +69,17 @@ class classPVT:
         Returns
         -------
         Bo : float
-            Formation-volume factor of oil phase (m3/sm3).
+            Formation-volume factor of oil phase (rm3/sm3).
 
         """
-
-        if p >= Pb:
-            return np.interp(Pb, self.pe[::-1], self.Boe[::-1]) \
-                    * (1.-self.co*(p-Pb))
-        else:
-            return np.interp(p, self.pe[::-1], self.Boe[::-1])
+        p = np.array(p)
+        Pb = np.array(Pb)
+        return np.where(p>Pb,
+                        # True
+                        np.interp(Pb, self.pe, self.Boe) \
+                        *(1.-self.co*(p-Pb)),
+                        # False
+                        np.interp(p, self.pe, self.Boe))
 
     def Bg(self, p):
         """Returns Bg for given gas phase pressure.
@@ -90,10 +92,10 @@ class classPVT:
         Returns
         -------
         Bg : float
-            Formation-volume factor of gas phase (m3/sm3).
+            Formation-volume factor of gas phase (rm3/sm3).
 
         """
-        Z=np.interp(p, self.pe[::-1], self.Ze[::-1])
+        Z=np.interp(p, self.pe, self.Ze)
         return 1.033/p*(self.T)/288.*Z
 
     def Bw(self, p):
@@ -107,7 +109,7 @@ class classPVT:
         Returns
         -------
         Bw : float
-            Formation-volume factor of water phase (m3/sm3).
+            Formation-volume factor of water phase (rm3/sm3).
 
         """
         return self.Bwi*(1.0-self.cw*(p-self.pw))
@@ -125,13 +127,14 @@ class classPVT:
         Returns
         -------
         Rs: float
-            Gas-oil solubility ratio (m3/m3).
+            Gas-oil solubility ratio (sm3/sm3).
 
         """
-        if p >= Pb:
-            return np.interp(Pb,self.pe[::-1],self.Rse[::-1])
-        else:
-            return np.interp(p,self.pe[::-1],self.Rse[::-1])
+        p = np.array(p)
+        Pb = np.array(Pb)
+        return np.where(p>Pb,
+                        np.interp(Pb,self.pe,self.Rse),
+                        np.interp(p,self.pe,self.Rse))
 
 
 
@@ -355,6 +358,21 @@ class classMBE:
         self.output = output
 
     def Eo(self, p, Pb):
+        """Returns the expansion of oil and solution gas for final bubble-point
+        and reservoir pressures.
+
+        Parameters
+        ----------
+        p : float
+            Reservoir pressure (kgf/cm2).
+        Pb : float
+            Oil-phase bubble-point pressure (kgf/cm2).
+
+        Returns
+        -------
+        Eo : float
+            Expansion of oil and solution gas (rm3/sm3).
+        """
         pvt = self.pvt
         res = self.res
         return pvt.Bo(p, Pb)-pvt.Bo(res.p0, res.Pb0) \
@@ -362,11 +380,37 @@ class classMBE:
                 - pvt.Rs(p, Pb))*pvt.Bg(p)
 
     def Eg(self, p):
+        """Returns the expansion of free gas for a final reservoir pressure.
+
+        Parameters
+        ----------
+        p : float
+            Reservoir pressure (kgf/cm2).
+
+        Returns
+        -------
+        Eg : float
+            Expansion of reservoir free gas (rm3/sm3).
+        """
         pvt = self.pvt
         res = self.res
         return pvt.Bo(res.p0, res.Pb0)*(pvt.Bg(p)/pvt.Bg(res.p0)-1.)
 
     def Efw(self, p):
+        """Returns the expansion of connate water and the compaction of pore
+        volume for a final reservoir pressure.
+
+        Parameters
+        ----------
+        p : float
+            Reservoir pressure (kgf/cm2).
+
+        Returns
+        -------
+        Efw : float
+            Expansion of connate water and compaction of pore
+            volume for a final reservoir pressure (rm3/sm3).
+        """
         pvt = self.pvt
         res = self.res
         m = res.m
@@ -376,31 +420,194 @@ class classMBE:
                 *(p-res.p0)/(1.-res.Swcon)
 
     def Sw(self, p, Wi, Wp, We):
+        """Returns final water saturation.
+
+        Parameters
+        ----------
+        p : float
+            Reservoir pressure (kgf/cm2).
+        Wi : float
+            Cumulative injection of water (sm3)
+        Wp : float
+            Cumulative production of water (sm3)
+        We : float
+            Cumnulative aquifer influx (sm3)
+
+        Returns
+        -------
+        Sw : float
+            Final water-phase saturation.
+        """
         res=self.res
         pvt=self.pvt
         return ((1.+res.m)*res.N*pvt.Bo(res.p0,res.Pb0)*res.Swcon \
                 /(1.-res.Swcon)/pvt.Bw(res.p0)+(Wi+We-Wp))*pvt.Bw(p)/res.Vp(p)
 
     def So(self, p, Pb, Np):
+        """Returns final oil saturation.
+
+        Parameters
+        ----------
+        p : float
+            Reservoir pressure (kgf/cm2).
+        Pb : float
+            Oil-phase bubble-point pressure (kgf/cm2).
+        Np : float
+            Cumulative production of oil (sm3)
+
+        Returns
+        -------
+        So : float
+            Final oil-phase saturation.
+        """
         res=self.res
         pvt=self.pvt
         return (res.N-Np)/res.Vp(p)*pvt.Bo(p, Pb)
 
     def Sg(self, p, Pb, N, Np, Gp, Gi):
+        """Returns final gas saturation.
+
+        Parameters
+        ----------
+        p : float
+            Reservoir pressure (kgf/cm2).
+        Pb : float
+            Oil-phase bubble-point pressure (kgf/cm2).
+        N : float
+            Original volume of oil in place (sm3)
+        Np : float
+            Cumulative production of oil (sm3)
+        Gp : float
+            Cumulative production of gas (sm3)
+        Gi : float
+            Cumulative injection of gas (sm3)
+
+        Returns
+        -------
+        Sg : float
+            Final gas-phase saturation.
+        """
         res=self.res
         pvt=self.pvt
         return pvt.Bg(p)/res.Vp(p)*(N*((pvt.Rs(res.p0, res.Pb0)-pvt.Rs(p, Pb))\
                 +res.m*pvt.Bo(res.p0, res.Pb0)/pvt.Bg(res.p0)) \
                 +Gi-Gp+Np*pvt.Rs(p, Pb))
 
-    def Fp(self, p, Pb, Np, Gp):
+    def Fp(self, p, Pb, Np, Gp, Wp):
+        """Returns the produced volume in reservoir conditions.
+
+        Parameters
+        ----------
+        p : float
+            Reservoir pressure (kgf/cm2).
+        Pb : float
+            Oil-phase bubble-point pressure (kgf/cm2).
+        N : float
+            Original volume of oil in place (sm3).
+        Np : float
+            Cumulative production of oil (sm3).
+        Gp : float
+            Cumulative production of gas (sm3).
+        Wp : float
+            Cumulative production of water (sm3).
+
+        Returns
+        -------
+        Fp : float
+            Produced volume of oi, gas and water in reservoir conditions.
+        """
+        res=self.res
+        pvt=self.pvt
+        return Np*pvt.Bo(p, Pb)+(Gp-Np*pvt.Rs(p, Pb))*pvt.Bg(p)+Wp*pvt.Bw(p)
+
+    def Fpog(self, p, Pb, Np, Gp):
+        """Returns the produced volume of oil and gas in reservoir conditions.
+
+        Parameters
+        ----------
+        p : float
+            Reservoir pressure (kgf/cm2).
+        Pb : float
+            Oil-phase bubble-point pressure (kgf/cm2).
+        N : float
+            Original volume of oil in place (sm3).
+        Np : float
+            Cumulative production of oil (sm3).
+        Gp : float
+            Cumulative production of gas (sm3).
+        Wp : float
+            Cumulative production of water (sm3).
+
+        Returns
+        -------
+        Fp : float
+            Produced volume of oi, gas and water in reservoir conditions.
+        """
         res=self.res
         pvt=self.pvt
         return Np*pvt.Bo(p, Pb)+(Gp-Np*pvt.Rs(p, Pb))*pvt.Bg(p)
 
-    def Fi(self, p, Wp, Wi, We):
+    def Fi(self, p, Wi, We, Gi):
+        """Returns the injected volume of water and gas in reservoir conditions.
+
+        Parameters
+        ----------
+        p : float
+            Reservoir pressure (kgf/cm2).
+        Wi : float
+            Cumulative injection of water (sm3)
+        We : float
+            Cumulative influx of water (sm3)
+        Gi : float
+            Cumulative injection of gas (sm3)
+
+        Returns
+        -------
+        Fi : float
+            Injected volume of water and gas in reservoir conditions.
+        """
+        pvt=self.pvt
+        return pvt.Bw(p)*(We+Wi)+Gi*pvt.Bg(p)
+
+    def Fiw(self, p, Wi, We, Wp):
+        """Returns the net injected volume of water in reservoir conditions.
+
+        Parameters
+        ----------
+        p : float
+            Reservoir pressure (kgf/cm2).
+        Wi : float
+            Cumulative injection of water (sm3)
+        We : float
+            Cumulative influx of water (sm3)
+        Wp : float
+            Cumulative production of water (sm3)
+
+        Returns
+        -------
+        Fiw : float
+            Injected volume of water and gas in reservoir conditions.
+        """
         pvt=self.pvt
         return pvt.Bw(p)*(We+Wi-Wp)
+
+    def Fig(self, p, Gi):
+        """Returns the injected volume of gas in reservoir conditions.
+
+        Parameters
+        ----------
+        p : float
+            Reservoir pressure (kgf/cm2).
+        Gi : float
+            Cumulative injection of gas (sm3)
+
+        Returns
+        -------
+        Fig : float
+            Injected volume of gas in reservoir conditions.
+        """
+        pvt=self.pvt
+        return pvt.Bg(p)*Gi
 
     def residual(self, p, paq, dt, Pb, Np, Gp, Gi, Wi, Wp, Weold):
         res=self.res
@@ -410,14 +617,14 @@ class classMBE:
         # rhs=self.N*(self.Eo(p)+res.m*self.Eg(p)+self.Efw(p))+(Wi+We)*pvt.Bw(p)
         # lhs=Np*(pvt.Bo(p,pvt.Pb)+(Gp/Np-pvt.Rs(p,pvt.Pb))*pvt.Bg(p))+Wp*pvt.Bw(p)
         E=res.N*(self.Eo(p, Pb)+res.m*self.Eg(p)+self.Efw(p))
-        Fi=(Wi+We)*pvt.Bw(p)+Gi*pvt.Bg(p)
-        Fp=Np*pvt.Bo(p, Pb)+(Gp-Np*pvt.Rs(p, Pb))*pvt.Bg(p) \
-                +Wp*pvt.Bw(p)
-        #return (E-Fp+Fi)/(abs(Fp)+abs(Fi)+abs(E))
-        return (E-Fp+Fi)/res.Vp0
+        Fiw = self.Fiw(p, Wi, We, Wp)
+        Fig = self.Fig(p, Gi)
+        Fpog = self.Fpog(p, Pb, Np, Gp)
+
+        return (E+Fiw+Fig)/Fpog - 1
 
 
-    def calcP(self):
+    def calcP(self, info=True):
         hist = self.hist
         res = self.res
         pvt = self.pvt
@@ -436,22 +643,29 @@ class classMBE:
             Pb = self.updatePb(row['Np'], row['Gp'], row['Gi'])
             dt = row['dtime']
 
-            pbrentq,brentq_r=sp.brentq(self.residual, min(pvt.pe[:]), \
-                    max(pvt.pe[:]), args=(paq, dt, Pb, row['Np'], row['Gp'], \
-                    row['Gi'], row['Wi'], row['Wp'], Weold),\
-                    xtol=1e-2, rtol=1e-6, \
-                    maxiter=2000, full_output=True, disp=True)
             # avoid errors at initial time step.
-            if self.Fp(pbrentq, Pb, row['Np'], row['Gp']) < 1e-6:
-                pbrentq = res.p0
+            if row['Np']+row['Gp'] <1e-15:
+                continue
+            else:
+                pbrentq,brentq_r=sp.brentq(self.residual, pvt.pe.min(), \
+                        pvt.pe.max(), args=(paq, dt, Pb, row['Np'], row['Gp'], \
+                        row['Gi'], row['Wi'], row['Wp'], Weold),\
+                        xtol=1e-2, rtol=1e-6, \
+                        maxiter=2000, full_output=True, disp=True)
             p = pbrentq
+
+            Fpog = self.Fpog(p, Pb, row['Np'], row['Gp'])
+            residual = 100*self.residual(p, paq, dt, Pb, row['Np'], row['Gp'], \
+                        row['Gi'], row['Wi'], row['Wp'], Weold)
+
             We = Weold+aquif.dWe(paq, p, dt)
             paq = paq - aquif.dWe(paq, p, dt)/(aquif.Waq*(pvt.cw+aquif.cr))
-            Fp = self.Fp(p, Pb, row['Np'], row['Gp'])
             Eo = self.Eo(p, Pb)
             Eg = self.Eg(p)
             Efw = self.Efw(p)
-            Fi = self.Fi(p, row['Wp'], row['Wi'], We)
+            Fiw = self.Fiw(p, row['Wi'], We, row['Wp'])
+            if info:
+                print('{:%Y-%m-%d %H:%M} -- Matbal error (% of Fpog) = {:-5.2f}'.format(index, residual))
 
 #            if row['Wp'] > (We + row['Wi']):
 #                raise Exception('Wp > We + Wi: Produced water is greater than the \
@@ -486,10 +700,10 @@ class classMBE:
                                Sg = self.Sg(p, Pb, res.N, row['Np'],
                                             row['Gp'], row['Gi']),
                                Sw = self.Sw(p, row['Wi'], row['Wp'], We),
-                               drive_og = Eo*res.N/Fp,
-                               drive_gascap = res.m*Eg*res.N/Fp,
-                               drive_pv = Efw*res.N/Fp,
-                               drive_wiwe = Fi/Fp)
+                               drive_og = Eo*res.N/Fpog,
+                               drive_gascap = res.m*Eg*res.N/Fpog,
+                               drive_pv = Efw*res.N/Fpog,
+                               drive_wiwe = Fiw/Fpog)
             # Save old p and We values
             pold = p
             Weold = We
@@ -552,102 +766,10 @@ class classMBE:
                                drive_wiwe = Fi/Fp)
         return output.data
 
-    def calcError(self):
-        data = self.output.data.dropna(how='any')
-        pexp = data['p']
-        pcalc = data['p2']
-        p0 = pexp[0]
-        r=0.
-        for i in range(1, len(pcalc)):
-            r = r +(pexp[i]-pcalc[i])**2/(p0-pexp[i])**2
-
-        return np.sqrt(r/(i-1))
-
-    def havlena(self):
-        res = self.res
-        pvt = self.pvt
-        aquif = self.aquif
-        # Create dataframe to be returned
-        r = pd.DataFrame(columns=['WeCalc', 'Pb', 'So', 'Sg', 'Sw', 'Vp', \
-               'Bo', 'Bg', 'Bw', 'Rs', 'Eo', 'Eg', 'Efw', 'N', 'Fp'])
-        r = pd.concat([self.hist.data.dropna(subset=['p']), r], axis=1)
-
-        # Save old p and We values
-        pold = r['p'].iloc[0]
-        paq = aquif.paq0
-        Weold = 0.
-
-        # Solve MBE for aquifer influx
-        for index, row in r.iterrows():
-            Pb = self.updatePb(row['Np'], row['Gp'], row['Gi'])
-            p = row['p']
-            E = self.Eo(p, Pb)+res.m*self.Eg(p)+self.Efw(p)
-            Fi = (row['Wi'])*pvt.Bw(p)+row['Gi']*pvt.Bg(p)  # Fi - Bw2*We
-            Fp = row['Np']*(pvt.Bo(p, Pb)+\
-                    -pvt.Rs(p, Pb)*pvt.Bg(p)) +row['Gp']*pvt.Bg(p) \
-                 +row['Wp']*pvt.Bw(p)
-            dt = row['dt']
-            We = Weold+aquif.dWe(paq, p, dt)
-            paq = paq - aquif.dWe(paq, p, dt)/(aquif.Waq*(pvt.cw+aquif.cr))
-
-            # Save old p and We values
-            pold = p
-            Weold = We
-
-            # Save output data
-            r.loc[index, 'We'] = We
-            r.loc[index, 'Pb'] = Pb
-
-        r['Vp'] = res.Vp(p)
-        r['Sw'] = self.Sw(p, r['Wi'], r['Wp'], We)
-        r['So'] = self.So(p, Pb, r['Np'])
-        r['Sg'] = self.Sg(p, Pb, res.N, r['Np'],
-                r['Gp'], r['Gi'])
-        r['Rs'] = pvt.Rs(p, Pb)
-        r['Bo'] = pvt.Bo(p, Pb)
-        r['Bw'] = pvt.Bw(p)
-        r['Bg'] = pvt.Bg(p)
-        r['Eo'] = self.Eo(p, Pb)
-        r['Eg'] = self.Eg(p)
-        r['Efw'] = self.Efw(p)
-        r['E'] = self.Eo(p, Pb)+res.m*self.Eg(p)+self.Efw(p)
-        r['N'] = res.N
-        r['Fp'] = Fp
-        r['Fp/E'] = Fp/(E+1e-12)
-        r['BwWe/E'] = pvt.Bw(p)*We/(E+1e-12)
-
-        return r
-
-    def calcN_Waq(self):
-        res = self.res
-        pvt = self.pvt
-        aquif = self.aquif
-        # Create dataframe to be returned
-        r = pd.DataFrame(columns=['WeCalc', 'Pb', 'So', 'Sg', 'Sw', 'Vp', \
-               'Bo', 'Bg', 'Bw', 'Rs', 'Eo', 'Eg', 'Efw', 'N'])
-        r = pd.concat([self.hist.data.dropna(subset=['p']), r], axis=1)
-        # Solve MBE for  VOIP and Aquifer size using least square method
-        A = []
-        B = []
-        for index, row in r.iterrows():
-            Pb = self.updatePb(row['Np'], row['Gp'], row['Gi'])
-            p = row['p']
-            E = self.Eo(p, Pb)+res.m*self.Eg(p)+self.Efw(p)
-            Fi = row['Wi']*pvt.Bw(p)+row['Gi']*pvt.Bg(p)  # Fi - Bw2*We
-            Fp = row['Np']*(pvt.Bo(p, Pb)+(row['Gp']/row['Np']-pvt.Rs(p, Pb)) \
-                    *pvt.Bg(p))+row['Wp']*pvt.Bw(p)
-
-            A.append([E, (aquif.cr + pvt.cw)*(res.p0-p)])
-            B.append(Fp - Fi)
-
-        Waqmin = r.tail(1)['Wp']/(aquif.cr+pvt.cw)/(res.p0-r.tail(1)['p'])
-
-        return sp.lsq_linear(np.array(A), np.array(B), bounds=[(0., Waqmin), (np.inf, np.inf)]), A, B
 
     def EqPb(self,Np,Gp,Gi):
         res=self.res
         pvt=self.pvt
-        pmax=max(pvt.pe[:])
         return (res.N*(pvt.Rs(res.p0,res.Pb0) \
                 +res.m*pvt.Bo(res.p0,res.Pb0)/pvt.Bg(res.p0))-Gp+Gi)/(res.N-Np)
 
@@ -655,6 +777,6 @@ class classMBE:
         res=self.res
         pvt=self.pvt
         RsPb=self.EqPb(Np,Gp,Gi)
-        r=np.interp(RsPb,pvt.Rse[::-1],pvt.pe[::-1])
+        r=np.interp(RsPb,pvt.Rse,pvt.pe)
 #        r=max(r,pvt.pe[-2])
         return r
