@@ -14,25 +14,25 @@ class classPVT:
     Pb : float
         Bubble-point pressure (kgf/cm2).
     co : float
-        Undersaturated-oil compressibility (cm2/kgf).
+        Undersaturated oil compressibility (cm2/kgf).
     cw : float
         Water compressibility (cm2/kgf).
     Bwi : float
-        Bw at reference pressure (rm3/sm3)
+        Bw at reference pressure (sm3/m3)
     pw : float
         Reference pressure for Bwi (kgf/cm2)
     T : float
-        Reservoir-fluid temperature (K).
+        Reservoir fluid temperature (K).
 
     Attributes
     -------
     Bo : float
         Returns Bo for given oil phase pressure and bubble-point
-        pressure (rm3/sm3).
+        pressure (m3/sm3).
     Bg : float
-        Returns Bg for given gas phase pressure (rm3/sm3).
+        Returns Bg for given gas phase pressure (m3/sm3).
     Bw : float
-        Returns Bw for given water phase pressure (rm3/sm3).
+        Returns Bw for given water phase pressure (m3/sm3).
     Rs : float
         Returns gas-oil solubility ratio (sm3/sm3).
     """
@@ -40,7 +40,7 @@ class classPVT:
     def __init__(self, pvt_table, co, cw, Bwi, pw, T):
         # reading pvt table
         self.pvt_table = pd.read_excel(pvt_table).sort_values(by='p',
-                                      ascending=True).reset_index(drop=True)
+                                      ascending=True)
         self.pe = self.pvt_table['p']
         self.Boe = self.pvt_table['Bo']
         self.Rse = self.pvt_table['Rs']
@@ -62,24 +62,43 @@ class classPVT:
         Parameters
         ----------
         p : float
-            Oil-phase pressure (kgf/cm2).
+            Oil phase pressure (kgf/cm2).
         Pb : float
-            Oil-phase bubble-point pressure (kgf/cm2).
+            Oil phase bubble-point pressure (kgf/cm2).
 
         Returns
         -------
         Bo : float
-            Formation-volume factor of oil phase (rm3/sm3).
+            Formation-volume factor of oil phase (m3/sm3).
 
         """
-        p = np.array(p)
-        Pb = np.array(Pb)
-        return np.where(p>Pb,
-                        # True
-                        np.interp(Pb, self.pe, self.Boe) \
-                        *(1.-self.co*(p-Pb)),
-                        # False
-                        np.interp(p, self.pe, self.Boe))
+
+        return np.where(p >= Pb,
+                         np.interp(Pb, self.pe, self.Boe)*(1.-self.co*(p-Pb)),
+                         np.interp(p, self.pe, self.Boe))
+
+    def dBo(self, p, Pb):
+        """Returns dBo/dp for given bubble-point and oil phase pressure.
+
+        Parameters
+        ----------
+        p : float
+            Oil phase pressure (kgf/cm2).
+        Pb : float
+            Oil phase bubble-point pressure (kgf/cm2).
+
+        Returns
+        -------
+        dBo/dp : float
+            Derivative of formation-volume factor of oil phase (cm^2/kgf).
+
+        """
+        return np.where(p >= Pb,
+                        -self.co*self.Bo(p, Pb),
+                        np.interp(p,
+                                  self.pe,
+                                  np.gradient(self.Boe)/np.gradient(self.pe)))
+
 
     def Bg(self, p):
         """Returns Bg for given gas phase pressure.
@@ -87,19 +106,36 @@ class classPVT:
         Parameters
         ----------
         p : float
-            Gas-phase pressure (kgf/cm2).
+            Gas phase pressure (kgf/cm2).
 
         Returns
         -------
         Bg : float
-            Formation-volume factor of gas phase (rm3/sm3).
+            Formation-volume factor of gas phase (m3/sm3).
 
         """
         Z=np.interp(p, self.pe, self.Ze)
         return 1.033/p*(self.T)/288.*Z
 
+    def dBg(self, p):
+        """Returns dBg/dp for given gas phase pressure.
+
+        Parameters
+        ----------
+        p : float
+            Gas phase pressure (kgf/cm2).
+
+        Returns
+        -------
+        dBg/dp : float
+            Derivative of formation-volume factor of gas phase (cm^2/kgf).
+        """
+        Z=np.interp(p, self.pe, self.Ze)
+        dBg = -1.0/self.Bge**2*np.gradient(self.Bge)/np.gradient(self.pe)
+        return np.interp(p, self.pe, dBg)
+
     def Bw(self, p):
-        """Returns Bw for given gas phase pressure.
+        """Returns Bw for given water phase pressure.
 
         Parameters
         ----------
@@ -109,10 +145,26 @@ class classPVT:
         Returns
         -------
         Bw : float
-            Formation-volume factor of water phase (rm3/sm3).
+            Formation-volume factor of water phase (m3/sm3).
 
         """
         return self.Bwi*(1.0-self.cw*(p-self.pw))
+
+    def dBw(self, p):
+        """Returns dBw/dp for given gas phase pressure.
+
+        Parameters
+        ----------
+        p : float
+            Water phase pressure (kgf/cm2).
+
+        Returns
+        -------
+        dBw/dp : float
+            Derivative of formation-volume factor of water phase (cm^2/kgf).
+
+        """
+        return -self.Bw(p)*self.cw
 
     def Rs(self,p,Pb):
         """Returns Rs for given oil-phase pressure.
@@ -120,21 +172,42 @@ class classPVT:
         Parameters
         ----------
         p : float
-            Water-phase pressure (kgf/cm2).
+            Water phase pressure (kgf/cm2).
         Pb : float
-            Oil-phase bubble-point pressure (kgf/cm2).
+            Oil phase bubble-point pressure (kgf/cm2).
 
         Returns
         -------
-        Rs: float
-            Gas-oil solubility ratio (sm3/sm3).
+        dRs/dp: float
+            Gas-oil solubility ratio (m3/m3).
 
         """
-        p = np.array(p)
-        Pb = np.array(Pb)
-        return np.where(p>Pb,
+        return np.where(p >= Pb,
                         np.interp(Pb,self.pe,self.Rse),
                         np.interp(p,self.pe,self.Rse))
+
+    def dRs(self,p,Pb):
+        """Returns dRs/dp for given oil-phase pressure.
+
+        Parameters
+        ----------
+        p : float
+            Water phase pressure (kgf/cm2).
+        Pb : float
+            Oil phase bubble-point pressure (kgf/cm2).
+
+        Returns
+        -------
+        dRs/dp: float
+            Derivative of gas-oil solubility ratio (cm^2/kgf).
+
+        """
+        return np.where(p >= Pb,
+                        0.,
+                        np.interp(p,
+                                  self.pe,
+                                  np.gradient(self.Rse)/np.gradient(self.pe)))
+
 
 
 
