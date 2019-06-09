@@ -1,6 +1,8 @@
 import numpy as np
 import pandas as pd
 import scipy.optimize as sp
+#from timeit import default_timer as timer
+
 
 class classPVT:
     """Class for fluid PVT properties.
@@ -12,7 +14,7 @@ class classPVT:
     Pb : float
         Bubble-point pressure (kgf/cm2).
     co : float
-        Undersaturated oil compressibility (cm2/kgf).
+        Undersaturated-oil compressibility (cm2/kgf).
     cw : float
         Water compressibility (cm2/kgf).
     Bwi : float
@@ -20,7 +22,7 @@ class classPVT:
     pw : float
         Reference pressure for Bwi (kgf/cm2)
     T : float
-        Reservoir fluid temperature (K).
+        Reservoir-fluid temperature (K).
 
     Attributes
     -------
@@ -37,7 +39,8 @@ class classPVT:
 
     def __init__(self, pvt_table, co, cw, Bwi, pw, T):
         # reading pvt table
-        self.pvt_table = pd.read_excel(pvt_table)
+        self.pvt_table = pd.read_excel(pvt_table).sort_values(by='p',
+                                      ascending=False)
         self.pe = self.pvt_table['p']
         self.Boe = self.pvt_table['Bo']
         self.Rse = self.pvt_table['Rs']
@@ -59,9 +62,9 @@ class classPVT:
         Parameters
         ----------
         p : float
-            Oil phase pressure (kgf/cm2).
+            Oil-phase pressure (kgf/cm2).
         Pb : float
-            Oil phase bubble-point pressure (kgf/cm2).
+            Oil-phase bubble-point pressure (kgf/cm2).
 
         Returns
         -------
@@ -82,7 +85,7 @@ class classPVT:
         Parameters
         ----------
         p : float
-            Gas phase pressure (kgf/cm2).
+            Gas-phase pressure (kgf/cm2).
 
         Returns
         -------
@@ -115,9 +118,9 @@ class classPVT:
         Parameters
         ----------
         p : float
-            Water phase pressure (kgf/cm2).
+            Water-phase pressure (kgf/cm2).
         Pb : float
-            Oil phase bubble-point pressure (kgf/cm2).
+            Oil-phase bubble-point pressure (kgf/cm2).
 
         Returns
         -------
@@ -146,7 +149,7 @@ class classAquifer:
     pvt : classPVT object
         Fluid PVT properties.
     J : float
-        Aquifer-reservoir connectivity (m^3/d)/(kgf/cm^2).
+        Aquifer productivity (m^3/d)/(kgf/cm^2).
 
     Attributes
     -------
@@ -205,7 +208,7 @@ class classRes:
     Attributes
     -------
     Vp : float
-        Returns reservoir pore volume.
+        Returns reservoir pore volume (m3).
 
     """
     def __init__(self, N, p0, Pb0, cr, Swcon, m, pvt):
@@ -240,30 +243,87 @@ class classHist:
 
     Parameters
     ----------
-    hist : string
+    xlsx : string
+       Excel xlsx file with production, injection and pressure history.
+    """
+    def __init__(self, xlsx):
+        self.data = pd.read_excel(xlsx, index_col='Dates')
+        self.data[['Np', 'Gp', 'Wp', 'Wi', 'Gi']] = \
+        self.data[['Np', 'Gp', 'Wp', 'Wi', 'Gi']].interpolate(method='index')
+        self.data = self.data.groupby(by=self.data.index).mean()
+        self.date = self.data.index.values
+        self.time = (self.data.index - self.data.index[0]).days.values
+        self.data['time'] = self.time
+        self.data['dtime'] = np.gradient(self.time)
+        self.p = self.data['p']
+        self.Np = self.data['Np']
+        self.Gp = self.data['Gp']
+        self.Wi = self.data['Wi']
+        self.Gi = self.data['Gi']
+
+class classOutput:
+    """Class for saving output data.
+
+    Parameters
+    ----------
+    hist : dataframe
        Excel xlsx file with production, injection and pressure history.
 
     Attributes
     -------
-    Vp : float
-        Returns reservoir pore volume.
+    append : None
+        Appends data to output dataframe.
 
     """
-    def __init__(self, data):
-        self.data = pd.read_excel(data, index_col='Time')
-        self.data[['Np', 'Gp', 'Wp', 'Wi', 'Gi']] = \
-        self.data[['Np', 'Gp', 'Wp', 'Wi', 'Gi']].interpolate(method='index')
-        self.data = self.data.groupby(by=self.data.index).mean()
-        self.time = self.data.index.values
-        self.t = (self.data.index - self.data.index[0]).days.values
-        self.data['t'] = self.t
-        self.data['dt'] = np.gradient(self.t)
-        self.p = self.data['p']
-        self.Np = self.data['Np']
-        self.Gp = self.data['Gp']
-        self.Wp = self.data['Wp']
-        self.Wi = self.data['Wi']
-        self.Gi = self.data['Gi']
+    def __init__(self, hist):
+        # create column levels
+        hist = hist.data
+        self.pvt_rock = pd.DataFrame(index=hist.index,
+                                columns=['Bo1', 'Bg1', 'Bw1', 'Rs1', 'Pb1',
+                                         'Bo2', 'Bg2', 'Bw2', 'Rs2', 'Pb2',
+                                         'co', 'cw', 'cr'])
+        self.ooip = pd.DataFrame(index=hist.index, columns=['m', 'N'])
+        self.aquifer = pd.DataFrame(index=hist.index,
+                                    columns=['Waq', 'We', 'J',
+                                             'paq1', 'paq2',])
+        self.reservoir = pd.DataFrame(index=hist.index,
+                                columns=['p1', 'p2', 'So', 'Sg', 'Sw'])
+        self.drive = pd.DataFrame(index=hist.index,
+                             columns=['oil and solution gas expansion',
+                                      'gas cap expansion',
+                                      'pore volume compaction',
+                                      'aquifer influx and water injection'])
+
+        # concatenate all dfs in a single multilevel df
+        keys = ['reservoir history',
+                'fluid and rock properties',
+                'original HC volumes',
+                'aquifer data',
+                'reservoir data',
+                'drive mechanisms']
+        self.data = pd.concat([hist,
+                               self.pvt_rock,
+                               self.ooip,
+                               self.aquifer,
+                               self.reservoir,
+                               self.drive], axis=1)
+    def append(self, index,
+               Bo1, Bg1, Bw1, Rs1, Pb1, Bo2, Bg2, Bw2, Rs2, Pb2, co, cw, cr,
+               m, N,
+               Waq, We, J, paq1, paq2,
+               p1, p2, So, Sg, Sw,
+               drive_og, drive_gascap, drive_pv, drive_wiwe):
+
+        self.data.loc[index, self.pvt_rock.columns] = \
+                      [Bo1, Bg1, Bw1, Rs1, Pb1, Bo2, Bg2, Bw2, Rs2, Pb2,
+                       co, cw, cr]
+        self.data.loc[index, self.ooip.columns] = [m, N]
+        self.data.loc[index, self.aquifer.columns] = [Waq, We, J, paq1, paq2]
+        self.data.loc[index, self.reservoir.columns] = [p1, p2, So, Sg, Sw]
+        self.data.loc[index, self.drive.columns] = \
+                                 [drive_og, drive_gascap, drive_pv, drive_wiwe]
+
+
 
 class classMBE:
     """Class for defining Material Balance Equation (MBE).
@@ -278,6 +338,8 @@ class classMBE:
         Reservoir properties.
     aquif : object of classAquifer
         Aquifer properties.
+    output : object of ClassOutput
+        Template for output data.
 
     Attributes
     -------
@@ -285,12 +347,12 @@ class classMBE:
         xxxx.
 
     """
-    def __init__(self, hist, pvt, res, aquif):
+    def __init__(self, hist, pvt, res, aquif, output):
         self.hist = hist
         self.pvt = pvt
         self.res = res
         self.aquif = aquif
-        self.out = self.hist.data
+        self.output = output
 
     def Eo(self, p, Pb):
         pvt = self.pvt
@@ -331,11 +393,14 @@ class classMBE:
                 +res.m*pvt.Bo(res.p0, res.Pb0)/pvt.Bg(res.p0)) \
                 +Gi-Gp+Np*pvt.Rs(p, Pb))
 
-    def Fp(self, p, Pb, Np, Gp, Wp):
+    def Fp(self, p, Pb, Np, Gp):
         res=self.res
         pvt=self.pvt
-        return Np*pvt.Bo(p, Pb)+(Gp-Np*pvt.Rs(p, Pb))*pvt.Bg(p) \
-                +Wp*pvt.Bw(p)
+        return Np*pvt.Bo(p, Pb)+(Gp-Np*pvt.Rs(p, Pb))*pvt.Bg(p)
+
+    def Fi(self, p, Wp, Wi, We):
+        pvt=self.pvt
+        return pvt.Bw(p)*(We+Wi-Wp)
 
     def residual(self, p, paq, dt, Pb, Np, Gp, Gi, Wi, Wp, Weold):
         res=self.res
@@ -353,89 +418,91 @@ class classMBE:
 
 
     def calcP(self):
+        hist = self.hist
         res = self.res
         pvt = self.pvt
         aquif = self.aquif
+        output = self.output
 
-        # Create dataframe to be returned
-        r = pd.DataFrame(columns=['pCalc', 'Pb', 'So', 'Sg', 'Sw', 'Vp', \
-               'Bo', 'Bg', 'Bw', 'Rs', 'Eo', 'Eg', 'Efw', 'N', 'We', 'paq',\
-               'aq_relax', 'iter','resd', 'Fp', \
-               'drive: solution-gas expansion', \
-               'drive: gas-cap expansion', \
-               'drive: pore volume compaction', \
-               'drive: water injection', \
-               'drive: gas injection'
-               ])
-        r = pd.concat([self.hist.data, r], axis=1)
 
-        # Save old p, paq and We values
-        pold = r['p'].iloc[0]
+        # Initialize p, paq and We values
+        pold = res.p0
         paq = aquif.paq0
         Weold = 0.
+        We = 0.
 
         # Solve MBE for pressure
-        for index, row in r.iterrows():
+        for index, row in hist.data.iterrows():
             Pb = self.updatePb(row['Np'], row['Gp'], row['Gi'])
-            dt = row['dt']
+            dt = row['dtime']
+
             pbrentq,brentq_r=sp.brentq(self.residual, min(pvt.pe[:]), \
                     max(pvt.pe[:]), args=(paq, dt, Pb, row['Np'], row['Gp'], \
-                    row['Gi'], row['Wi'], row['Wp'], Weold), xtol=1e-5, rtol=1e-8, \
+                    row['Gi'], row['Wi'], row['Wp'], Weold),\
+                    xtol=1e-2, rtol=1e-6, \
                     maxiter=2000, full_output=True, disp=True)
+            # avoid errors at initial time step.
+            if self.Fp(pbrentq, Pb, row['Np'], row['Gp']) < 1e-6:
+                pbrentq = res.p0
             p = pbrentq
             We = Weold+aquif.dWe(paq, p, dt)
             paq = paq - aquif.dWe(paq, p, dt)/(aquif.Waq*(pvt.cw+aquif.cr))
-            Fp = self.Fp(p, Pb, row['Np'], row['Gp'], row['Wp'])
+            Fp = self.Fp(p, Pb, row['Np'], row['Gp'])
             Eo = self.Eo(p, Pb)
             Eg = self.Eg(p)
             Efw = self.Efw(p)
+            Fi = self.Fi(p, row['Wp'], row['Wi'], We)
+
+#            if row['Wp'] > (We + row['Wi']):
+#                raise Exception('Wp > We + Wi: Produced water is greater than the \
+#                                sum of aquifer influx and injected water. \
+#                                Please revise input data.')
 
             # Save output data
-            r.loc[index, 'pCalc'] = p
-            r.loc[index, 'Pb'] = Pb
-            r.loc[index, 'resd'] = np.abs(self.residual(p, paq, dt, Pb, row['Np'],
-                    row['Gp'], row['Gi'], row['Wi'], row['Wp'], Weold))
-            r.loc[index, 'iter'] = brentq_r.iterations
-            r.loc[index, 'Vp'] = res.Vp(p)
-            r.loc[index, 'We'] = We
-            r.loc[index, 'Sw'] = self.Sw(p, row['Wi'], row['Wp'], We)
-            r.loc[index, 'So'] = self.So(p, Pb, row['Np'])
-            r.loc[index, 'Sg'] = self.Sg(p, Pb, res.N, row['Np'], \
-                    row['Gp'], row['Gi'])
-            r.loc[index, 'Rs'] = pvt.Rs(p, Pb)
-            r.loc[index, 'Bo'] = pvt.Bo(p, Pb)
-            r.loc[index, 'Bw'] = pvt.Bw(p)
-            r.loc[index, 'Bg'] = pvt.Bg(p)
-            r.loc[index, 'Eo'] = Eo
-            r.loc[index, 'Eg'] = Eg
-            r.loc[index, 'Efw'] = Efw
-            r.loc[index, 'N'] = res.N
-            r.loc[index, 'Fp'] = Fp
-            r.loc[index, 'paq'] = paq
-            r.loc[index, 'aq_relax'] = 1.0-np.exp(-aquif.J/aquif.Waq \
-                    /(aquif.cr+pvt.cw)*dt)
-            if Fp > 1e-12:
-                r.loc[index, 'drive: solution-gas expansion'] = Eo*res.N/Fp
-                r.loc[index, 'drive: gas-cap expansion'] = res.m*Eg*res.N/Fp
-                r.loc[index, 'drive: pore volume compaction'] = Efw*res.N/Fp
-                r.loc[index, 'drive: aquifer influx'] = We*pvt.Bw(p)/Fp
-                r.loc[index, 'drive: water injection'] = row['Wi']*pvt.Bw(p)/Fp
-                r.loc[index, 'drive: gas injection'] = row['Gi']*pvt.Bg(p)/Fp
-
+            output.append(index = index,
+                               Bo1 = pvt.Bo(res.p0, res.Pb0),
+                               Bg1 = pvt.Bg(res.p0),
+                               Bw1 = pvt.Bw(res.p0),
+                               Rs1 = pvt.Rs(res.p0, res.Pb0),
+                               Pb1 = res.Pb0,
+                               Bo2 = pvt.Bo(p,Pb),
+                               Bg2 = pvt.Bg(p),
+                               Bw2 = pvt.Bw(p),
+                               Rs2 = pvt.Rs(p, Pb),
+                               Pb2 = Pb,
+                               co = pvt.co,
+                               cw = pvt.cw,
+                               cr = res.cr,
+                               m = res.m,
+                               N = res.N,
+                               Waq = aquif.Waq,
+                               We = We,
+                               J = aquif.J,
+                               paq1 = aquif.paq0,
+                               paq2 = paq,
+                               p1 = res.p0,
+                               p2 = p,
+                               So = self.So(p, Pb, row['Np']),
+                               Sg = self.Sg(p, Pb, res.N, row['Np'],
+                                            row['Gp'], row['Gi']),
+                               Sw = self.Sw(p, row['Wi'], row['Wp'], We),
+                               drive_og = Eo*res.N/Fp,
+                               drive_gascap = res.m*Eg*res.N/Fp,
+                               drive_pv = Efw*res.N/Fp,
+                               drive_wiwe = Fi/Fp)
             # Save old p and We values
             pold = p
             Weold = We
-        return r
+        return output.data
 
     def calcWe(self):
         res = self.res
         pvt = self.pvt
-        # Create dataframe to be returned
-        r = pd.DataFrame(columns=['WeCalc', 'Pb', 'So', 'Sg', 'Sw', 'Vp', \
-               'Bo', 'Bg', 'Bw', 'Rs', 'Eo', 'Eg', 'Efw', 'N'])
-        r = pd.concat([self.hist.data.dropna(subset=['p']), r], axis=1)
+        hist = self.hist
+        output = self.output
+
         # Solve MBE for aquifer influx
-        for index, row in r.iterrows():
+        for index, row in hist.data.iterrows():
             Pb = self.updatePb(row['Np'], row['Gp'], row['Gi'])
             p = row['p']
             E = res.N*(self.Eo(p, Pb)+res.m*self.Eg(p)+self.Efw(p))
@@ -445,24 +512,56 @@ class classMBE:
                  +row['Wp']*pvt.Bw(p)
             We = (Fp-E-Fi)/pvt.Bw(p)
 
+            Fp = self.Fp(p, Pb, row['Np'], row['Gp'])
+            Eo = self.Eo(p, Pb)
+            Eg = self.Eg(p)
+            Efw = self.Efw(p)
+            Fi = self.Fi(p, row['Wp'], row['Wi'], We)
+
             # Save output data
-            r.loc[index, 'WeCalc'] = We
-            r.loc[index, 'Pb'] = Pb
-            r.loc[index, 'Vp'] = res.Vp(p)
-            r.loc[index, 'Sw'] = self.Sw(p, row['Wi'], row['Wp'], We)
-            r.loc[index, 'So'] = self.So(p, Pb, row['Np'])
-            r.loc[index, 'Sg'] = self.Sg(p, Pb, res.N, row['Np'], \
-                    row['Gp'], row['Gi'])
-            r.loc[index, 'Rs'] = pvt.Rs(p, Pb)
-            r.loc[index, 'Bo'] = pvt.Bo(p, Pb)
-            r.loc[index, 'Bw'] = pvt.Bw(p)
-            r.loc[index, 'Bg'] = pvt.Bg(p)
-            r.loc[index, 'Eo'] = self.Eo(p, Pb)
-            r.loc[index, 'Eg'] = self.Eg(p)
-            r.loc[index, 'Efw'] = self.Efw(p)
-            r.loc[index, 'N'] = res.N
-            r.loc[index, 'Fp'] = Fp
-        return r
+            output.append(index = index,
+                               Bo1 = pvt.Bo(res.p0, res.Pb0),
+                               Bg1 = pvt.Bg(res.p0),
+                               Bw1 = pvt.Bw(res.p0),
+                               Rs1 = pvt.Rs(res.p0, res.Pb0),
+                               Pb1 = res.Pb0,
+                               Bo2 = pvt.Bo(p,Pb),
+                               Bg2 = pvt.Bg(p),
+                               Bw2 = pvt.Bw(p),
+                               Rs2 = pvt.Rs(p, Pb),
+                               Pb2 = Pb,
+                               co = pvt.co,
+                               cw = pvt.cw,
+                               cr = res.cr,
+                               m = res.m,
+                               N = res.N,
+                               Waq = np.nan,
+                               We = We,
+                               J = np.nan,
+                               paq1 = np.nan,
+                               paq2 = np.nan,
+                               p1 = res.p0,
+                               p2 = p,
+                               So = self.So(p, Pb, row['Np']),
+                               Sg = self.Sg(p, Pb, res.N, row['Np'],
+                                            row['Gp'], row['Gi']),
+                               Sw = self.Sw(p, row['Wi'], row['Wp'], We),
+                               drive_og = Eo*res.N/Fp,
+                               drive_gascap = res.m*Eg*res.N/Fp,
+                               drive_pv = Efw*res.N/Fp,
+                               drive_wiwe = Fi/Fp)
+        return output.data
+
+    def calcError(self):
+        data = self.output.data.dropna(how='any')
+        pexp = data['p']
+        pcalc = data['p2']
+        p0 = pexp[0]
+        r=0.
+        for i in range(1, len(pcalc)):
+            r = r +(pexp[i]-pcalc[i])**2/(p0-pexp[i])**2
+
+        return np.sqrt(r/(i-1))
 
     def havlena(self):
         res = self.res
@@ -491,30 +590,32 @@ class classMBE:
             We = Weold+aquif.dWe(paq, p, dt)
             paq = paq - aquif.dWe(paq, p, dt)/(aquif.Waq*(pvt.cw+aquif.cr))
 
-            # Save output data
-            r.loc[index, 'We'] = We
-            r.loc[index, 'Pb'] = Pb
-            r.loc[index, 'Vp'] = res.Vp(p)
-            r.loc[index, 'Sw'] = self.Sw(p, row['Wi'], row['Wp'], We)
-            r.loc[index, 'So'] = self.So(p, Pb, row['Np'])
-            r.loc[index, 'Sg'] = self.Sg(p, Pb, res.N, row['Np'], \
-                    row['Gp'], row['Gi'])
-            r.loc[index, 'Rs'] = pvt.Rs(p, Pb)
-            r.loc[index, 'Bo'] = pvt.Bo(p, Pb)
-            r.loc[index, 'Bw'] = pvt.Bw(p)
-            r.loc[index, 'Bg'] = pvt.Bg(p)
-            r.loc[index, 'Eo'] = self.Eo(p, Pb)
-            r.loc[index, 'Eg'] = self.Eg(p)
-            r.loc[index, 'Efw'] = self.Efw(p)
-            r.loc[index, 'E'] = self.Eo(p, Pb)+res.m*self.Eg(p)+self.Efw(p)
-            r.loc[index, 'N'] = res.N
-            r.loc[index, 'Fp'] = Fp
-            r.loc[index, 'Fp/E'] = Fp/(E+1e-12)
-            r.loc[index, 'BwWe/E'] = pvt.Bw(p)*We/(E+1e-12)
-
             # Save old p and We values
             pold = p
             Weold = We
+
+            # Save output data
+            r.loc[index, 'We'] = We
+            r.loc[index, 'Pb'] = Pb
+
+        r['Vp'] = res.Vp(p)
+        r['Sw'] = self.Sw(p, r['Wi'], r['Wp'], We)
+        r['So'] = self.So(p, Pb, r['Np'])
+        r['Sg'] = self.Sg(p, Pb, res.N, r['Np'],
+                r['Gp'], r['Gi'])
+        r['Rs'] = pvt.Rs(p, Pb)
+        r['Bo'] = pvt.Bo(p, Pb)
+        r['Bw'] = pvt.Bw(p)
+        r['Bg'] = pvt.Bg(p)
+        r['Eo'] = self.Eo(p, Pb)
+        r['Eg'] = self.Eg(p)
+        r['Efw'] = self.Efw(p)
+        r['E'] = self.Eo(p, Pb)+res.m*self.Eg(p)+self.Efw(p)
+        r['N'] = res.N
+        r['Fp'] = Fp
+        r['Fp/E'] = Fp/(E+1e-12)
+        r['BwWe/E'] = pvt.Bw(p)*We/(E+1e-12)
+
         return r
 
     def calcN_Waq(self):
@@ -557,66 +658,3 @@ class classMBE:
         r=np.interp(RsPb,pvt.Rse[::-1],pvt.pe[::-1])
 #        r=max(r,pvt.pe[-2])
         return r
-
-#------------------------------------------------------------------------
-# Miscelaneous functions
-#------------------------------------------------------------------------
-
-
-    def calcGp(self):
-        res=self.res
-        teste=self.res.teste
-        Np=teste.Np
-        Wi=teste.Wi
-        Wp=teste.Wp
-        pvt=self.pvt
-        dt=self.dt
-        out=zeros([len(teste.p),2])
-        Gp=0.
-        GpOld=0.
-        for i in range(len(teste.p)):
-            p=teste.p[i]
-            t=np.interp(Np[i],self.Np,self.dt)
-            We=self.aquifero.We(p,t,Np[i])
-            F=self.N*(self.Eo(p)+res.m*self.Eg(p)+self.Efw(p))+(Wi[i]+We)*pvt.Bw(p)
-            Gp=pvt.Rs(p,pvt.Pb)*Np[i]-pvt.Bo(p,pvt.Pb)/pvt.Bg(p)*Np[i]-pvt.Bw(p)/pvt.Bg(p)*Wp[i]+F/pvt.Bg(p)
-#            Gp=pvt.Rs(p,pvt.Pb)*Np[i]+(pvt.Rs(res.p0,res.Pb0)-pvt.Rs(p,pvt.Pb))*self.N
-            Gp=max(Gp,GpOld)
-            pvt.Pb=self.updatePb(Np[i],Gp)
-            out[i,0]=Np[i]
-            out[i,1]=Gp
-            GpOld=Gp
-#               Reset original reservoir Bubble Pressure
-        pvt.Pb=res.Pb0
-        return out
-
-    def fw(self):
-        p=self.out.p
-        Sw=self.out.Sw
-        pvt=self.pvt
-        petroPhys=self.petroPhys
-        M=(petroPhys.krw(Sw)/pvt.viscw(p))/(petroPhys.kro(Sw)/pvt.visco(p))
-        return 1./(1.+1./M)
-
-    def RGO(self,Sw,So,p):
-        krg=-0.6*(Sw+So-0.5)+0.3
-        Bo=self.pvt.Bo(p)
-        Bg=self.pvt.Bg(p)
-        muo=1000.
-        mug=1.
-        RGO=krg*muo/mug*Bo/Bg
-        return RGO
-
-    def We_residual(self, We, p, Pb, Np, Gp, Gi, Wi, Wp):
-        res=self.res
-        pvt=self.pvt
-        # computing residual:
-        # rhs=self.N*(self.Eo(p)+res.m*self.Eg(p)+self.Efw(p))+(Wi+We)*pvt.Bw(p)
-        # lhs=Np*(pvt.Bo(p,pvt.Pb)+(Gp/Np-pvt.Rs(p,pvt.Pb))*pvt.Bg(p))+Wp*pvt.Bw(p)
-        E=self.N*(self.Eo(p)+res.m*self.Eg(p)+self.Efw(p))
-        Fi=(Wi+We)*pvt.Bw(p)+Gi*pvt.Bg(p)
-        Fp=Np*(pvt.Bo(p, Pb)+(Gp/Np-pvt.Rs(p, Pb))*pvt.Bg(p))+Wp*pvt.Bw(p)
-        #return (E-Fp+Fi)/(abs(Fp)+abs(Fi)+abs(E))
-        return (E-Fp+Fi)/res.Vp0
-
-
