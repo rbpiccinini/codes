@@ -100,7 +100,7 @@ m = u * v * phi * dx
 petsc_a = fd.assemble(a).M.handle
 petsc_m = fd.assemble(m).M.handle
 
-num_eigenvalues = 2
+num_eigenvalues = 10
 
 # Set solver options
 opts = PETSc.Options()
@@ -113,12 +113,10 @@ opts.setValue("eps_tol", 1e-5)
 # Solve for eigenvalues
 print('Computing eigenvalues...')
 es = SLEPc.EPS().create().create(comm=SLEPc.COMM_WORLD)
-es.setDimensions(nev=2, ncv=4)
+es.setDimensions(nev=10, ncv=40)
 es.setOperators(petsc_a, petsc_m)
 es.setFromOptions()
 print(es.getDimensions())
-
-ERROR
 
 es.solve()
 
