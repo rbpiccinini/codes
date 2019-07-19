@@ -1,3 +1,4 @@
+
 import firedrake as fd
 import numpy as np
 from slepc4py import SLEPc
@@ -102,19 +103,42 @@ petsc_m = fd.assemble(m).M.handle
 
 # save files
 viewer = PETSc.Viewer().createBinary('A.dat', 'w')
+viewer.pushFormat(viewer.Format.NATIVE)
 viewer(petsc_a)
 viewer = PETSc.Viewer().createBinary('M.dat', 'w')
+viewer.pushFormat(viewer.Format.NATIVE)
 viewer(petsc_m)
+
+viewer_new = PETSc.Viewer().createBinary('A.dat', 'r')
+viewer_new.pushFormat(viewer.getFormat())
+petsc_a_new = PETSc.Mat().load(viewer_new)
+viewer_new = PETSc.Viewer().createBinary('M.dat', 'r')
+viewer_new.pushFormat(viewer.getFormat())
+petsc_m_new = PETSc.Mat().load(viewer_new)
+assert petsc_a_new.equal(petsc_a), "Reload unsuccessful"
+assert petsc_m_new.equal(petsc_m), "Reload unsuccessful"
+print("Reload successful")
+
+
+
 
 num_eigenvalues = 10
 
 # Set solver options
 opts = PETSc.Options()
-opts.setValue("eps_gen_hermitian", None)
-opts.setValue("st_pc_factor_shift_type", "NONZERO")
-opts.setValue("eps_type", "krylovschur")
-opts.setValue("eps_smallest_real", None)
-opts.setValue("eps_tol", 1e-5)
+# opts.setValue("eps_gen_hermitian", None)
+# opts.setValue("st_pc_factor_shift_type", "NONZERO")
+# opts.setValue("eps_type", "krylovschur")
+# opts.setValue("eps_smallest_real", None)
+# opts.setValue("eps_tol", 1e-5)
+
+opts.setValue("eps_interval", [0, 1e-2])
+opts.setValue("st_type", "sinvert")
+opts.setValue("st_ksp_type", "preonly")
+opts.setValue("st_pc_type", "cholesky")
+opts.setValue("st_pc_factor_mat_solver_type", "superlu_dist")
+opts.setValue("mat_superlu_dist_rowperm", "NOROWPERM")
+
 
 # Solve for eigenvalues
 print('Computing eigenvalues...')
