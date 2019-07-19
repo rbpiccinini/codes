@@ -36,8 +36,8 @@ mesh = fd.utility_meshes.RectangleMesh(nx=Nx, ny=Ny, Lx=Lx, Ly=Ly,
 # problem. Let's use piecewise linear functions continuous between
 # elements::
 
-V = fd.FunctionSpace(mesh, "CG", 2)
-Vvec = fd.VectorFunctionSpace(mesh, "CG", 2)
+V = fd.FunctionSpace(mesh, "CG", 1)
+Vvec = fd.VectorFunctionSpace(mesh, "CG", 1)
 
 # We'll also need the test and trial functions corresponding to this
 # function space::
@@ -95,6 +95,26 @@ m = u * v * phi_hom * dx
 
 petsc_a = fd.assemble(a).M.handle
 petsc_m = fd.assemble(m).M.handle
+
+# save files
+viewer = PETSc.Viewer().createBinary('A_2d.dat', 'w')
+viewer.pushFormat(viewer.Format.NATIVE)
+viewer(petsc_a)
+viewer = PETSc.Viewer().createBinary('M_2d.dat', 'w')
+viewer.pushFormat(viewer.Format.NATIVE)
+viewer(petsc_m)
+
+viewer_new = PETSc.Viewer().createBinary('A_2d.dat', 'r')
+viewer_new.pushFormat(viewer.getFormat())
+petsc_a_new = PETSc.Mat().load(viewer_new)
+viewer_new = PETSc.Viewer().createBinary('M_2d.dat', 'r')
+viewer_new.pushFormat(viewer.getFormat())
+petsc_m_new = PETSc.Mat().load(viewer_new)
+assert petsc_a_new.equal(petsc_a), "Reload unsuccessful"
+assert petsc_m_new.equal(petsc_m), "Reload unsuccessful"
+print("Reload successful")
+
+
 
 num_eigenvalues = 30
 
