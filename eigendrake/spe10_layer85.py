@@ -2,8 +2,7 @@ import firedrake as fd
 import numpy as np
 from slepc4py import SLEPc
 from firedrake.petsc import PETSc
-import pandas as pd
-import matplotlib.pyplot as plt
+
 
 def coords2ijk(x, y, Delta, data_array):
     i = np.floor(x / Delta[0]).astype(int)
@@ -97,10 +96,10 @@ petsc_a = fd.assemble(a).M.handle
 petsc_m = fd.assemble(m).M.handle
 
 # save files
-viewer = PETSc.Viewer().createBinary('A_2d.dat', 'w')
+viewer = PETSc.Viewer().createBinary('A_small.dat', 'w')
 viewer.pushFormat(viewer.Format.NATIVE)
 viewer(petsc_a)
-viewer = PETSc.Viewer().createBinary('M_2d.dat', 'w')
+viewer = PETSc.Viewer().createBinary('M_small.dat', 'w')
 viewer.pushFormat(viewer.Format.NATIVE)
 viewer(petsc_m)
 

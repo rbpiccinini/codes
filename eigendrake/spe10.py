@@ -119,34 +119,28 @@ assert petsc_a_new.equal(petsc_a), "Reload unsuccessful"
 assert petsc_m_new.equal(petsc_m), "Reload unsuccessful"
 print("Reload successful")
 
-
-
-
 num_eigenvalues = 10
 
 # Set solver options
 opts = PETSc.Options()
-# opts.setValue("eps_gen_hermitian", None)
-# opts.setValue("st_pc_factor_shift_type", "NONZERO")
-# opts.setValue("eps_type", "krylovschur")
-# opts.setValue("eps_smallest_real", None)
-# opts.setValue("eps_tol", 1e-5)
-
-opts.setValue("eps_interval", [0, 1e-2])
-opts.setValue("st_type", "sinvert")
-opts.setValue("st_ksp_type", "preonly")
-opts.setValue("st_pc_type", "cholesky")
-opts.setValue("st_pc_factor_mat_solver_type", "superlu_dist")
-opts.setValue("mat_superlu_dist_rowperm", "NOROWPERM")
+opts.setValue("eps_gen_hermitian", None)
+opts.setValue("st_pc_factor_shift_type", "NONZERO")
+opts.setValue('st_type', 'sinvert')
+opts.setValue("eps_type", "krylovschur")
+opts.setValue("eps_target_magnitude", None)
+opts.setValue("eps_target", 0)
+opts.setValue("eps_tol", 1e-10)
 
 
 # Solve for eigenvalues
 print('Computing eigenvalues...')
 es = SLEPc.EPS().create().create(comm=SLEPc.COMM_WORLD)
-es.setDimensions(nev=10, ncv=40)
+es.setDimensions(num_eigenvalues)
 es.setOperators(petsc_a, petsc_m)
 es.setFromOptions()
 print(es.getDimensions())
+
+
 
 ERRO
 

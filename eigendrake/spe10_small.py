@@ -23,9 +23,9 @@ Delta_x = 20
 Delta_y = 10
 Delta_z = 2
 
-Nx = int(60/10)
-Ny = int(220/10)
-Nz = int(85/17)
+Nx = int(60)
+Ny = int(220)
+Nz = int(5)
 
 Lx = Nx*Delta_x
 Ly = Ny*Delta_y
@@ -101,9 +101,21 @@ m = u * v * phi * dx
 petsc_a = fd.assemble(a).M.handle
 petsc_m = fd.assemble(m).M.handle
 
-num_eigenvalues = 10
+# Save *.h5 file
+ViewHDF5 = PETSc.Viewer()     # Init. Viewer
+ViewHDF5.createHDF5('grid.h5', mode=PETSc.Viewer.Mode.WRITE,comm= PETSc.COMM_WORLD)
+ViewHDF5.view(obj=petsc_a)   # Put PETSc object into the viewer
+ViewHDF5.destroy()            # Destroy Viewer
+
+# Load *.h5 file
+ViewHDF5 = PETSc.Viewer()     # Init. Viewer
+ViewHDF5.createHDF5('grid.h5', mode=PETSc.Viewer.Mode.READ,comm= PETSc.COMM_WORLD)
+ViewHDF5.view(obj=petsc_a)   # Put PETSc object into the viewer
+ViewHDF5.destroy()            # Destroy Viewer
 
 # Set solver options
+num_eigenvalues = 10
+
 opts = PETSc.Options()
 opts.setValue("eps_gen_hermitian", None)
 opts.setValue("st_pc_factor_shift_type", "NONZERO")
@@ -163,4 +175,4 @@ Print("Stopping condition: tol=%.4g, maxit=%d" % (tol, maxit))
 # Next, we might want to look at the result, so we output our solution
 # to a file::
 
-fd.File("helmholtz.pvd").write(Kx, Ky, Kz, *eigvecs)
+fd.File("helmholtz.pvd").write(phi, Kx, Ky, Kz, *eigvecs)
