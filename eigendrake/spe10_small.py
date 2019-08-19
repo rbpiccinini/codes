@@ -9,11 +9,11 @@ def coords2ijk(x, y, z, Delta, data_array):
     i = np.floor(x / Delta[0]).astype(int)
     j = np.floor(y / Delta[1]).astype(int)
     k = np.floor(z / Delta[2]).astype(int)
-    if i == len(x):
+    if i == data_array.shape[0]:
         i = i-1
-    if j == len(y):
+    if j == data_array.shape[1]:
         j = i-1
-    if k == len(z):
+    if k == data_array.shape[2]:
         k = k-1
 
     return data_array[i, j, k]
@@ -23,9 +23,9 @@ Delta_x = 20
 Delta_y = 10
 Delta_z = 2
 
-Nx = 60/10
-Ny = 220/10
-Nz = 85/17
+Nx = int(60/10)
+Ny = int(220/10)
+Nz = int(85/17)
 
 Lx = Nx*Delta_x
 Ly = Ny*Delta_y
@@ -56,10 +56,10 @@ print("START: Read in reservoir fields")
 Delta = np.array([Delta_x, Delta_y, Delta_z])
 
 coords = fd.project(mesh.coordinates, Vvec).dat.data
-kx_array = np.load('./spe10/spe10_kx.npy')
-ky_array = np.load('./spe10/spe10_ky.npy')
-kz_array = np.load('./spe10/spe10_kz.npy')
-phi_array = np.load('./spe10/spe10_po.npy')
+kx_array = np.load('./spe10/spe10_kx.npy')[:Nx, :Ny, :Nz]
+ky_array = np.load('./spe10/spe10_ky.npy')[:Nx, :Ny, :Nz]
+kz_array = np.load('./spe10/spe10_kz.npy')[:Nx, :Ny, :Nz]
+phi_array = np.load('./spe10/spe10_po.npy')[:Nx, :Ny, :Nz]
 
 Kx = fd.Function(V)
 Ky = fd.Function(V)
@@ -101,51 +101,26 @@ m = u * v * phi * dx
 petsc_a = fd.assemble(a).M.handle
 petsc_m = fd.assemble(m).M.handle
 
-# save files
-viewer = PETSc.Viewer().createBinary('A.dat', 'w')
-viewer.pushFormat(viewer.Format.NATIVE)
-viewer(petsc_a)
-viewer = PETSc.Viewer().createBinary('M.dat', 'w')
-viewer.pushFormat(viewer.Format.NATIVE)
-viewer(petsc_m)
-
-viewer_new = PETSc.Viewer().createBinary('A.dat', 'r')
-viewer_new.pushFormat(viewer.getFormat())
-petsc_a_new = PETSc.Mat().load(viewer_new)
-viewer_new = PETSc.Viewer().createBinary('M.dat', 'r')
-viewer_new.pushFormat(viewer.getFormat())
-petsc_m_new = PETSc.Mat().load(viewer_new)
-assert petsc_a_new.equal(petsc_a), "Reload unsuccessful"
-assert petsc_m_new.equal(petsc_m), "Reload unsuccessful"
-print("Reload successful")
-
 num_eigenvalues = 10
 
 # Set solver options
 opts = PETSc.Options()
-# opts.setValue("eps_gen_hermitian", None)
-# opts.setValue("st_pc_factor_shift_type", "NONZERO")
-# opts.setValue("eps_type", "krylovschur")
-# opts.setValue("eps_smallest_real", None)
-# opts.setValue("eps_tol", 1e-5)
-
-opts.setValue("eps_interval", [0, 1e-2])
-opts.setValue("st_type", "sinvert")
-opts.setValue("st_ksp_type", "preonly")
-opts.setValue("st_pc_type", "cholesky")
-opts.setValue("st_pc_factor_mat_solver_type", "superlu_dist")
-opts.setValue("mat_superlu_dist_rowperm", "NOROWPERM")
+opts.setValue("eps_gen_hermitian", None)
+opts.setValue("st_pc_factor_shift_type", "NONZERO")
+opts.setValue('st_type', 'sinvert')
+opts.setValue("eps_type", "krylovschur")
+opts.setValue("eps_target_magnitude", None)
+opts.setValue("eps_target", 0)
+opts.setValue("eps_tol", 1e-10)
 
 
 # Solve for eigenvalues
 print('Computing eigenvalues...')
 es = SLEPc.EPS().create().create(comm=SLEPc.COMM_WORLD)
-es.setDimensions(nev=10, ncv=40)
+es.setDimensions(num_eigenvalues)
 es.setOperators(petsc_a, petsc_m)
 es.setFromOptions()
 print(es.getDimensions())
-
-ERRO
 
 es.solve()
 
