@@ -19,13 +19,13 @@ def coords2ijk(x, y, z, Delta, data_array):
     return data_array[i, j, k]
 
 # Define mesh
-Delta_x = 20
-Delta_y = 10
-Delta_z = 2
+Delta_x = 20*0.3048 # ft -> m
+Delta_y = 10*0.3048
+Delta_z = 2*0.3048
 
 Nx = int(60)
 Ny = int(220)
-Nz = int(5)
+Nz = int(1)
 
 Lx = Nx*Delta_x
 Ly = Ny*Delta_y
@@ -54,22 +54,34 @@ v = fd.TestFunction(V)
 # Permeability tensor
 print("START: Read in reservoir fields")
 Delta = np.array([Delta_x, Delta_y, Delta_z])
+ct = 79.08e-11 # (1.0+0.2*3+0.8*4.947)*14.2 * 10**-6 kgf/cm2
+mu = 0.003 # Pa-s
 
 coords = fd.project(mesh.coordinates, Vvec).dat.data
-kx_array = np.load('./spe10/spe10_kx.npy')[:Nx, :Ny, :Nz]
-ky_array = np.load('./spe10/spe10_ky.npy')[:Nx, :Ny, :Nz]
-kz_array = np.load('./spe10/spe10_kz.npy')[:Nx, :Ny, :Nz]
-phi_array = np.load('./spe10/spe10_po.npy')[:Nx, :Ny, :Nz]
+kx_array = np.load('./spe10/spe10_kx.npy')[:Nx, :Ny, 34:35]
+ky_array = kx_array.copy() #np.load('./spe10/spe10_ky.npy')[:Nx, :Ny, :Nz]
+kz_array = np.load('./spe10/spe10_kz.npy')[:Nx, :Ny, 34:35]
+phi_array = np.load('./spe10/spe10_po.npy')[:Nx, :Ny, 34:35]
 
 Kx = fd.Function(V)
 Ky = fd.Function(V)
 Kz = fd.Function(V)
 phi = fd.Function(V)
 
+Tx = fd.Function(V)
+Ty = fd.Function(V)
+Tz = fd.Function(V)
+w = fd.Function(V)
+
 Kx.rename('Kx')
 Ky.rename('Ky')
 Kz.rename('Kz')
 phi.rename('phi')
+
+Tx.rename('Kx')
+Ty.rename('Ky')
+Tz.rename('Kz')
+w.rename('w')
 
 coords2ijk = np.vectorize(coords2ijk, excluded=['data_array', 'Delta'])
 
@@ -81,20 +93,29 @@ Kz.dat.data[...] = coords2ijk(coords[:, 0], coords[:, 1],
                                     coords[:, 2], Delta=Delta, data_array=kz_array)
 phi.dat.data[...] = coords2ijk(coords[:, 0], coords[:, 1],
                                        coords[:, 2], Delta=Delta, data_array=phi_array)
+Tx.dat.data[...] = coords2ijk(coords[:, 0], coords[:, 1],
+                                    coords[:, 2], Delta=Delta, data_array=kx_array*1e-15/mu*24*3600)
+Ty.dat.data[...] = coords2ijk(coords[:, 0], coords[:, 1],
+                                    coords[:, 2], Delta=Delta, data_array=ky_array*1e-15/mu*24*3600)
+Tz.dat.data[...] = coords2ijk(coords[:, 0], coords[:, 1],
+                                    coords[:, 2], Delta=Delta, data_array=kz_array*1e-15/mu*24*3600)
+
+w.dat.data[...] = coords2ijk(coords[:, 0], coords[:, 1],
+                                       coords[:, 2], Delta=Delta, data_array=phi_array*ct)
 print("END: Read in reservoir fields")
 
 fd.File("spe10_small.pvd").write(Kx, Ky, Kz, phi)
 
 # Permeability field harmonic interpolation to facets
-Kx_facet = fd.conditional(fd.gt(fd.avg(Kx), 0.0), Kx('+')*Kx('-') / fd.avg(Kx), 0.0)
-Ky_facet = fd.conditional(fd.gt(fd.avg(Ky), 0.0), Ky('+')*Ky('-') / fd.avg(Ky), 0.0)
-Kz_facet = fd.conditional(fd.gt(fd.avg(Kz), 0.0), Kz('+')*Kz('-') / fd.avg(Kz), 0.0)
+Tx_facet = fd.conditional(fd.gt(fd.avg(Tx), 0.0), Tx('+')*Tx('-') / fd.avg(Tx), 0.0)
+Ty_facet = fd.conditional(fd.gt(fd.avg(Ty), 0.0), Ty('+')*Ty('-') / fd.avg(Ty), 0.0)
+Tz_facet = fd.conditional(fd.gt(fd.avg(Tz), 0.0), Tz('+')*Tz('-') / fd.avg(Tz), 0.0)
 
 # We can now define the bilinear and linear forms for the left and right
 dx = fd.dx
-KdivU = fd.as_vector((Kx_facet*u.dx(0), Ky_facet*u.dx(1), Kz_facet*u.dx(2)))
-a = (fd.dot(KdivU, fd.grad(v))) * dx
-m = u * v * phi * dx
+TdivU = fd.as_vector((Tx_facet*u.dx(0), Ty_facet*u.dx(1), Tz_facet*u.dx(2)))
+a = (fd.dot(TdivU, fd.grad(v))) * dx
+m = u * v * w * dx
 
 # Defining the eigenvalue problem
 
