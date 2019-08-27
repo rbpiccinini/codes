@@ -3,6 +3,7 @@ import firedrake as fd
 import numpy as np
 from slepc4py import SLEPc
 from firedrake.petsc import PETSc
+import scipy.io as sp
 
 
 def coords2ijk(x, y, z, Delta, data_array):
@@ -25,7 +26,9 @@ Delta_z = 2*0.3048
 
 Nx = int(60)
 Ny = int(220)
-Nz = int(1)
+
+layers = range(35,40)
+Nz = len(layers)
 
 Lx = Nx*Delta_x
 Ly = Ny*Delta_y
@@ -58,10 +61,12 @@ ct = 79.08e-11 # (1.0+0.2*3+0.8*4.947)*14.2 * 10**-6 kgf/cm2
 mu = 0.003 # Pa-s
 
 coords = fd.project(mesh.coordinates, Vvec).dat.data
-kx_array = np.load('./spe10/spe10_kx.npy')[:Nx, :Ny, 34:35]
-ky_array = kx_array.copy() #np.load('./spe10/spe10_ky.npy')[:Nx, :Ny, :Nz]
-kz_array = np.load('./spe10/spe10_kz.npy')[:Nx, :Ny, 34:35]
-phi_array = np.load('./spe10/spe10_po.npy')[:Nx, :Ny, 34:35]
+spe10_2 = sp.loadmat('./spe10/spe10_2.mat')
+
+kx_array = spe10_2['Kx'][:,:, layers]
+ky_array = spe10_2['Ky'][:,:, layers]
+kz_array = spe10_2['Kz'][:,:, layers]
+phi_array = spe10_2['p'][:,:, layers]
 
 Kx = fd.Function(V)
 Ky = fd.Function(V)
@@ -94,11 +99,11 @@ Kz.dat.data[...] = coords2ijk(coords[:, 0], coords[:, 1],
 phi.dat.data[...] = coords2ijk(coords[:, 0], coords[:, 1],
                                        coords[:, 2], Delta=Delta, data_array=phi_array)
 Tx.dat.data[...] = coords2ijk(coords[:, 0], coords[:, 1],
-                                    coords[:, 2], Delta=Delta, data_array=kx_array*1e-15/mu*24*3600)
+                                    coords[:, 2], Delta=Delta, data_array=kx_array/mu*24*3600)
 Ty.dat.data[...] = coords2ijk(coords[:, 0], coords[:, 1],
-                                    coords[:, 2], Delta=Delta, data_array=ky_array*1e-15/mu*24*3600)
+                                    coords[:, 2], Delta=Delta, data_array=ky_array/mu*24*3600)
 Tz.dat.data[...] = coords2ijk(coords[:, 0], coords[:, 1],
-                                    coords[:, 2], Delta=Delta, data_array=kz_array*1e-15/mu*24*3600)
+                                    coords[:, 2], Delta=Delta, data_array=kz_array/mu*24*3600)
 
 w.dat.data[...] = coords2ijk(coords[:, 0], coords[:, 1],
                                        coords[:, 2], Delta=Delta, data_array=phi_array*ct)
@@ -124,15 +129,20 @@ petsc_m = fd.assemble(m).M.handle
 
 # Save *.h5 file
 ViewHDF5 = PETSc.Viewer()     # Init. Viewer
-ViewHDF5.createHDF5('grid.h5', mode=PETSc.Viewer.Mode.WRITE,comm= PETSc.COMM_WORLD)
-ViewHDF5.view(obj=petsc_a)   # Put PETSc object into the viewer
+ViewHDF5.createHDF5('A.h5', mode=PETSc.Viewer.Mode.WRITE,comm= PETSc.COMM_WORLD)
+ViewHDF5(petsc_a)   # Put PETSc object into the viewer
+ViewHDF5.destroy()            # Destroy Viewer
+
+ViewHDF5 = PETSc.Viewer()     # Init. Viewer
+ViewHDF5.createHDF5('M.h5', mode=PETSc.Viewer.Mode.WRITE,comm= PETSc.COMM_WORLD)
+ViewHDF5(petsc_m)   # Put PETSc object into the viewer
 ViewHDF5.destroy()            # Destroy Viewer
 
 # Load *.h5 file
-ViewHDF5 = PETSc.Viewer()     # Init. Viewer
-ViewHDF5.createHDF5('grid.h5', mode=PETSc.Viewer.Mode.READ,comm= PETSc.COMM_WORLD)
-ViewHDF5.view(obj=petsc_a)   # Put PETSc object into the viewer
-ViewHDF5.destroy()            # Destroy Viewer
+#ViewHDF5 = PETSc.Viewer()     # Init. Viewer
+#ViewHDF5.createHDF5('grid.h5', mode=PETSc.Viewer.Mode.READ,comm= PETSc.COMM_WORLD)
+#ViewHDF5.view(obj=petsc_a)   # Put PETSc object into the viewer
+#ViewHDF5.destroy()            # Destroy Viewer
 
 # Set solver options
 num_eigenvalues = 10
