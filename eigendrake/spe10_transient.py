@@ -123,7 +123,7 @@ yc = 0.5*Delta_y*Ly
 r = ((x-xc)**2+(y-yc)**2)**0.5 
 
 # u_0 = fd.Function(V).interpolate(10*y/(Delta_y*Ny))
-u_0 = fd.Function(V).interpolate(fd.Constant(10.))
+u_0 = fd.Function(V).interpolate(fd.Constant(0.))
 u_0.rename('Pressure')
 
 u_n = fd.Function(V).assign(u_0)
@@ -144,14 +144,21 @@ Ty_facet = fd.conditional(fd.gt(fd.avg(Ty), 0.0), Ty('+')*Ty('-') / fd.avg(Ty), 
 Tz_facet = fd.conditional(fd.gt(fd.avg(Tz), 0.0), Tz('+')*Tz('-') / fd.avg(Tz), 0.0)
 
 # Define the well source term
-eps =100 
-f = fd.Function(V).interpolate(1e10*fd.exp(-r**2/eps)/eps**0.5)
+#f = fd.Function(V).interpolate(10*fd.exp(-r**2/eps)/eps**0.5)
+
+xw = Delta_x*Nx*0.5
+yw = Delta_y*Ny*0.5
+radius = 0.1 #0.1875*0.3048 # 0.1 radius of well # 0.1875*0.3048 from ChenZhang2009
+f = fd.Function(V)
+f.assign(fd.interpolate(fd.conditional(pow(x-xw,2)+pow(y-yw,2)<pow(radius,2), fd.exp(-(1.0/(-pow(x-xw,2)-pow(y-yw,2)+pow(radius,2)))), 0.0), V))
+norm = fd.assemble(f*fd.dx)
+f.assign(-0.01*f/norm)
 
 # Plot source
 rr = np.logspace(-5, np.log(Delta_x*Nx),100)
-ff = 1e10*np.exp(-rr**2/eps)/eps**0.5
+ff = np.exp(-rr**2/eps)/eps**0.5
 plt.loglog(rr, ff)
-plt.show()
+# plt.show()
 
 # We can now define the bilinear and linear forms for the left and right
 dx = fd.dx
@@ -168,8 +175,8 @@ L = fd.rhs(F)
 u = fd.Function(V)
 t = 0
 print('Start solver')
-pavg = fd.assemble(u_0*dx)/vol
-print("t= {:6.3f}  \t pavg = {:5.2f}".format(t, pavg))
+pavg0 = fd.assemble(u_0*dx)/vol
+print("t= {:6.3f}  \t pavg = {:1.4e}".format(t, pavg0))
 for n in range(num_steps):
     fd.solve(a == L, u, solver_parameters={'ksp_type': 'cg'})
     
@@ -181,6 +188,6 @@ for n in range(num_steps):
     # if n % 20 == 0:
     outfile.write(u_n)
     pavg = fd.assemble(u_n*dx)/vol
-    print("t= {:6.3f}  \t pavg = {:5.2f}".format(t, pavg))
+    print("t= {:6.3f}  \t pavg = {:1.4e}".format(t, pavg))
 
 
