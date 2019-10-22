@@ -21,7 +21,7 @@ def coords2ijk(x, y, z, Delta, data_array):
     return data_array[i, j, k]
 
 # Define time steps
-T = 2.0            # final time
+T = 20.0            # final time
 num_steps = 50     # number of time steps
 dt = T / num_steps # time step size
 
@@ -152,7 +152,7 @@ radius = 0.1 #0.1875*0.3048 # 0.1 radius of well # 0.1875*0.3048 from ChenZhang2
 f = fd.Function(V)
 f.assign(fd.interpolate(fd.conditional(pow(x-xw,2)+pow(y-yw,2)<pow(radius,2), fd.exp(-(1.0/(-pow(x-xw,2)-pow(y-yw,2)+pow(radius,2)))), 0.0), V))
 norm = fd.assemble(f*fd.dx)
-f.assign(-0.01*f/norm)
+f.assign(1e-4*f/norm)
 
 # Plot source
 rr = np.logspace(-5, np.log(Delta_x*Nx),100)
@@ -177,6 +177,9 @@ t = 0
 print('Start solver')
 pavg0 = fd.assemble(u_0*dx)/vol
 print("t= {:6.3f}  \t pavg = {:1.4e}".format(t, pavg0))
+
+pwf = []
+pwf.append([t, u_0.at([xw, yw, 0])])
 for n in range(num_steps):
     fd.solve(a == L, u, solver_parameters={'ksp_type': 'cg'})
     
@@ -187,7 +190,9 @@ for n in range(num_steps):
     # Save to file and plot solution
     # if n % 20 == 0:
     outfile.write(u_n)
+    pwf.append([t, u_n.at([xw, yw, 0])])
     pavg = fd.assemble(u_n*dx)/vol
     print("t= {:6.3f}  \t pavg = {:1.4e}".format(t, pavg))
 
 
+pwf = np.array(pwf)
