@@ -22,8 +22,8 @@ def coords2ijk(x, y, z, Delta, data_array):
     return data_array[i, j, k]
 
 # Define time steps
-tp = 3. # prod time in hours
-t = np.linspace(0.,10*24*3600, 480)
+tp = 48. # prod time in hours
+t = np.linspace(0.,10*24*3600, 4801)
 #t = list(np.logspace(np.log10(0.01*3600), np.log10(tp*3600), 80))
 #t = t+ list(tp*3600+np.logspace(np.log10(0.01*3600), np.log10(20.*24*3600), 150))
 #t = np.array(t)
@@ -119,7 +119,7 @@ Tz.dat.data[...] = coords2ijk(coords[:, 0], coords[:, 1],
                                     coords[:, 2], Delta=Delta, data_array=kz_array/mu)
 
 w.dat.data[...] = coords2ijk(coords[:, 0], coords[:, 1],
-                                       coords[:, 2], Delta=Delta, data_array=(phi_array+1e-6)*ct)
+                                       coords[:, 2], Delta=Delta, data_array=phi_array*ct)
 print("END: Read in reservoir fields")
 
 # Define initial value
@@ -178,7 +178,7 @@ f.assign(q*f/norm)
 dx = fd.dx
 TdivU = fd.as_vector((Tx_facet*u.dx(0), Ty_facet*u.dx(1), Tz_facet*u.dx(2)))
 # F = (u - u_n)/dt*w*v*dx + (fd.dot(TdivU, fd.grad(v)))*dx + f*v*dx
-F = u*v*dx + dt/w*(fd.dot(TdivU, fd.grad(v)))*dx -(u_n + dt/w*f)*v*dx
+F = w*u*v*dx + dt*(fd.dot(TdivU, fd.grad(v)))*dx -(w*u_n + dt*f)*v*dx
 a = fd.lhs(F)
 L = fd.rhs(F)
 
@@ -196,8 +196,8 @@ q = []
 
 # t =0
 t.append(0.)
-pwf.append(u_0.at([xw, yw, 0]))
-pavg.append(pi)
+pwf.append(u_n.at([xw, yw, 0]))
+pavg.append(fd.assemble(phi*u_n*fd.dx)/pv)
 q.append(0)
 
 print("t [h] = {:6.3f}  \t pavg [bar] = {:6.3f}".format(t[-1]/3600, pavg[-1]/1e5))
@@ -212,7 +212,7 @@ for n in range(len(dts)):
     # Save t, pwf and pavg to list
     t.append(t[-1] + dts[n])
     pwf.append(u_n.at([xw, yw, 0]))
-    pavg.append(fd.assemble(u_n*dx)/vol)
+    pavg.append(fd.assemble(u_n*phi*dx)/pv)
     q.append((pavg[-1]-pavg[-2])*ct*pv/dts[n])
     
     # Update source term 
@@ -228,13 +228,13 @@ for n in range(len(dts)):
     # print info 
     print("t [h] = {:6.3f}  \t pavg [bar] = {:6.3f} \t pwf = {:6.3f} \t q [m3/d] = {:4.1f}".format(t[-1]/3600, pavg[-1]/1e5, pwf[-1]/1e5, q[-1]*24*3600))
 
+    # defining dataframe for results
+    df = pd.DataFrame(columns=['t (h)', 'pwf (bar)','pavg (bar)', 'q (m3/d)'])
+    df['t (h)'] = np.array(t)/3600
+    df['pwf (bar)'] = np.array(pwf)/1e5
+    df['pavg (bar)'] = np.array(pavg)/1e5
+    df['q (m3/d)'] = np.array(q)*24*3600
+    df.to_csv('solution.dat')
+
     if abs(pwf[-1]-pavg[-1]) < 1.:
         break
-
-# defining dataframe for results
-df = pd.DataFrame(columns=['t (h)', 'pwf (bar)','pavg (bar)', 'q (m3/d)'])
-df['t (h)'] = np.array(t)*3600
-df['pwf (bar)'] = np.array(pwf)*1e5
-df['pavg (bar)'] = np.array(pavg)*1e5
-df['q (m3/d)'] = np.array(q)*24*3600
-df.to_csv(solution.dat)
