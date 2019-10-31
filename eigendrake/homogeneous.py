@@ -32,15 +32,16 @@ v = fd.TestFunction(V)
 # Homogeneous
 one = fd.Constant(1.0)
 zero = fd.Constant(0.0)
-Khom = fd.interpolate(one, V)
-Khom.rename('K', 'Permeability')
+Kx = fd.interpolate(one, V)
+Ky = fd.interpolate(one, V)
+Kz = fd.interpolate(one, V)
 
 # Heterogeneous
 x, y, z = fd.SpatialCoordinate(W.mesh()) 
 
-Kx = fd.Function(V).interpolate(1.0+y)
-Ky = fd.Function(V).interpolate(1.0+0.25*fd.sin(fd.pi/Ly*y/2))
-Kz = fd.Function(V).interpolate(z)
+#Kx = fd.Function(V).interpolate(1.0+y)
+#Ky = fd.Function(V).interpolate(1.0+0.25*fd.sin(fd.pi/Ly*y/2))
+#Kz = fd.Function(V).interpolate(z)
 
 Kx.rename('Kx', 'Permeability in x direction.')
 Ky.rename('Ky', 'Permeability in y direction.')
@@ -68,7 +69,6 @@ m = u * v * por * dx
 
 petsc_a = fd.assemble(a).M.handle
 petsc_m = fd.assemble(m).M.handle
-
 num_eigenvalues = 20
 
 # Set solver options
@@ -78,6 +78,7 @@ opts.setValue("st_pc_factor_shift_type", "NONZERO")
 opts.setValue("eps_type", "krylovschur")
 opts.setValue("eps_smallest_real", None)
 opts.setValue("eps_tol", 1e-10)
+opts.setValue("eps_ncv", 40)
 
 
 # Solve for eigenvalues
@@ -90,8 +91,10 @@ es.solve()
 # Number of converged eigenvalues
 nconv = es.getConverged()
 eigvecs = []
+eigvalues = []
 for i in range(nconv):
     print(es.getEigenvalue(i).real)
+    eigvalues.append(es.getEigenvalue(i).real)
     
     vr, vi = petsc_a.getVecs()
     lam = es.getEigenpair(i, vr, vi)
@@ -102,23 +105,23 @@ for i in range(nconv):
 
 Print = PETSc.Sys.Print
 
-Print()
-Print("******************************")
-Print("*** SLEPc Solution Results ***")
-Print("******************************")
-Print()
+print()
+print("******************************")
+print("*** SLEPc Solution Results ***")
+print("******************************")
+print()
 
 its = es.getIterationNumber()
-Print("Number of iterations of the method: %d" % its)
+print("Number of iterations of the method: %d" % its)
 
 eps_type = es.getType()
-Print("Solution method: %s" % eps_type)
+print("Solution method: %s" % eps_type)
 
 nev, ncv, mpd = es.getDimensions()
-Print("Number of requested eigenvalues: %d" % nev)
+print('nev = {:d}, ncv = {:d}, mpd = {:d}'.format(nev, ncv, mpd))
 
 tol, maxit = es.getTolerances()
-Print("Stopping condition: tol=%.4g, maxit=%d" % (tol, maxit))
+print("Stopping condition: tol=%.4g, maxit=%d" % (tol, maxit))
 
 # For more details on how to specify solver parameters, see the section
 # of the manual on :doc:`solving PDEs <../solving-interface>`.

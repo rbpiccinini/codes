@@ -27,7 +27,7 @@ V = FunctionSpace(mesh, "CG", 1)
 
 # Define initial value
 x, y = SpatialCoordinate(mesh)
-u_0 = Function(V).interpolate(exp(-5*pow(x-2, 2) - 5*pow(y-2, 2)))
+u_0 = Constant(0) # Function(V).interpolate(exp(-5*pow(x-2, 2) - 5*pow(y-2, 2)))
 u_n = Function(V).assign(u_0)
 
 # We declare the output filename, and write out the initial condition.
@@ -37,11 +37,14 @@ outfile.write(u_n)
 # Define variational problem
 u = TrialFunction(V)
 v = TestFunction(V)
-f = Constant(1)
+# f = Constant(1)
 
 # f = Function(V)
-# x, y = SpatialCoordinate(mesh)
+x, y = SpatialCoordinate(mesh)
 # f.interpolate((1+8*pi*pi)*cos(x*pi*2)*cos(y*pi*2))
+eps=1e-4
+r = sqrt((x-2)**2+(y-2)**2) 
+f = Function(V).interpolate(eps/(r**2+eps**2))
 
 # We can now define the bilinear and linear forms for the left and right
 # hand sides of our equation respectively::
@@ -62,7 +65,7 @@ for n in range(num_steps):
     # Save to file and plot solution
     # if n % 20 == 0:
     outfile.write(u_n)
-    print("t=", t)
+    print("t= {:6.3f}".format(t))
     t += dt
 
 # For more details on how to specify solver parameters, see the section

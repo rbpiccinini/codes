@@ -22,8 +22,8 @@ def coords2ijk(x, y, z, Delta, data_array):
     return data_array[i, j, k]
 
 # Define time steps
-tp = 48. # prod time in hours
-t = np.linspace(0.,10*24*3600, 4801)
+tp = 12. # prod time in hours
+t = np.linspace(0.,20*24*3600, 20*24+1)
 #t = list(np.logspace(np.log10(0.01*3600), np.log10(tp*3600), 80))
 #t = t+ list(tp*3600+np.logspace(np.log10(0.01*3600), np.log10(20.*24*3600), 150))
 #t = np.array(t)
@@ -236,5 +236,5 @@ for n in range(len(dts)):
     df['q (m3/d)'] = np.array(q)*24*3600
     df.to_csv('solution.dat')
 
-    if abs(pwf[-1]-pavg[-1]) < 1.:
+    if abs(pwf[-1]-pavg[-1]) < 0.5:
         break

@@ -27,7 +27,7 @@ Delta_z = 2*0.3048
 Nx = int(60)
 Ny = int(220)
 
-layers = range(35,40)
+layers = range(5)
 Nz = len(layers)
 
 Lx = Nx*Delta_x
@@ -90,6 +90,8 @@ w.rename('w')
 
 coords2ijk = np.vectorize(coords2ijk, excluded=['data_array', 'Delta'])
 
+to_days = 24*3600
+
 Kx.dat.data[...] = coords2ijk(coords[:, 0], coords[:, 1],
                                     coords[:, 2], Delta=Delta, data_array=kx_array)
 Ky.dat.data[...] = coords2ijk(coords[:, 0], coords[:, 1],
@@ -99,11 +101,11 @@ Kz.dat.data[...] = coords2ijk(coords[:, 0], coords[:, 1],
 phi.dat.data[...] = coords2ijk(coords[:, 0], coords[:, 1],
                                        coords[:, 2], Delta=Delta, data_array=phi_array)
 Tx.dat.data[...] = coords2ijk(coords[:, 0], coords[:, 1],
-                                    coords[:, 2], Delta=Delta, data_array=kx_array/mu*24*3600)
+                                    coords[:, 2], Delta=Delta, data_array=kx_array/mu*to_days)
 Ty.dat.data[...] = coords2ijk(coords[:, 0], coords[:, 1],
-                                    coords[:, 2], Delta=Delta, data_array=ky_array/mu*24*3600)
+                                    coords[:, 2], Delta=Delta, data_array=ky_array/mu*to_days)
 Tz.dat.data[...] = coords2ijk(coords[:, 0], coords[:, 1],
-                                    coords[:, 2], Delta=Delta, data_array=kz_array/mu*24*3600)
+                                    coords[:, 2], Delta=Delta, data_array=kz_array/mu*to_days)
 
 w.dat.data[...] = coords2ijk(coords[:, 0], coords[:, 1],
                                        coords[:, 2], Delta=Delta, data_array=phi_array*ct)
@@ -145,17 +147,27 @@ ViewHDF5.destroy()            # Destroy Viewer
 #ViewHDF5.destroy()            # Destroy Viewer
 
 # Set solver options
-num_eigenvalues = 10
+num_eigenvalues = 5
 
 opts = PETSc.Options()
 opts.setValue("eps_gen_hermitian", None)
+opts.setValue("eps_monitor", None)
+
 opts.setValue("st_pc_factor_shift_type", "NONZERO")
+# opts.setValue('st_ksp_type', 'preonly')
+# opts.setValue('st_pc_type', 'lu')
 opts.setValue('st_type', 'sinvert')
 opts.setValue("eps_type", "krylovschur")
-opts.setValue("eps_target_magnitude", None)
-opts.setValue("eps_target", 0)
-opts.setValue("eps_tol", 1e-10)
+opts.setValue('pc_factor_mat_solver_type', 'mumps')
 
+#opts.setValue('st_ksp_type', 'gmres')
+#opts.setValue('st_pc_type', 'bjacobi')
+
+opts.setValue("eps_target_magnitude", None)
+opts.setValue("eps_target", 1e-10)
+opts.setValue("eps_tol", 1e-6)
+opts.setValue("st_ksp_max_it", 100)
+opts.setValue("st_ksp_rtol", 1e-6)
 
 # Solve for eigenvalues
 print('Computing eigenvalues...')
@@ -170,15 +182,18 @@ es.solve()
 # Number of converged eigenvalues
 nconv = es.getConverged()
 eigvecs = []
+eigvalues = []
 for i in range(nconv):
     print(es.getEigenvalue(i).real)
     
     vr, vi = petsc_a.getVecs()
     lam = es.getEigenpair(i, vr, vi)
+    eigvalues.append(lam.real)
     
     eigvecs.append(fd.Function(V))
     eigvecs[-1].vector()[:] = vr
     eigvecs[-1].rename('eigvec'+str('{:2d}').format(i))
+
 
 Print = PETSc.Sys.Print
 
@@ -205,5 +220,5 @@ Print("Stopping condition: tol=%.4g, maxit=%d" % (tol, maxit))
 #
 # Next, we might want to look at the result, so we output our solution
 # to a file::
-
-fd.File("helmholtz.pvd").write(phi, Kx, Ky, Kz, *eigvecs)
+np.savetxt('eigvalues.txt',np.array(eigvalues))
+fd.File("spe10_small.pvd").write(phi, Kx, Ky, Kz, *eigvecs)
