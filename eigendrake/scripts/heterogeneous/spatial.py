@@ -61,7 +61,7 @@ ct = 79.08e-11 # (1.0+0.2*3+0.8*4.947)*14.2 * 10**-6 kgf/cm2
 mu = 0.003 # Pa-s
 
 coords = fd.project(mesh.coordinates, Vvec).dat.data
-spe10_2 = sp.loadmat('./spe10/spe10_2.mat')
+spe10_2 = sp.loadmat('../../input/spe10/spe10_2.mat')
 
 kx_array = spe10_2['Kx'][:,:, layers]
 ky_array = spe10_2['Ky'][:,:, layers]
@@ -78,6 +78,14 @@ Ty = fd.Function(V)
 Tz = fd.Function(V)
 w = fd.Function(V)
 
+I = fd.Function(V)
+J = fd.Function(V)
+K = fd.Function(V)
+
+I.rename('I')
+J.rename('J')
+K.rename('K')
+
 Kx.rename('Kx')
 Ky.rename('Ky')
 Kz.rename('Kz')
@@ -91,6 +99,10 @@ w.rename('w')
 coords2ijk = np.vectorize(coords2ijk, excluded=['data_array', 'Delta'])
 
 to_days = 24*3600
+
+I.dat.data[...] = np.floor(coords[:, 0] / Delta[0]).astype(int)
+J.dat.data[...] = np.floor(coords[:, 1] / Delta[1]).astype(int)
+K.dat.data[...] = np.floor(coords[:, 2] / Delta[2]).astype(int)          
 
 Kx.dat.data[...] = coords2ijk(coords[:, 0], coords[:, 1],
                                     coords[:, 2], Delta=Delta, data_array=kx_array)
@@ -111,7 +123,7 @@ w.dat.data[...] = coords2ijk(coords[:, 0], coords[:, 1],
                                        coords[:, 2], Delta=Delta, data_array=phi_array*ct)
 print("END: Read in reservoir fields")
 
-fd.File("spe10_small.pvd").write(Kx, Ky, Kz, phi)
+fd.File("../../output/spatial.pvd").write(Kx, Ky, Kz, phi)
 
 # Permeability field harmonic interpolation to facets
 Tx_facet = fd.conditional(fd.gt(fd.avg(Tx), 0.0), Tx('+')*Tx('-') / fd.avg(Tx), 0.0)
@@ -130,15 +142,15 @@ petsc_a = fd.assemble(a).M.handle
 petsc_m = fd.assemble(m).M.handle
 
 # Save *.h5 file
-ViewHDF5 = PETSc.Viewer()     # Init. Viewer
-ViewHDF5.createHDF5('A.h5', mode=PETSc.Viewer.Mode.WRITE,comm= PETSc.COMM_WORLD)
-ViewHDF5(petsc_a)   # Put PETSc object into the viewer
-ViewHDF5.destroy()            # Destroy Viewer
-
-ViewHDF5 = PETSc.Viewer()     # Init. Viewer
-ViewHDF5.createHDF5('M.h5', mode=PETSc.Viewer.Mode.WRITE,comm= PETSc.COMM_WORLD)
-ViewHDF5(petsc_m)   # Put PETSc object into the viewer
-ViewHDF5.destroy()            # Destroy Viewer
+# ViewHDF5 = PETSc.Viewer()     # Init. Viewer
+# ViewHDF5.createHDF5('A.h5', mode=PETSc.Viewer.Mode.WRITE,comm= PETSc.COMM_WORLD)
+# ViewHDF5(petsc_a)   # Put PETSc object into the viewer
+# ViewHDF5.destroy()            # Destroy Viewer
+# 
+# ViewHDF5 = PETSc.Viewer()     # Init. Viewer
+# ViewHDF5.createHDF5('M.h5', mode=PETSc.Viewer.Mode.WRITE,comm= PETSc.COMM_WORLD)
+# ViewHDF5(petsc_m)   # Put PETSc object into the viewer
+# ViewHDF5.destroy()            # Destroy Viewer
 
 # Load *.h5 file
 #ViewHDF5 = PETSc.Viewer()     # Init. Viewer
@@ -194,7 +206,7 @@ for i in range(nconv):
     eigvecs[-1].vector()[:] = vr
     eigvecs[-1].rename('eigvec'+str('{:2d}').format(i))
 
-
+eigvalues = np.array(eigvalues)
 Print = PETSc.Sys.Print
 
 Print()
@@ -220,5 +232,5 @@ Print("Stopping condition: tol=%.4g, maxit=%d" % (tol, maxit))
 #
 # Next, we might want to look at the result, so we output our solution
 # to a file::
-np.savetxt('eigvalues.txt',np.array(eigvalues))
-fd.File("spe10_small.pvd").write(phi, Kx, Ky, Kz, *eigvecs)
+np.savetxt('../../output/eigvalues.txt',np.array(eigvalues))
+fd.File("../../output/spatial.pvd").write(I, J, K, phi, Kx, Ky, Kz, *eigvecs)

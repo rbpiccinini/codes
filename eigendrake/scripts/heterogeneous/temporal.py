@@ -22,7 +22,7 @@ def coords2ijk(x, y, z, Delta, data_array):
     return data_array[i, j, k]
 
 # Define time steps
-tp = 12. # prod time in hours
+tp = 10*24 # prod time in hours
 t = np.linspace(0.,20*24*3600, 20*24+1)
 #t = list(np.logspace(np.log10(0.01*3600), np.log10(tp*3600), 80))
 #t = t+ list(tp*3600+np.logspace(np.log10(0.01*3600), np.log10(20.*24*3600), 150))
@@ -40,7 +40,7 @@ Delta_z = 2*0.3048
 Nx = int(60)
 Ny = int(220)
 
-layers = range(5) # range(35,40)
+layers = range(10) # range(35,40)
 Nz = len(layers)
 
 Lx = Nx*Delta_x
