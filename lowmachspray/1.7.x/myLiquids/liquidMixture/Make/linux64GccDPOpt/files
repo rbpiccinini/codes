@@ -1,9 +1,0 @@
-# 1 "files"
-# 1 "<command-line>"
-# 1 "files"
-liquidMixture = liquidMixture
-
-$(liquidMixture)/liquidMixture.C
-$(liquidMixture)/liquidMixtureIO.C
-
-LIB = $(FOAM_USER_LIBBIN)/libmyLiquidMixture

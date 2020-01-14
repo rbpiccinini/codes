@@ -27,7 +27,7 @@ Delta_z = 2*0.3048
 Nx = int(60)
 Ny = int(220)
 
-layers = range(35,46,1)
+layers = range(10) # range(35,46,1)
 Nz = len(layers)
 
 Lx = Nx*Delta_x
@@ -159,7 +159,7 @@ petsc_m = fd.assemble(m).M.handle
 #ViewHDF5.destroy()            # Destroy Viewer
 
 # Set solver options
-num_eigenvalues = 5
+num_eigenvalues = 20 
 
 opts = PETSc.Options()
 opts.setValue("eps_gen_hermitian", None)
@@ -178,7 +178,7 @@ opts.setValue('pc_factor_mat_solver_type', 'mumps')
 opts.setValue("eps_target_magnitude", None)
 opts.setValue("eps_target", 1e-6)
 opts.setValue("eps_tol", 1e-6)
-opts.setValue("st_ksp_max_it", 200)
+opts.setValue("st_ksp_max_it", 400)
 opts.setValue("st_ksp_rtol", 1e-6)
 
 # Solve for eigenvalues

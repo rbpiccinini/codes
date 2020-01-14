@@ -1,3 +1,0 @@
-#!/bin/sh
-filename=tutorial
-latex2html -contents_in_navigation -dir html -font_size 11pt -top_navigation -split 4 ${filename}.tex

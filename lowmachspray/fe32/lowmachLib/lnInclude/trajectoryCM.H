@@ -1,1 +1,0 @@
-../spraySubModels/collisionModel/trajectoryModel/trajectoryCM.H

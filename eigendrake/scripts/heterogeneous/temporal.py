@@ -23,7 +23,7 @@ def coords2ijk(x, y, z, Delta, data_array):
 
 # Define time steps
 tp = 10*24 # prod time in hours
-t = np.linspace(0.,20*24*3600, 20*24+1)
+t = np.linspace(0.,15*24*3600, 20*24+1)
 #t = list(np.logspace(np.log10(0.01*3600), np.log10(tp*3600), 80))
 #t = t+ list(tp*3600+np.logspace(np.log10(0.01*3600), np.log10(20.*24*3600), 150))
 #t = np.array(t)
@@ -143,7 +143,7 @@ vol = fd.assemble(vol*fd.dx)
 
 # Write properties
 fd.File('spe10_u0.pvd').write(u_n, Kx, Ky, Kz, phi)
-outfile = fd.File("spe10_trans.pvd")
+outfile = fd.File("spe10_case01.pvd")
 outfile.write(u_n)
 
 # Compute transmissibility with harmonic interpolation of K to facets
@@ -155,6 +155,7 @@ Tz_facet = fd.conditional(fd.gt(fd.avg(Tz), 0.0), Tz('+')*Tz('-') / fd.avg(Tz), 
 #f = fd.Function(V).interpolate(10*fd.exp(-r**2/eps)/eps**0.5)
 xw = Delta_x*Nx*0.5
 yw = Delta_y*Ny*0.5
+zw = Delta_z*Nz*0.5
 
 # line = np.array([xw, yw, 1])*np.ones([10,3])
 # line[:, 2] = np.linspace(0., Lz, len(line)) 
@@ -163,11 +164,11 @@ radius = 0.1 #0.1875*0.3048 # 0.1 radius of well # 0.1875*0.3048 from ChenZhang2
 f = fd.Function(V)
 #f.assign(fd.interpolate(fd.conditional(pow(x-xw,2)+pow(y-yw,2)<pow(radius,2), fd.exp(-(1.0/(-pow(x-xw,2)-pow(y-yw,2)+pow(radius,2))))*Kx, 0.0), V))
 q = -1 / (np.pi*radius**2*Nz*Delta_z)
-f.assign(fd.interpolate(fd.conditional(pow(x-xw,2)+pow(y-yw,2)<pow(radius,2), 1.0*Kx, 0.0), V))
+f.assign(fd.interpolate(fd.conditional(pow(x-xw,2)+pow(y-yw,2)+pow(z-zw,2)<pow(radius,2), 1.0*Kx, 0.0), V))
 norm = fd.assemble(f*fd.dx)
 
 pv = fd.assemble(phi*fd.dx) # pore volume
-q = -0.1*pv/(30*3600*24) # prod rate of 0.1*pv / month
+q = -0.02*pv/(30*3600*24) # prod rate of 0.02*pv / month
 f.assign(q*f/norm)
 
 # Plot source
@@ -198,7 +199,7 @@ q = []
 
 # t =0
 t.append(0.)
-pwf.append(u_n.at([xw, yw, 0]))
+pwf.append(u_n.at([xw, yw, zw]))
 pavg.append(fd.assemble(phi*u_n*fd.dx)/pv)
 q.append(0)
 

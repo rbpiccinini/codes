@@ -1,1 +1,0 @@
-../multiNormal/multiNormal.C

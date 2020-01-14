@@ -1,9 +1,0 @@
-from pylab import *
-
-D=array(5.,10.,20.,30)*1e-6
-Urel=10.
-rho=1.2
-mu=1.8e-5
-
-Re=rho*Urel*D/mu
-Cd=24./Re*(1.+1./6.*Re**0.6667)

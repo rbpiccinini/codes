@@ -1,2 +1,0 @@
-liquidMixture = liquidMixture
-LIB = $(FOAM_USER_LIBBIN)/libmyLiquidMixture

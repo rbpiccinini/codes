@@ -1,1 +1,0 @@
-../spraySubModels/collisionModel/noCollision/noCollision.H

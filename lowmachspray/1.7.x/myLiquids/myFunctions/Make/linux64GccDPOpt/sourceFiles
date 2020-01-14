@@ -1,7 +1,0 @@
-SOURCE = \
-cpFunc/cpFunc.C\
-pvFunc/pvFunc.C\
-rhoFunc/rhoFunc.C\
-DFunc/DFunc.C\
-muFunc/muFunc.C\
-KFunc/KFunc.C

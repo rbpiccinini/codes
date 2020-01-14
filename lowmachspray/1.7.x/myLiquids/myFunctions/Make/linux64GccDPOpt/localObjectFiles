@@ -1,7 +1,0 @@
-LOCAL_OBJECTS = \
-cpFunc.o\
-pvFunc.o\
-rhoFunc.o\
-DFunc.o\
-muFunc.o\
-KFunc.o
