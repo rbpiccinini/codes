@@ -74,7 +74,7 @@ ct = 79.08e-11 # (1.0+0.2*3+0.8*4.947)*14.2 * 10**-6 kgf/cm2
 mu = 0.003 # Pa-s
 
 coords = fd.project(mesh.coordinates, Vvec).dat.data
-spe10_2 = sp.loadmat('./spe10/spe10_2.mat')
+spe10_2 = sp.loadmat('../../input/spe10/spe10_2.mat')
 
 kx_array = spe10_2['Kx'][:,:, layers]
 ky_array = spe10_2['Ky'][:,:, layers]
@@ -161,11 +161,13 @@ yw = Delta_y*Ny*0.5
 
 radius = 0.1 #0.1875*0.3048 # 0.1 radius of well # 0.1875*0.3048 from ChenZhang2009
 f = fd.Function(V)
-f.assign(fd.interpolate(fd.conditional(pow(x-xw,2)+pow(y-yw,2)<pow(radius,2), fd.exp(-(1.0/(-pow(x-xw,2)-pow(y-yw,2)+pow(radius,2))))*Kx, 0.0), V))
+#f.assign(fd.interpolate(fd.conditional(pow(x-xw,2)+pow(y-yw,2)<pow(radius,2), fd.exp(-(1.0/(-pow(x-xw,2)-pow(y-yw,2)+pow(radius,2))))*Kx, 0.0), V))
+q = -1 / (np.pi*radius**2*Nz*Delta_z)
+f.assign(fd.interpolate(fd.conditional(pow(x-xw,2)+pow(y-yw,2)<pow(radius,2), 1.0*Kx, 0.0), V))
 norm = fd.assemble(f*fd.dx)
 
 pv = fd.assemble(phi*fd.dx) # pore volume
-q = -0.1*pv/(30*3600*24) # prod rate of 0.01*pv / month
+q = -0.1*pv/(30*3600*24) # prod rate of 0.1*pv / month
 f.assign(q*f/norm)
 
 # Plot source
@@ -211,7 +213,7 @@ for n in range(len(dts)):
     
     # Save t, pwf and pavg to list
     t.append(t[-1] + dts[n])
-    pwf.append(u_n.at([xw, yw, 0]))
+    pwf.append(u_n.at([xw+radius, yw+radius, 0]))
     pavg.append(fd.assemble(u_n*phi*dx)/pv)
     q.append((pavg[-1]-pavg[-2])*ct*pv/dts[n])
     
@@ -226,7 +228,7 @@ for n in range(len(dts)):
         outfile.write(u_n)
 
     # print info 
-    print("t [h] = {:6.3f}  \t pavg [bar] = {:6.3f} \t pwf = {:6.3f} \t q [m3/d] = {:4.1f}".format(t[-1]/3600, pavg[-1]/1e5, pwf[-1]/1e5, q[-1]*24*3600))
+    print("t [h] = {:6.3f}  \t pavg [bar] = {:6.3f} \t pwf = {:6.3f} \t q [m3/d] = {:4.1f} \t IP [m3/d/bar] = {:4.1f}".format(t[-1]/3600, pavg[-1]/1e5, pwf[-1]/1e5, q[-1]*24*3600, q[-1]*24*3600/(pavg[-1]-pwf[-1])*1e5))
 
     # defining dataframe for results
     df = pd.DataFrame(columns=['t (h)', 'pwf (bar)','pavg (bar)', 'q (m3/d)'])
