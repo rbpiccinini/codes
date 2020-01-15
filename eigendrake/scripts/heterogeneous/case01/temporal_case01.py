@@ -23,12 +23,14 @@ def coords2ijk(x, y, z, Delta, data_array):
 
 # Define time steps
 tp = 100 # prod time in hours
-t = list(np.logspace(np.log10(0.001*3600), np.log10(tp*3600), 50))
-t = t + list(tp*3600+np.logspace(np.log10(0.001*3600), np.log10(tp*3600), 50))
+t = list(np.logspace(np.log10(0.01*3600), np.log10(tp*3600), 100))
+t = t + list(tp*3600+np.logspace(np.log10(0.01*3600), np.log10(tp*3600), 100))
 t = np.array(t)
-
+# max dt
+max_dt = 5.*3600
 
 dts = np.diff(t)
+print('max dt = ', dts.max()/3600.)
 dt = fd.Constant(dts[0]) # time step size
 
 # Define mesh
@@ -209,13 +211,14 @@ for n in range(len(dts)):
     
     # Update previous solution
     u_n.assign(u)
-    dt.assign(fd.Constant(dts[n]))
+    dt_step = dts[n]
+    dt.assign(fd.Constant(dt_step))
     
     # Save t, pwf and pavg to list
-    t.append(t[-1] + dts[n])
+    t.append(t[-1] + dt_step)
     pwf.append(u_n.at([xw+radius, yw+radius, zw]))
     pavg.append(fd.assemble(u_n*phi*dx)/pv)
-    q.append((pavg[-1]-pavg[-2])*ct*pv/dts[n])
+    q.append((pavg[-1]-pavg[-2])*ct*pv/dt_step)
     
     # Update source term 
     if t[-1]>=tp*3600 and not shutin:
