@@ -42,8 +42,8 @@ mesh = fd.ExtrudedMesh(mesh, layers=Nz, layer_height=Delta_z)
 # problem. Let's use piecewise linear functions continuous between
 # elements::
 
-V = fd.FunctionSpace(mesh, "DG", 0)
-Vvec = fd.VectorFunctionSpace(mesh, "DG", 0)
+V = fd.FunctionSpace(mesh, "DQ", 0)
+Vvec = fd.VectorFunctionSpace(mesh, "DQ", 0)
 
 # We'll also need the test and trial functions corresponding to this
 # function space::
@@ -127,6 +127,7 @@ fd.File("../../output/spatial.pvd").write(Kx, Ky, Kz, phi)
 
 # Permeability field harmonic interpolation to facets
 n = fd.FacetNormal(mesh)
+
 Tx_facet = fd.conditional(fd.gt(fd.avg(Tx), 0.0), Tx('+')*Tx('-') / fd.avg(Tx), 0.0)
 Ty_facet = fd.conditional(fd.gt(fd.avg(Ty), 0.0), Ty('+')*Ty('-') / fd.avg(Ty), 0.0)
 Tz_facet = fd.conditional(fd.gt(fd.avg(Tz), 0.0), Tz('+')*Tz('-') / fd.avg(Tz), 0.0)
@@ -141,14 +142,17 @@ x,y,z = mesh.coordinates
 x_func = fd.interpolate(x, V)
 y_func = fd.interpolate(y, V)
 z_func = fd.interpolate(z, V)
-Delta_h = fd.sqrt(fd.jump(x_func)**2 + fd.jump(y_func)**2 + fd.jump(z_func)**2)
+
+Delta_x = fd.jump(x_func)
+Delta_y = fd.jump(y_func)
+Delta_z = fd.jump(z_func)
 
 dx = fd.dx
-# a = T_facet*fd.jump(u)/Delta_h*fd.jump(v)*fd.dS
-a = (Tx_facet*fd.jump(u)/fd.jump(x_func)*fd.jump(v)*fd.dS(0) +
-     Ty_facet*fd.jump(u)/fd.jump(y_func)*fd.jump(v)*fd.dS(1) +
-     Tz_facet*fd.jump(u)/fd.jump(z_func)*fd.jump(v)*fd.dS(2))
-
+# a = T_facet/h_avg*fd.dot(fd.jump(u,n),fd.jump(v,n))*fd.dS
+Tdu = fd.as_vector((Tx_facet*fd.jump(u)/Delta_x,
+                    Ty_facet*fd.jump(u)/Delta_y,
+                    Tz_facet*fd.jump(u)/Delta_z))
+a = fd.dot(Tdu, fd.jump(v,n))*fd.dS
 m = u * v * w * dx
 
 # Defining the eigenvalue problem
