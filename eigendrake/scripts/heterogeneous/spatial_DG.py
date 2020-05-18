@@ -7,17 +7,17 @@ import scipy.io as sp
 
 
 def coords2ijk(x, y, z, Delta, data_array):
-   i = np.floor(x / Delta[0]).astype(int)
-   j = np.floor(y / Delta[1]).astype(int)
-   k = np.floor(z / Delta[2]).astype(int)
-   if i == data_array.shape[0]:
-       i = i-1
-   if j == data_array.shape[1]:
-       j = i-1
-   if k == data_array.shape[2]:
-       k = k-1
+    i = np.floor(x / Delta[0]).astype(int)
+    j = np.floor(y / Delta[1]).astype(int)
+    k = np.floor(z / Delta[2]).astype(int)
+    if i == data_array.shape[0]:
+        i = i-1
+    if j == data_array.shape[1]:
+        j = i-1
+    if k == data_array.shape[2]:
+        k = k-1
 
-   return data_array[i, j, k]
+    return data_array[i, j, k]
 
 # Define mesh
 Delta_x = 20*0.3048 # ft -> m
@@ -27,7 +27,7 @@ Delta_z = 2*0.3048
 Nx = int(60)
 Ny = int(220)
 
-layers = range(10) # range(35,46,1)
+layers = range(3) # range(35,46,1)
 Nz = len(layers)
 
 Lx = Nx*Delta_x
@@ -35,15 +35,15 @@ Ly = Ny*Delta_y
 Lz = Nz*Delta_z
 
 mesh = fd.utility_meshes.RectangleMesh(nx=Nx, ny=Ny, Lx=Lx, Ly=Ly,
-                                      quadrilateral=True)
+                                       quadrilateral=True)
 mesh = fd.ExtrudedMesh(mesh, layers=Nz, layer_height=Delta_z)
 
 # We need to decide on the function space in which we'd like to solve the
 # problem. Let's use piecewise linear functions continuous between
 # elements::
 
-V = fd.FunctionSpace(mesh, "CG", 1)
-Vvec = fd.VectorFunctionSpace(mesh, "CG", 1)
+V = fd.FunctionSpace(mesh, "DG", 0)
+Vvec = fd.VectorFunctionSpace(mesh, "DG", 0)
 
 # We'll also need the test and trial functions corresponding to this
 # function space::
@@ -60,6 +60,7 @@ Delta = np.array([Delta_x, Delta_y, Delta_z])
 ct = 79.08e-11 # (1.0+0.2*3+0.8*4.947)*14.2 * 10**-6 kgf/cm2
 mu = 0.003 # Pa-s
 
+# coords = fd.project(mesh.coordinates, C).dat.data
 coords = fd.project(mesh.coordinates, Vvec).dat.data
 spe10_2 = sp.loadmat('../../input/spe10/spe10_2.mat')
 
@@ -118,30 +119,43 @@ Ty.dat.data[...] = coords2ijk(coords[:, 0], coords[:, 1],
                                    coords[:, 2], Delta=Delta, data_array=ky_array/mu*to_days)
 Tz.dat.data[...] = coords2ijk(coords[:, 0], coords[:, 1],
                                    coords[:, 2], Delta=Delta, data_array=kz_array/mu*to_days)
-
 w.dat.data[...] = coords2ijk(coords[:, 0], coords[:, 1],
                                       coords[:, 2], Delta=Delta, data_array=phi_array*ct)
-print("END: Read in reservoir fields")
 
+print("END: Read in reservoir fields")
 fd.File("../../output/spatial.pvd").write(Kx, Ky, Kz, phi)
 
 # Permeability field harmonic interpolation to facets
+n = fd.FacetNormal(mesh)
 Tx_facet = fd.conditional(fd.gt(fd.avg(Tx), 0.0), Tx('+')*Tx('-') / fd.avg(Tx), 0.0)
 Ty_facet = fd.conditional(fd.gt(fd.avg(Ty), 0.0), Ty('+')*Ty('-') / fd.avg(Ty), 0.0)
 Tz_facet = fd.conditional(fd.gt(fd.avg(Tz), 0.0), Tz('+')*Tz('-') / fd.avg(Tz), 0.0)
 
+T_facet = (Tx_facet*(abs(n[0]('+'))+abs(n[0]('-')))/2 + 
+          Ty_facet*(abs(n[1]('+'))+abs(n[1]('-')))/2 + 
+          Tz_facet*(abs(n[2]('+'))+abs(n[2]('-')))/2)
+
 # We can now define the bilinear and linear forms for the left and right
+x,y,z = mesh.coordinates
+
+x_func = fd.interpolate(x, V)
+y_func = fd.interpolate(y, V)
+z_func = fd.interpolate(z, V)
+Delta_h = fd.sqrt(fd.jump(x_func)**2 + fd.jump(y_func)**2 + fd.jump(z_func)**2)
+
 dx = fd.dx
-TdivU = fd.as_vector((Tx_facet*u.dx(0), Ty_facet*u.dx(1), Tz_facet*u.dx(2)))
-a = (fd.dot(TdivU, fd.grad(v))) * dx
+# a = T_facet*fd.jump(u)/Delta_h*fd.jump(v)*fd.dS
+a = (Tx_facet*fd.jump(u)/fd.jump(x_func)*fd.jump(v)*fd.dS(0) +
+     Ty_facet*fd.jump(u)/fd.jump(y_func)*fd.jump(v)*fd.dS(1) +
+     Tz_facet*fd.jump(u)/fd.jump(z_func)*fd.jump(v)*fd.dS(2))
+
 m = u * v * w * dx
 
 # Defining the eigenvalue problem
-
 petsc_a = fd.assemble(a).M.handle
 petsc_m = fd.assemble(m).M.handle
 
-# Save *.h5 file
+## Save *.h5 file
 # ViewHDF5 = PETSc.Viewer()     # Init. Viewer
 # ViewHDF5.createHDF5('A.h5', mode=PETSc.Viewer.Mode.WRITE,comm= PETSc.COMM_WORLD)
 # ViewHDF5(petsc_a)   # Put PETSc object into the viewer
@@ -152,16 +166,17 @@ petsc_m = fd.assemble(m).M.handle
 # ViewHDF5(petsc_m)   # Put PETSc object into the viewer
 # ViewHDF5.destroy()            # Destroy Viewer
 
-# Load *.h5 file
+## Load *.h5 file
 #ViewHDF5 = PETSc.Viewer()     # Init. Viewer
 #ViewHDF5.createHDF5('grid.h5', mode=PETSc.Viewer.Mode.READ,comm= PETSc.COMM_WORLD)
 #ViewHDF5.view(obj=petsc_a)   # Put PETSc object into the viewer
 #ViewHDF5.destroy()            # Destroy Viewer
 
 # Set solver options
-num_eigenvalues = 15 
+num_eigenvalues = 5 
 
 opts = PETSc.Options()
+
 opts.setValue("eps_gen_hermitian", None)
 opts.setValue("eps_monitor", None)
 
@@ -172,14 +187,23 @@ opts.setValue('st_type', 'sinvert')
 opts.setValue("eps_type", "krylovschur")
 opts.setValue('pc_factor_mat_solver_type', 'mumps')
 
-#opts.setValue('st_ksp_type', 'gmres')
-#opts.setValue('st_pc_type', 'bjacobi')
+# opts.setValue('st_ksp_type', 'gmres')
+# opts.setValue('st_pc_type', 'bjacobi')
 
 opts.setValue("eps_target_magnitude", None)
-opts.setValue("eps_target", 1e-12)
-opts.setValue("eps_tol", 1e-8)
-opts.setValue("st_ksp_max_it", 600)
-opts.setValue("st_ksp_rtol", 1e-8)
+opts.setValue("eps_target", 0)
+opts.setValue("eps_tol", 1e-15)
+opts.setValue("st_ksp_max_it", 1000)
+opts.setValue("st_ksp_rtol", 1e-15)
+
+# opts.setValue("eps_gen_hermitian", None)
+# opts.setValue("st_pc_factor_shift_type", "NONZERO")
+# opts.setValue("eps_type", "krylovschur")
+# opts.setValue("eps_smallest_real", None)
+# opts.setValue("eps_tol", 1e-10)
+# opts.setValue("eps_ncv", 40)
+
+
 
 # Solve for eigenvalues
 print('Computing eigenvalues...')
@@ -195,14 +219,14 @@ es.solve()
 nconv = es.getConverged()
 eigvecs = []
 eigvalues = []
+
 for i in range(nconv):
     print(es.getEigenvalue(i).real)
-    
     vr, vi = petsc_a.getVecs()
     lam = es.getEigenpair(i, vr, vi)
     eigvalues.append(lam.real)
     
-    eigvecs.append(fd.Function(V))
+    eigvecs.append(fd.Function(P))
     eigvecs[-1].vector()[:] = vr
     eigvecs[-1].rename('eigvec'+str('{:2d}').format(i))
 
