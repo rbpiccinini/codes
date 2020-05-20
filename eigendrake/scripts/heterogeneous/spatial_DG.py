@@ -27,7 +27,7 @@ Delta_z = 2*0.3048
 Nx = int(60)
 Ny = int(220)
 
-layers = range(3) # range(35,46,1)
+layers = range(10) # range(35,46,1)
 Nz = len(layers)
 
 Lx = Nx*Delta_x
@@ -42,8 +42,14 @@ mesh = fd.ExtrudedMesh(mesh, layers=Nz, layer_height=Delta_z)
 # problem. Let's use piecewise linear functions continuous between
 # elements::
 
-V = fd.FunctionSpace(mesh, "DQ", 0)
-Vvec = fd.VectorFunctionSpace(mesh, "DQ", 0)
+# Create extruded mesh element
+horiz_elt = fd.FiniteElement("DG", fd.quadrilateral, 0)
+vert_elt =  fd.FiniteElement("DG", fd.interval, 0)
+elt = fd.TensorProductElement(horiz_elt, vert_elt)
+
+V = fd.FunctionSpace(mesh, elt)
+# V = fd.FunctionSpace(mesh, "DG", 0)
+Vvec = fd.VectorFunctionSpace(mesh, "DG", 0)
 
 # We'll also need the test and trial functions corresponding to this
 # function space::
@@ -132,9 +138,10 @@ Tx_facet = fd.conditional(fd.gt(fd.avg(Tx), 0.0), Tx('+')*Tx('-') / fd.avg(Tx), 
 Ty_facet = fd.conditional(fd.gt(fd.avg(Ty), 0.0), Ty('+')*Ty('-') / fd.avg(Ty), 0.0)
 Tz_facet = fd.conditional(fd.gt(fd.avg(Tz), 0.0), Tz('+')*Tz('-') / fd.avg(Tz), 0.0)
 
-T_facet = (Tx_facet*(abs(n[0]('+'))+abs(n[0]('-')))/2 + 
-          Ty_facet*(abs(n[1]('+'))+abs(n[1]('-')))/2 + 
-          Tz_facet*(abs(n[2]('+'))+abs(n[2]('-')))/2)
+T_facet = (Tx_facet*(abs(n[0]('+'))+abs(n[0]('-')))/2 +
+             Ty_facet*(abs(n[1]('+'))+abs(n[1]('-')))/2 +
+             Tz_facet*(abs(n[2]('+'))+abs(n[2]('-')))/2)
+
 
 # We can now define the bilinear and linear forms for the left and right
 x,y,z = mesh.coordinates
@@ -147,17 +154,24 @@ Delta_x = fd.jump(x_func)
 Delta_y = fd.jump(y_func)
 Delta_z = fd.jump(z_func)
 
+Delta = fd.sqrt(Delta_x**2+Delta_y**2+Delta_z**2)
+
 dx = fd.dx
-# a = T_facet/h_avg*fd.dot(fd.jump(u,n),fd.jump(v,n))*fd.dS
-Tdu = fd.as_vector((Tx_facet*fd.jump(u)/Delta_x,
-                    Ty_facet*fd.jump(u)/Delta_y,
-                    Tz_facet*fd.jump(u)/Delta_z))
-a = fd.dot(Tdu, fd.jump(v,n))*fd.dS
+# a = Txy_facet*fd.jump(v,n)*fd.jump(u,n)/Delta_h*fd.dS_h + Tz_facet*fd.jump(v)*fd.jump(u)/Delta_z*fd.dS_v
+# m = u * v * w * dx
+
+alpha = 1
+gamma = 1
+
 m = u * v * w * dx
+a = T_facet/Delta*fd.dot(fd.jump(v,n), fd.jump(u,n))*fd.dS_h \
+  + T_facet/Delta*fd.dot(fd.jump(v,n), fd.jump(u,n))*fd.dS_v 
 
 # Defining the eigenvalue problem
 petsc_a = fd.assemble(a).M.handle
 petsc_m = fd.assemble(m).M.handle
+
+print('## Matrix assembled.')
 
 ## Save *.h5 file
 # ViewHDF5 = PETSc.Viewer()     # Init. Viewer
@@ -196,9 +210,9 @@ opts.setValue('pc_factor_mat_solver_type', 'mumps')
 
 opts.setValue("eps_target_magnitude", None)
 opts.setValue("eps_target", 0)
-opts.setValue("eps_tol", 1e-15)
+opts.setValue("eps_tol", 1e-10)
 opts.setValue("st_ksp_max_it", 1000)
-opts.setValue("st_ksp_rtol", 1e-15)
+opts.setValue("st_ksp_rtol", 1e-10)
 
 # opts.setValue("eps_gen_hermitian", None)
 # opts.setValue("st_pc_factor_shift_type", "NONZERO")
@@ -230,7 +244,7 @@ for i in range(nconv):
     lam = es.getEigenpair(i, vr, vi)
     eigvalues.append(lam.real)
     
-    eigvecs.append(fd.Function(P))
+    eigvecs.append(fd.Function(V))
     eigvecs[-1].vector()[:] = vr
     eigvecs[-1].rename('eigvec'+str('{:2d}').format(i))
 
