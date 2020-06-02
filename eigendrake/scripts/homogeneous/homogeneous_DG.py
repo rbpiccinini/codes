@@ -171,7 +171,7 @@ print('## Matrix assembled.')
 #ViewHDF5.destroy()            # Destroy Viewer
 
 # Set solver options
-num_eigenvalues = 10 
+num_eigenvalues = 100 
 
 opts = PETSc.Options()
 

@@ -47,8 +47,8 @@ horiz_elt = fd.FiniteElement("DG", fd.quadrilateral, 0)
 vert_elt =  fd.FiniteElement("DG", fd.interval, 0)
 elt = fd.TensorProductElement(horiz_elt, vert_elt)
 
+# Create function space
 V = fd.FunctionSpace(mesh, elt)
-# V = fd.FunctionSpace(mesh, "DG", 0)
 Vvec = fd.VectorFunctionSpace(mesh, "DG", 0)
 
 # We'll also need the test and trial functions corresponding to this
@@ -129,7 +129,7 @@ w.dat.data[...] = coords2ijk(coords[:, 0], coords[:, 1],
                                       coords[:, 2], Delta=Delta, data_array=phi_array*ct)
 
 print("END: Read in reservoir fields")
-fd.File("../../output/spatial.pvd").write(Kx, Ky, Kz, phi)
+fd.File("../../output/spatial_heterog.pvd").write(Kx, Ky, Kz, phi)
 
 # Permeability field harmonic interpolation to facets
 n = fd.FacetNormal(mesh)
@@ -191,7 +191,7 @@ print('## Matrix assembled.')
 #ViewHDF5.destroy()            # Destroy Viewer
 
 # Set solver options
-num_eigenvalues = 5 
+num_eigenvalues = 500 
 
 opts = PETSc.Options()
 
@@ -210,9 +210,9 @@ opts.setValue('pc_factor_mat_solver_type', 'mumps')
 
 opts.setValue("eps_target_magnitude", None)
 opts.setValue("eps_target", 0)
-opts.setValue("eps_tol", 1e-10)
-opts.setValue("st_ksp_max_it", 1000)
-opts.setValue("st_ksp_rtol", 1e-10)
+opts.setValue("eps_tol", 1e-13)
+opts.setValue("st_ksp_max_it", 10000)
+opts.setValue("st_ksp_rtol", 1e-13)
 
 # opts.setValue("eps_gen_hermitian", None)
 # opts.setValue("st_pc_factor_shift_type", "NONZERO")
@@ -274,5 +274,5 @@ Print("Stopping condition: tol=%.4g, maxit=%d" % (tol, maxit))
 #
 # Next, we might want to look at the result, so we output our solution
 # to a file::
-np.savetxt('../../output/eigvalues.txt',np.array(eigvalues))
-fd.File("../../output/spatial.pvd").write(I, J, K, phi, Kx, Ky, Kz, *eigvecs)
+np.savetxt('../../output/eigvalues_heterog.txt',np.array(eigvalues))
+fd.File("../../output/spatial_heterog.pvd").write(I, J, K, phi, Kx, Ky, Kz, *eigvecs)
