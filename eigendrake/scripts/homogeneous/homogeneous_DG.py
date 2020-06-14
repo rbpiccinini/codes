@@ -74,6 +74,9 @@ Ky = fd.interpolate(fd.Constant(98.7e-15), V)
 Kz = fd.interpolate(fd.Constant(98.7e-16), V)
 phi = fd.interpolate(fd.Constant(0.25), V)
 
+# well location
+xw = np.array([118.872, 181.356, Lz/2])
+
 Tx = fd.Function(V)
 Ty = fd.Function(V)
 Tz = fd.Function(V)
@@ -222,11 +225,12 @@ for i in range(nconv):
     print(es.getEigenvalue(i).real)
     vr, vi = petsc_a.getVecs()
     lam = es.getEigenpair(i, vr, vi)
-    eigvalues.append(lam.real)
     
     eigvecs.append(fd.Function(V))
-    eigvecs[-1].vector()[:] = vr
-    eigvecs[-1].rename('eigvec'+str('{:2d}').format(i))
+    eigvecs[-1].vector()[:] = vr*vr
+    eigvalues.append([lam.real, eigvecs[-1].at(xw)])
+    eigvecs[-1].rename('eigvec^2'+str('{:2d}').format(i))
+
 
 eigvalues = np.array(eigvalues)
 Print = PETSc.Sys.Print

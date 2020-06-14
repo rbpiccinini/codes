@@ -4,6 +4,7 @@ import numpy as np
 from slepc4py import SLEPc
 from firedrake.petsc import PETSc
 import scipy.io as sp
+import matplotlib.pyplot as plt
 
 
 def coords2ijk(x, y, z, Delta, data_array):
@@ -69,6 +70,9 @@ mu = 0.003 # Pa-s
 # coords = fd.project(mesh.coordinates, C).dat.data
 coords = fd.project(mesh.coordinates, Vvec).dat.data
 spe10_2 = sp.loadmat('../../input/spe10/spe10_2.mat')
+
+# well location
+xw = np.array([118.872, 181.356, Lz/2])
 
 kx_array = spe10_2['Kx'][:,:, layers]
 ky_array = spe10_2['Ky'][:,:, layers]
@@ -191,7 +195,7 @@ print('## Matrix assembled.')
 #ViewHDF5.destroy()            # Destroy Viewer
 
 # Set solver options
-num_eigenvalues = 500 
+num_eigenvalues = 40 
 
 opts = PETSc.Options()
 
@@ -209,7 +213,7 @@ opts.setValue('pc_factor_mat_solver_type', 'mumps')
 # opts.setValue('st_pc_type', 'bjacobi')
 
 opts.setValue("eps_target_magnitude", None)
-opts.setValue("eps_target", 0)
+opts.setValue("eps_target", 0.)
 opts.setValue("eps_tol", 1e-13)
 opts.setValue("st_ksp_max_it", 10000)
 opts.setValue("st_ksp_rtol", 1e-13)
@@ -220,8 +224,6 @@ opts.setValue("st_ksp_rtol", 1e-13)
 # opts.setValue("eps_smallest_real", None)
 # opts.setValue("eps_tol", 1e-10)
 # opts.setValue("eps_ncv", 40)
-
-
 
 # Solve for eigenvalues
 print('Computing eigenvalues...')
@@ -242,13 +244,14 @@ for i in range(nconv):
     print(es.getEigenvalue(i).real)
     vr, vi = petsc_a.getVecs()
     lam = es.getEigenpair(i, vr, vi)
-    eigvalues.append(lam.real)
     
     eigvecs.append(fd.Function(V))
-    eigvecs[-1].vector()[:] = vr
-    eigvecs[-1].rename('eigvec'+str('{:2d}').format(i))
+    eigvecs[-1].vector()[:] = vr*vr
+    eigvalues.append([lam.real, eigvecs[-1].at(xw)])
+    eigvecs[-1].rename('eigvec^2'+str('{:2d}').format(i))
 
 eigvalues = np.array(eigvalues)
+eigvalues = eigvalues[eigvalues[:,0].argsort()]
 Print = PETSc.Sys.Print
 
 Print()
@@ -274,5 +277,8 @@ Print("Stopping condition: tol=%.4g, maxit=%d" % (tol, maxit))
 #
 # Next, we might want to look at the result, so we output our solution
 # to a file::
-np.savetxt('../../output/eigvalues_heterog.txt',np.array(eigvalues))
+np.savetxt('../../output/eigvalues_heterog.txt', eigvalues)
 fd.File("../../output/spatial_heterog.pvd").write(I, J, K, phi, Kx, Ky, Kz, *eigvecs)
+
+plt.semilogy(eigvalues[:,0], eigvalues[:,1]/eigvalues[0,1], 'ok', mfc='None')
+plt.show()
