@@ -195,7 +195,7 @@ print('## Matrix assembled.')
 #ViewHDF5.destroy()            # Destroy Viewer
 
 # Set solver options
-num_eigenvalues = 40 
+num_eigenvalues = 1000 
 
 opts = PETSc.Options()
 
@@ -278,7 +278,5 @@ Print("Stopping condition: tol=%.4g, maxit=%d" % (tol, maxit))
 # Next, we might want to look at the result, so we output our solution
 # to a file::
 np.savetxt('../../output/eigvalues_heterog.txt', eigvalues)
-fd.File("../../output/spatial_heterog.pvd").write(I, J, K, phi, Kx, Ky, Kz, *eigvecs)
+#fd.File("../../output/spatial_heterog.pvd").write(I, J, K, phi, Kx, Ky, Kz, *eigvecs)
 
-plt.semilogy(eigvalues[:,0], eigvalues[:,1]/eigvalues[0,1], 'ok', mfc='None')
-plt.show()
