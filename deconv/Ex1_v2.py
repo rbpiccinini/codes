@@ -97,4 +97,11 @@ Q = ex1.Q()
 psis = np.ravel([well.psi for well in wells])
 C = ex1.C(psis)
 p = ex1.convolve(t, eig, psis)
-r = ex1.deconvolve(eig, wells)
+
+# Deconvolution
+# bounds for eingevalues
+lb = [0.]+[0.01]*(ex1.ne-1)+[-5]*(ex1.ne-1)*ex1.nw
+ub = [np.inf]+[500.]*(ex1.ne-1)+[5]*(ex1.ne-1)*ex1.nw
+sqbounds = [lb,ub]
+print(np.array(sqbounds).shape)
+r = ex1.deconvolve(eig, wells, bounds=sqbounds)

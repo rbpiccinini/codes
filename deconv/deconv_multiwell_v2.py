@@ -113,13 +113,6 @@ class classConv():
         self.p0 = p0
         self.p = np.vstack([well.hist.p for well in wells]).T
         
-        self.convolve_path = np.einsum('wtx,xe,ewv -> tv',
-                                   self.Q(),
-                                   self.D(eig, t),
-                                   self.C(psis),
-                                   optimize=True)
-        np.einsum_path('ij,jk,kl->il', a, b, c, optimize='greedy')
-        
     def D(self, eig, t):
         """
         Builds the exponential decay matrix
@@ -161,19 +154,29 @@ class classConv():
                                    optimize=True)
     
     def error(self, x):
-        psi0 = x[0]
-        eig = np.concatenate([[0.], x[1:self.ne-1]])
-        psis = np.zeros([self.ne, self.nw])
-        psis[1:,:] = x[self.ne-1:].reshape([self.nw, self.ne-1]).T
-        psis = np.ravel(psis)
-        
+        eig, psis = self.x2conv(x)   
         return np.ravel(self.convolve(self.t, eig, psis) - self.p)
     
-    def eig_wells_to_x0(self, eig, wells):
-        psi0 = [wells[0].psi[0]]
-        psis = np.ravel([well.psi[1:] for well in wells])
-        return np.concatenate([psi0, eig[1:], psis])
+    def x2conv(self, x):
+        psi0 = x[0]
+        eig = np.zeros(self.ne)
+        eig[1:] = x[1:self.ne]
+        psis = np.zeros([self.nw, self.ne])
+        psis[:, 1:] = x[self.ne:].reshape([self.nw, self.ne-1])
         
+        return eig, np.ravel(psis)
+        
+    def conv2x(self, eig, psis):
+        x = np.zeros(len(eig)+(self.ne-1)*self.nw)
+        
+        psis = psis.reshape([self.nw, self.ne])
+        psis = np.ravel(psis[:, 1:])
+
+        x[0] = psis[0]
+        x[1:self.ne] = eig[1:]
+        x[self.ne:] = psis
+        
+        return x
         
     def deconvolve(self,
                    eig,
@@ -186,18 +189,11 @@ class classConv():
         
         # Create inital guess for eigenvalues
         # x0 = [1/Vpct, eigs, cs]
-        psis = np.ravel([well.psi for well in wells])
-        x0 = self.eig_wells_to_x0(eig, wells)
-        
-        # bounds for eingevalues
-        lb = [0.]+[0.01]*(self.ne-1)+[-5]*(self.ne-1)*self.nw
-        ub = [np.inf]+[500.]*(self.ne-1)+[5]*(self.ne-1)*self.nw
-        sqbounds = [lb,ub]
-        print(np.array(sqbounds).shape)
-        
+        psis = np.ravel([well.psi for well in wells])       
+        x0 = self.conv2x(eig, psis)       
         r = sp.optimize.least_squares(self.error,
                                         x0,
-                                        bounds=sqbounds,
+                                        bounds=bounds,
                                         method='trf',
                                         xtol=xtol,
                                         ftol=ftol,

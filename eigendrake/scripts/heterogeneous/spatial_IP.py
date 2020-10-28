@@ -195,7 +195,7 @@ print('## Matrix assembled.')
 #ViewHDF5.destroy()            # Destroy Viewer
 
 # Set solver options
-num_eigenvalues = 1000 
+num_eigenvalues = 1500 
 
 opts = PETSc.Options()
 
@@ -216,7 +216,7 @@ opts.setValue("eps_target_magnitude", None)
 opts.setValue("eps_target", 0.)
 opts.setValue("eps_tol", 1e-13)
 opts.setValue("st_ksp_max_it", 10000)
-opts.setValue("st_ksp_rtol", 1e-13)
+opts.setValue("st_ksp_rtol", 1e-8)
 
 # opts.setValue("eps_gen_hermitian", None)
 # opts.setValue("st_pc_factor_shift_type", "NONZERO")
