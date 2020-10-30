@@ -4,12 +4,10 @@ Created on Tue Jan 21 08:11:03 2020
 
 @author: bfv8
 """
-
-import pandas as pd
 import numpy as np
 import scipy as sp
-import matplotlib.pyplot as plt
-import scipy.signal as sg
+import pandas as pd
+
 
 class classHist():
     """
@@ -26,10 +24,7 @@ class classHist():
 class classWell():
     """
     A class with well element in the deconvolution.
-    Array indices are:
-        i -> time,
-        j -> modes,
-        k -> wells.
+
     """        
     def __init__(self, name, well_type, hist, psi, eig, p0):
         self.name = name
@@ -43,6 +38,7 @@ class classWell():
         self.set_Q(hist.q_1) # integrate with backward value
         self.set_eig(eig)
         self.p0 = p0
+        self.pconv=None
 
     
     def set_eig(self, eig):
@@ -75,6 +71,43 @@ class classWell():
         first_row = np.r_[q[0], padding]
         self.Q = sp.linalg.toeplitz(first_col, first_row)
 
+    def bourdet(self, t=None):
+        """
+        Computes the bourdet derivative.
+        
+        Parameters
+        ----------
+        t : numpy.array(n,)
+            Times
+        
+        Returns
+        -------
+        tdp/dt : np.array
+            Returns tdp(t)/dt
+        """  
+        if t==None:
+            t=self.hist.t
+        
+        D = np.exp(-np.einsum('i,j->ij', t, self.eig))
+        return t*np.einsum('ij,j -> i', D, self.psi**2)
+    
+    def PI(self, t):
+        """
+        Computes the well productivity index (PI).
+        
+        Parameters
+        ----------
+        t : numpy.array(n,)
+            Times
+        
+        Returns
+        -------
+        PI : np.array
+            Returns PI
+        """
+        dec = 1.0-np.exp(-np.einsum('i,j->ij', t, self.eig[1:]))
+        den = np.einsum('ij,j->i', dec, self.psi[1:]**2/self.eig[1:]) 
+        return 1.0/den
 
 
 class classConv():
@@ -91,18 +124,6 @@ class classConv():
 
     Parameters
     ----------
-    tk : numpy.array(k,)
-        Time [hours].
-    qk : numpy.array(k,)
-        Flow rate [m^3/day].
-    pk : numpy array(k,)
-        Bottom-hole pressure in kgf/cm^2.
-    p0 : float
-        Initial pressure. Reservoir is assumed to be initially at rest.
-    dt : float
-        Time-step for resampling pressure and flow-rate data. An equal sampling
-        frequency for pressure and flow-rate is required to compute
-        the convolution integral.
     """
 
     def __init__(self, wells, t, ne, p0):
@@ -112,6 +133,8 @@ class classConv():
         self.nt = len(t)
         self.p0 = p0
         self.p = np.vstack([well.hist.p for well in wells]).T
+        self.t = t
+        self.conv_path=True
         
     def D(self, eig, t):
         """
@@ -146,16 +169,18 @@ class classConv():
             r.append(np.einsum('i,ij -> ij', w, psis))
         return np.einsum('ijk->jik', np.array(r))
     
-    def convolve(self, t, eig, psis):
+    def convolve(self, t, eig, psis, optimize=True):
         return self.p0 - np.einsum('wtx,xe,ewv -> tv',
                                    self.Q(),
                                    self.D(eig, t),
                                    self.C(psis),
-                                   optimize=True)
+                                   optimize=optimize)
     
-    def error(self, x):
-        eig, psis = self.x2conv(x)   
-        return np.ravel(self.convolve(self.t, eig, psis) - self.p)
+    def error(self, x, optimize=True):
+        eig, psis = self.x2conv(x)
+        self.x = x
+        return (np.ravel(self.convolve(self.t, eig, psis, optimize) - self.p)
+                /np.ravel(self.p))*self.p0
     
     def x2conv(self, x):
         psi0 = x[0]
@@ -163,42 +188,72 @@ class classConv():
         eig[1:] = x[1:self.ne]
         psis = np.zeros([self.nw, self.ne])
         psis[:, 1:] = x[self.ne:].reshape([self.nw, self.ne-1])
+        psis[:,0] = psi0
         
         return eig, np.ravel(psis)
         
     def conv2x(self, eig, psis):
         x = np.zeros(len(eig)+(self.ne-1)*self.nw)
+        x[0] = psis[0]
         
         psis = psis.reshape([self.nw, self.ne])
         psis = np.ravel(psis[:, 1:])
 
-        x[0] = psis[0]
         x[1:self.ne] = eig[1:]
         x[self.ne:] = psis
         
         return x
+    
+    def set_wells(self, eig, psis):
+        psis = psis.reshape([self.nw, self.ne])
+        pconvs = self.convolve(self.t, eig, psis).T
+        for well, psi, pconv in zip(self.wells, psis, pconvs):
+            well.psi = psi
+            well.eig = eig
+            well.pconv = pconv
+    
+    def get_df(self):
+        dfs = []
+        keys = []
+        for well in self.wells:
+            df = pd.DataFrame(columns=['eig', 'psi'])
+            df['eig'] = well.eig
+            df['psi'] = well.psi
+            dfs.append(df)
+            keys.append(well.name)
+        return pd.concat(dfs, keys=keys, names=['well'])
         
     def deconvolve(self,
                    eig,
-                   wells,
+                   psis,
                    bounds=None,
                    method='trf',
-                   xtol=1e-8,
-                   ftol=1e-8,
-                   gtol=1e-8):
+                   xtol=1e-6,
+                   ftol=1e-7,
+                   gtol=1e-5):
         
         # Create inital guess for eigenvalues
         # x0 = [1/Vpct, eigs, cs]
-        psis = np.ravel([well.psi for well in wells])       
+        
+        # Einsum optimal path not improving speed??
+        # self.conv_path = np.einsum_path('wtx,xe,ewv -> tv',
+        #                                 self.Q(),
+        #                                 self.D(eig, self.t),
+        #                                 self.C(psis),
+        #                                 optimize='optimal')[0]
+        self.conv_path=True
         x0 = self.conv2x(eig, psis)       
         r = sp.optimize.least_squares(self.error,
                                         x0,
                                         bounds=bounds,
                                         method='trf',
+                                        jac='3-point',
                                         xtol=xtol,
                                         ftol=ftol,
                                         gtol=gtol,
-                                        verbose=2)
+                                        max_nfev=500,
+                                        verbose=2,
+                                        kwargs={'optimize':self.conv_path})
         return r
         
 
