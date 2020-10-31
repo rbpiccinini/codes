@@ -71,7 +71,7 @@ class classWell():
         first_row = np.r_[q[0], padding]
         self.Q = sp.linalg.toeplitz(first_col, first_row)
 
-    def bourdet(self, t=None):
+    def bourdet(self, t=None, well=None):
         """
         Computes the bourdet derivative.
         
@@ -87,9 +87,13 @@ class classWell():
         """  
         if t==None:
             t=self.hist.t
+        if well==None:
+            psib=self.psi
+        else:
+            psib=well.psi
         
         D = np.exp(-np.einsum('i,j->ij', t, self.eig))
-        return t*np.einsum('ij,j -> i', D, self.psi**2)
+        return t*np.einsum('ij,j -> i', D, self.psi*psib)
     
     def PI(self, t):
         """

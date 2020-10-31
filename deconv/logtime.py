@@ -17,7 +17,7 @@ dlogt = np.diff(logt).min()
 
 t=[]
 for i in range(1, len(logt)):
-    n = int((logt[i] - logt[i-1])/dlogt*80)
+    n = int((logt[i] - logt[i-1])/dlogt*120)
     t.append([np.logspace(logt[i-1], logt[i], n)])
 
 t = np.ravel(np.concatenate(t, axis=1))
