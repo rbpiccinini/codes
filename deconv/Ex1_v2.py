@@ -135,7 +135,7 @@ plt.savefig('multiwell_imex.png', dpi=600)
 plt.savefig('multiwell_imex.svg')
 
 # Plotar derivada
-tb = np.logspace(-4,3, 200)
+tb = np.logspace(-2.3,3, 200)
 fig, ax = plt.subplots(1,1,figsize=(6.3, 6.3))
 for well, color in zip(wells, colors):
     ax.loglog(tb*24., well.bourdet(t=tb), '-', ms=2, mfc='None', label=well.name, color=color)
