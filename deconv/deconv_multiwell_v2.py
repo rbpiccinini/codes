@@ -85,9 +85,9 @@ class classWell():
         tdp/dt : np.array
             Returns tdp(t)/dt
         """  
-        if t==None:
+        if t is None:
             t=self.hist.t
-        if well==None:
+        if well is None:
             psib=self.psi
         else:
             psib=well.psi

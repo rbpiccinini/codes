@@ -135,11 +135,12 @@ plt.savefig('multiwell_imex.png', dpi=600)
 plt.savefig('multiwell_imex.svg')
 
 # Plotar derivada
+tb = np.logspace(-3,2, 200)
 fig, ax = plt.subplots(1,1,figsize=(6.3, 6.3))
 for well, color in zip(wells, colors):
-    ax.loglog(well.hist.t, well.bourdet(), 'o', ms=2, mfc='None', label=well.name, color=color)
+    ax.loglog(tb*24., well.bourdet(t=tb), 'o', ms=2, mfc='None', label=well.name, color=color)
 
-ax.set_xlabel('Time [days]')
+ax.set_xlabel('Time [hours]')
 ax.legend(loc='lower right')
 ax.set_ylabel('Burdet derivative [kgf/cm2]')
 ax.set_aspect('equal')
