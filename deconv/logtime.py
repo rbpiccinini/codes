@@ -11,7 +11,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 
 # eventos
-te = np.array([2., 4., 5., 6., 7., 8., 40.])
+te = np.array([2., 4., 5., 6., 7., 8., 10., 40.])
 logt = np.log10(te)
 dlogt = np.diff(logt).min()
 
