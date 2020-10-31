@@ -25,21 +25,21 @@ def which_type(well):
         return 'none'
 
 # Lê dados
-df = pd.read_excel('multiwell.xlsx', sheet_name='Data')
-df.to_csv('Ex1.zip', compression='zip', encoding='utf-8', index=False)
+# df = pd.read_excel('multiwell.xlsx', sheet_name='Data')
+# df.to_csv('Ex1.zip', compression='zip', encoding='utf-8', index=False)
 df = pd.read_csv('Ex1.zip', compression='zip')
 
-idx = (df['t']>1.5) & (df['t']<=30.)
+idx = (df['t']>1.5) & (df['t']<=7.)
 df = df[idx]
 df['t'] = df['t'] - df['t'].min()
 
 #resample df
-# wells = df['well'].drop_duplicates().tolist()
-# dfs = []
-# for well in wells:
-#     idx = df['well'] == well 
-#     dfs.append((df.loc[idx]).iloc[::20 ,:])
-# df = pd.concat(dfs)
+wells = df['well'].drop_duplicates().tolist()
+dfs = []
+for well in wells:
+    idx = df['well'] == well 
+    dfs.append((df.loc[idx]).iloc[::20 ,:])
+df = pd.concat(dfs)
 
 # initial pressure [kgf/cm2]
 p0 = 421.839630126953
@@ -135,10 +135,10 @@ plt.savefig('multiwell_imex.png', dpi=600)
 plt.savefig('multiwell_imex.svg')
 
 # Plotar derivada
-tb = np.logspace(-3,2, 200)
+tb = np.logspace(-4,3, 200)
 fig, ax = plt.subplots(1,1,figsize=(6.3, 6.3))
 for well, color in zip(wells, colors):
-    ax.loglog(tb*24., well.bourdet(t=tb), 'o', ms=2, mfc='None', label=well.name, color=color)
+    ax.loglog(tb*24., well.bourdet(t=tb), '-', ms=2, mfc='None', label=well.name, color=color)
 
 ax.set_xlabel('Time [hours]')
 ax.legend(loc='lower right')

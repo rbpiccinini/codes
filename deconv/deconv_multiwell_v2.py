@@ -70,6 +70,34 @@ class classWell():
         first_col = q
         first_row = np.r_[q[0], padding]
         self.Q = sp.linalg.toeplitz(first_col, first_row)
+        
+    def set_Qnu(self, q):
+        """
+        Builds the flow rate Toeplitz matrix for irregularly spaced data.
+        
+        Qi1,i2 = q(ti1 -ti2) if i2<=i1, or
+        Qmn = 0, otherwise.
+
+        Parameters 
+        ----------
+        q : numpy.array(ni,)
+            Flow rate array (length = ni).
+
+        Returns
+        -------
+        Q : np.array(ni,ni)
+            Flow rate Toeplitz matrix
+        """
+        
+        # Builds Toepltiz matrix for flow rate
+        print('building Topeplitz matrix for well: \t'+self.name )
+        q_interp = sp.interpolate.interp1d(self.hist.t, self.hist.q, kind='previous')
+        nt = len(self.hist.t)
+        self.Q = np.zeros([nt, nt])
+        for i in range(nt):
+            for j in range(i):
+                self.Q[i,j] = q_interp(self.hist.t[i]-self.hist.t[j])
+        print(self.name + ' DONE!')       
 
     def bourdet(self, t=None, well=None):
         """
