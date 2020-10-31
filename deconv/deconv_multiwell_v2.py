@@ -33,9 +33,10 @@ class classWell():
         
         self.tau = self.hist.t - self.hist.t[0] 
         self.dtau = np.diff(self.tau)
+        self.nt = len(self.hist.t)
         
         self.psi = psi
-        self.set_Q(hist.q_1) # integrate with backward value
+        self.set_Qnu(hist.q_1) # integrate with backward value
         self.set_eig(eig)
         self.p0 = p0
         self.pconv=None
@@ -71,6 +72,7 @@ class classWell():
         first_row = np.r_[q[0], padding]
         self.Q = sp.linalg.toeplitz(first_col, first_row)
         
+        
     def set_Qnu(self, q):
         """
         Builds the flow rate Toeplitz matrix for irregularly spaced data.
@@ -90,14 +92,12 @@ class classWell():
         """
         
         # Builds Toepltiz matrix for flow rate
-        print('building Topeplitz matrix for well: \t'+self.name )
-        q_interp = sp.interpolate.interp1d(self.hist.t, self.hist.q, kind='previous')
+        q_interp = sp.interpolate.interp1d(self.hist.t, q, kind='linear')
         nt = len(self.hist.t)
         self.Q = np.zeros([nt, nt])
-        for i in range(nt):
-            for j in range(i):
-                self.Q[i,j] = q_interp(self.hist.t[i]-self.hist.t[j])
-        print(self.name + ' DONE!')       
+        
+        dt = np.tril(np.tile(self.hist.t, (nt, 1)).T - np.tile(self.hist.t, (nt, 1)))
+        self.Q = q_interp(dt)
 
     def bourdet(self, t=None, well=None):
         """

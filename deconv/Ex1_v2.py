@@ -29,17 +29,17 @@ def which_type(well):
 # df.to_csv('Ex1.zip', compression='zip', encoding='utf-8', index=False)
 df = pd.read_csv('Ex1.zip', compression='zip')
 
-idx = (df['t']>1.5) & (df['t']<=7.)
+idx = (df['t']>1.5) & (df['t']<=6.)
 df = df[idx]
 df['t'] = df['t'] - df['t'].min()
 
 #resample df
-wells = df['well'].drop_duplicates().tolist()
-dfs = []
-for well in wells:
-    idx = df['well'] == well 
-    dfs.append((df.loc[idx]).iloc[::20 ,:])
-df = pd.concat(dfs)
+# wells = df['well'].drop_duplicates().tolist()
+# dfs = []
+# for well in wells:
+#     idx = df['well'] == well 
+#     dfs.append((df.loc[idx]).iloc[::20 ,:])
+# df = pd.concat(dfs)
 
 # initial pressure [kgf/cm2]
 p0 = 421.839630126953
