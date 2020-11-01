@@ -7,7 +7,7 @@ Created on Tue Jan 21 08:11:03 2020
 import numpy as np
 import scipy as sp
 import pandas as pd
-
+import mpmath as mp
 
 class classHist():
     """
@@ -182,13 +182,22 @@ class classConv():
         t   : numpy.array(nt,)
             Array of exponents including the null array (length = nj).
         """
+        
+        # Analytical calculation
         SMALL = 1e-12
         
         D = np.zeros([len(t), len(eig)])
+        
         D[1:,:] = (np.exp(-np.einsum('i,j->ij', t[:-1], eig))
-                        -np.exp(-np.einsum('i,j->ij', t[1:], eig)))/(eig+SMALL)  
+                   *(1.0-np.exp(-np.einsum('i,j->ij', t[1:]-t[:-1], eig))))/(eig+SMALL)  
+        
         D[:,0] = np.diff(t, prepend=0.)
         
+        # Numerical calculation
+        # D = np.diff(sp.integrate.cumtrapz(y=np.exp(np.einsum('i,j->ij',-eig,t)),
+        #                                             x=t,
+        #                                             initial=0.),
+        #                   prepend=0.).T
         return D
     
     def Q(self):

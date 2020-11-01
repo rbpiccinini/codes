@@ -29,7 +29,7 @@ def which_type(well):
 # df.to_csv('Ex1.zip', compression='zip', encoding='utf-8', index=False)
 df = pd.read_csv('Ex1.zip', compression='zip')
 
-idx = (df['t']>1.5) & (df['t']<=6.)
+idx = (df['t']>1.5) & (df['t']<=20.)
 df = df[idx]
 df['t'] = df['t'] - df['t'].min()
 
