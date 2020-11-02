@@ -36,7 +36,7 @@ class classWell():
         self.nt = len(self.hist.t)
         
         self.psi = psi
-        self.set_Q(hist.q_1) # integrate with backward value
+        self.set_Q(hist.q) # integrate with backward value
         self.set_eig(eig)
         self.p0 = p0
         self.pconv=None
@@ -190,10 +190,9 @@ class classConv():
         # Df = np.zeros([len(t), len(t), len(eig)])
         # Di = np.zeros([len(t), len(t), len(eig)])
         
-        Df =  np.einsum('ij,k->ijk', np.tril(t[:, None] - t[:]), -eig)
-        Di =  np.einsum('ij,k->ijk', np.tril(t[:, None] - t_1[:]),  -eig)  
+        D =  (np.exp(np.einsum('ij,k->ijk', np.tril(t[:, None] - t[:]), -eig))
+              -np.exp(np.einsum('ij,k->ijk', np.tril(t[:, None] - t_1[:]),  -eig)))
         
-        D = np.exp(Df)-np.exp(Di)
         D[:,:,0] = np.tril(np.tile(np.diff(t, prepend=0), (len(t),1)))
         D[:,:,1:] /= eig[1:]
         
@@ -217,7 +216,7 @@ class classConv():
         t -> i_t
         e -> i_e
         """
-        return self.p0 - np.einsum('kv,vte,ekw->tw',
+        return self.p0 - np.einsum('kv,tve,ekw->tw',
                                    self.Q(),
                                    self.D(eig, t),
                                    self.C(psis),

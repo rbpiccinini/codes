@@ -7,7 +7,7 @@ Created on Tue Jan 21 08:11:03 2020
 import numpy as np
 import scipy as sp
 import pandas as pd
-import mpmath as mp
+import scipy.interpolate as spi
 
 class classHist():
     """
@@ -92,7 +92,7 @@ class classWell():
         """
         
         # Builds Toepltiz matrix for flow rate
-        q_interp = sp.interpolate.interp1d(self.hist.t, q, kind='linear')
+        q_interp = spi.interp1d(self.hist.t, q, kind='previous')
         nt = len(self.hist.t)
         self.Q = np.zeros([nt, nt])
         

@@ -26,19 +26,19 @@ def which_type(well):
 # Lê dados
 # df = pd.read_excel('multiwell.xlsx', sheet_name='Data')
 # df.to_csv('Ex1.zip', compression='zip', encoding='utf-8', index=False)
-df = pd.read_csv('Ex1.zip', compression='zip')
+df = pd.read_csv('Ex1_log.zip', compression='zip')
 
-idx = (df['t']>1.5) & (df['t']<=15.)
+idx = (df['t']>1.5) & (df['t']<=10.)
 df = df[idx]
 df['t'] = df['t'] - df['t'].min()
 
 #resample df
-wells = df['well'].drop_duplicates().tolist()
-dfs = []
-for well in wells:
-    idx = df['well'] == well 
-    dfs.append((df.loc[idx]).iloc[::20 ,:])
-df = pd.concat(dfs)
+# wells = df['well'].drop_duplicates().tolist()
+# dfs = []
+# for well in wells:
+#     idx = df['well'] == well 
+#     dfs.append((df.loc[idx]).iloc[::20 ,:])
+# df = pd.concat(dfs)
 
 # initial pressure [kgf/cm2]
 p0 = 421.839630126953
@@ -91,11 +91,11 @@ ex1 = classConv(wells, t=t, ne=len(eig), p0=p0)
 # Read x0 for deconvolution
 eig, psis = ex1.x2conv(np.loadtxt('r_opt7.txt'))
 
-D = ex1.D(eig, t)
-Q = ex1.Q()
-C = ex1.C(psis)
+# D = ex1.D(eig, t)
+# Q = ex1.Q()
+# C = ex1.C(psis)
 
-np.einsum('kv,vte,ekw->tw',Q, D, C, optimize=True)
+# np.einsum('kv,vte,ekw->tw',Q, D, C, optimize=True)
 
 # Set bounds for eingevalues
 lb = [0.01]+[0.1]*(ex1.ne-1)+[-10]*(ex1.ne-1)*ex1.nw
@@ -110,9 +110,7 @@ print(np.array(sqbounds).shape)
 
 # Update wells
 ex1.set_wells(eig, psis)
-C = ex1.C(psis)
-D = ex1.D(eig, ex1.t)
-Q = ex1.Q()
+
 
 #plotar pressões e vazões
 

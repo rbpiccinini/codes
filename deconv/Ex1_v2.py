@@ -10,7 +10,6 @@ import pandas as pd
 import numpy as np
 import scipy as sp
 import matplotlib.pyplot as plt
-import scipy.signal as sg
 from deconv_multiwell_v2 import *
 
 
@@ -27,19 +26,19 @@ def which_type(well):
 # Lê dados
 # df = pd.read_excel('multiwell.xlsx', sheet_name='Data')
 # df.to_csv('Ex1.zip', compression='zip', encoding='utf-8', index=False)
-df = pd.read_csv('Ex1.zip', compression='zip')
+df = pd.read_csv('Ex1_log.zip', compression='zip')
 
-idx = (df['t']>1.5) & (df['t']<=20.)
+idx = (df['t']>1.5) & (df['t']<=10.)
 df = df[idx]
 df['t'] = df['t'] - df['t'].min()
 
 #resample df
-# wells = df['well'].drop_duplicates().tolist()
-# dfs = []
-# for well in wells:
-#     idx = df['well'] == well 
-#     dfs.append((df.loc[idx]).iloc[::20 ,:])
-# df = pd.concat(dfs)
+wells = df['well'].drop_duplicates().tolist()
+dfs = []
+for well in wells:
+    idx = df['well'] == well 
+    dfs.append((df.loc[idx]).iloc[::20 ,:])
+df = pd.concat(dfs)
 
 # initial pressure [kgf/cm2]
 p0 = 421.839630126953
@@ -56,8 +55,7 @@ psi = np.zeros(len(eig))
 psi[0] = psi0
 
 
-
-
+# Create list of wells
 wells = []
 for well in df['well'].drop_duplicates():
     # filter for well
@@ -75,7 +73,6 @@ for well in df['well'].drop_duplicates():
                            psi=psi,
                            eig=eig,
                            p0=p0))
-
 
 
 
@@ -112,6 +109,11 @@ D = ex1.D(eig, ex1.t)
 Q = ex1.Q()
 
 
+plt.plot(p1.hist.t, p1.hist.q, 'ro-', mfc='None', ms=2)
+plt.plot(p1.hist.t[-1]-p1.hist.t, p1.Q[-1, :], 'bo-', mfc='None', ms=2)
+
+erro
+
 #plotar pressões e vazões
 
 fig, axes = plt.subplots(2,1,figsize=(6.3, 6.3))
@@ -131,8 +133,8 @@ for ax in axes:
     ax.legend(loc='lower right')
     
 fig.tight_layout()
-plt.savefig('multiwell_imex.png', dpi=600)
-plt.savefig('multiwell_imex.svg')
+# plt.savefig('multiwell_imex.png', dpi=600)
+# plt.savefig('multiwell_imex.svg')
 
 # Plotar derivada
 tb = np.logspace(-2.3,3, 200)
@@ -147,6 +149,6 @@ ax.set_aspect('equal')
 ax.grid(1)
 fig.tight_layout()
 
-plt.savefig('multiwell_imex_bourdet.png', dpi=600)
-plt.savefig('multiwell_imex_bourdet.svg')
+# plt.savefig('multiwell_imex_bourdet.png', dpi=600)
+# plt.savefig('multiwell_imex_bourdet.svg')
 
