@@ -26,7 +26,7 @@ def which_type(well):
 # Lê dados
 # df = pd.read_excel('multiwell.xlsx', sheet_name='Data')
 # df.to_csv('Ex1.zip', compression='zip', encoding='utf-8', index=False)
-df = pd.read_csv('Ex1_log.zip', compression='zip')
+df = pd.read_csv('Ex1.zip', compression='zip')
 
 idx = (df['t']>1.5) & (df['t']<=10.)
 df = df[idx]
@@ -104,9 +104,9 @@ sqbounds = [lb,ub]
 print(np.array(sqbounds).shape)
 
 # Run deconvolution
-# r = ex1.deconvolve(eig, psis, bounds=sqbounds)
-# eig, psis = ex1.x2conv(r.x)
-# np.savetxt('r.txt', r.x)
+r = ex1.deconvolve(eig, psis, bounds=sqbounds)
+eig, psis = ex1.x2conv(r.x)
+np.savetxt('r.txt', r.x)
 
 # Update wells
 ex1.set_wells(eig, psis)

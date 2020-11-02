@@ -7,7 +7,7 @@ Created on Tue Jan 21 08:11:03 2020
 import numpy as np
 import scipy as sp
 import pandas as pd
-import mpmath as mp
+import scipy.optimize
 
 class classHist():
     """
@@ -274,9 +274,9 @@ class classConv():
                    psis,
                    bounds=None,
                    method='trf',
-                   xtol=1e-6,
-                   ftol=1e-7,
-                   gtol=1e-5):
+                   xtol=1e-4,
+                   ftol=1e-4,
+                   gtol=1e-4):
         
         # Create inital guess for eigenvalues
         # x0 = [1/Vpct, eigs, cs]
@@ -289,7 +289,7 @@ class classConv():
         #                                 optimize='optimal')[0]
         self.conv_path=True
         x0 = self.conv2x(eig, psis)       
-        r = sp.optimize.least_squares(self.error,
+        r = scipy.optimize.least_squares(self.error,
                                         x0,
                                         bounds=bounds,
                                         method='trf',
