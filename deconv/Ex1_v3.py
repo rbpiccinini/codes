@@ -26,19 +26,26 @@ def which_type(well):
 # Lê dados
 # df = pd.read_excel('multiwell.xlsx', sheet_name='Data')
 # df.to_csv('Ex1.zip', compression='zip', encoding='utf-8', index=False)
-df = pd.read_csv('Ex1.zip', compression='zip')
+df = pd.read_csv('Ex1_log.zip', compression='zip')
 
-idx = (df['t']>1.5) & (df['t']<=10.)
+idx = (df['t']<=20.)
 df = df[idx]
-df['t'] = df['t'] - df['t'].min()
+
+# Salva eventos
+teventos = [2., 4., 5., 6., 7., 8., 10.]
+idx = df['t'].isin(teventos)
+eventos = df[idx].copy()
 
 #resample df
-# wells = df['well'].drop_duplicates().tolist()
-# dfs = []
-# for well in wells:
-#     idx = df['well'] == well 
-#     dfs.append((df.loc[idx]).iloc[::20 ,:])
-# df = pd.concat(dfs)
+wells = df['well'].drop_duplicates().tolist()
+dfs = []
+for well in wells:
+    idx = df['well'] == well 
+    dfs.append((df.loc[idx]).iloc[::15 ,:])
+    
+dfs.append(eventos)
+df = pd.concat(dfs).drop_duplicates()
+df = df.sort_values(by=['well', 't'])
 
 # initial pressure [kgf/cm2]
 p0 = 421.839630126953
@@ -91,11 +98,11 @@ ex1 = classConv(wells, t=t, ne=len(eig), p0=p0)
 # Read x0 for deconvolution
 eig, psis = ex1.x2conv(np.loadtxt('r_opt7.txt'))
 
-# D = ex1.D(eig, t)
-# Q = ex1.Q()
-# C = ex1.C(psis)
+D = ex1.D(eig, t)
+Q = ex1.Q()
+C = ex1.C(psis)
 
-# np.einsum('kv,vte,ekw->tw',Q, D, C, optimize=True)
+np.einsum('kv,vte,ekw->tw',Q, D, C, optimize=True)
 
 # Set bounds for eingevalues
 lb = [0.01]+[0.1]*(ex1.ne-1)+[-10]*(ex1.ne-1)*ex1.nw
@@ -104,9 +111,9 @@ sqbounds = [lb,ub]
 print(np.array(sqbounds).shape)
 
 # Run deconvolution
-r = ex1.deconvolve(eig, psis, bounds=sqbounds)
-eig, psis = ex1.x2conv(r.x)
-np.savetxt('r.txt', r.x)
+# r = ex1.deconvolve(eig, psis, bounds=sqbounds)
+# eig, psis = ex1.x2conv(r.x)
+# np.savetxt('r.txt', r.x)
 
 # Update wells
 ex1.set_wells(eig, psis)
@@ -119,7 +126,7 @@ colors = ['b', 'k', 'g']
 for well, color in zip(wells, colors):
     axes[0].fill_between(well.hist.t, well.hist.q, alpha=0.5, step='pre', color=color, label=well.name)
     axes[1].plot(well.hist.t, well.hist.p, 'o', ms=2, mfc='None', mec=color)
-    axes[1].plot(well.hist.t, well.pconv, '-', ms=2, color=color, label=well.name)
+    axes[1].plot(well.hist.t, well.pconv, '-s', ms=2, color=color, label=well.name)
   
     print('PI of '+well.name+' = '+str(well.PI([40.])))
     
@@ -131,6 +138,7 @@ for ax in axes:
     ax.legend(loc='lower right')
     
 fig.tight_layout()
+
 # plt.savefig('multiwell_imex.png', dpi=600)
 # plt.savefig('multiwell_imex.svg')
 

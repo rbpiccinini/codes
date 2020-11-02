@@ -8,6 +8,7 @@ import numpy as np
 import scipy as sp
 import pandas as pd
 import scipy.optimize
+import numexpr as ne
 
 class classHist():
     """
@@ -181,20 +182,29 @@ class classConv():
             Array of exponents including the null array (length = nj).
         """
         
-        t_1 = np.roll(t,1)
-        t_1[0] = 0.
+        # t_1 = np.roll(t,1)
+        # t_1[0] = 0.
         
         # Analytical calculation
         SMALL = 1e-12
         
-        # Df = np.zeros([len(t), len(t), len(eig)])
-        # Di = np.zeros([len(t), len(t), len(eig)])
+
+        D = np.einsum('ij,k->ijk', np.tril(t[:, None] - t[:]), -eig, optimize=True)        
+        idx = np.tril_indices(len(t))
+        D[idx[0], idx[1], :] = np.exp(D[idx[0], idx[1], :])
+        D = D*(-np.expm1(np.einsum('i,j->ij', np.diff(t, prepend=0.),  -eig, optimize=True)))
         
-        D =  (np.exp(np.einsum('ij,k->ijk', np.tril(t[:, None] - t[:]), -eig))
-              -np.exp(np.einsum('ij,k->ijk', np.tril(t[:, None] - t_1[:]),  -eig)))
         
         D[:,:,0] = np.tril(np.tile(np.diff(t, prepend=0), (len(t),1)))
-        D[:,:,1:] /= eig[1:]
+        D[:,:,1:] /= (eig[1:]+SMALL)
+        
+        
+        # D2 =  (np.exp(np.einsum('ij,k->ijk', np.tril(t[:, None] - t[:]), -eig))
+        #       -np.exp(np.einsum('ij,k->ijk', np.tril(t[:, None] - t_1[:]),  -eig)))
+        
+        # D2[:,:,0] = np.tril(np.tile(np.diff(t, prepend=0), (len(t),1)))
+        # D2[:,:,1:] /= eig[1:]
+        
         
         return D
     
