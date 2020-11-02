@@ -24,11 +24,12 @@ def which_type(well):
         return 'none'
 
 # Lê dados
+
 # df = pd.read_excel('multiwell.xlsx', sheet_name='Data')
 # df.to_csv('Ex1.zip', compression='zip', encoding='utf-8', index=False)
-df = pd.read_csv('Ex1_log.zip', compression='zip')
 
-idx = (df['t']<=20.)
+df = pd.read_csv('Ex1_log.zip', compression='zip')
+idx = (df['t']<=15.)
 df = df[idx]
 
 # Salva eventos
@@ -41,7 +42,7 @@ wells = df['well'].drop_duplicates().tolist()
 dfs = []
 for well in wells:
     idx = df['well'] == well 
-    dfs.append((df.loc[idx]).iloc[::15 ,:])
+    dfs.append((df.loc[idx]).iloc[::2 ,:])
     
 dfs.append(eventos)
 df = pd.concat(dfs).drop_duplicates()
@@ -96,7 +97,7 @@ obs1 = wells[1]
 ex1 = classConv(wells, t=t, ne=len(eig), p0=p0)
 
 # Read x0 for deconvolution
-eig, psis = ex1.x2conv(np.loadtxt('r_opt7.txt'))
+eig, psis = ex1.x2conv(np.loadtxt('r.txt'))
 
 D = ex1.D(eig, t)
 Q = ex1.Q()
@@ -106,14 +107,14 @@ np.einsum('kv,vte,ekw->tw',Q, D, C, optimize=True)
 
 # Set bounds for eingevalues
 lb = [0.01]+[0.1]*(ex1.ne-1)+[-10]*(ex1.ne-1)*ex1.nw
-ub = [1.0]+[1000.]*(ex1.ne-1)+[10]*(ex1.ne-1)*ex1.nw
+ub = [1.0]+[2000.]*(ex1.ne-1)+[10]*(ex1.ne-1)*ex1.nw
 sqbounds = [lb,ub]
 print(np.array(sqbounds).shape)
 
 # Run deconvolution
-# r = ex1.deconvolve(eig, psis, bounds=sqbounds)
-# eig, psis = ex1.x2conv(r.x)
-# np.savetxt('r.txt', r.x)
+r = ex1.deconvolve(eig, psis, bounds=sqbounds)
+eig, psis = ex1.x2conv(r.x)
+np.savetxt('r.txt', r.x)
 
 # Update wells
 ex1.set_wells(eig, psis)
@@ -139,22 +140,22 @@ for ax in axes:
     
 fig.tight_layout()
 
-# plt.savefig('multiwell_imex.png', dpi=600)
-# plt.savefig('multiwell_imex.svg')
+plt.savefig('multiwell_imex.png', dpi=600)
+plt.savefig('multiwell_imex.svg')
 
 # Plotar derivada
-# tb = np.logspace(-2.3,3, 200)
-# fig, ax = plt.subplots(1,1,figsize=(6.3, 6.3))
-# for well, color in zip(wells, colors):
-#     ax.loglog(tb*24., well.bourdet(t=tb), '-', ms=2, mfc='None', label=well.name, color=color)
+tb = np.logspace(-2.3,3, 200)
+fig, ax = plt.subplots(1,1,figsize=(6.3, 6.3))
+for well, color in zip(wells, colors):
+    ax.loglog(tb*24., well.bourdet(t=tb), '-', ms=2, mfc='None', label=well.name, color=color)
 
-# ax.set_xlabel('Time [hours]')
-# ax.legend(loc='lower right')
-# ax.set_ylabel('Burdet derivative [kgf/cm2]')
-# ax.set_aspect('equal')
-# ax.grid(1)
-# fig.tight_layout()
+ax.set_xlabel('Time [hours]')
+ax.legend(loc='lower right')
+ax.set_ylabel('Burdet derivative [kgf/cm2]')
+ax.set_aspect('equal')
+ax.grid(1)
+fig.tight_layout()
 
-# plt.savefig('multiwell_imex_bourdet.png', dpi=600)
-# plt.savefig('multiwell_imex_bourdet.svg')
+plt.savefig('multiwell_imex_bourdet.png', dpi=600)
+plt.savefig('multiwell_imex_bourdet.svg')
 
