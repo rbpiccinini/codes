@@ -72,7 +72,12 @@ coords = fd.project(mesh.coordinates, Vvec).dat.data
 spe10_2 = sp.loadmat('../../input/spe10/spe10_2.mat')
 
 # well location
-xw = np.array([118.872, 181.356, Lz/2])
+xwc = np.array([118.872, 181.356, Lz/2])
+
+xw=[]
+for iz in range(Nz):
+    xw.append([xwc[0], xwc[1], Delta_z*(0.5+iz)])
+xw = np.array(xw)
 
 kx_array = spe10_2['Kx'][:,:, layers]
 ky_array = spe10_2['Ky'][:,:, layers]
@@ -195,7 +200,7 @@ print('## Matrix assembled.')
 #ViewHDF5.destroy()            # Destroy Viewer
 
 # Set solver options
-num_eigenvalues = 1000 
+num_eigenvalues = 10 
 
 opts = PETSc.Options()
 
@@ -247,7 +252,7 @@ for i in range(nconv):
     
     eigvecs.append(fd.Function(V))
     eigvecs[-1].vector()[:] = vr*vr
-    eigvalues.append([lam.real, eigvecs[-1].at(xw)])
+    eigvalues.append(np.concatenate([[lam.real], np.ravel(eigvecs[-1].at(xw))]))
     eigvecs[-1].rename('eigvec^2'+str('{:2d}').format(i))
 
 eigvalues = np.array(eigvalues)
